@@ -11,7 +11,7 @@ class DashboardController extends Controller
     /*
      * GET
      * /dashboard
-     * User homepage
+     * User Homepage
      */
     public function index()
     {

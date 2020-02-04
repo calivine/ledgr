@@ -45,8 +45,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', 'DashboardController@index');
 
     Route::post('/save_transaction', 'DashboardController@saveTransaction');
+
+    Route::get('/budget', 'BudgetController@index');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

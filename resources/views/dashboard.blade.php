@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    <div class='container-fluid w-50 mt-50 bg-light shadow'>
+    <div class='container-fluid mt-50 bg-light shadow'>
         <table class='mx-auto p-2 sortable table shadow'>
             <thead>
             <tr>
