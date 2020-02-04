@@ -1,0 +1,88 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+html {
+  background-color: $body-bg;
+  font-family: 'Akkurat', 'Yu Gothic UI', sans-serif;
+  font-size: 16px;
+}
+
+body {
+  background-color: inherit;
+  height: 100vh;
+}
+
+nav {
+  li {
+    display: inline-block;
+    list-style-type: none;
+    margin-right: 25px;
+  }
+}
+
+td {
+  button, input, form {
+    display: inline-block;
+    margin: 0 auto;
+  }
+}
+
+#manual-input-form {
+  input, select {
+    margin-right: 100%;
+    width: 200px;
+  }
+
+  label {
+    margin-bottom: 0;
+  }
+
+  button {
+    width: 200px
+  }
+}
+
+#manual-input-button {
+  width: 200px;
+}
+
+footer {
+  background-color: inherit;
+  margin: 5px 0;
+  text-align: center;
+
+  /* sticky footer */
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  line-height: 20px; /* Vertically center the text there */
+}
+
+#login-form {
+  border: none;
+  padding: 0;
+  font-size: .75em;
+}
+
+#login-submit {
+  width: 135px;
+}
+
+.tabs {
+  height: 80px;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
