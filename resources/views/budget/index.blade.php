@@ -27,4 +27,6 @@
         </tbody>
     </table>
 
+    <script type='text/javascript' src="{{ asset('js/BudgetWorker.js') }}"></script>
+    <script type='text/javascript' src="{{ asset('js/budget-index.js') }}"></script>
 @endsection

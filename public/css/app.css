@@ -11380,17 +11380,25 @@ td form {
   margin: 0 auto;
 }
 
+#manual-input-form {
+  margin: auto;
+  width: 500px;
+  max-width: 500px;
+}
+
 #manual-input-form input,
 #manual-input-form select {
-  margin-right: 100%;
+  margin-left: 35%;
   width: 200px;
 }
 
 #manual-input-form label {
+  margin-left: 35%;
   margin-bottom: 0;
 }
 
 #manual-input-form button {
+  margin-left: 35%;
   width: 200px;
 }
 

@@ -16,7 +16,7 @@ $(function () {
             $('input#amount-input').val("");
             $('input#transaction-date-input').val("");
             $inputForm.fadeIn();
-            $x.attr('aria-hidden', 'true').text('&times;');
+            $x.attr('aria-hidden', 'true').text('close');
             $closeButton.attr('type', 'button')
                 .attr('aria-label', 'Close')
                 .attr('data-dismiss', 'alert')

@@ -34,16 +34,22 @@ td {
 }
 
 #manual-input-form {
+  margin: auto;
+  width: 500px;
+  max-width: 500px;
   input, select {
-    margin-right: 100%;
+    margin-left: 35%;
+
     width: 200px;
   }
 
   label {
+    margin-left: 35%;
     margin-bottom: 0;
   }
 
   button {
+    margin-left: 35%;
     width: 200px
   }
 }

@@ -47,6 +47,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/save_transaction', 'DashboardController@saveTransaction');
 
     Route::get('/budget', 'BudgetController@index');
+
+    Route::post('/budget/planned/update', 'BudgetController@updatePlanned');
 });
 
 Auth::routes();

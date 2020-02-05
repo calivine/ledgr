@@ -21,4 +21,25 @@ class BudgetController extends Controller
             'budget' => $response
         ]);
     }
+
+    /*
+     * POST
+     * /budget/planned/update
+     * Updates Planned Amount For Budget Category
+     */
+    public function updatePlanned(Request $request)
+    {
+        $new_planned = $request->input('new_value');
+        $period = $request->input('budget_period');
+        $category = $request->input('category');
+
+        dump($period);
+        dump($category);
+
+        // TODO: Save New Planned Budget Value To Budget Table
+
+        return response()->json([
+            'planned' => $new_planned
+        ]);
+    }
 }
