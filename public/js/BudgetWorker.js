@@ -18,7 +18,7 @@ function BudgetWorker() {
             budget_period: $('h3#budget-period').text(),
             category: t.parent().prev().text()
         }, function (data) {
-            hiddenPlannedValue.text(data['planned']);
+            hiddenPlannedValue.text(data.planned);
             // Insert update planned budget value
             updateForm.fadeOut();
             hiddenPlannedValue.fadeIn();
