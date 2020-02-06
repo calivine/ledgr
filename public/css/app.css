@@ -11380,31 +11380,37 @@ td form {
   margin: 0 auto;
 }
 
+#manual-input-form label {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+/*
 #manual-input-form {
   margin: auto;
   width: 500px;
   max-width: 500px;
-}
+  input, select {
+    margin-left: 35%;
 
-#manual-input-form input,
-#manual-input-form select {
-  margin-left: 35%;
-  width: 200px;
-}
+    width: 200px;
+  }
 
-#manual-input-form label {
-  margin-left: 35%;
-  margin-bottom: 0;
-}
+  label {
+    margin-left: 35%;
+    margin-bottom: 0;
+  }
 
-#manual-input-form button {
-  margin-left: 35%;
-  width: 200px;
+  button {
+    margin-left: 35%;
+    width: 200px
+  }
 }
 
 #manual-input-button {
   width: 200px;
 }
+*/
 
 footer {
   background-color: inherit;

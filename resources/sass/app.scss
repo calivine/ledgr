@@ -32,7 +32,13 @@ td {
     margin: 0 auto;
   }
 }
-
+#manual-input-form {
+  label {
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
+/*
 #manual-input-form {
   margin: auto;
   width: 500px;
@@ -57,7 +63,7 @@ td {
 #manual-input-button {
   width: 200px;
 }
-
+*/
 footer {
   background-color: inherit;
   margin: 5px 0;
