@@ -1,6 +1,5 @@
 $(function () {
     $('button#manual-input-button').bind('click', function () {
-        console.log($('input#description-input').val());
         $.post('/save_transaction', {
             description: $('input#description-input').val(),
             amount: $('input#amount-input').val(),
@@ -12,9 +11,10 @@ $(function () {
             let $closeButton = $('<button></button>');
             let $x = $('<span></span>');
             $inputForm.fadeOut();
-            $('input#description-input').val("");
-            $('input#amount-input').val("");
-            $('input#transaction-date-input').val("");
+
+            // Clear Form
+            resetSaveTransaction();
+
             $inputForm.fadeIn();
             $x.attr('aria-hidden', 'true').text('close');
             $closeButton.attr('type', 'button')
@@ -32,3 +32,10 @@ $(function () {
         return false;
     });
 });
+
+function resetSaveTransaction() {
+    $('input#description-input').val("");
+    $('input#amount-input').val("");
+    $('input#transaction-date-input').val("");
+    $('select#manual-select-category').val("");
+}

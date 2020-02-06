@@ -53,3 +53,4 @@ Route::group(['middleware' => 'auth'], function() {
 
 Auth::routes();
 
+Route::redirect('/register', '/');

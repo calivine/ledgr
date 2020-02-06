@@ -11383,34 +11383,22 @@ td form {
 #manual-input-form label {
   width: 100%;
   margin-bottom: 0;
+  line-height: 10px;
+  font-weight: 500;
 }
 
-/*
-#manual-input-form {
-  margin: auto;
-  width: 500px;
-  max-width: 500px;
-  input, select {
-    margin-left: 35%;
-
-    width: 200px;
-  }
-
-  label {
-    margin-left: 35%;
-    margin-bottom: 0;
-  }
-
-  button {
-    margin-left: 35%;
-    width: 200px
-  }
+#manual-input-form input,
+#manual-input-form select {
+  margin-top: 0;
+  width: 100%;
 }
 
-#manual-input-button {
-  width: 200px;
+@media (max-width: 600px) {
+  #manual-input-form input,
+  #manual-input-form select {
+    width: 100%;
+  }
 }
-*/
 
 footer {
   background-color: inherit;
