@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    <table>
+    <table id='budget-table'>
         <thead>
         <tr>
             <th>Category</th>
@@ -13,7 +13,7 @@
         <tbody>
         @foreach($budget as $row)
             <tr class='budget-category'>
-                <td class='budget-category-name'>{{ $row->category }}</td>
+                <td id='{{ $row->id }}' class='budget-category-name'>{{ $row->category }}</td>
                 <td class='budget-category-planned'>{{ $row->planned }}</td>
                 <td>{{ $row->actual }}</td>
                 <td></td>

@@ -11380,6 +11380,14 @@ td form {
   margin: 0 auto;
 }
 
+#budget-table {
+  margin: auto;
+}
+
+#budget-table td {
+  min-width: 22vw;
+}
+
 #manual-input-form label {
   width: 100%;
   margin-bottom: 0;

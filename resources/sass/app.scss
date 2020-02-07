@@ -32,6 +32,14 @@ td {
     margin: 0 auto;
   }
 }
+
+#budget-table {
+  margin: auto;
+  td {
+    min-width: 22vw;
+  }
+}
+
 #manual-input-form {
   label {
     width: 100%;

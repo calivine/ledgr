@@ -16,7 +16,8 @@ function BudgetWorker() {
         $.post('/budget/planned/update', {
             new_value: $('input.update-input').val(),
             budget_period: $('h3#budget-period').text(),
-            category: t.parent().prev().text()
+            category: t.parent().prev().text(),
+            id: t.parent().prev().attr('id')
         }, function (data) {
             hiddenPlannedValue.text(data.planned);
             // Insert update planned budget value
@@ -47,7 +48,7 @@ function BudgetWorker() {
     };
 
     this.budgetUpdateInput = function (value) {
-        return '<td class="budget-update-form"><input type="text" class="update-input" name="budget_update" value=' + value + '><button class="btn-primary budget-update" id="budget-update-submit">Save</button><button class="btn-secondary" id="budget-update-cancel">Cancel</button></td>';
+        return '<td class="budget-update-form"><input type="text" class="update-input w-100" name="budget_update" value=' + value + '><button class="btn-primary budget-update w-50" id="budget-update-submit">Save</button><button class="btn-secondary w-50" id="budget-update-cancel">Cancel</button></td>';
     };
 
     this.displayNewCategoryForm = function (t) {
