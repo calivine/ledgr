@@ -1,4 +1,6 @@
 # Ledgr
 *Alex Caloggero*
-[Production](http://ledgr.cash)
-## Version 1.0.0
+
+## Version 1.0.9
+
+*Monthly Budget And Expense Tracking*
