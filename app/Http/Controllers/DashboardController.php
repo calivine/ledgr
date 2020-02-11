@@ -15,10 +15,24 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $response = Budget::all();
-        $transactions = Activity::all();
-        $categories = [];
-        foreach($response as $category) {
+        // Get Current Period
+        $date = date('Y');
+        $period = date('F');
+        $timestamp = strtotime(date('f Y'));
+
+        $month_start = date('Y-m-01', $timestamp);
+        $month_end = date('Y-m-t', $timestamp);
+
+        $transactions = Activity::whereBetween('date', [$month_start, $month_end])->get();
+
+        // Get Budget Sheet For Current Period
+        $budget = Budget::where([
+            ['year', '=', $date],
+            ['period', '=', $period]
+        ])->get();
+
+        // Category Labels For Manual Input Form
+        foreach($budget as $category) {
             $categories[] = $category->category;
         }
 
@@ -41,8 +55,6 @@ class DashboardController extends Controller
         $category = $request->input('category');
         $date = $request->input('transaction_date');
 
-        dump($date);
-
         // Save transaction to Activities table
         $activity = new Activity();
         $activity->description = $description;
@@ -51,6 +63,18 @@ class DashboardController extends Controller
         $activity->date = $date;
         // Create function that generates random 36 character alpha-num string
         $activity->transaction_id = "TestTransaction";
+
+        // Update Actual Budget Value
+        $budget = Budget::where([
+            ['category', $category],
+            ['period', date('F')],
+            ['year', date('Y')]
+        ])->first();
+
+        $budget->actual = $budget->actual + $amount;
+
+        $budget->save();
         $activity->save();
+
     }
 }

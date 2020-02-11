@@ -15,8 +15,6 @@ function BudgetWorker() {
         let hiddenPlannedValue = t.parent().next();
         $.post('/budget/planned/update', {
             new_value: $('input.update-input').val(),
-            budget_period: $('h3#budget-period').text(),
-            category: t.parent().prev().text(),
             id: t.parent().prev().attr('id')
         }, function (data) {
             hiddenPlannedValue.text(data.planned);

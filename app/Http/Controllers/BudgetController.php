@@ -14,8 +14,34 @@ class BudgetController extends Controller
      */
     public function index()
     {
+        // Get Budget Items Where Period = F and Year = Y
+        //$response = Budget::all();
+        $date = date('Y');
+        $period = date('F');
+        $response = Budget::where([
+            ['year', '=', $date],
+            ['period', '=', $period]
+        ])->get();
 
-        $response = Budget::all();
+        if ($response->isEmpty()) {
+            $json = file_get_contents('../database/budget.json');
+            $json_data = json_decode($json, true);
+
+            foreach($json_data['data'] as $budget) {
+                $new_budget = new Budget;
+
+                $new_budget->category = $budget['category'];
+                $new_budget->year = $date;
+                $new_budget->period = $period;
+
+                $new_budget->save();
+            }
+
+            $response = Budget::where([
+                ['year', '=', $date],
+                ['period', '=', $period]
+            ])->get();
+        }
 
         return view('budget.index')->with([
             'budget' => $response
@@ -30,14 +56,14 @@ class BudgetController extends Controller
     public function updatePlanned(Request $request)
     {
         $new_planned = $request->input('new_value');
-        $period = $request->input('budget_period');
-        $category = $request->input('category');
+        $id = $request->input('id');
 
-        $p = $new_planned;
-        // TODO: Save New Planned Budget Value To Budget Table
+        $budget = Budget::find($id);
+        $budget->planned = $new_planned;
+        $budget->save();
 
         return response()->json([
-            'planned' => $p
+            'planned' => $new_planned
         ]);
     }
 }
