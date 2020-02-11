@@ -1,3 +1,5 @@
+let $inputForm = $('fieldset#manual-input-form');
+
 $(function () {
     $('button#manual-input-button').bind('click', function () {
         $.post('/save_transaction', {
@@ -6,28 +8,13 @@ $(function () {
             category: $('select#manual-select-category').val(),
             transaction_date: $('input#transaction-date-input').val()
         }).done( function () {
-            let $inputForm = $('fieldset#manual-input-form');
-            let $successAlert = $('<div></div>');
-            let $closeButton = $('<button></button>');
-            let $x = $('<span></span>');
             $inputForm.fadeOut();
-
             // Clear Form
             resetSaveTransaction();
-
             $inputForm.fadeIn();
-            $x.attr('aria-hidden', 'true').text('close');
-            $closeButton.attr('type', 'button')
-                .attr('aria-label', 'Close')
-                .attr('data-dismiss', 'alert')
-                .addClass('close')
-                .prepend($x);
-            // $closeButton.prepend($x);
-            $successAlert.addClass('alert alert-primary').attr('role', 'alert').text('Saved New Transaction');
-            $successAlert.prepend($closeButton);
-            $inputForm.prepend($successAlert);
+            $inputForm.prepend(generateAlert('success'));
         }).fail( function () {
-            $('fieldset#manual-input-form').fadeOut().fadeIn();
+            $inputForm.fadeOut().fadeIn().prepend(generateAlert('fail'));
         });
         return false;
     });
@@ -38,4 +25,25 @@ function resetSaveTransaction() {
     $('input#amount-input').val("");
     $('input#transaction-date-input').val("");
     $('select#manual-select-category').val("");
+}
+
+function generateAlert(type = 'success') {
+    let $alert = $('<div></div>');
+    let $closeButton = $('<button></button>');
+    let $x = $('<span></span>');
+    $x.attr('aria-hidden', 'true').text('close');
+    $closeButton.attr('type', 'button')
+        .attr('aria-label', 'Close')
+        .attr('data-dismiss', 'alert')
+        .addClass('close')
+        .prepend($x);
+    if (type === 'success') {
+        $alert.addClass('alert alert-primary').attr('role', 'alert').text('Saved New Transaction');
+    }
+    else if (type === 'fail') {
+        $alert.addClass('alert alert-danger').attr('role', 'alert').text('Whoops! Something Went Wrong.');
+    }
+
+    $alert.prepend($closeButton);
+    return $alert;
 }

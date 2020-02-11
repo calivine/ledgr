@@ -1,6 +1,7 @@
 @extends('layout.master')
 
 @section('content')
+    <h4>{{ $period }}</h4>
     <table id='budget-table'>
         <thead>
         <tr>

@@ -16,14 +16,17 @@ class BudgetController extends Controller
     {
         // Get Budget Items Where Period = F and Year = Y
         //$response = Budget::all();
-        $date = date('Y');
-        $period = date('F');
+
         $response = Budget::where([
-            ['year', '=', $date],
-            ['period', '=', $period]
+            ['year', '=', date('Y')],
+            ['period', '=', date('F')]
         ])->get();
 
         if ($response->isEmpty()) {
+            // Generate New Budget Sheet
+            $date = date('Y');
+            $period = date('F');
+
             $json = file_get_contents('../database/budget.json');
             $json_data = json_decode($json, true);
 
@@ -43,8 +46,11 @@ class BudgetController extends Controller
             ])->get();
         }
 
+        $budget_period = date('F') . " " . date('Y');
+
         return view('budget.index')->with([
-            'budget' => $response
+            'budget' => $response,
+            'period' => $budget_period
         ]);
     }
 

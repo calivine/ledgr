@@ -31,14 +31,24 @@ class DashboardController extends Controller
             ['period', '=', $period]
         ])->get();
 
+        $categories = [];
+        $actuals = [];
+        $monthly_exp = 0.0;
+
         // Category Labels For Manual Input Form
+        // Sum Total Monthly Expenditure
+        // Create Actuals Table
         foreach($budget as $category) {
             $categories[] = $category->category;
+            $actuals[] = $category->actual;
+            $monthly_exp += $category->actual;
         }
 
         return view('dashboard')->with([
             'categories' => $categories,
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'actuals' => $actuals,
+            'monthly_expenditure' => $monthly_exp
         ]);
     }
 
@@ -49,6 +59,13 @@ class DashboardController extends Controller
      */
     public function saveTransaction(Request $request)
     {
+        $request->validate([
+            'description' => 'required',
+            'amount' => 'required',
+            'category' => 'required',
+            'transaction_date' => 'required'
+        ]);
+
         // Get input values from form
         $description = $request->input('description');
         $amount = $request->input('amount');
