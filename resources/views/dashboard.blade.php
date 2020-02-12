@@ -12,7 +12,6 @@
             <h5>${{ $monthly_expenditure }}</h5>
         </div>
         <div class='row justify-content-center'>
-            <h4>Spending:</h4>
             <div class='col-md-6'>
                 @include('modules.progress-bar', ['monthly_budget' => $monthly_budget, 'monthly_expenditure' => $monthly_expenditure])
             </div>
