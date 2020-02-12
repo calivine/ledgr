@@ -34,6 +34,7 @@ class DashboardController extends Controller
         $categories = [];
         $actuals = [];
         $monthly_exp = 0.0;
+        $monthly_budget = 0.0;
 
         // Category Labels For Manual Input Form
         // Sum Total Monthly Expenditure
@@ -42,13 +43,15 @@ class DashboardController extends Controller
             $categories[] = $category->category;
             $actuals[] = $category->actual;
             $monthly_exp += $category->actual;
+            $monthly_budget += $category->planned;
         }
 
         return view('dashboard')->with([
             'categories' => $categories,
             'transactions' => $transactions,
             'actuals' => $actuals,
-            'monthly_expenditure' => $monthly_exp
+            'monthly_expenditure' => $monthly_exp,
+            'monthly_budget' => $monthly_budget
         ]);
     }
 
