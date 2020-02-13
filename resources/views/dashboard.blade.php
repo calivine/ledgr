@@ -9,11 +9,8 @@
             </div>
         </div>
         <div class='row justify-content-center'>
-            <h5>${{ $monthly_expenditure }}</h5>
-        </div>
-        <div class='row justify-content-center'>
-            <div class='col-md-6'>
-                <h3 class='mb-0 w-100'>Total Spending:</h3>
+            <div class='col-md-8'>
+                <p class='progress-bar-label text-left'>Total Spending:</p><p class='progress-bar-label float-right'>${{ $monthly_expenditure }} of ${{ $monthly_budget }}</p>
                 @include('modules.progress-bar', ['monthly_budget' => $monthly_budget, 'monthly_expenditure' => $monthly_expenditure])
             </div>
         </div>

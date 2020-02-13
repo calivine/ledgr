@@ -15,15 +15,22 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // Get Current Period
+        // Set Timezone
+        date_default_timezone_set('America/New_York');
+
+        // Get Current Period: Month/Year
         $date = date('Y');
         $period = date('F');
-        $timestamp = strtotime(date('f Y'));
 
+        // Get First And Last Days Of Current Month
+        $timestamp = strtotime(date('f Y'));
         $month_start = date('Y-m-01', $timestamp);
         $month_end = date('Y-m-t', $timestamp);
 
-        $transactions = Activity::whereBetween('date', [$month_start, $month_end])->get();
+        // Pull Transactions For The Current Period
+        $transactions = Activity::whereBetween(
+            'date', [$month_start, $month_end])
+            ->get();
 
         // Get Budget Sheet For Current Period
         $budget = Budget::where([
@@ -31,20 +38,25 @@ class DashboardController extends Controller
             ['period', '=', $period]
         ])->get();
 
+        // Data To Be Formatted For Display On Dashboard
         $categories = [];
         $actuals = [];
-        $monthly_exp = 0.0;
         $monthly_budget = 0.0;
 
-        // Category Labels For Manual Input Form
-        // Sum Total Monthly Expenditure
-        // Create Actuals Table
+        /*
+         * Format Budget Sheet Into:
+         *      Category Labels
+         *      Actuals List
+         *      Total Monthly Budget
+         */
         foreach($budget as $category) {
             $categories[] = $category->category;
             $actuals[] = $category->actual;
-            $monthly_exp += $category->actual;
             $monthly_budget += $category->planned;
         }
+
+        // Sum Up Total Monthly Expenditure
+        $monthly_exp = array_sum($actuals);
 
         return view('dashboard')->with([
             'categories' => $categories,

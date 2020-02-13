@@ -69,8 +69,8 @@ function BudgetWorker() {
             // Insert new category line after last category row already in table
             // .prepend() on <tr id='budget-totals'>
             let newRow = $('<tr class="budget-category"></tr>');
-            let newCategoryName = '<td class="budget-category-name">' + data['category'] + '</td>';
-            let newCategoryPlanned = '<td class="budget-category-planned">' + data['planned'] + '</td><td>0</td><td>' + data['planned'] + '</td>';
+            let newCategoryName = '<td class="budget-category-name">' + data.category + '</td>';
+            let newCategoryPlanned = '<td class="budget-category-planned">' + data.planned + '</td><td>0</td><td>' + data.planned + '</td>';
             newRow.append(newCategoryName, newCategoryPlanned);
             console.log(newRow);
             $('tr#budget-totals').before(newRow);

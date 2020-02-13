@@ -1,7 +1,8 @@
 @extends('layout.master')
 
 @section('content')
-    <h4>{{ $period }}</h4>
+    <p class='ml-3'>{{ $period }}</p>
+    <span id='add-new-category'>Add New Category</span>
     <table id='budget-table'>
         <thead>
         <tr>

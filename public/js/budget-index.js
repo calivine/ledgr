@@ -27,7 +27,7 @@ $(function () {
     });
     $(function () {
         $('span#add-new-category').on('click', function () {
-            // let newCategoryForm = worker.displayNewCategoryForm($(this));
+            let newCategoryForm = worker.displayNewCategoryForm($(this));
             $('button#category-submit').on('click', function () {
                 worker.saveNewCategory($(this));
             });

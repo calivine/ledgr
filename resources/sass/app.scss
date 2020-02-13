@@ -54,14 +54,6 @@ td {
   }
 }
 
-@media (max-width: 600px) {
-  #manual-input-form {
-    input, select {
-      width: 100%;
-    }
-  }
-}
-
 footer {
   background-color: inherit;
   margin: 5px 0;
@@ -85,6 +77,10 @@ footer {
   width: 135px;
 }
 
+#budget-table {
+  font-size: 18px;
+}
+
 .tabs {
   height: 80px;
 }
@@ -95,4 +91,23 @@ footer {
 
 .tab-content.active {
   display: block;
+}
+
+.progress-bar-label {
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+/*
+
+  MEDIA QUERIES
+
+*/
+@media (max-width: 600px) {
+  #manual-input-form {
+    input, select {
+      width: 100%;
+    }
+  }
 }

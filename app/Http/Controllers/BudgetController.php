@@ -72,4 +72,28 @@ class BudgetController extends Controller
             'planned' => $new_planned
         ]);
     }
+
+
+    /*
+     * POST
+     * /budget/new/category
+     * Add New Category To Budget Sheet
+     */
+    public function createCategory(Request $request)
+    {
+        $new_category = $request->input('name');
+        $new_planned_budget = $request->input('planned');
+        $category = new Budget;
+        $category->category = $new_category;
+        $category->planned = $new_planned_budget;
+        $category->year = date('Y');
+        $category->period = date('F');
+
+        $category->save();
+
+        return response()->json([
+            'planned' => $new_planned_budget,
+            'category' => $new_category
+        ]);
+    }
 }
