@@ -5,7 +5,7 @@
     <div class='container-fluid mt-50 bg-light shadow'>
         <div class='row justify-content-center'>
             <div class='col-md-6'>
-                @include('modules.actuals-pie-chart', ['categories' => $categories, 'actuals' => $actuals]);
+                @include('modules.actuals-pie-chart', ['categories' => $categories, 'actuals' => $actuals])
             </div>
         </div>
         <div class='row justify-content-center'>
@@ -13,6 +13,7 @@
         </div>
         <div class='row justify-content-center'>
             <div class='col-md-6'>
+                <h3 class='mb-0 w-100'>Total Spending:</h3>
                 @include('modules.progress-bar', ['monthly_budget' => $monthly_budget, 'monthly_expenditure' => $monthly_expenditure])
             </div>
         </div>

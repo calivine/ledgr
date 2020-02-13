@@ -1,3 +1,3 @@
-<div class='progress'>
+<div class='progress' style='height: 20px;'>
     <div class='progress-bar bg-success' role='progressbar' style='width: {{ ($monthly_expenditure / $monthly_budget) * 100 }}%' aria-valuenow='{{ $monthly_expenditure }}' aria-valuemin='0' aria-valuemax='{{ $monthly_budget }}'>{{ round(($monthly_expenditure / $monthly_budget) * 100) }}%</div>
 </div>
