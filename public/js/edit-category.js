@@ -8,8 +8,6 @@ $(function () {
 $(function () {
     $('td.budget-category').each(function () {
         $(this).on('click', function () {
-            console.log($(this));
-            console.log($(this).next());
             $(this).next().show();
             $(this).hide();
         });
@@ -46,3 +44,4 @@ $(function () {
         });
     });
 });
+

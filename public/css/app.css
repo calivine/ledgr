@@ -11373,11 +11373,60 @@ nav li {
   margin-right: 25px;
 }
 
-td button,
-td input,
-td form {
+footer {
+  background-color: inherit;
+  margin: 5px 0;
+  text-align: center;
+  /* sticky footer */
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  /* Vertically center the text there */
+}
+
+.tabs {
+  height: 80px;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.progress-bar-label {
   display: inline-block;
-  margin: 0 auto;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.category-edit {
+  font-size: 12px;
+  max-width: 190px;
+  min-width: 190px;
+  width: 190px;
+}
+
+.category-edit label {
+  font-size: 10px;
+}
+
+#login-form {
+  border: none;
+  padding: 0;
+  font-size: 0.75em;
+}
+
+#login-submit {
+  width: 135px;
+}
+
+#budget-table {
+  font-size: 18px;
 }
 
 #budget-table {
@@ -11399,51 +11448,6 @@ td form {
 #manual-input-form select {
   margin-top: 0;
   width: 100%;
-}
-
-footer {
-  background-color: inherit;
-  margin: 5px 0;
-  text-align: center;
-  /* sticky footer */
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  height: 20px;
-  line-height: 20px;
-  /* Vertically center the text there */
-}
-
-#login-form {
-  border: none;
-  padding: 0;
-  font-size: 0.75em;
-}
-
-#login-submit {
-  width: 135px;
-}
-
-#budget-table {
-  font-size: 18px;
-}
-
-.tabs {
-  height: 80px;
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-}
-
-.progress-bar-label {
-  display: inline-block;
-  font-weight: bold;
-  margin-bottom: 0;
 }
 
 /*

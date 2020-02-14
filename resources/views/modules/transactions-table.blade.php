@@ -17,8 +17,8 @@
             <td class='transaction-amount'>${{ $transaction->amount }}</td>
             <td class='budget-category' id='{{ $transaction->id }}'>{{ $transaction->category }}</td>
             <td class='category-edit'>
-                <label for='{{ $transaction->id }}' id='category-edit-label'>Change Category</label>
-                <select name='category' id='{{ $transaction->id }}' class='category-edit-select'>
+                <label class='w-50 mb-0 mr-auto' for='{{ $transaction->id }}' id='category-edit-label'>Change Category</label>
+                <select class='w-50 mr-auto' name='category' id='{{ $transaction->id }}' class='category-edit-select'>
                     @foreach($categories as $category)
                         <option value='{{ $category }}'>{{ $category }}</option>
                     @endforeach
