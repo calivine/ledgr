@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 
+use App\Activity;
+use App\Http\Resources\ActivityCollection;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,4 +18,12 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/activity/transactions', function () {
+    return new ActivityCollection(Activity::all());
+});
+
+Route::get('/activity/transactions/{start}/{stop}', function ($start, $stop) {
+    return new ActivityCollection(Activity::whereBetween('date', [$start, $stop])->get());
 });

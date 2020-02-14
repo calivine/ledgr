@@ -11,40 +11,16 @@
 |
 */
 
-Route::get('/debug', function () {
-
-    $debug = [
-        'Environment' => App::environment(),
-    ];
-
-    /*
-    The following commented out line will print your MySQL credentials.
-    Uncomment this line only if you're facing difficulties connecting to the
-    database and you need to confirm your credentials. When you're done
-    debugging, comment it back out so you don't accidentally leave it
-    running on your production server, making your credentials public.
-    */
-    #$debug['MySQL connection config'] = config('database.connections.mysql');
-
-    try {
-        $databases = DB::select('SHOW DATABASES;');
-        $debug['Database connection test'] = 'PASSED';
-        $debug['Databases'] = array_column($databases, 'Database');
-    } catch (Exception $e) {
-        $debug['Database connection test'] = 'FAILED: '.$e->getMessage();
-    }
-
-    dump($debug);
-});
-
+// Main Splash Page
 Route::get('/', function () {
     return view('landing');
 });
 
+// Requires Authentication
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', 'DashboardController@index');
 
-    Route::post('/save_transaction', 'DashboardController@saveTransaction');
+    Route::post('/transaction/new', 'DashboardController@saveTransaction');
 
     Route::get('/budget', 'BudgetController@index');
 
@@ -55,6 +31,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/category/update', 'ActivityController@updateCategory');
 });
 
+// Authentication Routes
 Auth::routes();
 
+// Redirect Any Traffic Away From /register To Splash Page
 Route::redirect('/register', '/');

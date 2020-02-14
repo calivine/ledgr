@@ -2,7 +2,7 @@ let $inputForm = $('fieldset#manual-input-form');
 
 $(function () {
     $('button#manual-input-button').bind('click', function () {
-        $.post('/save_transaction', {
+        $.post('/transaction/new', {
             description: $('input#description-input').val(),
             amount: $('input#amount-input').val(),
             category: $('select#manual-select-category').val(),

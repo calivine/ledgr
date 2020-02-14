@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Budget;
 use App\Activity;
+use App\Actions\Utility\DateUtility;
 
 use Illuminate\Http\Request;
 
@@ -23,9 +24,9 @@ class DashboardController extends Controller
         $period = date('F');
 
         // Get First And Last Days Of Current Month
-        $timestamp = strtotime(date('f Y'));
-        $month_start = date('Y-m-01', $timestamp);
-        $month_end = date('Y-m-t', $timestamp);
+
+        $month_start = DateUtility::first_of_month();
+        $month_end = DateUtility::last_of_month();
 
         // Pull Transactions For The Current Period
         $transactions = Activity::whereBetween(
@@ -78,7 +79,7 @@ class DashboardController extends Controller
 
     /*
      * POST
-     * /save_transaction
+     * /transaction/new
      * Saves a transaction
      */
     public function saveTransaction(Request $request)

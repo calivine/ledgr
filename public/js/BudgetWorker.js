@@ -46,7 +46,7 @@ function BudgetWorker() {
     };
 
     this.budgetUpdateInput = function (value) {
-        return '<td class="budget-update-form"><input type="text" class="update-input w-100" name="budget_update" value=' + value + '><button class="btn-primary budget-update w-50" id="budget-update-submit">Save</button><button class="btn-secondary w-50" id="budget-update-cancel">Cancel</button></td>';
+        return '<td class="budget-update-form"><input type="number" step="0.01" class="update-input w-100" name="budget_update" value=' + value + '><button class="btn-primary budget-update w-50" id="budget-update-submit">Save</button><button class="btn-secondary w-50" id="budget-update-cancel">Cancel</button></td>';
     };
 
     this.displayNewCategoryForm = function (t) {
