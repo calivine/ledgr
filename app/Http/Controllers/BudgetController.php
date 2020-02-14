@@ -76,7 +76,7 @@ class BudgetController extends Controller
 
     /*
      * POST
-     * /budget/new/category
+     * /budget/category/new
      * Add New Category To Budget Sheet
      */
     public function createCategory(Request $request)
@@ -96,4 +96,5 @@ class BudgetController extends Controller
             'category' => $new_category
         ]);
     }
+
 }

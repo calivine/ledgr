@@ -61,7 +61,7 @@ function BudgetWorker() {
     };
 
     this.saveNewCategory = function (t) {
-        $.post('/budget/new/category', {
+        $.post('/budget/category/new', {
             name: $('input#new-category-input').val(),
             planned: $('input#new-planned-input').val()
 
