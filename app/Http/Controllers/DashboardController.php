@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Budget;
 use App\Activity;
 use App\Actions\Utility\DateUtility;
+use App\Actions\Utility\BudgetUtility;
 
 use Illuminate\Http\Request;
 
@@ -19,9 +20,8 @@ class DashboardController extends Controller
         // Set Timezone
         date_default_timezone_set('America/New_York');
 
-        // Get Current Period: Month/Year
-        $date = date('Y');
-        $period = date('F');
+        // Initialize Budget Utility
+        $budgetUtil = new BudgetUtility();
 
         // Get First And Last Days Of Current Month
 
@@ -33,31 +33,14 @@ class DashboardController extends Controller
             'date', [$month_start, $month_end])
             ->get();
 
-        // Get Budget Sheet For Current Period
-        $budget = Budget::where([
-            ['year', '=', $date],
-            ['period', '=', $period]
-        ])->get();
 
-        // Data To Be Formatted For Display On Dashboard
-        $categories = [];
-        $actuals = [];
-        $monthly_budget = 0.0;
+        $actuals = $budgetUtil->get_actuals();
+        $monthly_budget = $budgetUtil->total_budget();
+        $categories = $budgetUtil->labels();
+        $monthly_exp = $budgetUtil->total_spending();
 
-        /*
-         * Format Budget Sheet Into:
-         *      Category Labels
-         *      Actuals List
-         *      Total Monthly Budget
-         */
-        foreach($budget as $category) {
-            $categories[] = $category->category;
-            $actuals[] = $category->actual;
-            $monthly_budget += $category->planned;
-        }
+        $budget = $budgetUtil->get();
 
-        // Sum Up Total Monthly Expenditure
-        $monthly_exp = array_sum($actuals);
 
         if ($monthly_budget > 0) {
             $budget_percent = round(($monthly_exp / $monthly_budget) * 100);

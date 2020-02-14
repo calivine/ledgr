@@ -11,10 +11,15 @@ $(function () {
             $inputForm.fadeOut();
             // Clear Form
             resetSaveTransaction();
-            $inputForm.fadeIn();
-            $inputForm.prepend(generateAlert('success'));
+            $inputForm.fadeIn().prepend(generateAlert('success'));;
+            setTimeout(function() {
+                        $('div#alert-message-container').fadeOut();
+                    }, 5000)
         }).fail( function () {
             $inputForm.fadeOut().fadeIn().prepend(generateAlert('fail'));
+            setTimeout(function() {
+                $('.alert').fadeOut();
+            }, 5000)
         });
         return false;
     });
@@ -28,7 +33,7 @@ function resetSaveTransaction() {
 }
 
 function generateAlert(type = 'success') {
-    let $alert = $('<div></div>');
+    let $alert = $('<div id="alert-message-container"></div>');
     let $closeButton = $('<button></button>');
     let $x = $('<span></span>');
     $x.attr('aria-hidden', 'true').text('close');
