@@ -58,12 +58,20 @@ class DashboardController extends Controller
         // Sum Up Total Monthly Expenditure
         $monthly_exp = array_sum($actuals);
 
+        if ($monthly_budget > 0) {
+            $budget_percent = round(($monthly_exp / $monthly_budget) * 100);
+        }
+        else {
+            $budget_percent = 0;
+        }
+
         return view('dashboard')->with([
             'categories' => $categories,
             'transactions' => $transactions,
             'actuals' => $actuals,
             'monthly_expenditure' => $monthly_exp,
-            'monthly_budget' => $monthly_budget
+            'monthly_budget' => $monthly_budget,
+            'budget_percent' => $budget_percent
         ]);
     }
 

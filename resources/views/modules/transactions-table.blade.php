@@ -15,7 +15,17 @@
                 </small></td>
             <td class='transaction-description'>{{ $transaction->description }}</td>
             <td class='transaction-amount'>${{ $transaction->amount }}</td>
-            <td class='category'>{{ $transaction->category }}</td>
+            <td class='budget-category' id='{{ $transaction->id }}'>{{ $transaction->category }}</td>
+            <td class='category-edit'>
+                <label for='{{ $transaction->id }}' id='category-edit-label'>Change Category</label>
+                <select name='category' id='{{ $transaction->id }}' class='category-edit-select'>
+                    @foreach($categories as $category)
+                        <option value='{{ $category }}'>{{ $category }}</option>
+                    @endforeach
+                </select>
+                <button class='category-edit-submit btn btn-success' type='submit'>Save</button>
+                <button class='category-edit-cancel btn' type='submit'>Cancel</button>
+            </td>
         </tr>
     @endforeach
     </tbody>
