@@ -79,13 +79,20 @@ footer {
 
 #budget-table {
   font-size: 18px;
-}
-
-#budget-table {
+  border-top: lightgray solid 3px;
   margin: auto;
   td {
     min-width: 22vw;
   }
+}
+
+#add-new-category {
+  margin-left: 2vw;
+  margin-bottom: 3vh;
+}
+
+#add-new-category::before {
+  content: " + ";
 }
 
 #manual-input-form {
