@@ -16,6 +16,11 @@
         </div>
         <div class='row justify-content-center'>
             <div class='col-md-8'>
+                @include('modules.budget-progress-bars', $budget)
+            </div>
+        </div>
+        <div class='row justify-content-center'>
+            <div class='col-md-8'>
                 @include('modules.transactions-table', ['transactions' => $transactions, 'categories' => $categories])
             </div>
         </div>

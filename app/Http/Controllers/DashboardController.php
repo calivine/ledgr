@@ -71,7 +71,8 @@ class DashboardController extends Controller
             'actuals' => $actuals,
             'monthly_expenditure' => $monthly_exp,
             'monthly_budget' => $monthly_budget,
-            'budget_percent' => $budget_percent
+            'budget_percent' => $budget_percent,
+            'budget' => $budget
         ]);
     }
 
