@@ -29,10 +29,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/budget/category/new', 'BudgetController@createCategory');
 
     Route::post('/category/update', 'ActivityController@updateCategory');
+
+    # CREATE New Income
+    Route::get('/income/new', 'IncomeController@newIncome');
+    Route::post('/income', 'IncomeController@storeIncome');
 });
 
 // Authentication Routes
 Auth::routes();
 
 // Redirect Any Traffic Away From /register To Splash Page
-Route::redirect('/register', '/');
+// Route::redirect('/register', '/');

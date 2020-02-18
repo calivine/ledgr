@@ -10,7 +10,7 @@ return [
 
     'navAuth' => [
         '/budget' => 'Budget',
-        '/income' => 'Income'
+        '/income/new' => 'Income'
     ],
 
     /*

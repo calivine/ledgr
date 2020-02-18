@@ -4,7 +4,8 @@
 @section('content');
     <div class='container-fluid bg-light shadow'>
         <div class='row justify-content-center'>
-            <form method='POST' action=''>
+            <form method='POST' action='{{ '/income' }}'>
+                {{ csrf_field() }}
                 <div class='form-group'>
                     <label for='income-description' class='w-100 mb-0'>Description:</label>
                     <input type='text' name='description' id='income-description'>
@@ -23,7 +24,7 @@
                     <input type='number' step='0.01' name='amount' id='income-amount'>
                 </div>
                 <div class='form-group'>
-                    <button class='btn btn-success' type='submit'>Save</button>
+                    <button class='btn btn-block btn-success' type='submit'>Save</button>
                 </div>
             </form>
         </div>

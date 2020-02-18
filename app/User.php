@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'api_token'
     ];
 
     /**
@@ -49,5 +49,12 @@ class User extends Authenticatable
         # User Has Many Budgets
         # Defines A One-To-Many Relationship
         return $this->hasMany('App\Budget');
+    }
+
+    public function incomes()
+    {
+        # User Has Many Incomes
+        # Defines A One-To-Many Relationship
+        return $this->hasMany('App\Income');
     }
 }

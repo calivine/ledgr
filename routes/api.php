@@ -19,11 +19,12 @@ use App\Http\Resources\ActivityCollection;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+/*
 Route::get('/activity/transactions', function () {
     return new ActivityCollection(Activity::all());
 });
+*/
 
-Route::get('/activity/transactions/{start}/{stop}', function ($start, $stop) {
+Route::middleware('auth:api')->get('/activity/transactions/{start}/{stop}', function ($start, $stop) {
     return new ActivityCollection(Activity::whereBetween('date', [$start, $stop])->get());
 });

@@ -14,7 +14,7 @@ class CreateIncomesTable extends Migration
     public function up()
     {
         Schema::create('incomes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->timestamps();
             $table->string('description');
             $table->enum('frequency', ['once', 'weekly', 'bi-weekly', 'monthly']);

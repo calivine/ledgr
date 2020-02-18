@@ -18,13 +18,14 @@
                 <td id='{{ $row->id }}' class='budget-category-name'>{{ $row->category }}</td>
                 <td class='budget-category-planned'>{{ $row->planned }}</td>
                 <td>{{ $row->actual }}</td>
-                <td></td>
+                <td>{{ $row->planned - $row->actual }}</td>
             </tr>
         @endforeach
         <tr id='budget-totals'>
             <td id='planned-total-label'>Total:</td>
             <td id='planned-total'></td>
         </tr>
+
 
         </tbody>
     </table>

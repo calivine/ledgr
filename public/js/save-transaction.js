@@ -11,10 +11,11 @@ $(function () {
             $inputForm.fadeOut();
             // Clear Form
             resetSaveTransaction();
-            $inputForm.fadeIn().prepend(generateAlert('success'));;
+            $inputForm.fadeIn().prepend(generateAlert('success'));
             setTimeout(function() {
                         $('div#alert-message-container').fadeOut();
-                    }, 5000)
+                    }, 5000);
+            Location.reload();
         }).fail( function () {
             $inputForm.fadeOut().fadeIn().prepend(generateAlert('fail'));
             setTimeout(function() {
