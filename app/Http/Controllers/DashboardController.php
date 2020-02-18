@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Budget;
 use App\Activity;
 use App\Actions\Utility\DateUtility;
 use App\Actions\Utility\BudgetUtility;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -17,11 +18,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        // Retrieve User
+        $id = Auth::id();
+
         // Set Timezone
         date_default_timezone_set('America/New_York');
 
         // Initialize Budget Utility
-        $budgetUtil = new BudgetUtility();
+        $budgetUtil = new BudgetUtility($id);
 
         // Get First And Last Days Of Current Month
 
@@ -31,6 +35,7 @@ class DashboardController extends Controller
         // Pull Transactions For The Current Period
         $transactions = Activity::whereBetween(
             'date', [$month_start, $month_end])
+            ->where('user_id', $id)
             ->get();
 
 
@@ -80,14 +85,20 @@ class DashboardController extends Controller
         $category = $request->input('category');
         $date = $request->input('transaction_date');
 
-        // Save transaction to Activities table
+        // Get User Object
+        $user = $request->user();
+
+        // Save Transaction To Activities Table
         $activity = new Activity();
+
         $activity->description = $description;
         $activity->amount = $amount;
         $activity->category = $category;
         $activity->date = $date;
         // Create function that generates random 36 character alpha-num string
         $activity->transaction_id = "TestTransaction";
+        // Link To User Signed-In
+        $activity->user()->associate($user);
 
         // Update Actual Budget Value
         $budget = Budget::where([

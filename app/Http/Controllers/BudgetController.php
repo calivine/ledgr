@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Budget;
 
+use App\Budget;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BudgetController extends Controller
 {
@@ -14,18 +15,22 @@ class BudgetController extends Controller
      */
     public function index()
     {
-        // Get Budget Items Where Period = F and Year = Y
-        //$response = Budget::all();
+        // Get Current User ID
+        $id = Auth::id();
 
+        // Get Budget Items Where Period = F and Year = Y
         $response = Budget::where([
             ['year', '=', date('Y')],
-            ['period', '=', date('F')]
+            ['period', '=', date('F')],
+            ['user_id', '=', $id]
         ])->get();
 
         if ($response->isEmpty()) {
             // Generate New Budget Sheet
             $date = date('Y');
             $period = date('F');
+
+            $user = Auth::user();
 
             $json = file_get_contents('../database/budget.json');
             $json_data = json_decode($json, true);
@@ -37,12 +42,15 @@ class BudgetController extends Controller
                 $new_budget->year = $date;
                 $new_budget->period = $period;
 
+                $new_budget->user()->associate($user);
+
                 $new_budget->save();
             }
 
             $response = Budget::where([
                 ['year', '=', $date],
-                ['period', '=', $period]
+                ['period', '=', $period],
+                ['user_id', '=', $id]
             ])->get();
         }
 
@@ -81,6 +89,7 @@ class BudgetController extends Controller
      */
     public function createCategory(Request $request)
     {
+        $user = $request->user();
         $new_category = $request->input('name');
         $new_planned_budget = $request->input('planned');
         $category = new Budget;
@@ -88,6 +97,7 @@ class BudgetController extends Controller
         $category->planned = $new_planned_budget;
         $category->year = date('Y');
         $category->period = date('F');
+        $category->user()->associate($user);
 
         $category->save();
 

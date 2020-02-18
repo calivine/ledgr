@@ -36,4 +36,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function activities()
+    {
+        # User Has Many Activities
+        # Defines A One-To-Many Relationship
+        return $this->hasMany('App\Activity');
+    }
+
+    public function budgets()
+    {
+        # User Has Many Budgets
+        # Defines A One-To-Many Relationship
+        return $this->hasMany('App\Budget');
+    }
 }

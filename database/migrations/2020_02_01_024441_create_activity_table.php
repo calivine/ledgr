@@ -14,7 +14,7 @@ class CreateActivityTable extends Migration
     public function up()
     {
         Schema::create('activities', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->timestamps();
             $table->string('transaction_id', 36);
             $table->float('amount', 10, 2)->default(0);

@@ -15,13 +15,20 @@ class BudgetUtility
     private $total_monthly_budget = 0.0;
     private $total_monthly_spending = 0.0;
 
-    public function __construct()
+    public function __construct($user_id)
     {
+        /*
+         * Create Budget Utility Object
+         * Holds Budget Sheet Data and
+         * Planned And Actuals Totals
+         * Planned, Actuals, Labels as Arrays For Charts
+         */
         $this->date = date('Y');
         $this->period = date('F');
         $this->budget = Budget::where([
             ['year', '=', $this->date],
-            ['period', '=', $this->period]
+            ['period', '=', $this->period],
+            ['user_id', '=', $user_id]
         ])->get();
 
         // Calculate Totals
