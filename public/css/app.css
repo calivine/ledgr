@@ -11444,6 +11444,10 @@ footer {
   content: " + ";
 }
 
+#api-token {
+  display: none;
+}
+
 #manual-input-form label {
   width: 100%;
   margin-bottom: 0;

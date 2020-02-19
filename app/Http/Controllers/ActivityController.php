@@ -9,7 +9,7 @@ class ActivityController extends Controller
 {
     /*
      * POST
-     * /category/update
+     * /transaction/category/update
      * Update Transaction's Category
      */
     public function updateCategory(Request $request)

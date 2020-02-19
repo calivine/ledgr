@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Budget;
+use App\Actions\Budget\StoreBudget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,20 +33,7 @@ class BudgetController extends Controller
 
             $user = Auth::user();
 
-            $json = file_get_contents('../database/budget.json');
-            $json_data = json_decode($json, true);
-
-            foreach($json_data['data'] as $budget) {
-                $new_budget = new Budget;
-
-                $new_budget->category = $budget['category'];
-                $new_budget->year = $date;
-                $new_budget->period = $period;
-
-                $new_budget->user()->associate($user);
-
-                $new_budget->save();
-            }
+            new StoreBudget($user);
 
             $response = Budget::where([
                 ['year', '=', $date],

@@ -26,13 +26,18 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::post('/budget/planned/update', 'BudgetController@updatePlanned');
 
+    # CREATE New Budget Category
     Route::post('/budget/category/new', 'BudgetController@createCategory');
 
-    Route::post('/category/update', 'ActivityController@updateCategory');
+    # UPDATE Transaction Category
+    Route::post('/transaction/category/update', 'ActivityController@updateCategory');
 
     # CREATE New Income
     Route::get('/income/new', 'IncomeController@newIncome');
     Route::post('/income', 'IncomeController@storeIncome');
+
+    # GET Account Settings
+    Route::get('/account', 'UserController@displayAccount');
 });
 
 // Authentication Routes
