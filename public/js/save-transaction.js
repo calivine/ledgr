@@ -14,8 +14,8 @@ $(function () {
             $inputForm.fadeIn().prepend(generateAlert('success'));
             setTimeout(function() {
                         $('div#alert-message-container').fadeOut();
+                        location.reload(true);
                     }, 5000);
-            Location.reload();
         }).fail( function () {
             $inputForm.fadeOut().fadeIn().prepend(generateAlert('fail'));
             setTimeout(function() {

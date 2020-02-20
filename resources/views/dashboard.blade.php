@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class='container-fluid mt-50 bg-light shadow'>
+    <div class='container-fluid mt-50'>
         <div class='row justify-content-center'>
             <div class='col-md-6'>
                 @include('modules.actuals-pie-chart', ['categories' => $categories, 'actuals' => $actuals])

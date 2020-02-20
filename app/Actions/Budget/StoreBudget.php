@@ -31,5 +31,4 @@ class StoreBudget
             $new_budget->save();
         }
     }
-
 }

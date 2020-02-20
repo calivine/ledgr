@@ -20,7 +20,8 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', 'DashboardController@index');
 
-    Route::post('/transaction/new', 'DashboardController@saveTransaction');
+    # CREATE New Transaction
+    Route::post('/transaction/new', 'ActivityController@saveTransaction');
 
     Route::get('/budget', 'BudgetController@index');
 

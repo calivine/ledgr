@@ -1,4 +1,4 @@
-<canvas id='myChart' width='100' height='100'></canvas>
+<canvas id='myChart' width='75' height='75'></canvas>
 
 <script>
     function toArray(str) {
