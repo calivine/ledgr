@@ -1,7 +1,9 @@
 @extends('layout.master')
 
+@section('title', 'Login | Ledgr')
+
 @section('content')
-    <h1 class='text-center mb-4'>Ledgr</h1>
+    @include('layout.partials.title')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
