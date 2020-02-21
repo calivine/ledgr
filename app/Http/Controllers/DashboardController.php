@@ -43,6 +43,8 @@ class DashboardController extends Controller
 
         $budget = $budgetUtil->get();
 
+        $category_form_labels = $budgetUtil->get_form_labels();
+
 
         if ($monthly_budget > 0) {
             $budget_percent = round(($monthly_exp / $monthly_budget) * 100);
@@ -53,6 +55,7 @@ class DashboardController extends Controller
 
         return view('dashboard')->with([
             'categories' => $categories,
+            'category_form_labels' => $category_form_labels,
             'transactions' => $transactions,
             'actuals' => $actuals,
             'monthly_expenditure' => $monthly_exp,

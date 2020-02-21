@@ -30,12 +30,12 @@
         </div>
         <div class='row justify-content-center'>
             <div class='col-md-8'>
-                @include('modules.transactions-table', ['transactions' => $transactions, 'categories' => $categories])
+                @include('modules.transactions-table', ['transactions' => $transactions, 'categories' => $category_form_labels])
             </div>
         </div>
         <div class='row justify-content-center'>
             <div class='col-md-8'>
-                @include('modules.input-transaction', $categories)
+                @include('modules.input-transaction', ['categories' => $category_form_labels])
             </div>
         </div>
     </div>

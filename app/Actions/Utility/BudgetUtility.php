@@ -43,12 +43,8 @@ class BudgetUtility
 
     public function labels() {
         $categories = [];
-        $budgetLabels = Budget::where([
-            ['year', '=', $this->date],
-            ['period', '=', $this->period],
-            ['user_id', '=', $this->user_id],
-        ])->get();
-        foreach($budgetLabels as $category) {
+
+        foreach($this->budget as $category) {
             $categories[] = $category->category;
         }
         return $categories;
@@ -72,6 +68,19 @@ class BudgetUtility
             $actuals[] = $category->actual;
         }
         return $actuals;
+    }
+
+    public function get_form_labels() {
+        $categories = [];
+        $budgetLabels = Budget::where([
+            ['year', '=', $this->date],
+            ['period', '=', $this->period],
+            ['user_id', '=', $this->user_id],
+        ])->get();
+        foreach($budgetLabels as $category) {
+            $categories[] = $category->category;
+        }
+        return $categories;
     }
 
 }
