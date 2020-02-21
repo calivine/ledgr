@@ -4,7 +4,7 @@
 
     <div class='container-fluid mt-50'>
         <div class='row justify-content-center'>
-            <div class='col-md-6'>
+            <div class='col-md-4'>
                 @include('modules.actuals-pie-chart', ['categories' => $categories, 'actuals' => $actuals])
             </div>
         </div>

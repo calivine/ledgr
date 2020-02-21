@@ -14,6 +14,7 @@ class BudgetUtility
     private $budget;
     private $total_monthly_budget = 0.0;
     private $total_monthly_spending = 0.0;
+    private $user_id;
 
     public function __construct($user_id)
     {
@@ -23,12 +24,14 @@ class BudgetUtility
          * Planned And Actuals Totals
          * Planned, Actuals, Labels as Arrays For Charts
          */
+        $this->user_id = $user_id;
         $this->date = date('Y');
         $this->period = date('F');
         $this->budget = Budget::where([
             ['year', '=', $this->date],
             ['period', '=', $this->period],
-            ['user_id', '=', $user_id]
+            ['user_id', '=', $user_id],
+            ['actual', '>', 0],
         ])->get();
 
         // Calculate Totals
@@ -40,7 +43,12 @@ class BudgetUtility
 
     public function labels() {
         $categories = [];
-        foreach($this->budget as $category) {
+        $budgetLabels = Budget::where([
+            ['year', '=', $this->date],
+            ['period', '=', $this->period],
+            ['user_id', '=', $this->user_id],
+        ])->get();
+        foreach($budgetLabels as $category) {
             $categories[] = $category->category;
         }
         return $categories;

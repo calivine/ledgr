@@ -11,10 +11,6 @@
 |
 */
 
-// Main Splash Page
-Route::get('/', function () {
-    return view('landing');
-});
 
 // Requires Authentication
 Route::group(['middleware' => 'auth'], function() {
@@ -44,5 +40,5 @@ Route::group(['middleware' => 'auth'], function() {
 // Authentication Routes
 Auth::routes();
 
-// Redirect Any Traffic Away From /register To Splash Page
-// Route::redirect('/register', '/');
+// Redirect Any Traffic Away From Splash To Login Page
+Route::redirect('/', '/login');

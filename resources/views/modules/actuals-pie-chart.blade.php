@@ -23,10 +23,10 @@
         'rgba(255, 34, 172, 1)',
         'rgba(75, 0, 130, 1)'
     ];
-    let labels = '{!! json_encode($categories) !!}';
+
     let labels_array = toArray('{!! json_encode($categories) !!}');
-    let data = '{!! json_encode($actuals) !!}';
-    let data_array = toArray(data);
+
+    let data_array = toArray('{!! json_encode($actuals) !!}');
 
     let ctx = document.getElementById('myChart').getContext('2d');
     let myChart = new Chart(ctx, {
@@ -42,6 +42,11 @@
         options: {
             responsive: true,
             cutoutPercentage: 40,
+            legend: {
+                labels: {
+                    boxWidth: 20
+                }
+            }
         }
     });
 </script>
