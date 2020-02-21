@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Budget;
 use App\Actions\Budget\StoreBudget;
+use App\Actions\Budget\StoreCategory;
+use App\Actions\Budget\StorePlanned;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,15 +59,10 @@ class BudgetController extends Controller
      */
     public function updatePlanned(Request $request)
     {
-        $new_planned = $request->input('new_value');
-        $id = $request->input('id');
-
-        $budget = Budget::find($id);
-        $budget->planned = $new_planned;
-        $budget->save();
+        $action = new StorePlanned($request);
 
         return response()->json([
-            'planned' => $new_planned
+            'planned' => $action->rda['planned']
         ]);
     }
 
@@ -77,21 +74,11 @@ class BudgetController extends Controller
      */
     public function createCategory(Request $request)
     {
-        $user = $request->user();
-        $new_category = $request->input('name');
-        $new_planned_budget = $request->input('planned');
-        $category = new Budget;
-        $category->category = $new_category;
-        $category->planned = $new_planned_budget;
-        $category->year = date('Y');
-        $category->period = date('F');
-        $category->user()->associate($user);
-
-        $category->save();
+        $action = new StoreCategory($request);
 
         return response()->json([
-            'planned' => $new_planned_budget,
-            'category' => $new_category
+            'planned' => $action->rda['planned'],
+            'category' => $action->rda['category']
         ]);
     }
 

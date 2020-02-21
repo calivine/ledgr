@@ -22,6 +22,11 @@ class StoreCategory
         $category->user()->associate($user);
 
         $category->save();
+
+        $this->rda = [
+            'category' => $new_category,
+            'planned' => $new_planned_budget
+        ];
     }
 
 }
