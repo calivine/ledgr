@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-
+@section('title', 'Account Details | Ledgr')
 
 @section('content')
     <h1>Account Settings</h1>

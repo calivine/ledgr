@@ -1,5 +1,7 @@
 @extends('layout.master')
 
+@section('title', 'Register | Ledgr')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
