@@ -14,13 +14,17 @@
 
 // Requires Authentication
 Route::group(['middleware' => 'auth'], function() {
+
+    # DISPLAY Dashboard Page
     Route::get('/dashboard', 'DashboardController@index');
 
     # CREATE New Transaction
     Route::post('/transaction/new', 'ActivityController@saveTransaction');
 
+    # DISPLAY Budget Table
     Route::get('/budget', 'BudgetController@index');
 
+    # UPDATE Planned Budget Value
     Route::post('/budget/planned/update', 'BudgetController@updatePlanned');
 
     # CREATE New Budget Category
