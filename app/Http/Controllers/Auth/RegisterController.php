@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Log;
+
 
 class RegisterController extends Controller
 {
@@ -74,6 +76,9 @@ class RegisterController extends Controller
 
         // Create New Budget Sheet
         new StoreBudget($user);
+
+        // Make A Log Entry About New Registrations
+        Log::info('Created new user '.$user->id. ' at '.$user->created_at);
 
         return $user;
     }
