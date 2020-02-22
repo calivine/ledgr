@@ -7,7 +7,7 @@
         <th scope='col' data-sort='name'></th>
     </tr>
     </thead>
-    <tbody>
+    <tbody class='overflow-auto mh-25'>
     @foreach($transactions as $transaction)
         <tr>
             <td class='transaction-date'><small>
