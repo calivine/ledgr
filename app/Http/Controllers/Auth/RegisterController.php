@@ -78,7 +78,7 @@ class RegisterController extends Controller
         new StoreBudget($user);
 
         // Make A Log Entry About New Registrations
-        Log::info('Created new user '.$user->id. ' at '.$user->created_at);
+        Log::info('Created New User '.$user->id. ' @ '.$user->created_at);
 
         return $user;
     }

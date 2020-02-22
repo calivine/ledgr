@@ -44,7 +44,7 @@ class DashboardController extends Controller
         $budget = $budgetUtil->get();
 
         $category_form_labels = $budgetUtil->get_form_labels();
-
+        sort($category_form_labels);
 
         if ($monthly_budget > 0) {
             $budget_percent = round(($monthly_exp / $monthly_budget) * 100);

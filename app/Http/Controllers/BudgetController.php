@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Budget;
-use App\Actions\Budget\StoreBudget;
 use App\Actions\Budget\StoreCategory;
 use App\Actions\Budget\StorePlanned;
+use App\Actions\Budget\GetBudget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,36 +17,14 @@ class BudgetController extends Controller
      */
     public function index()
     {
-        // Get Current User ID
-        $id = Auth::id();
-
         // Get Budget Items Where Period = F and Year = Y
-        $response = Budget::where([
-            ['year', '=', date('Y')],
-            ['period', '=', date('F')],
-            ['user_id', '=', $id]
-        ])->get();
-
-        if ($response->isEmpty()) {
-            // Generate New Budget Sheet
-            $date = date('Y');
-            $period = date('F');
-
-            $user = Auth::user();
-
-            new StoreBudget($user);
-
-            $response = Budget::where([
-                ['year', '=', $date],
-                ['period', '=', $period],
-                ['user_id', '=', $id]
-            ])->get();
-        }
+        $response = new GetBudget(Auth::user());
+        $budget = $response->budget;
 
         $budget_period = date('F') . " " . date('Y');
 
         return view('budget.index')->with([
-            'budget' => $response,
+            'budget' => $budget,
             'period' => $budget_period
         ]);
     }

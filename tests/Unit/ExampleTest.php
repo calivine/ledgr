@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ExampleTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic test example.
      *
@@ -14,6 +15,15 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $this->assertTrue(true);
+        $response = $this->withHeaders([
+            'X-Header' => 'Value',
+        ])->json('POST', '/register', [
+            'name' => 'alexcalog112',
+            'email' => 'testmail@email.com',
+            'password' => 'testemail',
+            'password_confirmation' => 'testemail'
+        ]);
+
+        $response->assertStatus(422);
     }
 }

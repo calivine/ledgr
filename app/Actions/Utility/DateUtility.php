@@ -20,4 +20,8 @@ class DateUtility
         return $month_end;
     }
 
+    public static function last_month() {
+        return date('F',strtotime('-1 months'));
+    }
+
 }
