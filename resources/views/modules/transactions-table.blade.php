@@ -1,4 +1,4 @@
-<table class='mx-auto p-2 sortable table shadow'>
+<table class='mx-auto p-2 sortable table shadow overflow-auto' id='trans-table'>
     <thead>
     <tr>
         <th scope='col' class='transaction-date' data-sort='date'></th>
@@ -7,7 +7,7 @@
         <th scope='col' data-sort='name'></th>
     </tr>
     </thead>
-    <tbody class='overflow-auto mh-25'>
+    <tbody>
     @foreach($transactions as $transaction)
         <tr>
             <td class='transaction-date'><small>

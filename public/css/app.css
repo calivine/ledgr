@@ -11461,6 +11461,10 @@ footer {
   width: 100%;
 }
 
+#trans-table {
+  max-height: 200px;
+}
+
 /*
 
   MEDIA QUERIES
