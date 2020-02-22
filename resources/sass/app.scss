@@ -26,6 +26,10 @@ nav {
   }
 }
 
+tbody {
+  overflow-y: scroll;
+}
+
 footer {
   background-color: inherit;
   margin: 5px 0;
