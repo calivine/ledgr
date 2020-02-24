@@ -1,14 +1,14 @@
 <fieldset class='shadow' id='manual-input-form'>
     <div class='form-group'>
         <div class='col-lg-4 offset-lg-4'>
-            <label class='w-100 mb-0' for='description-input'>Transaction Description:</label>
-            <input type='text' class='manual-input' name='description' id='description-input' required>
+            <label for='amount-input'>Amount $:</label>
+            <input type='number' step='0.01' class='manual-input' id='amount-input' required name='amount'>
         </div>
     </div>
     <div class='form-group'>
         <div class='col-lg-4 offset-lg-4'>
-            <label for='amount-input'>Amount $:</label>
-            <input type='number' step='0.01' class='manual-input' id='amount-input' required name='amount'>
+            <label class='w-100 mb-0' for='description-input'>Transaction Description:</label>
+            <input type='text' class='manual-input' name='description' id='description-input' required>
         </div>
     </div>
     <div class='form-group'>

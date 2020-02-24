@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class='row justify-content-center'>
+        <div class='row justify-content-center' id='trans-table'>
             <div class='col-md-8'>
                 @include('modules.transactions-table', ['transactions' => $transactions, 'categories' => $category_form_labels])
             </div>
