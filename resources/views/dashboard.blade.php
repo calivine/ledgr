@@ -4,7 +4,7 @@
 
 @section('content')
     <div class='container-fluid mt-50'>
-        <div class='row justify-content-center'>
+        <div class='row justify-content-center mt-4'>
             <div class='col-md-8'>
                 <p class='progress-bar-label text-left'>Total Spending:</p><p class='progress-bar-label float-right'>${{ round($monthly_expenditure) }} of ${{ $monthly_budget }}</p>
                 @include('modules.progress-bar', ['monthly_budget' => $monthly_budget, 'monthly_expenditure' => $monthly_expenditure, 'percent' => $budget_percent])
@@ -17,9 +17,7 @@
         </div>
         <div class='row justify-content-center m-3'>
             <div class='col-md-8'>
-                <button class='btn btn-outline-info btn-block' type='button' data-toggle='collapse' data-target='#collapseBody' aria-expanded='false' aria-controls='collapseBody'>
-                    Details
-                </button>
+                <button class='btn btn-outline-info btn-block' type='button' data-toggle='collapse' data-target='#collapseBody' aria-expanded='false' aria-controls='collapseBody'>View Chart</button>
             </div>
         </div>
         <div class='row justify-content-center'>

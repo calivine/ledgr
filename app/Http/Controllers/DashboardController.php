@@ -35,6 +35,9 @@ class DashboardController extends Controller
             ->where('user_id', $id)
             ->get();
 
+        foreach($transactions as $transaction) {
+            $transaction->date = DateUtility::date_to_string($transaction->date);
+        }
 
         $actuals = $budgetUtil->get_actuals();
         $monthly_budget = $budgetUtil->total_budget();
