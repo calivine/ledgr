@@ -4,9 +4,9 @@
 
 @section('content')
     <div class='container-fluid mt-50'>
-        <div class='row justify-content-center mt-4'>
+        <div class='row justify-content-center my-4'>
             <div class='col-md-8'>
-                <p class='progress-bar-label text-left'>Total Spending:</p><p class='progress-bar-label float-right'>${{ round($monthly_expenditure) }} of ${{ $monthly_budget }}</p>
+                <p class='progress-bar-label text-left' style='font-size: 20px'>Total Spending:</p><p class='progress-bar-label float-right' style='font-size: 20px'>${{ round($monthly_expenditure) }} of ${{ $monthly_budget }}</p>
                 @include('modules.progress-bar', ['monthly_budget' => $monthly_budget, 'monthly_expenditure' => $monthly_expenditure, 'percent' => $budget_percent])
             </div>
         </div>
