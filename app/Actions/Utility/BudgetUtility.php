@@ -30,8 +30,7 @@ class BudgetUtility
         $this->budget = Budget::where([
             ['year', '=', $this->date],
             ['period', '=', $this->period],
-            ['user_id', '=', $user_id],
-            ['actual', '>', 0],
+            ['user_id', '=', $user_id]
         ])->get();
 
         // Calculate Totals

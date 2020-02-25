@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Activity;
 use App\Budget;
-
+use App\Actions\Budget\UpdateActual;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
@@ -43,17 +43,8 @@ class ActivityController extends Controller
         // Link To User Signed-In
         $activity->user()->associate($user);
 
-        // Update Actual Budget Value
-        $budget = Budget::where([
-            ['category', $category],
-            ['period', date('F')],
-            ['year', date('Y')],
-            ['user_id', $user->id]
-        ])->first();
+        new UpdateActual($request);
 
-        $budget->actual = $budget->actual + $amount;
-
-        $budget->save();
         $activity->save();
 
     }

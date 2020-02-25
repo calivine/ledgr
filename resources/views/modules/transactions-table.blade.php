@@ -1,4 +1,4 @@
-<table class='mx-auto p-2 sortable table shadow>
+<table class='mx-auto p-2 sortable table shadow'>
     <thead>
     <tr>
         <th scope='col' class='transaction-date' data-sort='date'></th>

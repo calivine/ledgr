@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class='row justify-content-center'>
-            <div class='col-md-4'>
+            <div class='col-md-8'>
                 @include('modules.budget-progress-bars', $budget)
             </div>
         </div>
@@ -40,7 +40,7 @@
     </div>
 
     <script src="{{ asset('js/save-transaction.js') }}"></script>
-    <script src="{{ asset('js/sort-table.js') }}"></script>
+    
     <script src="{{ asset('js/edit-category.js') }}"></script>
 @endsection
 
