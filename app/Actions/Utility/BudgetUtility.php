@@ -44,7 +44,9 @@ class BudgetUtility
         $categories = [];
 
         foreach($this->budget as $category) {
-            $categories[] = $category->category;
+            if ($category->actual > 0) {
+                $categories[] = $category->category;
+            }
         }
         return $categories;
     }
@@ -64,7 +66,9 @@ class BudgetUtility
     public function get_actuals() {
         $actuals = [];
         foreach($this->budget as $category) {
-            $actuals[] = $category->actual;
+            if ($category->actual > 0) {
+                $actuals[] = $category->actual;
+            }
         }
         return $actuals;
     }
