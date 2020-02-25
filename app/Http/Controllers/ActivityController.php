@@ -24,7 +24,7 @@ class ActivityController extends Controller
 
         new StoreActivity($request);
 
-        new UpdateActual($request);
+        new UpdateActual($request->input('category'), null, $request->input('amount'), $request->user()->id);
 
     }
 
@@ -37,10 +37,16 @@ class ActivityController extends Controller
     {
         $update_name = $request->input('update_name');
         $id = $request->input('id');
-
+        // Get Associated Transaction By ID
         $activity = Activity::find($id);
+
+        // Update Budget Actuals
+        new UpdateActual($update_name, $activity->category, $activity->amount, $request->user()->id);
+
         $activity->category = $update_name;
         $activity->save();
+
+
 
         return response()->json([
             'id' => $id,
