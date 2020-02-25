@@ -13,7 +13,7 @@ class ActivityController extends Controller
      * /transaction
      * Saves a transaction
      */
-    public function saveTransaction(Request $request)
+    public function storeTransaction(Request $request)
     {
         $request->validate([
             'description' => 'required',
