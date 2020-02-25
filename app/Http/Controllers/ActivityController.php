@@ -10,7 +10,7 @@ class ActivityController extends Controller
 {
     /*
      * POST
-     * /transaction/new
+     * /transaction
      * Saves a transaction
      */
     public function saveTransaction(Request $request)

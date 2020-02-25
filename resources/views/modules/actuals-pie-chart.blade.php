@@ -1,6 +1,8 @@
 <canvas id='myChart' width='75' height='75'></canvas>
 
 <script>
+
+
     function toArray(str) {
         str = str.slice(1, str.length-1);
         return str.split(",");
@@ -35,6 +37,9 @@
     let data_array = toArray('{!! json_encode($actuals) !!}');
 
     let ctx = document.getElementById('myChart').getContext('2d');
+    Chart.plugins.register({
+        ChartDataLabels
+    });
 
     let myChart = new Chart(ctx, {
         type: 'pie',
@@ -52,6 +57,14 @@
             legend: {
                 labels: {
                     boxWidth: 20
+                }
+            },
+            plugins: {
+                datalabels: {
+                    color: '#FFFFFF',
+                    formatter: function(value) {
+                        return '$'+value;
+                    }
                 }
             }
         }
