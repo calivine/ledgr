@@ -33,6 +33,7 @@ class DashboardController extends Controller
         $transactions = Activity::whereBetween(
             'date', [$month_start, $month_end])
             ->where('user_id', $id)
+            ->orderBy('date', 'desc')
             ->get();
 
         foreach($transactions as $transaction) {
