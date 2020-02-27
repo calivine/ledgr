@@ -38,6 +38,7 @@ class DashboardController extends Controller
 
         foreach($transactions as $transaction) {
             $transaction->date = DateUtility::date_to_string($transaction->date);
+            $transaction->amount = number_format($transaction->amount, 2);
         }
 
         $actuals = $budgetUtil->get_actuals();

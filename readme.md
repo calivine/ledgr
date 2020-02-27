@@ -1,7 +1,7 @@
 # Ledgr
 *Alex Caloggero*
 
-## Version 1.3.2
+## Version 1.5.0
 
 *Monthly Budget And Expense Tracking*
 
