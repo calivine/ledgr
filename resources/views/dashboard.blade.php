@@ -34,7 +34,7 @@
         </div>
         <div class='row justify-content-center m-3'>
             <div class='col-md-8'>
-                @include('modules.input-transaction', ['categories' => $category_form_labels])
+                @include('modules.accordion', ['category_form_labels' => $category_form_labels])
             </div>
         </div>
     </div>
