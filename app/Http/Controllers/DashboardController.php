@@ -28,6 +28,8 @@ class DashboardController extends Controller
         // Get First And Last Days Of Current Month
         $month_start = DateUtility::first_of_month();
         $month_end = DateUtility::last_of_month();
+        $todays_date = DateUtility::todays_date();
+        $days_remaining = DateUtility::days_remaining();
 
         // Pull Transactions For The Current Period
         $transactions = Activity::whereBetween(
