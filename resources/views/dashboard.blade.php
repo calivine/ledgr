@@ -4,6 +4,16 @@
 
 @section('content')
     <div class='container-fluid mt-50'>
+        <div class='row'>
+            <div class='col-md-8'>
+                <p>{{ $today }}</p>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-8'>
+                <p>{{ $days_remaining  }} days left in {{ date('F') }}.</p>
+            </div>
+        </div>
         <div class='row justify-content-center my-4'>
             <div class='col-md-8'>
                 <p class='progress-bar-label text-left' style='font-size: 20px'>Total Spending:</p><p class='progress-bar-label float-right' style='font-size: 20px'>${{ round($monthly_expenditure) }} of ${{ $monthly_budget }}</p>

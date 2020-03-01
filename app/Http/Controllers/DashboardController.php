@@ -51,6 +51,7 @@ class DashboardController extends Controller
         $budget = $budgetUtil->get();
 
         $category_form_labels = $budgetUtil->get_form_labels();
+
         sort($category_form_labels);
 
         if ($monthly_budget > 0) {
@@ -68,7 +69,9 @@ class DashboardController extends Controller
             'monthly_expenditure' => $monthly_exp,
             'monthly_budget' => $monthly_budget,
             'budget_percent' => $budget_percent,
-            'budget' => $budget
+            'budget' => $budget,
+            'today' => $todays_date,
+            'days_remaining' => $days_remaining
         ]);
     }
 }
