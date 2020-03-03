@@ -11467,6 +11467,32 @@ footer {
   overflow-y: scroll;
 }
 
+#login-dropdown {
+  min-width: 18rem;
+}
+
+h1#landing-title {
+  font-size: 4rem;
+  font-family: sans-serif;
+  text-align: center;
+  line-height: 80vh;
+}
+
+span#title-character {
+  display: inline-block;
+  opacity: 0;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+  -webkit-transform: translateY(50px);
+          transform: translateY(50px);
+}
+
+span#title-character.fade {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
 /*
 
   MEDIA QUERIES
@@ -11477,6 +11503,10 @@ footer {
   #manual-input-form input,
   #manual-input-form select {
     width: 100%;
+  }
+
+  #login-dropdown {
+    min-width: 20rem;
   }
 }
 

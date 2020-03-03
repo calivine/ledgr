@@ -1,34 +1,30 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-sm navbar-light bg-white shadow-sm">
     <!-- Left Side Of Navbar -->
-    <ul>
+    @if(Auth::check())
+        <a class="navbar-brand" href="{{ url('/dashboard') }}">
+            {{ config('app.name') }}
+        </a>
+    @else
+        <a class="navbar-brand" href="{{ url('/') }}">
+            {{ config('app.name') }}
+        </a>
+    @endif
+    <!-- Right Side Of Navbar -->
+    <ul class="nav ml-auto">
+        <!-- authentication links -->
         @if(Auth::check())
-            <li>
-                <a class="navbar-brand" href="{{ url('/dashboard') }}">
-                    {{ config('app.name') }}
-                </a>
-            </li>
             @foreach(config('app.navAuth') as $link => $label)
                 @if(Request::is(substr($link, 1)))
-                    <li class='link-selected'>{{ $label }}</li>
+                    <li class='nav-item link-selected'>{{ $label }}</li>
                 @else
-                    <li><a href='{{ $link }}'>{{ $label }}</a></li>
+                    <li class="nav-item"><a href='{{ $link }}'>{{ $label }}</a></li>
                 @endif
             @endforeach
-        @endif
-    </ul>
-    <!-- Right Side Of Navbar -->
-    <ul class="navbar-nav ml-auto">
-        <!-- Authentication Links -->
-        @guest
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-            </li>
-        @else
             <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
-
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a href='{{ '/account' }}' class='dropdown-item'>Account</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -42,6 +38,20 @@
                     </form>
                 </div>
             </li>
-        @endguest
+        @else
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a id="navbarLoginDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    Login <span class="caret"></span>
+                </a>
+                <div id="login-dropdown" class="dropdown-menu dropdown-menu-right"
+                     aria-labelledby="navbarLoginDropdown">
+                    @include('modules.auth.login')
+                </div>
+            </li>
+        @endif
     </ul>
 </nav>

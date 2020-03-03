@@ -44,5 +44,7 @@ Route::group(['middleware' => 'auth'], function() {
 // Authentication Routes
 Auth::routes();
 
+Route::view('/', 'landing');
+
 // Redirect Any Traffic Away From Splash To Login Page
-Route::redirect('/', '/login');
+// Route::redirect('/', '/login');
