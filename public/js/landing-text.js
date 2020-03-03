@@ -16,6 +16,9 @@ function onTick() {
     char++;
     if (char === splitText.length) {
         complete();
+        setInterval(function () {
+            text.classList.add('landing-bg');
+        }, 500);
     }
 }
 

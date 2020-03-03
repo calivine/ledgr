@@ -11478,6 +11478,12 @@ h1#landing-title {
   line-height: 80vh;
 }
 
+h1#landing-title.landing-bg {
+  background-color: #98FB98;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
 span#title-character {
   display: inline-block;
   opacity: 0;
