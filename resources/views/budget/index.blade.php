@@ -13,12 +13,12 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($budget as $row)
+        @foreach($budget as $index => &$row)
             <tr class='budget-category'>
-                <td id='{{ $row->id }}' class='budget-category-name'>{{ $row->category }}</td>
-                <td class='budget-category-planned'>{{ $row->planned }}</td>
-                <td>{{ $row->actual }}</td>
-                <td>${{ $row->planned - $row->actual }}</td>
+                <td id='{{ $row['id'] }}' class='budget-category-name'>{{ $row['category'] }}</td>
+                <td class='budget-category-planned'>{{ $row['planned'] }}</td>
+                <td>{{ $row['actual'] }}</td>
+                <td>${{ $row['planned'] - $row['actual'] }}</td>
             </tr>
         @endforeach
         <tr id='budget-totals'>

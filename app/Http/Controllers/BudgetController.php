@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Budget\StoreBudget;
 use App\Actions\Budget\StoreCategory;
 use App\Actions\Budget\StorePlanned;
 use App\Actions\Budget\GetBudget;
@@ -17,14 +18,18 @@ class BudgetController extends Controller
      */
     public function index()
     {
-        // Get Budget Items Where Period = F and Year = Y
         $response = new GetBudget(Auth::user());
-        $budget = $response->budget;
+
+        // If Budget sheet doesn't exist, create a new one.
+        if (sizeof($response->budget) == 0) {
+            new StoreBudget(Auth::user());
+            $response = new GetBudget(Auth::user());
+        }
 
         $budget_period = date('F') . " " . date('Y');
 
         return view('budget.index')->with([
-            'budget' => $budget,
+            'budget' => $response->budget,
             'period' => $budget_period
         ]);
     }
