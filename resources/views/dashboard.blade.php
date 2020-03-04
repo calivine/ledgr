@@ -4,12 +4,9 @@
 
 @section('content')
     <div class='container-fluid mt-50'>
-        <div class='row'>
-            <div class='col-md-6'>
-                <p>{{ $today }}</p>
-            </div>
-            <div class='col-md-6'>
-                <p class='float-right'>{{ $days_remaining  }} days remaining</p>
+        <div class='row justify-content-center'>
+            <div class='col-md-8'>
+                <p class='text-left w-50 d-inline-block'>{{ $today }}</p><p class='float-right d-inline-block'>{{ $days_remaining  }} days remaining</p>
             </div>
         </div>
         <div class='row justify-content-center my-4'>
