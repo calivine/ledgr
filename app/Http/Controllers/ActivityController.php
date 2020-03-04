@@ -16,12 +16,13 @@ class ActivityController extends Controller
     public function storeTransaction(Request $request)
     {
         $request->validate([
-            'description' => 'required',
-            'amount' => 'required',
-            'category' => 'required',
-            'transaction_date' => 'required'
+            'description' => 'required|string|alpha_num',
+            'amount' => 'required|min:0|numeric',
+            'category' => 'required|string',
+            'transaction_date' => 'required|date'
         ]);
 
+        // Save New Transaction
         new StoreActivity($request);
 
         new UpdateActual($request->input('category'), null, $request->input('amount'), $request->user()->id);

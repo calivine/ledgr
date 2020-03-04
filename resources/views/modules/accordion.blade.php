@@ -10,8 +10,11 @@
 
         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
-                @include('modules.actuals-pie-chart', ['categories' => $categories, 'actuals' => $actuals])
-
+                <div class="row justify-content-center">
+                    <div class="col-sm-3">
+                        @include('modules.actuals-pie-chart', ['categories' => $categories, 'actuals' => $actuals])
+                    </div>
+                </div>
             </div>
         </div>
     </div>

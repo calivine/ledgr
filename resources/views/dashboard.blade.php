@@ -5,13 +5,11 @@
 @section('content')
     <div class='container-fluid mt-50'>
         <div class='row'>
-            <div class='col-md-8'>
+            <div class='col-md-6'>
                 <p>{{ $today }}</p>
             </div>
-        </div>
-        <div class='row'>
-            <div class='col-md-8'>
-                <p>{{ $days_remaining  }} days left in {{ date('F') }}.</p>
+            <div class='col-md-6'>
+                <p class='float-right'>{{ $days_remaining  }} days remaining</p>
             </div>
         </div>
         <div class='row justify-content-center my-4'>
@@ -38,7 +36,7 @@
     </div>
 
     <script src="{{ asset('js/save-transaction.js') }}"></script>
-    
+
     <script src="{{ asset('js/edit-category.js') }}"></script>
 @endsection
 
