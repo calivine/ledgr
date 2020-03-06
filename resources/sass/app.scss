@@ -74,6 +74,11 @@ footer {
   td {
     min-width: 22vw;
   }
+  td.budget-category-name {
+    width: 10vw;
+    min-width: 10vw;
+    overflow: wrap;
+  }
 }
 
 #add-new-category {

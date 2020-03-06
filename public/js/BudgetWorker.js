@@ -54,7 +54,7 @@ function BudgetWorker() {
     this.displayNewCategoryForm = function (t) {
         let newCategoryForm = $('<div id="new-category-form"></div>');
         this.categoryNameInput = '<label class="w-100 mb-0" for="new-category-input">Category</label><input id="new-category-input" class="new-category-form-input" name="category" type="text" required>';
-        this.plannedBudget = '<label class="w-100 mb-0" for="new-planned-input">Planned Budget</label><input id="new-planned-input" class="new-category-form-input d-block" name=planned" type="text"><button class="btn btn-small" id="category-submit" type="submit">Save</button><button class="btn btn-small" id="category-cancel" type="button">Cancel</button>';
+        this.plannedBudget = '<label class="w-100 mb-0" for="new-planned-input">Planned Budget</label><input id="new-planned-input" class="new-category-form-input d-block" name=planned" type="text" autofocus><button class="btn btn-small" id="category-submit" type="submit">Save</button><button class="btn btn-small" id="category-cancel" type="button">Cancel</button>';
         newCategoryForm.append(this.categoryNameInput);
         newCategoryForm.append(this.plannedBudget);
         this.newCategoryContainer = $('<div class="ml-4" id="new-category-container"></div>');

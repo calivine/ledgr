@@ -1,7 +1,7 @@
 <div class="accordion" id="accordionExample">
     <div class="card">
         <div class="card-header" id="headingOne">
-            <h2 class="mb-0">
+            <h2 class="mb-0 text-center">
                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     Show Chart
                 </button>
@@ -20,7 +20,7 @@
     </div>
     <div class="card">
         <div class="card-header" id="headingTwo">
-            <h2 class="mb-0">
+            <h2 class="mb-0 text-center">
                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     New Transaction
                 </button>

@@ -11428,6 +11428,12 @@ footer {
   min-width: 22vw;
 }
 
+#budget-table td.budget-category-name {
+  width: 10vw;
+  min-width: 10vw;
+  overflow: wrap;
+}
+
 #add-new-category {
   margin-left: 2vw;
   margin-bottom: 3vh;
