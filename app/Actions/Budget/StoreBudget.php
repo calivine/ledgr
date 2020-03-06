@@ -15,9 +15,7 @@ class StoreBudget
         // Generate New Budget Sheet
         $year = date('Y');
         $this_month = date('F');
-
         $last_month = DateUtility::last_month();
-
         $saved_budget = new GetBudget($user, $year, $last_month);
 
         // If there is a Budget from the last month,
@@ -33,9 +31,7 @@ class StoreBudget
                 $new_budget->user()->associate($user);
 
                 $new_budget->save();
-
             }
-
         }
         // Else, copy new Budget sheet from file storage
         else {

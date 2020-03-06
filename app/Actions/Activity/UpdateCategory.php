@@ -13,6 +13,7 @@ class UpdateCategory
     {
         $update_name = $request->input('update_name');
         $id = $request->input('id');
+
         // Get Associated Transaction By ID
         $activity = Activity::find($id);
 

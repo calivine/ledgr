@@ -38,15 +38,21 @@ class DashboardController extends Controller
             ->orderBy('date', 'desc')
             ->get();
 
+        // Format Date and Amount For Display On Dashboard
         foreach($transactions as $transaction) {
             $transaction->date = DateUtility::date_to_string($transaction->date);
             $transaction->amount = number_format($transaction->amount, 2);
         }
 
+        // Get Actuals For Each Budget Category
         $actuals = $budgetUtil->get_actuals();
+        // Get Total Monthly Budget
         $monthly_budget = $budgetUtil->total_budget();
-        $categories = $budgetUtil->labels();
+        // Get Total Monthly Spending
         $monthly_exp = $budgetUtil->total_spending();
+
+        $categories = $budgetUtil->labels();
+
 
         $budget = $budgetUtil->get();
 

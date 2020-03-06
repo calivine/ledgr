@@ -1,14 +1,6 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-sm navbar-light bg-white mx-5">
     <!-- Left Side Of Navbar -->
-    @if(Auth::check())
-        <a class="navbar-brand" href="{{ url('/dashboard') }}">
-            {{ config('app.name') }}
-        </a>
-    @else
-        <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name') }}
-        </a>
-    @endif
+    <a href="{{ Auth::check() ? url('/dashboard') : url('/') }}" class="navbar-brand ml-5">{{ config('app.name') }}</a>
     <!-- Right Side Of Navbar -->
     <ul class="nav ml-auto">
         <!-- authentication links -->

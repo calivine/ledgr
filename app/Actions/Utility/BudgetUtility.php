@@ -40,6 +40,7 @@ class BudgetUtility
         }
     }
 
+    // Get Category Labels For Categories w/ Actuals Greater Than 0
     public function labels() {
         $categories = [];
 
@@ -51,14 +52,17 @@ class BudgetUtility
         return $categories;
     }
 
+    // Returns Budget Object
     public function get() {
         return $this->budget;
     }
 
+    // Return Total Monthly Budget
     public function total_budget() {
         return $this->total_monthly_budget;
     }
 
+    // Return Total Monthly Spending
     public function total_spending() {
         return $this->total_monthly_spending;
     }
@@ -73,6 +77,7 @@ class BudgetUtility
         return $actuals;
     }
 
+    // Return Budget Category Labels For Use In New Transaction Form
     public function get_form_labels() {
         $categories = [];
         $budgetLabels = Budget::where([
@@ -85,5 +90,4 @@ class BudgetUtility
         }
         return $categories;
     }
-
 }

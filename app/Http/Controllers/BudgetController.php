@@ -41,6 +41,10 @@ class BudgetController extends Controller
      */
     public function updatePlanned(Request $request)
     {
+        $request->validate([
+            'new_value' => 'required|numeric'
+        ]);
+
         $action = new StorePlanned($request);
 
         return response()->json([
@@ -56,6 +60,11 @@ class BudgetController extends Controller
      */
     public function createCategory(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string',
+            'planned' => 'required|numeric'
+        ]);
+
         $action = new StoreCategory($request);
 
         return response()->json([

@@ -1,25 +1,10 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP|Roboto&display=swap');
-
-
-
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-html {
-  background-color: $body-bg;
-  font-family: 'Noto Sans JP', 'Roboto', sans-serif;
-  font-size: 16px;
-}
-
 body {
-  font-family: inherit;
-  background-color: inherit;
   height: 100vh;
 }
 

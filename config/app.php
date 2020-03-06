@@ -13,6 +13,15 @@ return [
         '/income/new' => 'Income'
     ],
 
+    // Random Greetings
+    'randomText' => [
+        'Ledgr',
+        'Welcome',
+        'Hola',
+        'Greetings',
+        'Time To Save'
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

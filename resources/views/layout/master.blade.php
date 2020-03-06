@@ -11,11 +11,11 @@
         {{ session('alert') }}
     </div>
 @endif
-
-@include('layout.partials.navbar')
-
+<!-- Navbar -->
+@include('modules.navbar')
+<!-- Page Content -->
 @yield('content')
-
+<!-- Footer -->
 @include('layout.partials.footer')
 </body>
 

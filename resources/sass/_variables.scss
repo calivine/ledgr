@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP|Roboto&display=swap');
+
 // Body
-$body-bg: #f8fafc;
-$gray-one: #F2F2F2;
-$gray-two: #E6E6E6;
-$gray-three: #D8D8D8;
+$body-bg: rgb(255,255,255);
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
+$font-family-sans-serif: 'Noto Sans JP', 'Roboto', sans-serif;
+$font-size-base: 1rem;
 $line-height-base: 1.6;
 
 // Colors
