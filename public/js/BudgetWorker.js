@@ -48,7 +48,7 @@ function BudgetWorker() {
     };
 
     this.budgetUpdateInput = function (value) {
-        return '<td class="budget-update-form"><input type="number" step="0.01" class="update-input w-100" name="budget_update" value=' + value + '><button class="btn btn-primary btn-block budget-update" id="budget-update-submit">Save</button><button class="btn btn-secondary btn-block" id="budget-update-cancel">Cancel</button></td>';
+        return '<td class="budget-update-form"><input type="number" step="0.01" class="update-input w-100" name="budget_update" value=' + value + '><button class="btn btn-primary btn-block budget-update" id="budget-update-submit">Save</button><button class="btn btn-danger btn-block" id="budget-update-cancel">Cancel</button></td>';
     };
 
     this.displayNewCategoryForm = function (t) {
@@ -68,7 +68,7 @@ function BudgetWorker() {
             name: $('input#new-category-input').val(),
             planned: $('input#new-planned-input').val()
 
-        }, function (data) {
+        }).done( function (data) {
             // Insert new category line after last category row already in table
             // .prepend() on <tr id='budget-totals'>
             let newRow = $('<tr class="budget-category"></tr>');
@@ -79,7 +79,35 @@ function BudgetWorker() {
             $('tr#budget-totals').before(newRow);
             $('div#new-category-form').remove();
             $('span#add-new-category').fadeIn();
+            $('button#add-new-category').show();
+        }).fail( function () {
+            // $('div#new-category-container').remove();
+            $('button#add-new-category').parent().before(generateAlert('fail'));
+            setTimeout(function() {
+                $('.alert').fadeOut();
+            }, 5000);
         });
         return false;
     }
+}
+
+function generateAlert(type = 'success') {
+    let $alert = $('<div id="alert-message-container"></div>');
+    let $closeButton = $('<button></button>');
+    let $x = $('<span></span>');
+    $x.attr('aria-hidden', 'true').text('close');
+    $closeButton.attr('type', 'button')
+        .attr('aria-label', 'Close')
+        .attr('data-dismiss', 'alert')
+        .addClass('close')
+        .prepend($x);
+    if (type === 'success') {
+        $alert.addClass('alert alert-primary').attr('role', 'alert').text('Saved New Transaction');
+    }
+    else if (type === 'fail') {
+        $alert.addClass('alert alert-danger').attr('role', 'alert').text('Whoops! Something Went Wrong.');
+    }
+
+    $alert.prepend($closeButton);
+    return $alert;
 }

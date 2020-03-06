@@ -30,7 +30,6 @@ $(function () {
             worker.displayNewCategoryForm($(this));
             $('button#category-submit').on('click', function () {
                 worker.saveNewCategory($(this));
-                $('button#add-new-category').show();
             });
             $('button#category-cancel').each(function () {
                 $(this).on('click', function () {

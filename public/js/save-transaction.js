@@ -20,7 +20,7 @@ $(function () {
             $inputForm.fadeOut().fadeIn().prepend(generateAlert('fail'));
             setTimeout(function() {
                 $('.alert').fadeOut();
-            }, 5000)
+            }, 5000);
         });
         return false;
     });
