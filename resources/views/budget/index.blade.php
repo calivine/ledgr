@@ -3,7 +3,9 @@
 @section('content')
     <div class="container-fluid">
         <p class='ml-4'>{{ $period }}</p>
-        <button class='btn btn-outline-dark' id='add-new-category'>Add New Category</button>
+        <div class="row justify-content-center">
+            <button class='btn btn-outline-dark' id='add-new-category'>Add New Category</button>
+        </div>
         <table id='budget-table'>
             <thead>
             <tr>
@@ -22,7 +24,7 @@
                     <td class='text-right'>${{ $row['planned'] - $row['actual'] }}</td>
                 </tr>
             @endforeach
-            <tr id='budget-totals'>
+            <tr class='border-top border-dark' id='budget-totals'>
                 <td id='planned-total-label'>Total:</td>
                 <td class='text-center' id='planned-total'></td>
             </tr>
