@@ -21,5 +21,8 @@
     });
 </script>
 
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <!-- Styles -->
 <link href='{{ '/css/app.css' }}' rel='stylesheet'>

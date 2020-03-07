@@ -10,7 +10,7 @@
         @enderror
     </div>
     <div class="form-group">
-        <label for="password">{{ __('Password') }}</label>
+        <label class="mb-0" for="password">{{ __('Password') }}</label>
 
 
         <input id="password" type="password"
@@ -22,6 +22,9 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
         @enderror
+        <a class="btn btn-link mt-0" href="{{ route('password.request') }}">
+            {{ __('Forgot Your Password?') }}
+        </a>
     </div>
 
     <div class="form-group">
@@ -30,7 +33,7 @@
                    id="remember" {{ old('remember') ? 'checked' : '' }}>
 
             <label class="form-check-label" for="remember">
-                {{ __('Remember Me') }}
+                {{ __('Keep Me Logged In') }}
             </label>
         </div>
     </div>
@@ -38,11 +41,8 @@
         <button type="submit" class="btn btn-primary btn-block">
             {{ __('Login') }}
         </button>
-
-        @if (Route::has('password.request'))
-            <a class="btn btn-link" href="{{ route('password.request') }}">
-                {{ __('Forgot Your Password?') }}
-            </a>
-        @endif
+    </div>
+    <div class="row">
+        <p class="px-3">Not a member? Join <a href="{{ '/register' }}">here</a>.</p>
     </div>
 </form>

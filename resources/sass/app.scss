@@ -8,14 +8,6 @@ body {
   height: 100vh;
 }
 
-nav {
-  li {
-    display: inline-block;
-    list-style-type: none;
-    margin-right: 25px;
-  }
-}
-
 footer {
   background-color: inherit;
   margin: 5px 0;
@@ -142,6 +134,19 @@ span#title-character.fade {
   transform: translateY(0);
 }
 
+
+.bg-mint {
+    background-color: #98FB98 !important;
+    color: black;
+}
+
+.nav-item {
+    font-size: 1.25rem !important;
+}
+
+.icon-size {
+    font-size: 1.25rem;
+}
 /*
 
   MEDIA QUERIES
@@ -157,4 +162,13 @@ span#title-character.fade {
   #login-dropdown {
     min-width: 20rem;
   }
+
+  .navLinkExpand {
+      display: none;
+  }
+
+  .icon-size {
+      font-size: 2rem;
+  }
+
 }

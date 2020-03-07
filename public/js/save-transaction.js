@@ -2,6 +2,10 @@ let $inputForm = $('fieldset#manual-input-form');
 
 $(function () {
     $('button#manual-input-button').bind('click', function () {
+        /*
+        if ($('input#description-input').val() == "" || $('input#amount-input').val()) {
+
+        } */
         $.post('/transaction', {
             description: $('input#description-input').val(),
             amount: $('input#amount-input').val(),
