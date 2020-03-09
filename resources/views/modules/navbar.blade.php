@@ -6,19 +6,19 @@
     <ul class="nav ml-auto">
         <!-- authentication links -->
         @if(Auth::check())
-            @foreach(config('app.navAuth') as $link => $label)
-                @if(Request::is(substr($link, 1)))
-                    <li class='nav-item link-selected'>{{ $label }}</li>
-                @else
-                    <li class="nav-item"><a href='{{ $link }}'>{{ $label }}</a></li>
-                @endif
-            @endforeach
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    @foreach(config('app.navAuth') as $link => $label)
+                        @if(Request::is(substr($link, 1)))
+                            <li class='dropdown-item link-selected'>{{ $label }}</li>
+                        @else
+                            <li class="drop-down-item"><a href='{{ $link }}'>{{ $label }}</a></li>
+                        @endif
+                    @endforeach
                     <a href='{{ '/account' }}' class='dropdown-item'>Account</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
