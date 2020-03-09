@@ -35,8 +35,8 @@
             <li class="nav-item dropdown">
                 <a id="navbarLoginDropdown" class="nav-link text-body" href="#" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                   <i class="material-icons icon-size">vpn_key</i>
-                   <span class="navLinkExpand">
+                    <i class="material-icons icon-size">vpn_key</i>
+                    <span class="navLinkExpand">
                         Login
                    </span>
                 </a>
@@ -46,7 +46,9 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a id="navbarRegister" class="nav-link text-body" href="{{ route('register') }}"><i class="material-icons icon-size">assignment_ind</i><span class="navLinkExpand">{{ __('Register') }}</span></a>
+                <a id="navbarRegister" class="nav-link text-body" href="{{ route('register') }}"><i
+                            class="material-icons icon-size">assignment_ind</i><span
+                            class="navLinkExpand">{{ __('Register') }}</span></a>
             </li>
         @endif
     </ul>
