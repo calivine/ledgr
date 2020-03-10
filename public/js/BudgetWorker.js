@@ -48,13 +48,28 @@ function BudgetWorker() {
     };
 
     this.budgetUpdateInput = function (value) {
-        return '<td class="budget-update-form"><input type="number" step="0.01" class="update-input w-100" name="budget_update" value=' + value + '><button class="btn btn-primary btn-block budget-update" id="budget-update-submit">Save</button><button class="btn btn-danger btn-block" id="budget-update-cancel">Cancel</button></td>';
+        /*
+        const updateBoxBG = $('<div class="update-box-bg"></div>');
+        $('body').prepend(updateBoxBG);
+        setTimeout(function() {
+            $('div.update-box-bg').remove();
+        }, 5000);
+        */
+        const submitButton = $('<button class="btn btn-outline-primary btn-block budget-update" id="budget-update-submit">Save</button>');
+        const cancelButton = $('<button class="btn btn-outline-danger btn-block mt-0" id="budget-update-cancel">Cancel</button>');
+        const inputBox = $('<input type="number" step="0.01" class="update-input w-100" name="budget_update" value=' + value + '>');
+
+        let updateForm = $('<td class="budget-update-form"></td>');
+        updateForm.append(inputBox, submitButton, cancelButton);
+        return updateForm;
+
+        //return '<td class="budget-update-form"><input type="number" step="0.01" class="update-input w-100" name="budget_update" value=' + value + '><button class="btn btn-outline-primary btn-block budget-update" id="budget-update-submit">Save</button><button class="btn btn-outline-danger btn-block" id="budget-update-cancel">Cancel</button></td>';
     };
 
     this.displayNewCategoryForm = function (t) {
         let newCategoryForm = $('<div id="new-category-form"></div>');
         this.categoryNameInput = '<label class="w-100 mb-0" for="new-category-input">Category</label><input id="new-category-input" class="new-category-form-input" name="category" type="text" required>';
-        this.plannedBudget = '<label class="w-100 mb-0" for="new-planned-input">Planned Budget</label><input id="new-planned-input" class="new-category-form-input d-block" name=planned" type="text" autofocus><div class="d-block w-50"><button class="btn btn-primary btn-small w-50" id="category-submit" type="submit">Save</button><button class="btn btn-danger btn-small w-50" id="category-cancel" type="button">Cancel</button></div>';
+        this.plannedBudget = '<label class="w-100 mb-0" for="new-planned-input">Planned Budget</label><input id="new-planned-input" class="new-category-form-input d-block" name=planned" type="text" autofocus><div class="d-block w-50"><button class="btn btn-outline-primary btn-small w-50" id="category-submit" type="submit">Save</button><button class="btn btn-outline-danger btn-small w-50" id="category-cancel" type="button">Cancel</button></div>';
         newCategoryForm.append(this.categoryNameInput);
         newCategoryForm.append(this.plannedBudget);
         this.newCategoryContainer = $('<div class="ml-4" id="new-category-container"></div>');

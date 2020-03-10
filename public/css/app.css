@@ -11413,18 +11413,16 @@ footer {
 }
 
 #budget-table {
-  font-size: 18px;
   border-top: lightgray solid 3px;
   margin: auto;
 }
 
 #budget-table td {
-  min-width: 22vw;
+  min-width: 19vw;
 }
 
 #budget-table td.budget-category-name {
-  width: 10vw;
-  min-width: 10vw;
+  max-width: 10vw;
   overflow: wrap;
 }
 
@@ -11502,6 +11500,21 @@ span#title-character.fade {
 
 .icon-size {
   font-size: 1.25rem;
+}
+
+.dropdown-toggle {
+  text-decoration: none !important;
+  color: black !important;
+}
+
+.dropdown-toggle:hover {
+  color: grey !important;
+}
+
+.update-box-bg {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: rgba(152, 152, 152, 0.1);
 }
 
 .md-18 {
