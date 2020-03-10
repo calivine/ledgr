@@ -11,13 +11,13 @@
         </div>
         <div class='row justify-content-center my-4'>
             <div class='col-md-8'>
-                <p class='progress-bar-label text-left' style='font-size: 20px'>Total Spending:</p><p class='progress-bar-label float-right' style='font-size: 20px'>${{ round($budget_totals_bar["actual_total"]) }} of ${{ $budget_totals_bar["planned_total"] }}</p>
-                @include('modules.progress-bar', ['data' => $budget_totals_bar])
+                <p class='progress-bar-label text-left' style='font-size: 20px'>Total Spending:</p><p class='progress-bar-label float-right' style='font-size: 20px'>${{ round($monthly_total_bar["actual_total"]) }} of ${{ $monthly_total_bar["planned_total"] }}</p>
+                @include('modules.progress-bar', ['data' => $monthly_total_bar])
             </div>
         </div>
         <div class='row justify-content-center'>
             <div class='col-md-8'>
-                @include('modules.budget-progress-bars', $budget)
+                @include('modules.budget-progress-bars', ['data' => $budget_totals_bars])
             </div>
         </div>
         <div class='row justify-content-center mb-5 pb-3 border-bottom'>

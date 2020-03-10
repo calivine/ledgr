@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 
 
 
-class BudgetTotal
+class MonthlyTotal
 {
     private $year;
     private $month;

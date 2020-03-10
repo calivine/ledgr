@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Activity;
 use App\Actions\Utility\DateUtility;
 use App\Actions\Utility\BudgetUtility;
-use App\Actions\ProgressBar\BudgetTotal;
+use App\Actions\ProgressBar\MonthlyTotal;
+use App\Actions\ProgressBar\BudgetTotals;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {
@@ -20,13 +22,17 @@ class DashboardController extends Controller
         // Retrieve User
         $id = Auth::id();
 
+        Log::info(time() . ': ' . $id);
+
         // Set Timezone
         date_default_timezone_set('America/New_York');
 
         // Initialize Budget Utility
         $budgetUtil = new BudgetUtility($id);
 
-        $budget_totals_bar = new BudgetTotal();
+        $monthly_total_bar = new MonthlyTotal();
+
+        $budget_totals = new BudgetTotals();
 
         // Get First And Last Days Of Current Month
         $month_start = DateUtility::first_of_month();
@@ -49,36 +55,22 @@ class DashboardController extends Controller
 
         // Get Actuals For Each Budget Category
         $actuals = $budgetUtil->get_actuals();
-        // Get Total Monthly Budget
-        $monthly_budget = $budgetUtil->total_budget();
-        // Get Total Monthly Spending
-        $monthly_exp = $budgetUtil->total_spending();
 
         $categories = $budgetUtil->labels();
-
-
-        $budget = $budgetUtil->get();
 
         $category_form_labels = $budgetUtil->get_form_labels();
 
         sort($category_form_labels);
-
-        if ($monthly_budget > 0) {
-            $budget_percent = round(($monthly_exp / $monthly_budget) * 100);
-        }
-        else {
-            $budget_percent = 0;
-        }
 
         return view('dashboard')->with([
             'categories' => $categories,
             'category_form_labels' => $category_form_labels,
             'transactions' => $transactions,
             'actuals' => $actuals,
-            'budget' => $budget,
             'today' => $todays_date,
             'days_remaining' => $days_remaining,
-            'budget_totals_bar' => $budget_totals_bar->rda
+            'monthly_total_bar' => $monthly_total_bar->rda,
+            'budget_totals_bars' => $budget_totals->rda
         ]);
     }
 }
