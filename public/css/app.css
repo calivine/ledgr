@@ -11418,11 +11418,11 @@ footer {
 }
 
 #budget-table td {
-  min-width: 19vw;
+  min-width: 20vw;
 }
 
 #budget-table td.budget-category-name {
-  max-width: 12vw;
+  max-width: 15vw;
   overflow: wrap;
 }
 
