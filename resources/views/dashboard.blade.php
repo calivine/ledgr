@@ -20,7 +20,7 @@
                 @include('modules.budget-progress-bars', $budget)
             </div>
         </div>
-        <div class='row justify-content-center mb-5'>
+        <div class='row justify-content-center mb-5 pb-3 border-bottom'>
             <div class='col-md-8'>
                 @include('modules.accordion', ['category_form_labels' => $category_form_labels, 'categories' => $categories, 'actuals' => $actuals])
             </div>
