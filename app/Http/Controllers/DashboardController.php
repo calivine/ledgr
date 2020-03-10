@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Activity;
 use App\Actions\Utility\DateUtility;
 use App\Actions\Utility\BudgetUtility;
+use App\Actions\ProgressBar\BudgetTotal;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -24,6 +25,8 @@ class DashboardController extends Controller
 
         // Initialize Budget Utility
         $budgetUtil = new BudgetUtility($id);
+
+        $budget_totals_bar = new BudgetTotal();
 
         // Get First And Last Days Of Current Month
         $month_start = DateUtility::first_of_month();
@@ -72,12 +75,10 @@ class DashboardController extends Controller
             'category_form_labels' => $category_form_labels,
             'transactions' => $transactions,
             'actuals' => $actuals,
-            'monthly_expenditure' => $monthly_exp,
-            'monthly_budget' => $monthly_budget,
-            'budget_percent' => $budget_percent,
             'budget' => $budget,
             'today' => $todays_date,
-            'days_remaining' => $days_remaining
+            'days_remaining' => $days_remaining,
+            'budget_totals_bar' => $budget_totals_bar->rda
         ]);
     }
 }
