@@ -20,8 +20,8 @@
                 @include('modules.budget-progress-bars', ['data' => $budget_totals_bars])
             </div>
         </div>
-        <div class='row justify-content-center mb-5 pb-3 border-bottom'>
-            <div class='col-md-8'>
+        <div class='row justify-content-center mb-0 pb-0'>
+            <div class='col-md-8 border-bottom border-secondary mb-0 pb-5'>
                 @include('modules.accordion', ['category_form_labels' => $category_form_labels, 'categories' => $categories, 'actuals' => $actuals])
             </div>
         </div>

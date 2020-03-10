@@ -40,8 +40,8 @@ function resetSaveTransaction() {
 function generateAlert(type = 'success') {
     let $alert = $('<div id="alert-message-container"></div>');
     let $closeButton = $('<button></button>');
-    let $x = $('<span></span>');
-    $x.attr('aria-hidden', 'true').text('close');
+    let $x = $('<span>&times;</span>');
+    $x.attr('aria-hidden', 'true');
     $closeButton.attr('type', 'button')
         .attr('aria-label', 'Close')
         .attr('data-dismiss', 'alert')
