@@ -20,7 +20,9 @@ class GetBudget
                 ['year', '=', $date],
                 ['period', '=', $period],
                 ['user_id', '=', $user->id]
-            ])->get();
+            ])
+            ->orderBy('category')
+            ->get();
             $this->budget = $this->get_safe_budget($budget);
         } catch (Exception $e) {
             report($e);
