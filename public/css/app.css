@@ -11412,19 +11412,18 @@ footer {
   width: 135px;
 }
 
+/*
 #budget-table {
   border-top: lightgray solid 3px;
   margin: auto;
+  td {
+    min-width: 20vw;
+  }
+  td.budget-category-name {
+    max-width: 15vw;
+  }
 }
-
-#budget-table td {
-  min-width: 20vw;
-}
-
-#budget-table td.budget-category-name {
-  max-width: 15vw;
-  overflow: wrap;
-}
+*/
 
 #add-new-category {
   margin-left: 2vw;

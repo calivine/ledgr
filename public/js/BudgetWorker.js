@@ -13,13 +13,19 @@ function BudgetWorker() {
     this.updateBudget = function (t, self) {
         let updateForm = t.parent();
         let hiddenPlannedValue = t.parent().next();
+        let new_budget = $('input.update-input').val();
+        let budget_id = t.parent().prev().attr('id');
+        let loadSpinner = $('<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>');
+        updateForm.after(loadSpinner);
+        updateForm.hide();
         $.post('/budget/planned/update', {
-            new_value: $('input.update-input').val(),
-            id: t.parent().prev().attr('id')
+            new_value: new_budget,
+            id: budget_id
         }, function (data) {
             hiddenPlannedValue.text(data.planned);
             // Insert update planned budget value
-            updateForm.fadeOut();
+            // updateForm.fadeOut();
+            $('div.spinner-grow.text-success').remove();
             hiddenPlannedValue.fadeIn();
             // Remove update form
             updateForm.remove();
@@ -79,6 +85,13 @@ function BudgetWorker() {
     };
 
     this.saveNewCategory = function (t) {
+
+        let loadSpinner = $('<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>');
+
+        $('div#new-category-form').before(loadSpinner);
+        setTimeout(function() {
+
+        }, 5000);
         $.post('/budget/category/new', {
             name: $('input#new-category-input').val(),
             planned: $('input#new-planned-input').val()
@@ -91,12 +104,14 @@ function BudgetWorker() {
             let newCategoryPlanned = '<td class="budget-category-planned">' + data.planned + '</td><td>0</td><td>' + data.planned + '</td>';
             newRow.append(newCategoryName, newCategoryPlanned);
             console.log(newRow);
+            $('div.spinner-grow.text-success').remove();
             $('tr#budget-totals').before(newRow);
             $('div#new-category-form').remove();
             $('span#add-new-category').fadeIn();
             $('button#add-new-category').show();
         }).fail( function () {
             // $('div#new-category-container').remove();
+            $('div.spinner-grow.text-success').remove();
             $('button#add-new-category').parent().before(generateAlert('fail'));
             setTimeout(function() {
                 $('.alert').fadeOut();
