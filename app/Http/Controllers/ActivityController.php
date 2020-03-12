@@ -5,6 +5,8 @@ use App\Activity;
 use App\Actions\Activity\StoreActivity;
 use App\Actions\Activity\UpdateCategory;
 use App\Actions\Budget\UpdateActual;
+use App\Actions\ProgressBar\MonthlyTotal;
+use App\Actions\ProgressBar\BudgetTotals;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
@@ -27,6 +29,14 @@ class ActivityController extends Controller
         new StoreActivity($request);
 
         new UpdateActual($request->input('category'), null, $request->input('amount'), $request->user()->id);
+
+        $monthly_total_bar = new MonthlyTotal();
+        $budget_totals = new BudgetTotals();
+
+        return response()->json([
+            'monthly_total' => $monthly_total_bar->rda,
+            'budget_totals' => $budget_totals->rda
+        ]);
 
     }
 

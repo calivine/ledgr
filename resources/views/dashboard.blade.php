@@ -11,7 +11,6 @@
         </div>
         <div class='row justify-content-center my-4'>
             <div class='col-md-8'>
-                <p class='progress-bar-label text-left' style='font-size: 20px'>Total Spending:</p><p class='progress-bar-label float-right' style='font-size: 20px'>${{ round($monthly_total_bar["actual_total"]) }} of ${{ $monthly_total_bar["planned_total"] }}</p>
                 @include('modules.progress-bar', ['data' => $monthly_total_bar])
             </div>
         </div>

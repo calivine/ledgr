@@ -50,10 +50,10 @@ class MonthlyTotal
             }
 
             if ($percent_value < 75) {
-                $bar_color = 'primary';
+                $bar_color = 'success';
             }
             else if ($percent_value >= 100 && $percent_value <= 101) {
-                $bar_color = 'success';
+                $bar_color = 'primary';
             }
             else if ($percent_value >= 75 && $percent_value < 100) {
                 $bar_color = 'warning';
@@ -62,8 +62,8 @@ class MonthlyTotal
                 $bar_color = 'danger';
             }
             $this->rda = [
-                'planned_total' => $this->total_monthly_budget,
-                'actual_total' => $this->total_monthly_spending,
+                'planned' => $this->total_monthly_budget,
+                'actual' => $this->total_monthly_spending,
                 'percent' => $percent_value,
                 'color' => $bar_color
             ];

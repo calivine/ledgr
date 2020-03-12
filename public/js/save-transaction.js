@@ -11,14 +11,41 @@ $(function () {
             amount: $('input#amount-input').val(),
             category: $('select#manual-select-category').val(),
             transaction_date: $('input#transaction-date-input').val()
-        }).done( function () {
+        }).done( function (data) {
             $inputForm.fadeOut();
+
             // Clear Form
             resetSaveTransaction();
             $inputForm.fadeIn().prepend(generateAlert('success'));
+
+            // Update Monthly Total Progress Bar
+            let $totalBar = $('div#total-spending-bar');
+            let $totalBarLabel = $('p#bar-label-right');
+            let $bgColor = 'bg-' + data['monthly_total']['color'];
+            let totalData = data['monthly_total'];
+
+            refreshProgressBar($totalBar, totalData);
+
+            $totalBarLabel.text('$' + Math.round(data['monthly_total']['actual']) + ' of $' + data['monthly_total']['planned']);
+
+            // Update Budget Category Total Progress Bars
+            let i = 0;
+            $('div.progress-bars.my-3').each(function() {
+                let returnData = data['budget_totals'][i];
+                // Get element for progress bar label
+                let barRightLabel = $(this).children().eq(1);
+                // Get element for progress bar
+                let $progressBar = $(this).children().eq(2).children().eq(0);
+
+                refreshProgressBar($progressBar, returnData);
+
+                // Update value for progress bar label
+                barRightLabel.text('$' + Math.round(data['budget_totals'][i]['actual']) + ' of $' + data['budget_totals'][i]['planned']);
+                i++;
+            });
+
             setTimeout(function() {
                         $('div#alert-message-container').fadeOut();
-                        location.reload(true);
                     }, 5000);
         }).fail( function () {
             $inputForm.fadeOut().fadeIn().prepend(generateAlert('fail'));
@@ -56,4 +83,17 @@ function generateAlert(type = 'success') {
 
     $alert.prepend($closeButton);
     return $alert;
+}
+
+function refreshProgressBar($element, data) {
+    // Set Bar Background Color
+    $bgColor = 'bg-' + data['color'];
+    $element.removeClass().addClass('progress-bar ' + $bgColor);
+    $element.attr('aria-valuenow', data['actual']);
+    $element.attr('aria-valuemax', data['planned']);
+    $element.text(data['percent'] + '%');
+
+    $element.css({
+        'width': data['percent'] + '%'
+    });
 }
