@@ -43,7 +43,7 @@ $(function () {
                     refreshProgressBar($progressBar, returnData);
 
                     // Update value for progress bar label
-                    barRightLabel.text('$' + Math.round(data['budget_totals'][i]['actual']) + ' of $' + data['budget_totals'][i]['planned']);
+                    barRightLabel.text('$' + data['budget_totals'][i]['actual'] + ' of $' + data['budget_totals'][i]['planned']);
                 }
                 i++;
             });

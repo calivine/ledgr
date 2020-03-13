@@ -1,6 +1,7 @@
 @extends('layout.master')
 
 @section('content')
+    @include('modules.modals.update-planned-modal')
     <div class="container-fluid">
         <p class='ml-4'>{{ $period }}</p>
         <div class="row justify-content-center">

@@ -3,7 +3,7 @@
 @section('title', 'Dashboard | Ledgr')
 
 @section('content')
-    @include('modules.new-transaction-modal', ['labels' => $category_form_labels])
+    @include('modules.modals.new-transaction-modal', ['labels' => $category_form_labels])
     <div class='container-fluid mt-50'>
         <div class='row justify-content-center'>
             <div class='col-md-8'>

@@ -5,16 +5,28 @@ $(function () {
     // User can update planned value by clicking on the value itself
     $('.budget-category-planned').each(function () {
         $(this).on('click', function () {
-            // const currentValueText = $(this).text();
-            // let currentValue = initializeInput($(this).text());
-            let currentValue = worker.budgetUpdateInput($(this).text());
-            let inputAnchor = $(this).prev();
-            inputAnchor.after(currentValue);
-            $(this).hide();
+            // Update Event Handler to show update budget modal
+            // Send row ID to modal to use with update function
+
+
+            const rowID = $(this).prev().attr('id');
+            const oldPlanned = $(this).text();
+            console.log(oldPlanned);
+            $('input.update-input').val(oldPlanned);
+            $('div#plannedModalCenter').modal('show');
+
+            $('button#budget-update-submit').each(function () {
+                $(this).on('click', function () {
+                    $('div#plannedModalCenter').modal('hide');
+                    worker.updateBudget($(this), worker, rowID);
+                });
+            });
+            // $(this).hide();
+            /*
             $(function () {
                 $('button#budget-update-submit').each(function () {
                     $(this).on('click', function () {
-                        worker.updateBudget($(this), worker);
+                        worker.updateBudget($(this), worker, rowID);
                     });
                 });
                 $('button#budget-update-cancel').each(function () {
@@ -23,6 +35,7 @@ $(function () {
                     });
                 });
             });
+            */
         });
     });
     $(function () {

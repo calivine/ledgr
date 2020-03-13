@@ -10,14 +10,12 @@ function BudgetWorker() {
         $('td#planned-total').text(plannedTotal);
     };
 
-    this.updateBudget = function (t, self) {
-        let updateForm = t.parent();
-        let hiddenPlannedValue = t.parent().next();
-        let new_budget = $('input.update-input').val();
-        let budget_id = t.parent().prev().attr('id');
+    this.updateBudget = function (t, self, id) {
+        const new_budget = $('input.update-input').val();
+        const budget_id = id;
+        const hiddenPlannedValue = $('td#' + budget_id).next();
         let loadSpinner = $('<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>');
-        updateForm.after(loadSpinner);
-        updateForm.hide();
+
         $.post('/budget/planned/update', {
             new_value: new_budget,
             id: budget_id
@@ -28,7 +26,7 @@ function BudgetWorker() {
             $('div.spinner-grow.text-success').remove();
             hiddenPlannedValue.fadeIn();
             // Remove update form
-            updateForm.remove();
+
             self.getPlannedTotal();
         });
         return false;
