@@ -134,6 +134,7 @@ span#title-character.fade {
 
 .bg-mint {
     background-color: #98FB98 !important;
+    transition: all 1s ease;
     color: black;
 }
 
@@ -175,6 +176,16 @@ span#title-character.fade {
 
 .md-08 {
     font-size: 0.5rem;
+}
+
+.btn-outline-mint {
+    color: #98FB98;
+    border-color: #98FB98;
+
+    &:hover {
+        background-color: #98FB98;
+        color: black;
+    }
 }
 /*
 

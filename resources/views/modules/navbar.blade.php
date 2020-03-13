@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-light {{ Auth::check() ? 'bg-mint' : 'bg-white' }}">
+<nav class="navbar navbar-expand-sm navbar-light {{ Auth::check() ? 'bg-mint' : 'bg-white' }}" id="nav">
     <!-- Left Side Of Navbar -->
     <a href="{{ Auth::check() ? url('/dashboard') : url('/') }}" class="navbar-brand ml-5">{{ config('app.name') }}</a>
     <!-- Right Side Of Navbar -->

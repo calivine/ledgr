@@ -3,11 +3,15 @@
 @section('title', 'Dashboard | Ledgr')
 
 @section('content')
+    @include('modules.new-transaction-modal', ['labels' => $category_form_labels])
     <div class='container-fluid mt-50'>
         <div class='row justify-content-center'>
             <div class='col-md-8'>
                 <p class='text-left w-50 d-inline-block'>{{ $today }}</p><p class='float-right d-inline-block'>{{ $days_remaining  }} days remaining</p>
             </div>
+        </div>
+        <div id="toggle-modal-row" class="row justify-content-center">
+            <button type="button" class="btn btn-outline-success btn-block" data-toggle="modal" data-target="#modalCenter">Add Transaction</button>
         </div>
         <div class='row justify-content-center my-4'>
             <div class='col-md-8'>

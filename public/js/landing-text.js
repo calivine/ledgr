@@ -1,4 +1,5 @@
 const text = document.querySelector("#landing-title");
+const navBar = document.querySelector("#nav");
 const strText = text.textContent;
 const splitText = strText.split("");
 text.textContent = "";
@@ -19,6 +20,9 @@ function onTick() {
         setInterval(function () {
             text.classList.add('landing-bg');
         }, 500);
+        setInterval(function () {
+            nav.classList.add('bg-mint');
+        }, 1750);
     }
 }
 

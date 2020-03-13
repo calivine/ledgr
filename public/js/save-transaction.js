@@ -12,16 +12,18 @@ $(function () {
             category: $('select#manual-select-category').val(),
             transaction_date: $('input#transaction-date-input').val()
         }).done( function (data) {
-            $inputForm.fadeOut();
 
+            $('div#toggle-modal-row').before(generateAlert('success'));
+            // $inputForm.fadeOut();
             // Clear Form
             resetSaveTransaction();
-            $inputForm.fadeIn().prepend(generateAlert('success'));
+            // $inputForm.fadeIn().prepend(generateAlert('success'));
+
+            $('div#modalCenter').modal('hide');
 
             // Update Monthly Total Progress Bar
             let $totalBar = $('div#total-spending-bar');
             let $totalBarLabel = $('p#bar-label-right');
-            let $bgColor = 'bg-' + data['monthly_total']['color'];
             let totalData = data['monthly_total'];
 
             refreshProgressBar($totalBar, totalData);
@@ -32,21 +34,19 @@ $(function () {
             let i = 0;
             $('div.progress-bars.my-3').each(function() {
                 let returnData = data['budget_totals'][i];
-                // Get element for progress bar label
-                let barRightLabel = $(this).children().eq(1);
-                // Get element for progress bar
-                let $progressBar = $(this).children().eq(2).children().eq(0);
+                if (returnData['planned'] > 0) {
+                    // Get element for progress bar label
+                    let barRightLabel = $(this).children().eq(1);
+                    // Get element for progress bar
+                    let $progressBar = $(this).children().eq(2).children().eq(0);
 
-                refreshProgressBar($progressBar, returnData);
+                    refreshProgressBar($progressBar, returnData);
 
-                // Update value for progress bar label
-                barRightLabel.text('$' + Math.round(data['budget_totals'][i]['actual']) + ' of $' + data['budget_totals'][i]['planned']);
+                    // Update value for progress bar label
+                    barRightLabel.text('$' + Math.round(data['budget_totals'][i]['actual']) + ' of $' + data['budget_totals'][i]['planned']);
+                }
                 i++;
             });
-
-            setTimeout(function() {
-                        $('div#alert-message-container').fadeOut();
-                    }, 5000);
         }).fail( function () {
             $inputForm.fadeOut().fadeIn().prepend(generateAlert('fail'));
             setTimeout(function() {
