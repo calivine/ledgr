@@ -2,6 +2,7 @@
 
 @section('content')
     @include('modules.modals.update-planned-modal')
+    @include('modules.modals.new-category-modal')
     <div class="container-fluid">
         <p class='ml-4'>{{ $period }}</p>
         <div class="row justify-content-center">
@@ -22,7 +23,7 @@
                     @foreach($budget as $index => &$row)
                         <tr class='budget-category'>
                             <td id='{{ $row['id'] }}' class='budget-category-name text-wrap'><small>{{ $row['category'] }}</small></td>
-                            <td class='budget-category-planned text-center'>{{ $row['planned'] }}</td>
+                            <td class='budget-category-planned text-center'><span class='planned-value px-2'>{{ $row['planned'] }}</span>@include('modules.icons.edit')</td>
                             <td class='text-center'>{{ $row['actual'] }}</td>
                             <td class='text-right'>${{ $row['planned'] - $row['actual'] }}</td>
                         </tr>
@@ -39,6 +40,5 @@
     </div>
 
 
-    <script type='text/javascript' src="{{ asset('js/BudgetWorker.js') }}"></script>
-    <script type='text/javascript' src="{{ asset('js/budget-index.js') }}"></script>
+    <script type='text/javascript' src="{{ asset('js/budget.js') }}"></script>
 @endsection

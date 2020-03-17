@@ -147,7 +147,8 @@ span#title-character.fade {
 
 .icon-edit {
     color: grey;
-    float: right;
+    margin-left: 5px;
+    display: none;
 }
 
 .dropdown-toggle {
@@ -165,8 +166,16 @@ span#title-character.fade {
     background-color: rgba(152,152,152,0.1);
 }
 
+td.budget-category-planned {
+    cursor: pointer;
+}
+
 .md-18 {
     font-size: 18px;
+}
+
+.md-16 {
+    font-size: 16px;
 }
 
 .md-14 {
