@@ -1,6 +1,7 @@
 <table class='mx-auto sortable table'>
     <thead>
     <tr>
+        <th></th>
         <th scope='col' class='transaction-date' data-sort='date'></th>
         <th scope='col' class='transaction-amount' data-sort='amount'></th>
         <th scope='col' data-sort='name'></th>
@@ -10,6 +11,7 @@
     <tbody>
     @foreach($transactions as $transaction)
         <tr>
+            <td><i class="material-icons">{{ $transaction->budget->icon }}</i></td>
             <td class='transaction-date'><small>
                     {{ $transaction->date }}
                 </small></td>

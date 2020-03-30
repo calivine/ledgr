@@ -16,30 +16,18 @@ class MonthlyTotal
     private $total_monthly_budget = 0.0;
     private $total_monthly_spending = 0.0;
 
-    public function __construct()
+    public function __construct($budget)
     {
         $this->year = date('Y');
         $this->month = date('F');
         if (Auth::check()) {
-            $user = Auth::user();
 
-            try {
-                $budget = Budget::where([
-                    ['year', '=', $this->year],
-                    ['period', '=', $this->month],
-                    ['user_id', '=', $user->id]
-                ])->get();
-
-            } catch (Exception $e) {
-                report($e);
-                Log::info('Could not find data with the supplied parameters.');
-            }
 
             // Calculate Totals
-            foreach($budget as $category) {
+            foreach($budget as $index => &$category) {
 
-                $this->total_monthly_spending += $category->actual;
-                $this->total_monthly_budget += $category->planned;
+                $this->total_monthly_spending += $category['actual'];
+                $this->total_monthly_budget += $category['planned'];
             }
 
             if ($this->total_monthly_budget > 0) {
@@ -79,14 +67,14 @@ class MonthlyTotal
     {
         $safe_budget = [];
         if ($budget->isNotEmpty()) {
-            foreach ($budget as $row) {
+            foreach ($budget as $index => &$row) {
                 $new_row = [
-                    'id' => $row->id,
-                    'category' => $row->category,
-                    'planned' => $row->planned,
-                    'actual' => $row->actual,
-                    'year' => $row->year,
-                    'period' => $row->period
+                    'id' => $row['id'],
+                    'category' => $row['category'],
+                    'planned' => $row['planned'],
+                    'actual' => $row['actual'],
+                    'year' => $row['year'],
+                    'period' => $row['period']
                 ];
                 $safe_budget[] = $new_row;
             }

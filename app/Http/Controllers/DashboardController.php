@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Budget\GetBudget;
+use App\Actions\Budget\GetActuals;
 use App\Activity;
+use App\Budget;
 use App\Actions\Utility\DateUtility;
 use App\Actions\Utility\BudgetUtility;
 use App\Actions\ProgressBar\MonthlyTotal;
@@ -27,12 +30,14 @@ class DashboardController extends Controller
         // Set Timezone
         date_default_timezone_set('America/New_York');
 
+        $budget = new GetBudget(Auth::user());
+
         // Initialize Budget Utility
         $budgetUtil = new BudgetUtility($id);
 
-        $monthly_total_bar = new MonthlyTotal();
+        $monthly_total_bar = new MonthlyTotal($budget->budget);
 
-        $budget_totals = new BudgetTotals();
+        $budget_totals = new BudgetTotals($budget->budget);
 
         // Get First And Last Days Of Current Month
         $month_start = DateUtility::first_of_month();
@@ -41,7 +46,7 @@ class DashboardController extends Controller
         $days_remaining = DateUtility::days_remaining();
 
         // Pull Transactions For The Current Period
-        $transactions = Activity::whereBetween(
+        $transactions = Activity::with('budget')->whereBetween(
             'date', [$month_start, $month_end])
             ->where('user_id', $id)
             ->orderBy('date', 'desc')

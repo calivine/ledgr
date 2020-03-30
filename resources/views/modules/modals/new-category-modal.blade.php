@@ -9,14 +9,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <label class="mb-0" for="new-category-input">Category</label>
-                <input id="new-category-input" class="new-category-form-input w-50" name="category" type="text" required>
-                <label class="mb-0" for="new-planned-input">Planned Budget</label>
-                <input id="new-planned-input" class="new-category-form-input" name="planned" type="text" autofocus>
+                <div class="form-group">
+                    <label class="mb-0 w-100" for="new-category-input">Category</label>
+                    <input id="new-category-input" class="new-category-form-input w-50" name="category" type="text" placeholder="Category name" required>
+                </div>
+                <div class="form-group">
+                    <label class="mb-0 w-100" for="new-planned-input">Planned Budget</label>
+                    <input id="new-planned-input" class="new-category-form-input" name="planned" type="text" placeholder="$"  autofocus>
+                </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-outline-primary" id="category-submit" type="submit">Save</button>
-                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
+                <button class="btn btn-outline-primary btn-block" id="category-submit" type="submit">Save</button>
             </div>
         </div>
     </div>

@@ -80,12 +80,8 @@ class BudgetUtility
     // Return Budget Category Labels For Use In New Transaction Form
     public function get_form_labels() {
         $categories = [];
-        $budgetLabels = Budget::where([
-            ['year', '=', $this->date],
-            ['period', '=', $this->period],
-            ['user_id', '=', $this->user_id],
-        ])->get();
-        foreach($budgetLabels as $category) {
+
+        foreach($this->budget as $category) {
             $categories[] = $category->category;
         }
         return $categories;

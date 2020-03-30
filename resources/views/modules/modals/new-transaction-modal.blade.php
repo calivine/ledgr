@@ -9,10 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                @include('modules.input-transaction', ['labels' => $category_form_labels])
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
+                @include('modules.input-transaction', ['labels' => $labels])
             </div>
         </div>
     </div>

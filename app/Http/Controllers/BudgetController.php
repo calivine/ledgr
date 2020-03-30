@@ -73,4 +73,38 @@ class BudgetController extends Controller
         ]);
     }
 
+
+    /*
+     * GET
+     * /budget/setup
+     * New User Budget Setup Page
+     */
+
+    public function newBudgetSetup(Request $request)
+    {
+        $response = new GetBudget(Auth::user());
+        return view('budget.setup')->with([
+            'budget' => $response->budget
+        ]);
+
+    }
+
+    /*
+     * POST
+     * /budget/setup/new
+     * Process new budget planned values
+     */
+    public function budgetSetup(Request $request)
+    {
+
+        foreach($request->all() as $index => $category) {
+            dump($index, $category);
+        }
+        die();
+
+
+        return redirect(route('dashboard'));
+
+    }
+
 }

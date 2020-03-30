@@ -14,7 +14,7 @@ class CreateBudgetTable extends Migration
     public function up()
     {
         Schema::create('budgets', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->timestamps();
             $table->string('category');
             $table->float('planned', 10, 2)->default(0);

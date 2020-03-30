@@ -16,13 +16,17 @@
 Route::group(['middleware' => 'auth'], function() {
 
     # DISPLAY Dashboard Page
-    Route::get('/dashboard', 'DashboardController@index');
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
     # CREATE New Transaction
     Route::post('/transaction', 'ActivityController@storeTransaction');
 
     # DISPLAY Budget Table
     Route::get('/budget', 'BudgetController@index');
+
+    # DISPLAY New User Budget Table
+    Route::get('/budget/setup', 'BudgetController@newBudgetSetup');
+    Route::post('/budget/setup/new', 'BudgetController@budgetSetup')->name('setup');
 
     # UPDATE Planned Budget Value
     Route::post('/budget/planned/update', 'BudgetController@updatePlanned');
@@ -44,7 +48,7 @@ Route::group(['middleware' => 'auth'], function() {
 // Authentication Routes
 Auth::routes();
 
-Route::view('/', 'landing');
+Route::view('/', 'landing')->name('landing');
 
 // Redirect Any Traffic Away From Splash To Login Page
 // Route::redirect('/', '/login');

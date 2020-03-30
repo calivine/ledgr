@@ -2,66 +2,79 @@
   {
     "category": "Food",
     "year": 2020,
-    "period": "February"
+    "period": "February",
+    "icon": "restaurant"
   },
   {
     "category": "Mortgage",
     "year": 2020,
-    "period": "February"
+    "period": "February",
+    "icon": "house"
   },
   {
     "category": "Health/Medical",
     "year": 2020,
-    "period": "February"
+    "period": "February",
+    "icon": "local_hospital"
   },
   {
     "category": "Transportation",
     "year": 2020,
-    "period": "February"
+    "period": "February",
+    "icon": "time_to_leave"
   },
   {
     "category": "Pets",
     "year": 2020,
-    "period": "February"
+    "period": "February",
+    "icon": "pets"
   },
   {
     "category": "Utilities",
     "year": 2020,
-    "period": "February"
+    "period": "February",
+    "icon": "build"
   },
   {
     "category": "Debt",
     "year": 2020,
-    "period": "February"
+    "period": "February",
+    "icon": "attach_money"
   },
   {
     "category": "Subscriptions",
     "year": 2020,
-    "period": "February"
+    "period": "February",
+    "icon": "attach_money"
   },
   {
     "category": "Cash",
     "year": 2020,
-    "period": "February"
+    "period": "February",
+    "icon": "atm"
   },
   {
     "category": "Gifts",
     "year": 2020,
-    "period": "February"
+    "period": "February",
+    "icon": "attach_money"
   },
   {
     "category": "Fees",
     "year": 2020,
-    "period": "February"
+    "period": "February",
+    "icon": "attach_money"
   },
   {
     "category": "Miscellaneous",
     "year": 2020,
-    "period": "February"
+    "period": "February",
+    "icon": "attach_money"
   },
   {
     "category": "Eating Out",
     "year": 2020,
-    "period": "February"
+    "period": "February",
+    "icon": "fastfood"
   }
 ]}

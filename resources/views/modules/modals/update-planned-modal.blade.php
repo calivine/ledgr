@@ -9,12 +9,14 @@
                 </button>
             </div>
             <div class="modal-body">
-                <label for="budget_update">New Planned Budget:</label>
-                <input type="number" step="0.01" class="update-input w-100" name="budget_update">
+                <div class="form-group">
+                    <label class="w-100 mb-0" for="budget_update">New Planned Budget:</label>
+                    <input type="number" step="0.01" class="update-input w-50"  name="budget_update" id="budget_update">
+                </div>
+                <input id="planned-input-slider" type="range" min="0" step="1">
             </div>
             <div class="modal-footer">
-                <button class="btn btn-outline-primary btn-block budget-update" id="budget-update-submit">Save</button>
-                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
+                <button class="btn btn-outline-primary btn-block budget-update" id="budget-update-submit"><i class="material-icons icon md-18">save</i>Save</button>
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@
             <label for='manual-select-category'>Budget Category</label>
             <select name='category' id='manual-select-category' required class='manual-input'>
                 <option value=''>Select</option>
-                @foreach($categories as $category)
+                @foreach($labels as $category)
                     <option value='{{ $category }}'>{{ $category }}</option>
                 @endforeach
             </select>

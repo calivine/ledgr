@@ -4,6 +4,7 @@
 namespace App\Actions\Activity;
 
 use App\Activity;
+use App\Budget;
 use Illuminate\Http\Request;
 
 
@@ -17,9 +18,20 @@ class StoreActivity
         $category = $request->input('category');
         $date = $request->input('transaction_date');
 
+        $year = date('Y', strtotime($date));
+        $month = date('F', strtotime($date));
+
         // Get User Object
         $user = $request->user();
 
+        // Get Budget Category To Associate w/ Activity
+        $budget = Budget::where([
+            ['year', '=', $year],
+            ['period', '=', $month],
+            ['user_id', '=', $user->id],
+            ['category', '=', $category]
+        ])
+        ->first();
         // Save Transaction To Activities Table
         $activity = new Activity();
 
@@ -31,6 +43,8 @@ class StoreActivity
         $activity->transaction_id = "TestTransaction";
         // Link To User Signed-In
         $activity->user()->associate($user);
+        // Link To Budget Category
+        $activity->budget()->associate($budget);
         $activity->save();
     }
 

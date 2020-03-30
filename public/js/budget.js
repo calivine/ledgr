@@ -3,6 +3,15 @@ $(function() {
 
     let plannedBudgetValues = $('.budget-category-planned');
 
+    let inputSlider = $('input#planned-input-slider');
+
+
+    $('input#planned-input-slider').on('change', function () {
+        console.log($('input#planned-input-slider').val());
+        console.log($('input.update-input').val());
+        $('input.update-input').val($('input#planned-input-slider').val());
+    });
+
 
     plannedBudgetValues.each(function () {
         $(this).on('mouseover', function() {
@@ -19,10 +28,17 @@ $(function() {
     $('span.planned-value').each(function () {
         $(this).on('click', function () {
             let rowID = $(this).parent().prev().attr('id');
+            let category = $(this).parent().prev().text();
+            console.log(category);
             $(this).attr('id', rowID);
             let oldPlanned = $(this).text();
-
+            $('h5#updatePlannedModal').text("Update " + category + " Budget");
             $('input.update-input').val(oldPlanned);
+            // inputSlider.val(oldPlanned);
+
+            inputSlider.attr('max', Number(oldPlanned) * 2);
+            inputSlider.attr('min', Number(oldPlanned) / 2);
+            inputSlider.attr('value', oldPlanned);
             $('div#plannedModalCenter').modal('show');
             $('input.update-input').attr('id', rowID);
         })
@@ -73,7 +89,7 @@ $(function() {
             // .prepend() on <tr id='budget-totals'>
             let newRow = $('<tr class="budget-category"></tr>');
             let newCategoryName = '<td class="budget-category-name text-wrap">' + data.category + '</td>';
-            let newCategoryPlanned = '<td class="budget-category-planned text-center"><span class="planned-value px-2">' + data.planned + '</span><i class="material-icons icon-edit md-14 position-absolute">edit</i></td><td class="text-center">0</td><td class="text-right">' + data.planned + '</td>';
+            let newCategoryPlanned = '<td class="budget-category-planned text-center">$<span class="planned-value px-2">' + data.planned + '</span><i class="material-icons icon-edit md-14 position-absolute">edit</i></td><td class="text-center">0</td><td class="text-right">' + data.planned + '</td>';
             newRow.append(newCategoryName, newCategoryPlanned);
             console.log(newRow);
             $('div#categoryModalCenter').modal('hide');
@@ -94,7 +110,6 @@ $(function() {
                     $(this).children().eq(1).hide();
                 });
             });
-
         }).fail( function () {
             // $('div#new-category-container').remove();
             $('div.spinner-grow.text-success').remove();
@@ -104,7 +119,6 @@ $(function() {
             }, 5000);
         });
         return false;
-
     });
 });
 

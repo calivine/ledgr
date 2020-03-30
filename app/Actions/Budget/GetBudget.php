@@ -36,6 +36,7 @@ class GetBudget
             foreach ($budget as $row) {
                 $new_row = [
                     'id' => $row->id,
+                    'icon' => $row->icon,
                     'category' => $row->category,
                     'planned' => $row->planned,
                     'actual' => $row->actual,

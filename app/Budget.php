@@ -12,4 +12,12 @@ class Budget extends Model
         # Defines An Inverse One-To-Many Relationship
         return $this->belongsTo('App\User');
     }
+
+    public function activities()
+    {
+        # Budget Has Many Activities
+        # Defines A One-To-Many Relationship
+        return $this->hasMany('App\Activity');
+
+    }
 }

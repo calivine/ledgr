@@ -27,6 +27,7 @@ class StoreBudget
                 $new_budget->year = $year;
                 $new_budget->period = $this_month;
                 $new_budget->planned = $budget['planned'];
+                $new_budget->icon = $budget['icon'];
 
                 $new_budget->user()->associate($user);
 
@@ -46,6 +47,7 @@ class StoreBudget
                 $new_budget->category = $budget['category'];
                 $new_budget->year = $year;
                 $new_budget->period = $this_month;
+                $new_budget->icon = $budget['icon'];
 
                 $new_budget->user()->associate($new_user);
 
