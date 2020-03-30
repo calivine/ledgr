@@ -1,6 +1,8 @@
 // Variables
 @import 'variables';
 
+// @import 'material-icons';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
@@ -18,18 +20,6 @@ footer {
   width: 100%;
   height: 10px;
   line-height: 20px; /* Vertically center the text there */
-}
-
-.tabs {
-  height: 80px;
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
 }
 
 .progress-bar-label {
@@ -72,10 +62,6 @@ footer {
 #add-new-category {
   margin-left: 2vw;
   margin-bottom: 3vh;
-}
-
-#add-new-category::before {
-  content: " + ";
 }
 
 #api-token {
@@ -166,8 +152,34 @@ span#title-character.fade {
     background-color: rgba(152,152,152,0.1);
 }
 
+.password-requirements {
+    ul {
+        li.reject {
+            list-style-image: url('svg/clear-24px.svg');
+        }
+
+        li.accepted {
+            list-style-image: url('svg/add-24px.svg');
+        }
+    }
+}
+
+.success {
+    color: green;
+    list-style-type: disc;
+}
+
 td.budget-category-planned {
     cursor: pointer;
+}
+
+.icon {
+    display: inline;
+    vertical-align: middle;
+}
+
+.md-20 {
+    font-size: 20px;
 }
 
 .md-18 {
