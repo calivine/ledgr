@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Activity;
+use Illuminate\Support\Facades\Auth;
 use App\Actions\Activity\StoreActivity;
 use App\Actions\Activity\UpdateCategory;
 use App\Actions\Budget\UpdateActual;
+use App\Actions\Budget\GetBudget;
 use App\Actions\ProgressBar\MonthlyTotal;
 use App\Actions\ProgressBar\BudgetTotals;
 use Illuminate\Http\Request;
@@ -30,8 +32,10 @@ class ActivityController extends Controller
 
         new UpdateActual($request->input('category'), null, $request->input('amount'), $request->user()->id);
 
-        $monthly_total_bar = new MonthlyTotal();
-        $budget_totals = new BudgetTotals();
+        $budget = new GetBudget(Auth::user());
+
+        $monthly_total_bar = new MonthlyTotal($budget->budget);
+        $budget_totals = new BudgetTotals($budget->budget);
 
         return response()->json([
             'monthly_total' => $monthly_total_bar->rda,

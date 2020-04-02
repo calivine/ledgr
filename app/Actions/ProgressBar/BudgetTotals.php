@@ -11,6 +11,7 @@ class BudgetTotals
 {
     public function __construct($budget)
     {
+        $this->rda = [];
 
         foreach($budget as $index => &$category) {
             $percent = $category['planned'] > 0 ? round(($category['actual'] / $category['planned']) * 100) : 0;
