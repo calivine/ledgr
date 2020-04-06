@@ -5,6 +5,11 @@ namespace App\Actions\Budget;
 
 use App\Budget;
 
+/*
+ * UpdateActual
+ * Update Actual Amount For When Transaction Category is Updated
+ */
+
 class UpdateActual
 {
     public function __construct($new_category, $old_category, $amount, $user_id)
