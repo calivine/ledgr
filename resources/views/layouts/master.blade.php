@@ -3,7 +3,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    @include('layout.partials.head')
+    @include('layouts.partials.head')
 </head>
 <body>
 @if(session('alert'))
@@ -16,7 +16,7 @@
 <!-- Page Content -->
 @yield('content')
 <!-- Footer -->
-@include('layout.partials.footer')
+@include('layouts.partials.footer')
 </body>
 
 

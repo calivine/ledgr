@@ -11443,14 +11443,13 @@ footer {
   min-width: 18rem;
 }
 
-h1#landing-title {
-  font-size: 4rem;
+#landing-title {
   font-family: sans-serif;
   text-align: center;
   line-height: 80vh;
 }
 
-h1#landing-title.landing-bg {
+#landing-title.landing-bg {
   background-color: #98FB98;
   -webkit-transition: all 1s ease;
   transition: all 1s ease;
@@ -11505,14 +11504,6 @@ span#title-character.fade {
   min-width: 100vw;
   min-height: 100vh;
   background-color: rgba(152, 152, 152, 0.1);
-}
-
-.password-requirements ul li.reject {
-  list-style-image: url(/images/clear-24px.svg?b9babcae53a66edbc797bbf1e018bfd7);
-}
-
-.password-requirements ul li.accepted {
-  list-style-image: url(/images/add-24px.svg?eed048f2edbdac768c70af9f26c0bf39);
 }
 
 .success {
