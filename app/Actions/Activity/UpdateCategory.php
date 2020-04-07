@@ -6,6 +6,13 @@ use App\Activity;
 use App\Actions\Budget\UpdateActual;
 use Illuminate\Http\Request;
 
+/**
+ * Update the category name for a single transaction
+ * @category Action
+ * @author Alex Caloggero
+ *
+ */
+
 
 class UpdateCategory
 {

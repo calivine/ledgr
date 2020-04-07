@@ -10,13 +10,12 @@ class GetActuals
 {
     public function __construct($budget)
     {
-        $actuals = [];
+        $this->rda = [];
         foreach($budget as $index => &$category) {
-            if ($category['actual'] > 0) {
-                $actuals[] = $category['actual'];
+            if ($category["actual"] > 0) {
+                $this->rda[] = $category["actual"];
             }
         }
-        return $actuals;
 
     }
 

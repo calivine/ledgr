@@ -6,11 +6,27 @@ namespace App\Actions\Budget;
 use App\Budget;
 use Exception;
 
+/**
+* Delivers monthly budget data for a user
+* 
+* @category Action
+* 
+* @author Alex Caloggero
+* 
+*/
+
 class GetBudget
 {
 
     public $budget = [];
 
+    /**
+    * Deliver monthly budget data
+    *
+    * @param User    user
+    * @param integer year
+    * @param string  period (month)
+    */
     public function __construct($user, $year = null, $period = null)
     {
         try {
@@ -29,6 +45,11 @@ class GetBudget
         }
     }
 
+    /**
+    * Safely delivers the necessary budget data to a GetBudget request
+    * 
+    * @param App\Budget budget
+    */
     protected function get_safe_budget($budget)
     {
         $safe_budget = [];

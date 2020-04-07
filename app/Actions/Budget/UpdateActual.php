@@ -5,9 +5,16 @@ namespace App\Actions\Budget;
 
 use App\Budget;
 
-/*
- * UpdateActual
- * Update Actual Amount For When Transaction Category is Updated
+/**
+ * Adjusts the 'Actual' amount of a Budget category when it's
+ * associated transaction's category is changed. 
+ * 
+ * @category Action
+ * @author Alex Caloggero
+ * @param string    new category name
+ * @param string    old category name
+ * @param numeric   amount
+ * @param integer   user ID
  */
 
 class UpdateActual

@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Actions\Budget\GetBudget;
 use App\Actions\Budget\GetActuals;
+use App\Actions\Budget\Labels;
 use App\Activity;
 use App\Budget;
 use App\Actions\Utility\DateUtility;
-use App\Actions\Utility\BudgetUtility;
 use App\Actions\ProgressBar\MonthlyTotal;
 use App\Actions\ProgressBar\BudgetTotals;
 use Illuminate\Support\Facades\Auth;
@@ -32,12 +32,13 @@ class DashboardController extends Controller
 
         $budget = new GetBudget(Auth::user());
 
-        // Initialize Budget Utility
-        $budgetUtil = new BudgetUtility($id);
-
         $monthly_total_bar = new MonthlyTotal($budget->budget);
 
         $budget_totals = new BudgetTotals($budget->budget);
+
+        $category_form_labels = new Labels($budget->budget, true);
+
+        $categories = new Labels($budget->budget);
 
         // Get First And Last Days Of Current Month
         $month_start = DateUtility::first_of_month();
@@ -59,19 +60,13 @@ class DashboardController extends Controller
         }
 
         // Get Actuals For Each Budget Category
-        $actuals = $budgetUtil->get_actuals();
-
-        $categories = $budgetUtil->labels();
-
-        $category_form_labels = $budgetUtil->get_form_labels();
-
-        sort($category_form_labels);
+        $actuals = new GetActuals($budget->budget);
 
         return view('dashboard')->with([
-            'categories' => $categories,
-            'category_form_labels' => $category_form_labels,
+            'categories' => $categories->categories,
+            'category_form_labels' => $category_form_labels->categories,
             'transactions' => $transactions,
-            'actuals' => $actuals,
+            'actuals' => $actuals->rda,
             'today' => $todays_date,
             'days_remaining' => $days_remaining,
             'monthly_total_bar' => $monthly_total_bar->rda,
