@@ -25,19 +25,24 @@ class DashboardController extends Controller
         // Retrieve User
         $id = Auth::id();
 
-        Log::info(time() . ': ' . $id);
+        Log::info(time() . ': User: ' . $id . ' entered the Dashboard');
 
-        // Set Timezone
+        // Set Timezone.
         date_default_timezone_set('America/New_York');
 
+        // Get Current Month's Budget. 
         $budget = new GetBudget(Auth::user());
 
+        // Gets Total Monthly Spending data for progress bar. 
         $monthly_total_bar = new MonthlyTotal($budget->budget);
 
+        // Gets Budget Category Totals data for progress bars.
         $budget_totals = new BudgetTotals($budget->budget);
 
+        // Fetch labels for New Transaction Form.
         $category_form_labels = new Labels($budget->budget, true);
 
+        // Get Category Labels data for Pie Chart
         $categories = new Labels($budget->budget);
 
         // Get First And Last Days Of Current Month
