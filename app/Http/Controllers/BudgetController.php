@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Actions\Budget\StoreBudget;
 use App\Actions\Budget\StoreCategory;
-use App\Actions\Budget\StorePlanned;
+use App\Actions\Budget\UpdatePlanned;
 use App\Actions\Budget\GetBudget;
+use App\Actions\Utility\DateUtility;
+use App\Budget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Arr;
 
 class BudgetController extends Controller
 {
@@ -45,7 +48,7 @@ class BudgetController extends Controller
             'new_value' => 'required|numeric'
         ]);
 
-        $action = new StorePlanned($request);
+        $action = new UpdatePlanned($request->input('id'), $request->input('new_value'));
 
         return response()->json([
             'planned' => $action->rda['planned']
@@ -96,13 +99,19 @@ class BudgetController extends Controller
      */
     public function budgetSetup(Request $request)
     {
+        $new_budget = $request->all();
+        
+        // Remove token.
+        Arr::pull($new_budget, '_token');
+        
+        foreach($new_budget as $index => $category) {
+            new UpdatePlanned($index, $category);
+            // $budget = Budget::find($index);
+            // $budget->planned = $category;
+            // $budget->save();
 
-        foreach($request->all() as $index => $category) {
-            dump($index, $category);
         }
-        die();
-
-
+        
         return redirect(route('dashboard'));
 
     }

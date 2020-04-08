@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 
 
 
-class StorePlanned
+class UpdatePlanned
 {
-    public function __construct(Request $request)
+    public function __construct($id, $planned)
     {
-        $new_planned = $request->input('new_value');
-        $id = $request->input('id');
+        $new_planned = $planned;
+        $budget_id = $id;
 
-        $budget = Budget::find($id);
+        $budget = Budget::find($budget_id);
         $budget->planned = $new_planned;
         $budget->save();
 
