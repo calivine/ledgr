@@ -4,7 +4,7 @@
 
 @section('content')
     @include('modules.modals.new-transaction-modal', ['labels' => $category_form_labels])
-    <div class='container-fluid mt-50'>
+    <main class='container-fluid mt-50'>
         <div class='row justify-content-center'>
             <div class='col-md-8'>
                 <p class='text-left w-50 d-inline-block'>{{ $today }}</p><p class='float-right d-inline-block'>{{ $days_remaining  }} days remaining</p>
@@ -33,7 +33,7 @@
                 @include('modules.transactions-table', ['transactions' => $transactions, 'categories' => $category_form_labels])
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="{{ asset('js/save-transaction.js') }}"></script>
 
