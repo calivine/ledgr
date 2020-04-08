@@ -12,7 +12,7 @@
     </div>
 @endif
 <!-- Navbar -->
-@include('modules.navbar')
+@include('nav.navbar')
 <!-- Page Content -->
 @yield('content')
 <!-- Footer -->

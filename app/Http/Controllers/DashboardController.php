@@ -30,10 +30,10 @@ class DashboardController extends Controller
         // Set Timezone.
         date_default_timezone_set('America/New_York');
 
-        // Get Current Month's Budget. 
+        // Get Current Month's Budget.
         $budget = new GetBudget(Auth::user());
 
-        // Gets Total Monthly Spending data for progress bar. 
+        // Gets Total Monthly Spending data for progress bar.
         $monthly_total_bar = new MonthlyTotal($budget->budget);
 
         // Gets Budget Category Totals data for progress bars.
@@ -67,7 +67,7 @@ class DashboardController extends Controller
         // Get Actuals For Each Budget Category
         $actuals = new GetActuals($budget->budget);
 
-        return view('dashboard')->with([
+        return view('dash.dashboard')->with([
             'categories' => $categories->categories,
             'category_form_labels' => $category_form_labels->categories,
             'transactions' => $transactions,
