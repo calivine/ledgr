@@ -24,7 +24,8 @@ class BudgetController extends Controller
         $response = new GetBudget(Auth::user());
 
         // If Budget sheet doesn't exist, create a new one.
-        if (sizeof($response->budget) == 0) {
+        if (sizeof($response->budget) == 0)
+        {
             new StoreBudget(Auth::user());
             $response = new GetBudget(Auth::user());
         }
@@ -100,10 +101,10 @@ class BudgetController extends Controller
     public function budgetSetup(Request $request)
     {
         $new_budget = $request->all();
-        
+
         // Remove token.
         Arr::pull($new_budget, '_token');
-        
+
         foreach($new_budget as $index => $category) {
             new UpdatePlanned($index, $category);
             // $budget = Budget::find($index);
@@ -111,7 +112,7 @@ class BudgetController extends Controller
             // $budget->save();
 
         }
-        
+
         return redirect(route('dashboard'));
 
     }

@@ -9,6 +9,7 @@ use App\Actions\Budget\UpdateActual;
 use App\Actions\Budget\GetBudget;
 use App\Actions\ProgressBar\MonthlyTotal;
 use App\Actions\ProgressBar\BudgetTotals;
+use App\Actions\Activity\DestroyActivity;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
@@ -63,4 +64,29 @@ class ActivityController extends Controller
             'category' => $action->rda['update_name']
         ]);
     }
+
+    /**
+     * GET
+     * /transaction/{id}/delete
+     * Display confirm transaction delete page.
+     */
+     public function deleteTransaction($id)
+     {
+          return view('activity.delete')->with([
+              'id' => $id
+          ]);
+     }
+
+     /**
+      * POST
+      * /transaction/{id}/destroy
+      * Delete transaction.
+      */
+      public function destroyTransaction($id)
+      {
+          new DestroyActivity($id);
+
+          return redirect(route('dashboard'));
+
+      }
 }

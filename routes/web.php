@@ -37,6 +37,10 @@ Route::group(['middleware' => 'auth'], function() {
     # UPDATE Transaction Category
     Route::post('/transaction/category/update', 'ActivityController@updateCategory');
 
+    # DELETE Transaction
+    Route::get('/transaction/{id}/delete', 'ActivityController@deleteTransaction');
+    Route::delete('/transaction/{id}/destroy', 'ActivityController@destroyTransaction');
+
     # CREATE New Income
     Route::get('/income/new', 'IncomeController@newIncome');
     Route::post('/income', 'IncomeController@storeIncome');
