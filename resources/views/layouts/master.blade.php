@@ -17,7 +17,7 @@
 @yield('content')
 <!-- Footer -->
 @include('layouts.partials.footer')
+
+<script src="{{ asset('js/utility.js') }}"></script>
 </body>
-
-
 </html>

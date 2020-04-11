@@ -29,12 +29,10 @@ $(function() {
         $(this).on('click', function () {
             let rowID = $(this).parent().prev().attr('id');
             let category = $(this).parent().prev().text();
-            console.log(category);
             $(this).attr('id', rowID);
             let oldPlanned = $(this).text();
             $('h5#updatePlannedModal').text("Update " + category + " Budget");
             $('input.update-input').val(oldPlanned);
-            // inputSlider.val(oldPlanned);
 
             inputSlider.attr('max', Number(oldPlanned) * 2);
             inputSlider.attr('min', Number(oldPlanned) / 2);
@@ -91,7 +89,6 @@ $(function() {
             let newCategoryName = '<td class="budget-category-name text-wrap">' + data.category + '</td>';
             let newCategoryPlanned = '<td class="budget-category-planned text-center">$<span class="planned-value px-2">' + data.planned + '</span><i class="material-icons icon-edit md-14 position-absolute">edit</i></td><td class="text-center">0</td><td class="text-right">' + data.planned + '</td>';
             newRow.append(newCategoryName, newCategoryPlanned);
-            console.log(newRow);
             $('div#categoryModalCenter').modal('hide');
             $('div.spinner-grow.text-success').remove();
             $('tr#budget-totals').before(newRow);
@@ -111,7 +108,6 @@ $(function() {
                 });
             });
         }).fail( function () {
-            // $('div#new-category-container').remove();
             $('div.spinner-grow.text-success').remove();
             $('button#add-new-category').parent().before(generateAlert('fail'));
             setTimeout(function() {
@@ -152,4 +148,3 @@ function generateAlert(type = 'success') {
     $alert.prepend($closeButton);
     return $alert;
 }
-

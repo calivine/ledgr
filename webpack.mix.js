@@ -13,3 +13,12 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
+
+mix.scripts([
+    'resources/js/api-token.js',
+    'resources/js/budget.js',
+    'resources/js/edit-category.js',
+    'resources/js/save-transaction.js',
+    'resources/js/sort-table.js',
+    'resources/js/validator.js'
+], 'public/js/utility.js');

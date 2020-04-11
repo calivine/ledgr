@@ -40,7 +40,4 @@
         </div>
 
     </div>
-
-
-    <script type='text/javascript' src="{{ asset('js/budget.js') }}"></script>
 @endsection

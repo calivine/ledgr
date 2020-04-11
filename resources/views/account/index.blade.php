@@ -39,7 +39,4 @@
             @endif
         </div>
     </div>
-
-    <script type='text/javascript' src="{{ asset('js/api-token.js') }}"></script>
-
 @endsection

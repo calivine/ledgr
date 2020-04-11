@@ -1,13 +1,8 @@
 $(function () {
-    $('input#password.form-control.w-50').on('focus', function () {
-        let password = $(this).val();
-        console.log(password);
-    });
-
     $('input#password.form-control.w-50').on('change', function () {
         console.log($(this).val());
-        let inptText = $(this).val();
-        minLength(inptText) ? reqMet() : reject();
+        let inputText = $(this).val();
+        minLength(inputText) ? pass() : reject();
     });
 
     $('input#password.form-control.w-50').on('keypress', function () {
@@ -15,7 +10,7 @@ $(function () {
         console.log($(this).val());
         let inputText = $(this).val();
         console.log(inputText.length);
-        minLength(inputText) ? reqMet() : reject();
+        minLength(inputText) ? pass() : reject();
     });
 });
 
@@ -30,7 +25,7 @@ function minLength(s) {
     return (str.length + 1) >= 8;
 }
 
-function reqMet() {
+function pass() {
     $('li#length-requirement').css('color', 'green');
     $('li#length-requirement').css('text-decoration', 'line-through');
 }

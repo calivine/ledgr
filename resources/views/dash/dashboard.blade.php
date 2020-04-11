@@ -35,7 +35,4 @@
         </div>
     </main>
 
-    <script src="{{ asset('js/save-transaction.js') }}"></script>
-
-    <script src="{{ asset('js/edit-category.js') }}"></script>
 @endsection

@@ -2,10 +2,6 @@ let $inputForm = $('fieldset#manual-input-form');
 
 $(function () {
     $('button#manual-input-button').bind('click', function () {
-        /*
-        if ($('input#description-input').val() == "" || $('input#amount-input').val()) {
-
-        } */
         $.post('/transaction', {
             description: $('input#description-input').val(),
             amount: $('input#amount-input').val(),
@@ -14,10 +10,8 @@ $(function () {
         }).done( function (data) {
 
             $('div#toggle-modal-row').before(generateAlert('success'));
-            // $inputForm.fadeOut();
             // Clear Form
             resetSaveTransaction();
-            // $inputForm.fadeIn().prepend(generateAlert('success'));
 
             $('div#modalCenter').modal('hide');
 
@@ -48,7 +42,10 @@ $(function () {
                 i++;
             });
         }).fail( function () {
-            $inputForm.fadeOut().fadeIn().prepend(generateAlert('fail'));
+            $inputForm
+                .fadeOut()
+                .fadeIn()
+                .prepend(generateAlert('fail'));
             setTimeout(function() {
                 $('.alert').fadeOut();
             }, 5000);
@@ -69,20 +66,26 @@ function generateAlert(type = 'success') {
     let $closeButton = $('<button></button>');
     let $x = $('<span>&times;</span>');
     $x.attr('aria-hidden', 'true');
-    $closeButton.attr('type', 'button')
+    $closeButton
+        .attr('type', 'button')
         .attr('aria-label', 'Close')
         .attr('data-dismiss', 'alert')
         .addClass('close')
         .prepend($x);
     if (type === 'success') {
-        $alert.addClass('alert alert-primary').attr('role', 'alert').text('Saved New Transaction');
+        $alert
+            .addClass('alert alert-primary')
+            .attr('role', 'alert')
+            .text('Saved New Transaction');
     }
     else if (type === 'fail') {
-        $alert.addClass('alert alert-danger').attr('role', 'alert').text('Whoops! Something Went Wrong.');
+        $alert
+            .addClass('alert alert-danger')
+            .attr('role', 'alert')
+            .text('Whoops! Something Went Wrong.');
     }
 
-    $alert.prepend($closeButton);
-    return $alert;
+    return $alert.prepend($closeButton);
 }
 
 function refreshProgressBar($element, data) {
