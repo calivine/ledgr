@@ -29,16 +29,20 @@ class BudgetTotals
 
     protected function get_bar_color($percent_value)
     {
-        if ($percent_value < 75) {
+        if ($percent_value < 75)
+        {
             return 'success';
         }
-        else if ($percent_value >= 100 && $percent_value <= 101) {
+        else if ($percent_value >= 100 && $percent_value <= 101)
+        {
             return 'primary';
         }
-        else if ($percent_value >= 75 && $percent_value < 100) {
+        else if ($percent_value >= 75 && $percent_value < 100)
+        {
             return 'warning';
         }
-        else {
+        else
+        {
             return 'danger';
         }
     }

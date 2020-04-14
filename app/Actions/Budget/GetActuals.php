@@ -12,7 +12,8 @@ class GetActuals
     {
         $this->rda = [];
         foreach($budget as $index => &$category) {
-            if ($category["actual"] > 0) {
+            if ($category["actual"] > 0)
+            {
                 $this->rda[] = $category["actual"];
             }
         }

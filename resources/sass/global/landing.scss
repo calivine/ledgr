@@ -1,0 +1,33 @@
+/**
+ * Landing Page
+ */
+
+#landing-title {
+  font-family: sans-serif;
+  text-align: center;
+  line-height: 80vh;
+}
+
+#landing-title.landing-bg {
+    background-color: #98FB98;
+    transition: all 1s ease;
+}
+
+span#title-character {
+  display: inline-block;
+  opacity: 0;
+  transition: all 1s ease;
+  transform: translateY(50px);
+}
+
+span#title-character.fade {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.bg-mint {
+    background-color: #98FB98 !important;
+    transition: all 1s ease;
+    color: black;
+}

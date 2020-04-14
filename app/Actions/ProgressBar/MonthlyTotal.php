@@ -20,33 +20,30 @@ class MonthlyTotal
     {
         $this->year = date('Y');
         $this->month = date('F');
-        if (Auth::check()) {
-
-
+        if (Auth::check())
+        {
             // Calculate Totals
             foreach($budget as $index => &$category) {
 
                 $this->total_monthly_spending += $category['actual'];
                 $this->total_monthly_budget += $category['planned'];
             }
+            $percent_value = $this->total_monthly_budget > 0 ? round(($this->total_monthly_spending / $this->total_monthly_budget) * 100) : 0;
 
-            if ($this->total_monthly_budget > 0) {
-                $percent_value = round(($this->total_monthly_spending / $this->total_monthly_budget) * 100);
-            }
-            else {
-                $percent_value = 0;
-            }
-
-            if ($percent_value < 75) {
+            if ($percent_value < 75)
+            {
                 $bar_color = 'success';
             }
-            else if ($percent_value >= 100 && $percent_value <= 101) {
+            else if ($percent_value >= 100 && $percent_value <= 101)
+            {
                 $bar_color = 'primary';
             }
-            else if ($percent_value >= 75 && $percent_value < 100) {
+            else if ($percent_value >= 75 && $percent_value < 100)
+            {
                 $bar_color = 'warning';
             }
-            else {
+            else
+            {
                 $bar_color = 'danger';
             }
             $this->rda = [
@@ -57,7 +54,8 @@ class MonthlyTotal
             ];
 
         }
-        else {
+        else
+        {
             // If User is Not Authenticated, Quit and Return Null Budget
             Log::info('Could Not Authenticate. Please sign in.');
         }
@@ -66,7 +64,8 @@ class MonthlyTotal
     protected function get_safe_budget($budget)
     {
         $safe_budget = [];
-        if ($budget->isNotEmpty()) {
+        if ($budget->isNotEmpty())
+        {
             foreach ($budget as $index => &$row) {
                 $new_row = [
                     'id' => $row['id'],
@@ -80,7 +79,8 @@ class MonthlyTotal
             }
             return $safe_budget;
         }
-        else {
+        else
+        {
             return $safe_budget;
         }
     }

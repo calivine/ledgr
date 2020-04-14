@@ -1,0 +1,25 @@
+/*
+
+  MEDIA QUERIES
+
+*/
+@media (max-width: 600px) {
+  #manual-input-form {
+    input, select {
+      width: 100%;
+    }
+  }
+
+  #login-dropdown {
+    min-width: 20rem;
+  }
+
+  .navLinkExpand {
+      display: none;
+  }
+
+  .icon-size {
+      font-size: 2rem;
+  }
+
+}

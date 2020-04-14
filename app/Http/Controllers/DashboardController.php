@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\Budget\GetBudget;
 use App\Actions\Budget\GetActuals;
-use App\Actions\Budget\Labels;
+use App\Budget\BudgetSheet;
 use App\Activity;
 use App\Budget;
 use App\Actions\Utility\DateUtility;
@@ -31,7 +31,10 @@ class DashboardController extends Controller
         date_default_timezone_set('America/New_York');
 
         // Get Current Month's Budget.
-        $budget = new GetBudget(Auth::user());
+        $budget = new BudgetSheet();
+
+        // Get data for pie chart.
+        $chart_data = $budget->get_chart_data();
 
         // Gets Total Monthly Spending data for progress bar.
         $monthly_total_bar = new MonthlyTotal($budget->budget);
@@ -40,10 +43,7 @@ class DashboardController extends Controller
         $budget_totals = new BudgetTotals($budget->budget);
 
         // Fetch labels for New Transaction Form.
-        $category_form_labels = new Labels($budget->budget, true);
-
-        // Get Category Labels data for Pie Chart
-        $categories = new Labels($budget->budget);
+        $category_form_labels = get_labels($budget->budget);
 
         // Get First And Last Days Of Current Month
         $month_start = DateUtility::first_of_month();
@@ -64,14 +64,11 @@ class DashboardController extends Controller
             $transaction->amount = number_format($transaction->amount, 2);
         }
 
-        // Get Actuals For Each Budget Category
-        $actuals = new GetActuals($budget->budget);
-
         return view('dash.dashboard')->with([
-            'categories' => $categories->categories,
-            'category_form_labels' => $category_form_labels->categories,
+            'categories' => $chart_data["labels"],
+            'category_form_labels' => get_labels($budget->budget),
             'transactions' => $transactions,
-            'actuals' => $actuals->rda,
+            'actuals' => $chart_data["actuals"],
             'today' => $todays_date,
             'days_remaining' => $days_remaining,
             'monthly_total_bar' => $monthly_total_bar->rda,

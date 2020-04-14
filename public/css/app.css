@@ -11372,54 +11372,41 @@ footer {
   /* Vertically center the text there */
 }
 
-.progress-bar-label {
-  display: inline-block;
-  font-weight: bold;
-  margin-bottom: 0;
+.md-20 {
+  font-size: 20px;
 }
 
-.category-edit {
-  font-size: 12px;
-  max-width: 190px;
-  min-width: 190px;
-  width: 190px;
+.md-18 {
+  font-size: 18px;
 }
 
-.category-edit label {
-  font-size: 10px;
+.md-16 {
+  font-size: 16px;
 }
 
-#login-form {
-  border: none;
-  padding: 0;
-  font-size: 0.75em;
+.md-14 {
+  font-size: 14px;
 }
 
-#login-submit {
-  width: 135px;
+.md-12 {
+  font-size: 0.75rem;
 }
 
-/*
-#budget-table {
-  border-top: lightgray solid 3px;
-  margin: auto;
-  td {
-    min-width: 20vw;
-  }
-  td.budget-category-name {
-    max-width: 15vw;
-  }
+.md-08 {
+  font-size: 0.5rem;
 }
-*/
 
-#add-new-category {
-  margin-left: 2vw;
-  margin-bottom: 3vh;
-}
+/**
+ * Account Page
+ */
 
 #api-token {
   display: none;
 }
+
+/**
+ * Forms
+ */
 
 #manual-input-form label {
   width: 100%;
@@ -11434,14 +11421,24 @@ footer {
   width: 100%;
 }
 
-#trans-table {
-  max-height: 350px;
-  overflow-y: scroll;
+.icon-size {
+  font-size: 1.25rem;
 }
 
-#login-dropdown {
-  min-width: 18rem;
+.icon-edit {
+  color: grey;
+  margin-left: 5px;
+  display: none;
 }
+
+.icon {
+  display: inline;
+  vertical-align: middle;
+}
+
+/**
+ * Landing Page
+ */
 
 #landing-title {
   font-family: sans-serif;
@@ -11477,81 +11474,40 @@ span#title-character.fade {
   color: black;
 }
 
+/**
+ * Logins
+ */
+
+#login-form {
+  border: none;
+  padding: 0;
+  font-size: 0.75em;
+}
+
+#login-dropdown {
+  min-width: 18rem;
+}
+
+#login-submit {
+  width: 135px;
+}
+
+/**
+ * Navbar
+ */
+
 .nav-item {
   font-size: 1.25rem !important;
 }
 
-.icon-size {
-  font-size: 1.25rem;
-}
+/**
+ * Progress Bars
+ */
 
-.icon-edit {
-  color: grey;
-  margin-left: 5px;
-  display: none;
-}
-
-.dropdown-toggle {
-  text-decoration: none !important;
-  color: black !important;
-}
-
-.dropdown-toggle:hover {
-  color: grey !important;
-}
-
-.update-box-bg {
-  min-width: 100vw;
-  min-height: 100vh;
-  background-color: rgba(152, 152, 152, 0.1);
-}
-
-.success {
-  color: green;
-  list-style-type: disc;
-}
-
-td.budget-category-planned {
-  cursor: pointer;
-}
-
-.icon {
-  display: inline;
-  vertical-align: middle;
-}
-
-.md-20 {
-  font-size: 20px;
-}
-
-.md-18 {
-  font-size: 18px;
-}
-
-.md-16 {
-  font-size: 16px;
-}
-
-.md-14 {
-  font-size: 14px;
-}
-
-.md-12 {
-  font-size: 0.75rem;
-}
-
-.md-08 {
-  font-size: 0.5rem;
-}
-
-.btn-outline-mint {
-  color: #98FB98;
-  border-color: #98FB98;
-}
-
-.btn-outline-mint:hover {
-  background-color: #98FB98;
-  color: black;
+.progress-bar-label {
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 0;
 }
 
 /*
@@ -11577,5 +11533,29 @@ td.budget-category-planned {
   .icon-size {
     font-size: 2rem;
   }
+}
+
+/**
+ * Tables
+ */
+
+.category-edit {
+  font-size: 12px;
+  max-width: 190px;
+  min-width: 190px;
+  width: 190px;
+}
+
+.category-edit label {
+  font-size: 10px;
+}
+
+td.budget-category-planned {
+  cursor: pointer;
+}
+
+#trans-table {
+  max-height: 350px;
+  overflow-y: scroll;
 }
 

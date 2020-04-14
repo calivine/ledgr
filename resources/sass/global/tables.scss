@@ -1,0 +1,23 @@
+/**
+ * Tables
+ */
+
+.category-edit {
+  font-size: 12px;
+  max-width: 190px;
+  min-width: 190px;
+  width: 190px;
+
+  label {
+    font-size: 10px;
+  }
+}
+
+td.budget-category-planned {
+    cursor: pointer;
+}
+
+#trans-table {
+  max-height: 350px;
+  overflow-y: scroll;
+}
