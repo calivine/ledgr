@@ -24,8 +24,8 @@
     </div>
     <div class='form-group'>
         <div class='col-lg'>
-            <label for='transaction-date-input'>Transaction Date (MM-DD-YYYY)</label>
-            <input type='date' class='manual-input' id='transaction-date-input' required name='transaction_date' value='{{ date('Y-m-d') }}'>
+            <label for='transaction-date-input'>Transaction Date</label>
+            <input type='date' class='manual-input' id='transaction-date-input' placeholder='YYYY-MM-DD' required name='transaction_date' value='{{ date('Y-m-d') }}'>
         </div>
     </div>
     <div class='form-group'>

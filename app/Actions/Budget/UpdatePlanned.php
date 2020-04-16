@@ -6,8 +6,16 @@ namespace App\Actions\Budget;
 use App\Budget;
 use Illuminate\Http\Request;
 
-
-
+/**
+ * Updates planned budget value.
+ *
+ * @category   Actions
+ *
+ * @param      numeric $id
+ * @param      numeric $planned
+ *
+ * @author     Alex Caloggero
+ */
 class UpdatePlanned
 {
     public function __construct($id, $planned)
@@ -23,5 +31,4 @@ class UpdatePlanned
             'planned' => $new_planned
         ];
     }
-
 }

@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Actions\Budget\StoreBudget;
 use App\Actions\Budget\StoreCategory;
 use App\Actions\Budget\UpdatePlanned;
-use App\Actions\Budget\GetBudget;
-use App\Actions\Utility\DateUtility;
 use App\Budget;
+use App\Budget\BudgetSheet;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
+/**
+ * Handles requests related to monthly budget data
+ *
+ * @category   Controllers
+ *
+ * @author Alex Caloggero
+ */
 class BudgetController extends Controller
 {
     /*
@@ -21,13 +27,14 @@ class BudgetController extends Controller
      */
     public function index()
     {
-        $response = new GetBudget(Auth::user());
+
+        $response = new BudgetSheet(Auth::user()->id);
 
         // If Budget sheet doesn't exist, create a new one.
         if (sizeof($response->budget) == 0)
         {
             new StoreBudget(Auth::user());
-            $response = new GetBudget(Auth::user());
+            $response = new BudgetSheet(Auth::user()->id);
         }
 
         $budget_period = date('F') . " " . date('Y');
@@ -83,10 +90,9 @@ class BudgetController extends Controller
      * /budget/setup
      * New User Budget Setup Page
      */
-
     public function newBudgetSetup(Request $request)
     {
-        $response = new GetBudget(Auth::user());
+        $response = new BudgetSheet(Auth::user()->id);
         return view('budget.setup')->with([
             'budget' => $response->budget
         ]);
@@ -110,7 +116,6 @@ class BudgetController extends Controller
             // $budget = Budget::find($index);
             // $budget->planned = $category;
             // $budget->save();
-
         }
 
         return redirect(route('dashboard'));

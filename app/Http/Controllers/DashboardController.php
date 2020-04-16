@@ -2,17 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Budget\GetBudget;
-use App\Actions\Budget\GetActuals;
-use App\Budget\BudgetSheet;
 use App\Activity;
 use App\Budget;
-use App\Actions\Utility\DateUtility;
+use App\Actions\Budget\GetActuals;
 use App\Actions\ProgressBar\MonthlyTotal;
 use App\Actions\ProgressBar\BudgetTotals;
+use App\Budget\BudgetSheet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * Builds and displays the main dashboard.
+ *
+ * @category   Controllers
+ *
+ * @author     Alex Caloggero
+ */
 class DashboardController extends Controller
 {
     /*
@@ -31,7 +36,7 @@ class DashboardController extends Controller
         date_default_timezone_set('America/New_York');
 
         // Get Current Month's Budget.
-        $budget = new BudgetSheet();
+        $budget = new BudgetSheet($id);
 
         // Get data for pie chart.
         $chart_data = $budget->get_chart_data();
@@ -46,10 +51,10 @@ class DashboardController extends Controller
         $category_form_labels = get_labels($budget->budget);
 
         // Get First And Last Days Of Current Month
-        $month_start = DateUtility::first_of_month();
-        $month_end = DateUtility::last_of_month();
-        $todays_date = DateUtility::todays_date();
-        $days_remaining = DateUtility::days_remaining();
+        $month_start = first_of_month();
+        $month_end = last_of_month();
+        $todays_date = todays_date();
+        $days_remaining = days_remaining();
 
         // Pull Transactions For The Current Period
         $transactions = Activity::with('budget')->whereBetween(
@@ -60,7 +65,7 @@ class DashboardController extends Controller
 
         // Format Date and Amount For Display On Dashboard
         foreach($transactions as $transaction) {
-            $transaction->date = DateUtility::date_to_string($transaction->date);
+            $transaction->date = date_to_string($transaction->date);
             $transaction->amount = number_format($transaction->amount, 2);
         }
 

@@ -1,17 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Activity;
-use Illuminate\Support\Facades\Auth;
+
+use App\Actions\Activity\DestroyActivity;
 use App\Actions\Activity\StoreActivity;
 use App\Actions\Activity\UpdateCategory;
 use App\Actions\Budget\UpdateActual;
-use App\Actions\Budget\GetBudget;
-use App\Actions\ProgressBar\MonthlyTotal;
 use App\Actions\ProgressBar\BudgetTotals;
-use App\Actions\Activity\DestroyActivity;
+use App\Actions\ProgressBar\MonthlyTotal;
+use App\Activity;
+use App\Budget\BudgetSheet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
+/**
+ * Handles requests that process Activity (transactions) data.
+ *
+ * @category   Controllers
+ *
+ * @author     Alex Caloggero
+ */
 class ActivityController extends Controller
 {
     /*
@@ -21,6 +29,7 @@ class ActivityController extends Controller
      */
     public function storeTransaction(Request $request)
     {
+        $id = $request->user()->id;
         $request->validate([
             'description' => 'required|string',
             'amount' => 'required|min:0|numeric',
@@ -31,10 +40,12 @@ class ActivityController extends Controller
         // Save New Transaction
         new StoreActivity($request);
 
-        new UpdateActual($request->input('category'), null, $request->input('amount'), $request->user()->id);
+        // Add Amount to Budget Actual Category
+        new UpdateActual($request->input('category'), null, $request->input('amount'), $id);
 
-        $budget = new GetBudget(Auth::user());
+        $budget = new BudgetSheet($id);
 
+        // Recalculate budget category totals so progress bars update in client.
         $monthly_total_bar = new MonthlyTotal($budget->budget);
         $budget_totals = new BudgetTotals($budget->budget);
 

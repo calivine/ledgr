@@ -7,27 +7,27 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 
 /**
-* Delivers data representing a monthly budget sheet.
+* Class representing a monthly budget sheet.
 *
 * @category Budget
-* @
+*
+* @param    date Month
+* @param    date Year
+*
+* @author   Alex Caloggero
 */
-
 class BudgetSheet
 {
     private $user;
     public $budget = [];
 
-    public function __construct($month=null, $year=null)
+    public function __construct($user_id, $month=null, $year=null)
     {
-        // Check if user is logged in
-        $this->user = Auth::user();
-
         try {
             $budgetSheet = Budget::where([
                 ['year', '=', $year ?? date('Y')],
                 ['period', '=', $month ?? date('F')],
-                ['user_id', '=', $this->user->id]
+                ['user_id', '=', $user_id]
             ])
             ->orderBy('category')
             ->get();

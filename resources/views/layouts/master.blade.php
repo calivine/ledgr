@@ -18,6 +18,6 @@
 <!-- Footer -->
 @include('layouts.partials.footer')
 
-<script src="{{ asset('js/utility.js') }}"></script>
+<script src="{{ asset('/static/js/utility.js') }}"></script>
 </body>
 </html>

@@ -11,8 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.js('resources/js/app.js', 'public/static/js')
+    .sass('resources/sass/app.scss', 'public/static/css');
 
 mix.scripts([
     'resources/js/api-token.js',
@@ -21,4 +21,4 @@ mix.scripts([
     'resources/js/save-transaction.js',
     'resources/js/sort-table.js',
     'resources/js/validator.js'
-], 'public/js/utility.js');
+], 'public/static/js/utility.js');
