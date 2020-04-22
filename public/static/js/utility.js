@@ -249,29 +249,51 @@ $(function () {
                 i++;
             });
         }).fail( function (data) {
-            const errorMessage = data.responseJSON.message;
-            const errors = data.responseJSON.errors;
-            $inputForm
-                .fadeOut()
-                .fadeIn()
-                .prepend(generateAlert('fail',data=errorMessage));
-            setTimeout(function() {
-                $('.alert').fadeOut();
-            }, 5000);
+            let errorMessages = [];
+            let errorResponse = {};
+            if ("amount" in data.responseJSON.errors)
+            {
+                errorMessages.push(errors.amount[0]);
+            }
+            if ("transaction_date" in data.responseJSON.errors)
+            {
+                errorMessages.push(errors.transaction_date[0]);
+            }
+            if ("description" in data.responseJSON.errors)
+            {
+                errorMessages.push(errors.description[0]);
+            }
+            if ("category" in data.responseJSON.errors)
+            {
+                errorMessages.push(errors.category[0]);
+            }
+            errorResponse["message"] = data.responseJSON.message;
+            errorResponse["errors"] = errorMessages;
+            $inputForm.fadeOut()
+                      .fadeIn()
+                      .prepend(generateAlert('fail', errorResponse));
         });
         return false;
     });
 });
 
 function resetSaveTransaction() {
+    const now = new Date();
+    const year = now.getFullYear();
+    let month = String(now.getMonth());
+    month = month.length === 1 ? "0"+month : month;
+    let day = String(now.getDay()).length === 1 ? "0"+String(now.getDay()) : String(now.getDay());
+
+    const date = String(year) + "-" + month + "-" + day;
     $('input#description-input').val("");
     $('input#amount-input').val("");
-    $('input#transaction-date-input').val("");
+    $('input#transaction-date-input').val(date);
     $('select#manual-select-category').val("");
 }
 
 function generateAlert(type = 'success', data='') {
     let $alert = $('<div id="alert-message-container"></div>');
+
     let $closeButton = $('<button></button>');
     let $x = $('<span>&times;</span>');
     $x.attr('aria-hidden', 'true');
@@ -288,12 +310,18 @@ function generateAlert(type = 'success', data='') {
             .text('Saved New Transaction');
     }
     else if (type === 'fail') {
+        let $errorMessages = $('<ul></ul>');
+        data["errors"].forEach(function(error) {
+            let $item = $('<li></li>');
+            $item.append(error);
+            $errorMessages.append($item);
+        });
         $alert
             .addClass('alert alert-danger')
             .attr('role', 'alert')
-            .text(data);
+            .text(data["message"])
+            .append($errorMessages);
     }
-
     return $alert.prepend($closeButton);
 }
 
