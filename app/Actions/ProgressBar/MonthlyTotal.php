@@ -7,8 +7,15 @@ use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
-
-
+/**
+* Class representing total monthly spending progress bar
+*
+* @category Actions
+*
+* @param    array Budget
+*
+* @author   Alex Caloggero
+*/
 class MonthlyTotal
 {
     private $year;
@@ -25,8 +32,8 @@ class MonthlyTotal
             // Calculate Totals
             foreach($budget as $index => &$category) {
 
-                $this->total_monthly_spending += $category['actual'];
-                $this->total_monthly_budget += $category['planned'];
+                $this->total_monthly_spending += $category->actual;
+                $this->total_monthly_budget += $category->planned;
             }
             $percent_value = $this->total_monthly_budget > 0 ? round(($this->total_monthly_spending / $this->total_monthly_budget) * 100) : 0;
 

@@ -248,11 +248,13 @@ $(function () {
                 }
                 i++;
             });
-        }).fail( function () {
+        }).fail( function (data) {
+            const errorMessage = data.responseJSON.message;
+            const errors = data.responseJSON.errors;
             $inputForm
                 .fadeOut()
                 .fadeIn()
-                .prepend(generateAlert('fail'));
+                .prepend(generateAlert('fail',data=errorMessage));
             setTimeout(function() {
                 $('.alert').fadeOut();
             }, 5000);
@@ -268,7 +270,7 @@ function resetSaveTransaction() {
     $('select#manual-select-category').val("");
 }
 
-function generateAlert(type = 'success') {
+function generateAlert(type = 'success', data='') {
     let $alert = $('<div id="alert-message-container"></div>');
     let $closeButton = $('<button></button>');
     let $x = $('<span>&times;</span>');
@@ -289,7 +291,7 @@ function generateAlert(type = 'success') {
         $alert
             .addClass('alert alert-danger')
             .attr('role', 'alert')
-            .text('Whoops! Something Went Wrong.');
+            .text(data);
     }
 
     return $alert.prepend($closeButton);

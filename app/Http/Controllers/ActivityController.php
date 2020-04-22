@@ -12,6 +12,7 @@ use App\Activity;
 use App\Budget\BudgetSheet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Handles requests that process Activity (transactions) data.
@@ -34,7 +35,7 @@ class ActivityController extends Controller
             'description' => 'required|string',
             'amount' => 'required|min:0|numeric',
             'category' => 'required|string',
-            'transaction_date' => 'required|date'
+            'transaction_date' => 'required|date|regex:/[0-9]{4}-[0-9]{2}-[0-9]{2}/'
         ]);
 
         // Save New Transaction
@@ -48,11 +49,15 @@ class ActivityController extends Controller
         // Recalculate budget category totals so progress bars update in client.
         $monthly_total_bar = new MonthlyTotal($budget->budget);
         $budget_totals = new BudgetTotals($budget->budget);
-
+        /*
         return response()->json([
             'monthly_total' => $monthly_total_bar->rda,
             'budget_totals' => $budget_totals->rda
         ]);
+        */
+
+        Log::info('Saved new transaction: ' . $request->input('description'));
+        return redirect(route('dashboard'));
 
     }
 

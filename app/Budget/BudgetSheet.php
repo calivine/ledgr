@@ -5,6 +5,7 @@ namespace App\Budget;
 use App\Budget;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /**
 * Class representing a monthly budget sheet.
@@ -24,6 +25,7 @@ class BudgetSheet
     public function __construct($user_id, $month=null, $year=null)
     {
         try {
+            /*
             $budgetSheet = Budget::where([
                 ['year', '=', $year ?? date('Y')],
                 ['period', '=', $month ?? date('F')],
@@ -31,7 +33,26 @@ class BudgetSheet
             ])
             ->orderBy('category')
             ->get();
-            $this->budget = $this->get_safe_budget($budgetSheet);
+            */
+            $budgetSheet = DB::table('budgets')
+                                    ->where([
+                                        ['year', '=', $year ?? date('Y')],
+                                        ['period', '=', $month ?? date('F')],
+                                        ['user_id', '=', $user_id]
+                                    ])
+                                    ->select('id',
+                                             'icon',
+                                             'category',
+                                             'planned',
+                                             'actual',
+                                             'year',
+                                             'period')
+                                    ->orderBy('category')
+                                    ->get()
+                                    ->toArray();
+
+            // $this->budget = $this->get_safe_budget($budgetSheet);
+            $this->budget = $budgetSheet;
         } catch (Exception $e) {
             report($e);
             abort(403);
@@ -44,44 +65,13 @@ class BudgetSheet
         $actuals = [];
         $categories = get_labels($this->budget, $chart=true);
         foreach($this->budget as $index => &$category) {
-            if ($category["actual"] > 0)
+            if ($category->actual > 0)
             {
-                $actuals[] = $category["actual"];
+                $actuals[] = $category->actual;
             }
         }
         $data["labels"] = $categories;
         $data["actuals"] = $actuals;
         return $data;
     }
-
-    /**
-    * Safely delivers the necessary budget data to a GetBudget request
-    *
-    * @param App\Budget budget
-    */
-    protected function get_safe_budget($budget)
-    {
-        $safe_budget = [];
-        if ($budget->isNotEmpty())
-        {
-            foreach ($budget as $row) {
-                $new_row = [
-                    'id' => $row->id,
-                    'icon' => $row->icon,
-                    'category' => $row->category,
-                    'planned' => $row->planned,
-                    'actual' => $row->actual,
-                    'year' => $row->year,
-                    'period' => $row->period
-                ];
-                $safe_budget[] = $new_row;
-            }
-            return $safe_budget;
-        }
-        else
-        {
-            return $safe_budget;
-        }
-    }
-
 }

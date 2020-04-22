@@ -19,14 +19,14 @@
                             @csrf
                             @foreach($budget as $index => &$row)
                             <tr class='budget-category'>
-                                <td><i class="material-icons">{{ $row['icon'] }}</i></td>
-                                <td id='{{ $row["id"] }}' class='budget-category-name text-wrap'><small>{{ $row['category'] }}</small></td>
+                                <td><i class="material-icons">{{ $row->icon }}</i></td>
+                                <td id='{{ $row->id }}' class='budget-category-name text-wrap'><small>{{ $row->category }}</small></td>
                                 <td class='budget-category-planned text-center'>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1">$</span>
                                         </div>
-                                        <input type='text' name='{{ $row["id"] }}' value='{{ $row["planned"] }}' required>
+                                        <input type='text' name='{{ $row->id }}' value='{{ $row->planned }}' required>
                                     </div>
                                 </td>
                             </tr>

@@ -20,7 +20,7 @@ class StoreBudget
     public function __construct($user)
     {
         // Generate New Budget Sheet
-        $id = $user->id
+        $id = $user->id;
         $year = date('Y');
         $this_month = date('F');
         $last_month = last_month();
