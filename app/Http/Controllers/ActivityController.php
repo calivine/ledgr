@@ -49,16 +49,12 @@ class ActivityController extends Controller
         // Recalculate budget category totals so progress bars update in client.
         $monthly_total_bar = new MonthlyTotal($budget->budget);
         $budget_totals = new BudgetTotals($budget->budget);
-        /*
+        Log::info('Saved new transaction: ' . $request->input('description'));
+
         return response()->json([
             'monthly_total' => $monthly_total_bar->rda,
             'budget_totals' => $budget_totals->rda
         ]);
-        */
-
-        Log::info('Saved new transaction: ' . $request->input('description'));
-        return redirect(route('dashboard'));
-
     }
 
     /*
