@@ -42,23 +42,24 @@ $(function () {
                 i++;
             });
         }).fail( function (data) {
+            console.log(data.responseJSON.errors);
             let errorMessages = [];
             let errorResponse = {};
             if ("amount" in data.responseJSON.errors)
             {
-                errorMessages.push(errors.amount[0]);
+                errorMessages.push(data.responseJSON.errors.amount[0]);
             }
             if ("transaction_date" in data.responseJSON.errors)
             {
-                errorMessages.push(errors.transaction_date[0]);
+                errorMessages.push(data.responseJSON.errors.transaction_date[0]);
             }
             if ("description" in data.responseJSON.errors)
             {
-                errorMessages.push(errors.description[0]);
+                errorMessages.push(data.responseJSON.errors.description[0]);
             }
             if ("category" in data.responseJSON.errors)
             {
-                errorMessages.push(errors.category[0]);
+                errorMessages.push(data.responseJSON.errors.category[0]);
             }
             errorResponse["message"] = data.responseJSON.message;
             errorResponse["errors"] = errorMessages;
