@@ -59,6 +59,9 @@ class BudgetSheet
         }
     }
 
+    /**
+     * Returns data representing Pie Chart.
+     */
     public function get_chart_data()
     {
         $data = [];
@@ -72,6 +75,31 @@ class BudgetSheet
         }
         $data["labels"] = $categories;
         $data["actuals"] = $actuals;
+        return $data;
+    }
+
+    /**
+     * Returns data representing Budget Actuals.
+     */
+    public function actuals()
+    {
+        return $this->build_return_data("actual");
+    }
+
+    /**
+     * Returns data representing Budget Planned Values.
+     */
+    public function planned()
+    {
+        return $this->build_return_data("planned");
+    }
+
+    protected function build_return_data($type)
+    {
+        $data = [];
+        foreach($this->budget as $index => &$category) {
+            $data[] = $category->$type;
+        }
         return $data;
     }
 }

@@ -10,13 +10,14 @@ use App\Budget\BudgetSheet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Handles requests related to monthly budget data
  *
  * @category   Controllers
  *
- * @author Alex Caloggero
+ * @author     Alex Caloggero
  */
 class BudgetController extends Controller
 {
@@ -71,17 +72,15 @@ class BudgetController extends Controller
      */
     public function createCategory(Request $request)
     {
+        Log::info("Attempting to add new category.");
         $request->validate([
-            'name' => 'required|string',
+            'category' => 'required|string',
             'planned' => 'required|numeric'
         ]);
 
         $action = new StoreCategory($request);
 
-        return response()->json([
-            'planned' => $action->rda['planned'],
-            'category' => $action->rda['category']
-        ]);
+        return redirect(route('budget'));
     }
 
 

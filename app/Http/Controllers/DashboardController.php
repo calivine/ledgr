@@ -29,7 +29,7 @@ class DashboardController extends Controller
     {
         // Retrieve User
         $id = Auth::id();
-        
+
         Log::info(time() . ': User: ' . $id . ' entered the Dashboard');
 
         // Set Timezone.

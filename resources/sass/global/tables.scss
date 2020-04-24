@@ -13,11 +13,18 @@
   }
 }
 
-td.budget-category-planned {
-    cursor: pointer;
-}
-
 #trans-table {
   max-height: 350px;
   overflow-y: scroll;
+}
+
+table#budget-table {
+    margin: 0 auto;
+
+    td.budget-category-planned {
+        span {
+            cursor: pointer;
+            padding-right: 8px;
+        }
+    }
 }

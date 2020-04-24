@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/transaction', 'ActivityController@storeTransaction');
 
     # DISPLAY Budget Table
-    Route::get('/budget', 'BudgetController@index');
+    Route::get('/budget', 'BudgetController@index')->name('budget');
 
     # DISPLAY New User Budget Table
     Route::get('/budget/setup', 'BudgetController@newBudgetSetup');
@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/budget/planned/update', 'BudgetController@updatePlanned');
 
     # CREATE New Budget Category
-    Route::post('/budget/category/new', 'BudgetController@createCategory');
+    Route::post('/budget/category/new', 'BudgetController@createCategory')->name('category');
 
     # UPDATE Transaction Category
     Route::post('/transaction/category/update', 'ActivityController@updateCategory');
