@@ -42,8 +42,9 @@ class ActivityController extends Controller
         new StoreActivity($request);
 
         // Add Amount to Budget Actual Category
-        new UpdateActual($request->input('category'), null, $request->input('amount'), $id);
+        // new UpdateActual($request->input('category'), null, $request->input('amount'), $id);
 
+        // Get Budget Sheet 
         $budget = new BudgetSheet($id);
 
         // Recalculate budget category totals so progress bars update in client.

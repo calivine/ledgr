@@ -7,7 +7,7 @@
     <main class='container-fluid mt-50'>
         <div class='row justify-content-center'>
             <div class='col-md-8'>
-                <p class='text-left w-50 d-inline-block'>{{ $today }}</p><p class='float-right d-inline-block'>{{ $days_remaining == 1 ? $days_remaining . ' day ' : $days_remaining . ' days '  }}  left in {{ date('F') }}.</p>
+                <p class='text-left w-50 d-inline-block'>{{ $today }}</p><p class='float-right d-inline-block'>{{ $days_remaining == 0 ? 'Last day of ' . date('F') : ($days_remaining == 1 ? $days_remaining . ' day left in ' . date('F') : $days_remaining . ' days left in ' . date('F')) }}.</p>
             </div>
         </div>
         <div id="toggle-modal-row" class="row justify-content-center">

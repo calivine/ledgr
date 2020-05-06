@@ -24,8 +24,8 @@
                     @foreach($budget as $index => &$row)
                         <tr class='budget-category'>
                             <td><i class="material-icons">{{ $row->icon }}</i></td>
-                            <td id='{{ $row->id }}' class='budget-category-name text-wrap'><small>{{ $row->category }}</small></td>
-                            <td class='budget-category-planned text-center'>$<span class='planned-value'>{{ $row->planned }}</span>@include('modules.icons.edit')</td>
+                            <td id='{{ $row->id }}' class='budget-category-name'><small>{{ $row->category }}</small></td>
+                            <td class='budget-category-planned'>$<span class='planned-value'>{{ $row->planned }}</span>@include('modules.icons.edit')</td>
                             <td class='text-center'>${{ $row->actual }}</td>
                             <td class='text-right'>${{ $row->planned - $row->actual }}</td>
                         </tr>

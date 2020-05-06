@@ -7,8 +7,8 @@ use App\Budget;
 
 /**
  * Adjusts the 'Actual' amount of a Budget category when it's
- * associated transaction's category is changed. 
- * 
+ * associated transaction's category is changed.
+ *
  * @category Action
  * @author Alex Caloggero
  * @param string    new category name
@@ -35,13 +35,17 @@ class UpdateActual
             ['year', date('Y')],
             ['user_id', $user_id]
         ])->first();
+        if ($budget != null)
+        {
+            $budget->actual = $budget->actual + $amount;
 
-        $budget->actual = $budget->actual + $amount;
+            $budget->save();
+        }
 
-        $budget->save();
 
         // Subtract Amount From Old Category
-        if ($old_category != null) {
+        if ($old_category != null)
+        {
             $budget = Budget::where([
                 ['category', $old_category],
                 ['period', date('F')],

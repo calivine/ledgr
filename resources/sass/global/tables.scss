@@ -22,9 +22,13 @@ table#budget-table {
     margin: 0 auto;
 
     td.budget-category-planned {
+        text-align: center !important;
         span {
             cursor: pointer;
             padding-right: 8px;
         }
+    }
+    td.budget-category-name {
+        white-space: normal !important;
     }
 }

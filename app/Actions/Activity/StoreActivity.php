@@ -4,7 +4,9 @@
 namespace App\Actions\Activity;
 
 use App\Activity;
+use App\Actions\Budget\StoreBudget;
 use App\Budget;
+use App\Events\TransactionWasCreated;
 use Illuminate\Http\Request;
 
 
@@ -32,6 +34,22 @@ class StoreActivity
             ['category', '=', $category]
         ])
         ->first();
+
+        // If Budget Sheet Doesn't Exist,
+        if ($budget == null)
+        {
+            // Create a new budget sheet for the transaction's date
+            new StoreBudget($user, $month, $year);
+            $budget = Budget::where([
+                ['year', '=', $year],
+                ['period', '=', $month],
+                ['user_id', '=', $user->id],
+                ['category', '=', $category]
+            ])
+            ->first();
+        }
+
+
         // Save Transaction To Activities Table
         $activity = new Activity();
 
@@ -46,6 +64,8 @@ class StoreActivity
         // Link To Budget Category
         $activity->budget()->associate($budget);
         $activity->save();
+
+        event(new TransactionWasCreated($activity));
     }
 
 }

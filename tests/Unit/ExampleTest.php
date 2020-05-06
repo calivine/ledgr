@@ -20,8 +20,8 @@ class ExampleTest extends TestCase
         ])->json('POST', '/register', [
             'name' => 'alexcalog112',
             'email' => 'testmail@email.com',
-            'password' => 'testemail',
-            'password_confirmation' => 'testemail'
+            'password' => 'test',
+            'password_confirmation' => 'test'
         ]);
 
         $response->assertStatus(422);

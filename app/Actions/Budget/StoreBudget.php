@@ -17,12 +17,15 @@ use Illuminate\Support\Facades\Log;
  */
 class StoreBudget
 {
-    public function __construct($user)
+
+
+    public function __construct($user, $month = null, $year = null)
     {
+        $this->rda = [];
         // Generate New Budget Sheet
         $id = $user->id;
-        $year = date('Y');
-        $this_month = date('F');
+        $year = $year ?? date('Y');
+        $this_month = $month ?? date('F');
         $last_month = last_month();
 
         $saved_budget = new BudgetSheet($id, $last_month, $year);
@@ -42,6 +45,16 @@ class StoreBudget
                 $new_budget->user()->associate($user);
 
                 $new_budget->save();
+                $budget = [
+                    'id' => $new_budget->id,
+                    'category' => $new_budget->category,
+                    'planned' => $new_budget->planned,
+                    'period' => $new_budget->period,
+                    'year' => $new_budget->year,
+                    'actual' => 0,
+                    'icon' => $new_budget->icon
+                ];
+                $this->rda[] = $budget;
             }
         }
         // Else, copy new Budget sheet from file storage
@@ -63,6 +76,16 @@ class StoreBudget
                 $new_budget->user()->associate($new_user);
 
                 $new_budget->save();
+                $budget = [
+                    'id' => $new_budget->id,
+                    'category' => $new_budget->category,
+                    'planned' => $new_budget->planned,
+                    'period' => $new_budget->period,
+                    'year' => $new_budget->year,
+                    'actual' => 0,
+                    'icon' => $new_budget->icon
+                ];
+                $this->rda[] = $budget;
             }
         }
     }

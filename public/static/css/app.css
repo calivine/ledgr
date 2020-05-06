@@ -11559,8 +11559,16 @@ table#budget-table {
   margin: 0 auto;
 }
 
+table#budget-table td.budget-category-planned {
+  text-align: center !important;
+}
+
 table#budget-table td.budget-category-planned span {
   cursor: pointer;
   padding-right: 8px;
+}
+
+table#budget-table td.budget-category-name {
+  white-space: normal !important;
 }
 
