@@ -11396,6 +11396,22 @@ footer {
   font-size: 0.5rem;
 }
 
+.dashboard-row {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  -webkit-box-pack: center !important;
+          justify-content: center !important;
+}
+
+.dashboard-date {
+  text-align: left !important;
+  width: 50% !important;
+  display: inline-block !important;
+}
+
 /**
  * Account Page
  */
@@ -11496,8 +11512,20 @@ span#title-character.fade {
  * Navbar
  */
 
+.nav-list {
+  margin-left: auto;
+}
+
 .nav-item {
   font-size: 1.25rem !important;
+}
+
+.navbar-brand {
+  margin-left: 2rem !important;
+}
+
+.nav-item.dropdown {
+  margin-right: 5rem;
 }
 
 /**

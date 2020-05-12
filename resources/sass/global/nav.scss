@@ -1,7 +1,17 @@
 /**
  * Navbar
  */
-
+.nav-list {
+    margin-left: auto;
+}
 .nav-item {
     font-size: 1.25rem !important;
+}
+
+.navbar-brand {
+    margin-left: 2rem !important;
+}
+
+.nav-item.dropdown {
+    margin-right: 5rem;
 }

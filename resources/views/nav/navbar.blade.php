@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-sm navbar-light {{ Auth::check() ? 'bg-mint' : 'bg-white' }}" id="nav">
     <!-- Left Side Of Navbar -->
-    <a href="{{ Auth::check() ? url('/dashboard') : url('/') }}" class="navbar-brand ml-5">{{ config('app.name') }}</a>
+    <a href="{{ Auth::check() ? url('/dashboard') : url('/') }}" class="navbar-brand">{{ config('app.name') }}</a>
     <!-- Right Side Of Navbar -->
 
-    <ul class="nav ml-auto">
+    <ul class="nav nav-list">
         <!-- authentication links -->
         @if(Auth::check())
-            <li class="nav-item dropdown mr-5">
+            <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false" v-pre>
                     {{ Auth::user()->name }} <span class="caret"></span>

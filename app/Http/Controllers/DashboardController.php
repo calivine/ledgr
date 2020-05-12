@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Activity;
 use App\Budget;
 use App\Actions\Budget\GetActuals;
+use App\Actions\Budget\TotalMonthlySpending;
 use App\Actions\ProgressBar\MonthlyTotal;
 use App\Actions\ProgressBar\BudgetTotals;
 use App\Budget\BudgetSheet;
@@ -27,13 +28,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        // Set Timezone.
+        date_default_timezone_set('America/New_York');
+
         // Retrieve User
         $id = Auth::id();
 
-        Log::info(time() . ': User: ' . $id . ' entered the Dashboard');
-
-        // Set Timezone.
-        date_default_timezone_set('America/New_York');
+        Log::info(now() . ': User: ' . $id . ' entered the Dashboard');
 
         // Get Current Month's Budget.
         $budget = new BudgetSheet($id);
@@ -42,7 +43,9 @@ class DashboardController extends Controller
         $chart_data = $budget->get_chart_data();
 
         // Gets Total Monthly Spending data for progress bar.
-        $monthly_total_bar = new MonthlyTotal($budget->budget);
+        // $monthly_total_bar = new MonthlyTotal($budget->budget);
+
+        $monthly_total_bar = new TotalMonthlySpending($budget->budget);
 
         // Gets Budget Category Totals data for progress bars.
         $budget_totals = new BudgetTotals($budget->budget);
@@ -70,14 +73,14 @@ class DashboardController extends Controller
         }
 
         return view('dash.dashboard')->with([
+            'actuals' => $chart_data["actuals"],
+            'budget_totals_bars' => $budget_totals->rda,
             'categories' => $chart_data["labels"],
             'category_form_labels' => get_labels($budget->budget),
-            'transactions' => $transactions,
-            'actuals' => $chart_data["actuals"],
-            'today' => $todays_date,
             'days_remaining' => $days_remaining,
             'monthly_total_bar' => $monthly_total_bar->rda,
-            'budget_totals_bars' => $budget_totals->rda
+            'today' => $todays_date,
+            'transactions' => $transactions
         ]);
     }
 }

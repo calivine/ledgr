@@ -37,3 +37,17 @@ footer {
 .md-08 {
     font-size: 0.5rem;
 }
+
+.dashboard-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    justify-content: center !important;
+}
+
+.dashboard-date {
+    text-align: left !important;
+    width: 50% !important;
+    display: inline-block !important;
+}

@@ -62,7 +62,7 @@ class StoreBudget
             Log::info('Building budget from budget.json');
             $new_user = $user;
 
-            $json = file_get_contents('../database/budget.json');
+            $json = file_get_contents(database_path('budget.json'));
             $json_data = json_decode($json, true);
 
             foreach($json_data['data'] as $budget) {
