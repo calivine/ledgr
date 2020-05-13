@@ -63,8 +63,8 @@ $(function() {
             let new_budget = $('input.update-input').val();
             let budget_id = $('input.update-input').attr('id');
             let loadSpinner = $('<div class="spinner-grow text-success" role="status"><span class="sr-only">Loading...</span></div>');
-            let updateRow = 'span#' + budget_id + '.planned-value.px-2';
-            let row = 'td#' + budget_id + '.budget-category-name.text-wrap';
+            let updateRow = 'span#' + budget_id + '.planned-value';
+            let row = 'td#' + budget_id + '.budget-category-name';
             $(updateRow).hide();
             $(updateRow).before(loadSpinner);
             $.post('/budget/planned/update', {

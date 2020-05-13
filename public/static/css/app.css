@@ -11412,6 +11412,21 @@ footer {
   display: inline-block !important;
 }
 
+.dashboard-remaining {
+  float: right !important;
+  display: inline-block !important;
+}
+
+.total-spending {
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.chart-container {
+  margin-bottom: 0 !important;
+  padding-bottom: 0rem !important;
+}
+
 /**
  * Account Page
  */
@@ -11460,6 +11475,7 @@ footer {
   font-family: sans-serif;
   text-align: center;
   line-height: 80vh;
+  white-space: normal;
 }
 
 #landing-title.landing-bg {

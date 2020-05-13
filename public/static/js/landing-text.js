@@ -26,10 +26,10 @@ function onTick() {
         complete();
         setInterval(function () {
             text.classList.add('landing-bg');
-        }, 500);
+        }, 300);
         setInterval(function () {
             nav.classList.add('bg-mint');
-        }, 1750);
+        }, 1000);
     }
 }
 
