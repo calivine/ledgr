@@ -54,14 +54,17 @@ class DashboardController extends Controller
         $category_form_labels = get_labels($budget->budget);
 
         // Get First And Last Days Of Current Month
-        $month_start = first_of_month();
-        $month_end = last_of_month();
-        $todays_date = todays_date();
-        $days_remaining = days_remaining();
+        $dates = [
+            'month_start' => first_of_month(),
+            'month_end' => last_of_month(),
+            'todays_date' => todays_date(),
+            'days_remaining' => days_remaining()
+        ];
+        
 
         // Pull Transactions For The Current Period
         $transactions = Activity::with('budget')->whereBetween(
-            'date', [$month_start, $month_end])
+            'date', [$dates['month_start'], $dates['month_end']])
             ->where('user_id', $id)
             ->orderBy('date', 'desc')
             ->get();
@@ -77,9 +80,8 @@ class DashboardController extends Controller
             'budget_totals_bars' => $budget_totals->rda,
             'categories' => $chart_data["labels"],
             'category_form_labels' => get_labels($budget->budget),
-            'days_remaining' => $days_remaining,
+            'dates' => $dates,
             'monthly_total_bar' => $monthly_total_bar->rda,
-            'today' => $todays_date,
             'transactions' => $transactions
         ]);
     }

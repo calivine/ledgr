@@ -15,12 +15,12 @@
             <td class='transaction-date'><small>
                     {{ $transaction->date }}
                 </small></td>
-            <td class='transaction-description align-middle'>{{ $transaction->description }}</td>
-            <td class='transaction-amount align-middle'>${{ $transaction->amount }}</td>
+            <td class='transaction-description'>{{ $transaction->description }}</td>
+            <td class='transaction-amount'>${{ $transaction->amount }}</td>
             <td class='budget-category align-middle' id='{{ $transaction->id }}'>{{ $transaction->category }}</td>
             <td class='category-edit'>
-                <label class='w-50 mb-0 mr-auto' for='{{ $transaction->id }}' id='category-edit-label'>Change Category</label>
-                <select class='w-50 mr-auto' name='category' id='{{ $transaction->id }}' class='category-edit-select'>
+                <label for='{{ $transaction->id }}' id='category-edit-label'>Change Category</label>
+                <select name='category' id='{{ $transaction->id }}' class='category-edit-select'>
                     @foreach($categories as $category)
                         <option value='{{ $category }}'>{{ $category }}</option>
                     @endforeach

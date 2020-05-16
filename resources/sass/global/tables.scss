@@ -10,12 +10,23 @@
 
   label {
     font-size: 10px;
+    margin-bottom: 0 !important;
+    margin-right: auto !important;
+    width: 50% !important;
+  }
+  select {
+      width: 50% !important;
+      margin-right: auto !important;
   }
 }
 
 #trans-table {
   max-height: 350px;
   overflow-y: scroll;
+}
+
+.transaction-description, .transaction-amount {
+    vertical-align: middle !important;
 }
 
 table#budget-table {

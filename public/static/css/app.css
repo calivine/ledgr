@@ -11435,6 +11435,16 @@ footer {
   display: none;
 }
 
+.confirm-delete {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.confirm-delete p {
+  margin-left: inherit;
+  margin-right: inherit;
+}
+
 /**
  * Forms
  */
@@ -11541,7 +11551,7 @@ span#title-character.fade {
 }
 
 .nav-item.dropdown {
-  margin-right: 5rem;
+  margin-right: 1rem;
 }
 
 /**
@@ -11552,6 +11562,12 @@ span#title-character.fade {
   display: inline-block;
   font-weight: bold;
   margin-bottom: 0;
+  text-align: left;
+}
+
+.progress-bars {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
 }
 
 /*
@@ -11592,11 +11608,24 @@ span#title-character.fade {
 
 .category-edit label {
   font-size: 10px;
+  margin-bottom: 0 !important;
+  margin-right: auto !important;
+  width: 50% !important;
+}
+
+.category-edit select {
+  width: 50% !important;
+  margin-right: auto !important;
 }
 
 #trans-table {
   max-height: 350px;
   overflow-y: scroll;
+}
+
+.transaction-description,
+.transaction-amount {
+  vertical-align: middle !important;
 }
 
 table#budget-table {
