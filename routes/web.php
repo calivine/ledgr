@@ -34,6 +34,9 @@ Route::group(['middleware' => 'auth'], function() {
     # CREATE New Budget Category
     Route::post('/budget/category/new', 'BudgetController@createCategory')->name('category');
 
+    # UPDATE Budget Icon
+    Route::post('/budget/icon/update', 'BudgetController@updateIcon');
+
     # UPDATE Transaction Category
     Route::post('/transaction/category/update', 'ActivityController@updateCategory');
 
@@ -47,6 +50,12 @@ Route::group(['middleware' => 'auth'], function() {
 
     # GET Account Settings
     Route::get('/account', 'UserController@displayAccount');
+
+    # GET Database Snapshot
+    Route::get('/snapshot', 'AdminController@backupTables');
+
+    # GET Read Database Snapshot
+    Route::get('/readSnapshot', 'AdminController@readBackupTables');
 });
 
 // Authentication Routes

@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Activity;
 use App\Budget;
 use App\Actions\Budget\GetActuals;
-use App\Actions\Budget\TotalMonthlySpending;
 use App\Actions\ProgressBar\MonthlyTotal;
-use App\Actions\ProgressBar\BudgetTotals;
 use App\Budget\BudgetSheet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -43,12 +41,7 @@ class DashboardController extends Controller
         $chart_data = $budget->get_chart_data();
 
         // Gets Total Monthly Spending data for progress bar.
-        // $monthly_total_bar = new MonthlyTotal($budget->budget);
-
-        $monthly_total_bar = new TotalMonthlySpending($budget->budget);
-
-        // Gets Budget Category Totals data for progress bars.
-        $budget_totals = new BudgetTotals($budget->budget);
+        $progress_bars = new MonthlyTotal($budget->budget);
 
         // Fetch labels for New Transaction Form.
         $category_form_labels = get_labels($budget->budget);
@@ -60,7 +53,7 @@ class DashboardController extends Controller
             'todays_date' => todays_date(),
             'days_remaining' => days_remaining()
         ];
-        
+
 
         // Pull Transactions For The Current Period
         $transactions = Activity::with('budget')->whereBetween(
@@ -77,11 +70,11 @@ class DashboardController extends Controller
 
         return view('dash.dashboard')->with([
             'actuals' => $chart_data["actuals"],
-            'budget_totals_bars' => $budget_totals->rda,
+            'budget_totals_bars' => $progress_bars->rda['budget_totals'],
             'categories' => $chart_data["labels"],
             'category_form_labels' => get_labels($budget->budget),
             'dates' => $dates,
-            'monthly_total_bar' => $monthly_total_bar->rda,
+            'monthly_total_bar' => $progress_bars->rda['monthly_total'],
             'transactions' => $transactions
         ]);
     }

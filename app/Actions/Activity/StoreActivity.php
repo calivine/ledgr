@@ -65,6 +65,8 @@ class StoreActivity
         $activity->budget()->associate($budget);
         $activity->save();
 
+        $this->rda = $activity;
+
         event(new TransactionWasCreated($activity));
     }
 

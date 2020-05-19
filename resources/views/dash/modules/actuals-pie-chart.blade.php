@@ -5,7 +5,12 @@
 
     function toArray(str) {
         str = str.slice(1, str.length-1);
-        return str.split(",");
+        str = str.split(",");
+        for (let i = 0; i < str.length; i++) {
+            str[i] = str[i].replace(str[i].charAt(0), '');
+            str[i] = str[i].replace(str[i].charAt(str[i].length-1), '');
+        }
+        return str;
     }
     /*
     function shuffle(array) {

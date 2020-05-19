@@ -73,5 +73,16 @@ class TransactionTest extends TestCase
         ])->json('GET', '/dashboard');
         $response->assertStatus(200);
 
+        $response = $this->actingAs($user)
+        ->withSession(['user' => 'acali'])
+        ->withHeaders([
+            'X-Header' => 'Value',
+        ])->json('POST', '/budget/icon/update', [
+            'id' => '310',
+            'icon' => 'plus'
+        ]);
+        $response->assertStatus(200);
+
+
     }
 }

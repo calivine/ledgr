@@ -11449,9 +11449,13 @@ footer {
  * Forms
  */
 
+#manual-input-form {
+  padding: 1rem;
+}
+
 #manual-input-form label {
-  width: 100%;
-  margin-bottom: 0;
+  width: 100% !important;
+  margin-bottom: 0 !important;
   line-height: 10px;
   font-weight: 500;
 }
@@ -11532,6 +11536,11 @@ span#title-character.fade {
 
 #login-submit {
   width: 135px;
+}
+
+.modal-label {
+  width: 100% !important;
+  margin-bottom: 0 !important;
 }
 
 /**

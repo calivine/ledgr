@@ -40,6 +40,12 @@ $(function() {
         });
     });
 
+    $('td.budget-icon').each(function () {
+        $(this).on('click', function () {
+            $('div#iconModal').modal('show');
+        })
+    });
+
     $('span.planned-value').each(function () {
         $(this).on('click', function () {
             let rowID = $(this).parent().prev().attr('id');
@@ -96,17 +102,33 @@ function getPlannedTotal() {
 };
 
 
-$(function () {
-    $('td.category-edit').each(function () {
-        $(this).hide();
-    });
-});
+// $(function () {
+//    $('td.category-edit').each(function () {
+//        $(this).hide();
+//    });
+//});
 
 $(function () {
     $('td.budget-category').each(function () {
         $(this).on('click', function () {
-            $(this).next().show();
+            $(this).after(changeCategoryForm($(this).attr('id')));
+            // $(this).next().show();
             $(this).hide();
+            $('button.category-edit-cancel').on('click', function () {
+                $(this).parent().prev().show();
+                $(this).parent().hide();
+            });
+            $('button.category-edit-submit').bind('click', function () {
+                $.post('/transaction/category/update', {
+                    update_name: $(this).prev().val(),
+                    id: $(this).prev().attr('id')
+                }, function (data) {
+                    let updatedDescription = $('td[id=' + data.id + '][class="budget-category align-middle"]');
+                    updatedDescription.text(data.category).show();
+                    updatedDescription.next().hide();
+                });
+                return false;
+            })
         });
     });
 });
@@ -136,6 +158,33 @@ $(function () {
     });
 });
 
+function changeCategoryForm(id) {
+    const labelsLength = labels_array.length;
+    let $categoryEdit = $('<td class="category-edit"></td>');
+    let $label = $('<label id="category-edit-label">Change Category</label>');
+    let $select = $('<select name="category" class="category-edit-select"></select>');
+    $select.attr('id', id);
+    let $buttons = $('<button class="category-edit-submit btn btn-success" type="submit">Save</button><button class="category-edit-cancel btn" type="submit">Cancel</button>');
+    let i;
+    for (i = 0; i < labelsLength; i++) {
+        let $option = $('<option value=' + labels_array[i] + '>' + labels_array[i] + '</option>');
+        $select.append($option);
+    }
+    $select.after($buttons);
+    $label.after($select);
+    $categoryEdit.prepend($label).append($select).append($buttons);
+    return $categoryEdit;
+}
+
+function createTransactionRow(data) {
+    let $newRow = $('<tr><td><i class="material-icons">' + data['new_transaction']['icon'] + '</i></td></tr>');
+    let $dateCell = $('<td class="transaction_date"><small>' + data['new_transaction']['date'] + '</small></td>');
+    let $descriptionCell = $('<td class="transaction-description">' + data['new_transaction']['description'] + '</td>');
+    let $amountCell = $('<td class="transaction-amount">$' + data['new_transaction']['amount'] + '</td>');
+    let $categoryCell = $('<td class="budget-category align-middle" id=' + data['new_transaction']['id'] + '>' + data['new_transaction']['category'] + '</td>');
+    return $newRow.append($dateCell).append($descriptionCell).append($amountCell).append($categoryCell);
+}
+
 let $inputForm = $('fieldset#manual-input-form');
 
 $(function () {
@@ -152,6 +201,14 @@ $(function () {
             resetSaveTransaction();
 
             $('div#modalCenter').modal('hide');
+
+
+            let $tbody = $('tbody#transaction_body');
+            let $ch = changeCategoryForm(data['new_transaction']['id']);
+
+
+            $tbody.prepend(createTransactionRow(data));
+
 
             // Update Monthly Total Progress Bar
             let $totalBar = $('div#total-spending-bar');

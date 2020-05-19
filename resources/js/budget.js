@@ -25,6 +25,12 @@ $(function() {
         });
     });
 
+    $('td.budget-icon').each(function () {
+        $(this).on('click', function () {
+            $('div#iconModal').modal('show');
+        })
+    });
+
     $('span.planned-value').each(function () {
         $(this).on('click', function () {
             let rowID = $(this).parent().prev().attr('id');

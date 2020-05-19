@@ -3,16 +3,18 @@
  */
 
  #manual-input-form {
-   label {
-     width: 100%;
-     margin-bottom: 0;
-     line-height: 10px;
-     font-weight: 500;
+    padding: 1rem;
 
-   }
+    label {
+        width: 100% !important;
+        margin-bottom: 0 !important;
+        line-height: 10px;
+        font-weight: 500;
 
-   input, select {
-     margin-top: 0;
-     width: 100%;
-   }
+    }
+
+    input, select {
+        margin-top: 0;
+        width: 100%;
+    }
  }

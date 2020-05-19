@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\TransactionWasCreated' => [
             'App\Listeners\UpdateBudget',
         ],
+        'App\Events\IconWasChanged' => [
+            'App\Listeners\UpdateIcon',
+        ]
     ];
 
     /**

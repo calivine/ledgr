@@ -6,7 +6,6 @@ use App\Actions\Activity\DestroyActivity;
 use App\Actions\Activity\StoreActivity;
 use App\Actions\Activity\UpdateCategory;
 use App\Actions\Budget\UpdateActual;
-use App\Actions\ProgressBar\BudgetTotals;
 use App\Actions\ProgressBar\MonthlyTotal;
 use App\Activity;
 use App\Budget\BudgetSheet;
@@ -39,22 +38,36 @@ class ActivityController extends Controller
         ]);
 
         // Save New Transaction
-        new StoreActivity($request);
+        $activity = new StoreActivity($request);
+
+        $new_transaction = [
+            'date' => date_to_string($activity->rda['date']),
+            'amount' => number_format($activity->rda['amount'], 2),
+            'description' => $activity->rda['description'],
+            'category' => $activity->rda['category'],
+            'icon' => $activity->rda['budget']['icon'],
+            'id' => $activity->rda['id'],
+        ];
 
         // Add Amount to Budget Actual Category
         // new UpdateActual($request->input('category'), null, $request->input('amount'), $id);
 
-        // Get Budget Sheet 
+        // Get Budget Sheet
         $budget = new BudgetSheet($id);
 
         // Recalculate budget category totals so progress bars update in client.
         $monthly_total_bar = new MonthlyTotal($budget->budget);
-        $budget_totals = new BudgetTotals($budget->budget);
-        Log::info('Saved new transaction: ' . $request->input('description'));
+        // $monthly_total_bar = new MonthlyTotal($budget->budget);
+        // $budget_totals = new BudgetTotals($budget->budget);
+
+        Log::info($monthly_total_bar->rda['budget_totals']);
+        Log::info($monthly_total_bar->rda['monthly_total']);
+        Log::info($new_transaction);
 
         return response()->json([
-            'monthly_total' => $monthly_total_bar->rda,
-            'budget_totals' => $budget_totals->rda
+            'monthly_total' => $monthly_total_bar->rda['monthly_total'],
+            'budget_totals' => $monthly_total_bar->rda['budget_totals'],
+            'new_transaction' => $new_transaction
         ]);
     }
 
@@ -62,6 +75,8 @@ class ActivityController extends Controller
      * POST
      * /transaction/category/update
      * Update Transaction's Category
+     * @param    String    New category name
+     * @param    Integer   Transaction ID
      */
     public function updateCategory(Request $request)
     {

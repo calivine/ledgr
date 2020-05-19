@@ -1,4 +1,4 @@
-<fieldset class='shadow p-3' id='manual-input-form'>
+<fieldset class='shadow' id='manual-input-form'>
     <div class='form-group'>
         <div class='col-lg'>
             <label for='amount-input'>Amount $</label>
@@ -7,7 +7,7 @@
     </div>
     <div class='form-group'>
         <div class='col-lg'>
-            <label class='w-100 mb-0' for='description-input'>Transaction Description</label>
+            <label for='description-input'>Transaction Description</label>
             <input type='text' class='manual-input' name='description' id='description-input' required>
         </div>
     </div>

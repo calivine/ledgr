@@ -7,9 +7,11 @@ use App\Actions\Budget\StoreCategory;
 use App\Actions\Budget\UpdatePlanned;
 use App\Budget;
 use App\Budget\BudgetSheet;
+use App\Events\IconWasChanged;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -28,6 +30,7 @@ class BudgetController extends Controller
      */
     public function index()
     {
+        $icons = DB::table('icons')->get();
 
         $response = new BudgetSheet(Auth::user()->id);
 
@@ -42,7 +45,8 @@ class BudgetController extends Controller
 
         return view('budget.index')->with([
             'budget' => $response->budget,
-            'period' => $budget_period
+            'period' => $budget_period,
+            'icons' => $icons
         ]);
     }
 
@@ -63,6 +67,29 @@ class BudgetController extends Controller
             'planned' => $action->rda['planned']
         ]);
     }
+
+    /*
+     * POST
+     * /budget/icon/update
+     * Updates Icon
+     * argument     Number ID
+     * argument     String Icon description
+     */
+    public function updateIcon(Request $request)
+    {
+        $request->validate([
+            'icon' => 'required|string'
+        ]);
+
+        event(new IconWasChanged($request->input('id'), $request->input('icon')));
+
+        return response()->json([
+            'id' => $request->input('id'),
+            'icon' => $request->input('icon')
+        ]);
+
+    }
+
 
 
     /*
