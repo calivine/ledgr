@@ -57,4 +57,11 @@ class User extends Authenticatable
         # Defines A One-To-Many Relationship
         return $this->hasMany('App\Income');
     }
+
+    public function roles()
+    {
+        # User has many roles
+        # Define a many-to-many relationship
+        return $this->belongsToMany('App\Role')->withTimestamps();
+    }
 }

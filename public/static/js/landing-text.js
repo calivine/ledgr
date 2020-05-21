@@ -1,5 +1,6 @@
 const text = document.querySelector("#landing-title");
 const navBar = document.querySelector("#nav");
+const landingBG = document.querySelector("#landing-title-bg");
 const strText = text.textContent;
 const splitText = strText.split("");
 text.textContent = "";
@@ -7,7 +8,7 @@ text.textContent = "";
 for (let i = 0; i < splitText.length; i++) {
     console.log(splitText[i]);
     if (splitText[i] == " ") {
-        text.innerHTML += "<span id='title-character' class='px-2'>" + splitText[i] + "</span>"
+        text.innerHTML += "<span id='title-character' class='px-1'>" + splitText[i] + "</span>"
     }
     else {
         text.innerHTML += "<span id='title-character'>" + splitText[i] + "</span>";
@@ -25,7 +26,7 @@ function onTick() {
     if (char === splitText.length) {
         complete();
         setInterval(function () {
-            text.classList.add('landing-bg');
+            landingBG.classList.add('landing-bg');
         }, 300);
         setInterval(function () {
             nav.classList.add('bg-mint');

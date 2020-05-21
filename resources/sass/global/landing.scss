@@ -6,11 +6,15 @@
 #landing-title {
   font-family: sans-serif;
   text-align: center;
-  line-height: 80vh;
   white-space: normal;
+  line-height: normal !important;
 }
 
-#landing-title.landing-bg {
+#landing-title-bg {
+    height: 80vh !important;
+}
+
+#landing-title-bg.landing-bg {
     background-color: #98FB98;
     transition: all 1s ease;
 }
