@@ -35,7 +35,7 @@ class StoreBudget
         if (sizeof($saved_budget->budget) > 0) {
             Log::info('Building budget from previous month.');
             foreach($saved_budget->budget as $budget) {
-                Log::debug(type($budget));
+                Log::debug(gettype($budget));
 
                 $new_budget = new Budget;
                 $new_budget->category = $budget->category;
