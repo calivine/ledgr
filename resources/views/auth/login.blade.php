@@ -3,7 +3,7 @@
 @section('title', 'Login | Ledgr')
 
 @section('content')
-    @include('layout.partials.title')
+    @include('layouts.partials.title')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
