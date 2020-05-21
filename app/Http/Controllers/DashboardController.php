@@ -48,7 +48,7 @@ class DashboardController extends Controller
         if (empty($category_form_labels))
         {
             Log::info($category_form_labels);
-            $json = file_get_contents('database/budget.json');
+            $json = file_get_contents(database_path('budget.json'));
             $json_data = json_decode($json, true);
             foreach($json_data as $budget) {
                 $category_form_labels[] = $budget['category'];
