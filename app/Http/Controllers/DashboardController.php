@@ -45,6 +45,7 @@ class DashboardController extends Controller
 
         // Fetch labels for New Transaction Form.
         $category_form_labels = get_labels($budget->budget);
+        Log::info($category_form_labels);
 
         // Get First And Last Days Of Current Month
         $dates = [
