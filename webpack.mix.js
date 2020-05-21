@@ -15,6 +15,7 @@ mix.js('resources/js/app.js', 'public/static/js')
     .sass('resources/sass/app.scss', 'public/static/css');
 
 mix.scripts([
+    'resources/js/util.js',
     'resources/js/api-token.js',
     'resources/js/budget.js',
     'resources/js/edit-category.js',

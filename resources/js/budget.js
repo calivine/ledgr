@@ -76,12 +76,3 @@ $(function() {
         $('div#categoryModalCenter').modal('show');
     });
 });
-
-
-function getPlannedTotal() {
-    let total = 0;
-    $('span.planned-value').each(function () {
-        total += Number($(this).text());
-    });
-    $('td#planned-total').text(total);
-};

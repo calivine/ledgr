@@ -13,19 +13,3 @@ $(function () {
         minLength(inputText) ? pass() : reject();
     });
 });
-
-function reject() {
-    $('li#length-requirement').css('color', 'red');
-    $('li#length-requirement').css('text-decoration', 'none');
-
-}
-
-function minLength(s) {
-    let str = s;
-    return (str.length + 1) >= 8;
-}
-
-function pass() {
-    $('li#length-requirement').css('color', 'green');
-    $('li#length-requirement').css('text-decoration', 'line-through');
-}
