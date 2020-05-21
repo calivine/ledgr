@@ -82,7 +82,7 @@ class DashboardController extends Controller
             'actuals' => $chart_data["actuals"],
             'budget_totals_bars' => $progress_bars->rda['budget_totals'],
             'categories' => $chart_data["labels"],
-            'category_form_labels' => get_labels($budget->budget),
+            'category_form_labels' => $category_form_labels,
             'dates' => $dates,
             'monthly_total_bar' => $progress_bars->rda['monthly_total'],
             'transactions' => $transactions
