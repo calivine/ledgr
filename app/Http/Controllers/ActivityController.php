@@ -7,6 +7,7 @@ use App\Actions\Activity\StoreActivity;
 use App\Actions\Activity\UpdateCategory;
 use App\Actions\Budget\UpdateActual;
 use App\Actions\ProgressBar\MonthlyTotal;
+use App\Events\TransactionCategoryChanged;
 use App\Activity;
 use App\Budget\BudgetSheet;
 use Illuminate\Http\Request;
@@ -85,11 +86,16 @@ class ActivityController extends Controller
             'id' => 'required'
         ]);
 
-        $action = new UpdateCategory($request);
+        $id = $request->input('id');
+        $new_category = $request->input('update_name');
+        $user_id = $request->user()->id;
+
+        event(new TransactionCategoryChanged($id, $new_category, $user_id));
+        // $action = new UpdateCategory($request);
 
         return response()->json([
-            'id' => $action->rda['id'],
-            'category' => $action->rda['update_name']
+            'id' => $id,
+            'category' => $new_category
         ]);
     }
 

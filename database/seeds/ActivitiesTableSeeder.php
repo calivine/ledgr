@@ -43,7 +43,7 @@ class ActivitiesTableSeeder extends Seeder
             $activity->category = $transaction['category'];
             $activity->date = $transaction['date'];
             // Create function that generates random 36 character alpha-num string
-            $activity->transaction_id = "TestTransaction";
+            // $activity->transaction_id = "TestTransaction";
             // Link To User Signed-In
             $activity->user()->associate($user);
             // Link To Budget Category

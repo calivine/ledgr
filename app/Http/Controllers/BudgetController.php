@@ -8,6 +8,7 @@ use App\Actions\Budget\UpdatePlanned;
 use App\Budget;
 use App\Budget\BudgetSheet;
 use App\Events\IconWasChanged;
+use App\Events\PlannedBudgetChanged;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -61,10 +62,14 @@ class BudgetController extends Controller
             'new_value' => 'required|numeric'
         ]);
 
-        $action = new UpdatePlanned($request->input('id'), $request->input('new_value'));
+        $id = $request->input('id');
+        $planned = $request->input('new_value');
+
+        event(new PlannedBudgetChanged($id, $planned));
+        // $action = new UpdatePlanned($request->input('id'), $request->input('new_value'));
 
         return response()->json([
-            'planned' => $action->rda['planned']
+            'planned' => $planned
         ]);
     }
 

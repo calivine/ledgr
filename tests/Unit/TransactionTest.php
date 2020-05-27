@@ -19,20 +19,9 @@ class TransactionTest extends TestCase
         // Create a User
         $user = factory(User::class)->create();
 
-        // Fail to register a new user.
-        $response = $this->withHeaders([
-            'X-Header' => 'Value',
-        ])->json('POST', '/register', [
-            'name' => 'alexcalog112',
-            'email' => 'testmail@email.com',
-            'password' => 'test',
-            'password_confirmation' => 'test'
-        ]);
-        // Assert request is Unprocessable because pw is too short.
-        $response->assertStatus(422);
 
         $response = $this->actingAs($user)
-        ->withSession(['user' => 'acali'])
+        // ->withSession(['user' => 'acali'])
         ->withHeaders([
             'X-Header' => 'Value',
         ])->json('POST', '/transaction', [
@@ -44,7 +33,7 @@ class TransactionTest extends TestCase
         $response->assertStatus(200);
 
         $response = $this->actingAs($user)
-        ->withSession(['user' => 'acali'])
+        // ->withSession(['user' => 'acali'])
         ->withHeaders([
             'X-Header' => 'Value',
         ])->json('POST', '/transaction', [
@@ -56,7 +45,7 @@ class TransactionTest extends TestCase
         $response->assertStatus(200);
 
         $response = $this->actingAs($user)
-        ->withSession(['user' => 'acali'])
+        //->withSession(['user' => 'acali'])
         ->withHeaders([
             'X-Header' => 'Value',
         ])->json('POST', '/transaction', [
@@ -67,19 +56,23 @@ class TransactionTest extends TestCase
         ]);
         $response->assertStatus(200);
 
-        $response = $this->withSession(['user' => 'acali'])
-        ->withHeaders([
-            'X-Header' => 'Value',
-        ])->json('GET', '/dashboard');
-        $response->assertStatus(200);
 
         $response = $this->actingAs($user)
-        ->withSession(['user' => 'acali'])
+        //->withSession(['user' => 'acali'])
         ->withHeaders([
             'X-Header' => 'Value',
         ])->json('POST', '/budget/icon/update', [
             'id' => '310',
             'icon' => 'plus'
+        ]);
+        $response->assertStatus(200);
+
+        $response = $this->actingAs($user)
+        ->withHeaders([
+            'X-Header' => 'Value',
+        ])->json('POST', '/budget/planned/update', [
+            'id' => '264',
+            'new_value' => '110'
         ]);
         $response->assertStatus(200);
 

@@ -32,8 +32,7 @@ class StoreActivity
             ['period', '=', $month],
             ['user_id', '=', $user->id],
             ['category', '=', $category]
-        ])
-        ->first();
+        ])->first();
 
         // If Budget Sheet Doesn't Exist,
         if ($budget == null)
@@ -58,7 +57,7 @@ class StoreActivity
         $activity->category = $category;
         $activity->date = $date;
         // Create function that generates random 36 character alpha-num string
-        $activity->transaction_id = "TestTransaction";
+        // $activity->transaction_id = "TestTransaction";
         // Link To User Signed-In
         $activity->user()->associate($user);
         // Link To Budget Category
