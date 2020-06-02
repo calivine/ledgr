@@ -43,18 +43,18 @@ class DashboardController extends Controller
         // Gets Total Monthly Spending data for progress bar.
         $progress_bars = new MonthlyTotal($budget->budget);
 
+
         // Fetch labels for New Transaction Form.
         $category_form_labels = get_labels($budget->budget);
+        Log::info('Category labels: ' . $category_form_labels);
         if (empty($category_form_labels))
         {
-            Log::info($category_form_labels);
             $json = file_get_contents(database_path('budget.json'));
             $json_data = json_decode($json, true);
             foreach($json_data['data'] as $budget) {
                 $category_form_labels[] = $budget['category'];
             }
         }
-        Log::info($category_form_labels);
 
         // Get First And Last Days Of Current Month
         $dates = [
@@ -66,15 +66,17 @@ class DashboardController extends Controller
 
 
         // Pull Transactions For The Current Period
-        $transactions = Activity::with('budget')->whereBetween(
-            'date', [$dates['month_start'], $dates['month_end']])
+        $transactions = Activity::with('budget:id,category,planned,actual,year,period,user_id,icon')
+            ->whereBetween('date', [$dates['month_start'], $dates['month_end']])
             ->where('user_id', $id)
             ->orderBy('date', 'desc')
+            ->select('id', 'amount', 'description', 'category', 'date', 'budget_id')
             ->get();
+
 
         // Format Date and Amount For Display On Dashboard
         foreach($transactions as $transaction) {
-            $transaction->date = date_to_string($transaction->date);
+            // $transaction->date = date_to_string($transaction->date);
             $transaction->amount = number_format($transaction->amount, 2);
         }
 

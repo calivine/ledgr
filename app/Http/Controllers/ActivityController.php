@@ -9,6 +9,7 @@ use App\Actions\Budget\UpdateActual;
 use App\Actions\ProgressBar\MonthlyTotal;
 use App\Events\TransactionCategoryChanged;
 use App\Activity;
+use App\User;
 use App\Budget\BudgetSheet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,8 +62,8 @@ class ActivityController extends Controller
         // $monthly_total_bar = new MonthlyTotal($budget->budget);
         // $budget_totals = new BudgetTotals($budget->budget);
 
-        Log::info($monthly_total_bar->rda['budget_totals']);
-        Log::info($monthly_total_bar->rda['monthly_total']);
+        Log::info('Budget totals bar: ' . $monthly_total_bar->rda['budget_totals']);
+        Log::info('Monthly totals bar: ' . $monthly_total_bar->rda['monthly_total']);
         Log::info($new_transaction);
 
         return response()->json([
@@ -123,4 +124,22 @@ class ActivityController extends Controller
           return redirect(route('dashboard'));
 
       }
+
+      /**
+       * GET
+       * /transactions
+       * Get a user's transactions.
+       */
+       public function getTransactions()
+       {
+           $user_id = Auth::id();
+           $transactions = User::where('id', $user_id)
+                                 ->select('id')
+                                 ->with('activities.budget:id,planned,actual,category,icon,period,year,user_id')
+                                 ->first();
+
+           return view('activity.transactions')->with([
+               'transactions' => $transactions->activities
+           ]);
+       }
 }

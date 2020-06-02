@@ -19,4 +19,16 @@ class Activity extends Model
         # Defines An Inverse One-To-Many Relationship
         return $this->belongsTo('App\Budget');
     }
+    /*
+    public function getAmountAttribute($value)
+    {
+        return number_format($value, 2);
+    }
+    */
+
+    public function getDateAttribute($value)
+    {
+        return date_to_string($value);
+    }
+
 }

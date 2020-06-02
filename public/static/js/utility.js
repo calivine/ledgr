@@ -44,9 +44,9 @@ function pass() {
 function resetSaveTransaction() {
     const now = new Date();
     const year = now.getFullYear();
-    let month = String(now.getMonth());
+    let month = String(now.getMonth()+1);
     month = month.length === 1 ? "0"+month : month;
-    let day = String(now.getDay()).length === 1 ? "0"+String(now.getDay()) : String(now.getDay());
+    let day = String(now.getDate()).length === 1 ? "0"+String(now.getDate()) : String(now.getDate());
 
     const date = String(year) + "-" + month + "-" + day;
     $('input#description-input').val("");
@@ -109,6 +109,12 @@ function getPlannedTotal() {
     });
     $('td#planned-total').text(total);
 };
+
+
+function dateTest() {
+    let today = new Date();
+    console.log(today.getDate());
+}
 
 $('button#hide-api-token').hide();
 
