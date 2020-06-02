@@ -29,7 +29,8 @@ class UpdateActual
         Log::info($test);
         */
         $activity = Activity::where('id', $event->id)->with('budget')->first();
-        Log::info('Updating: ' . $activity);
+        Log::info('Updating: ');
+        Log::info($activity);
         $activity->category = $event->new_category;
         $activity->budget->actual -= $activity->amount;
 
@@ -45,7 +46,8 @@ class UpdateActual
         $activity->budget()->dissociate();
         $activity->budget()->associate($new_transaction_category);
         $activity->save();
-        Log::info('Complete: ' . $activity);
+        Log::info('Complete: ');
+        Log::info($activity);
 
 
     }

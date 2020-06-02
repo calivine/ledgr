@@ -61,9 +61,10 @@ class ActivityController extends Controller
         $monthly_total_bar = new MonthlyTotal($budget->budget);
         // $monthly_total_bar = new MonthlyTotal($budget->budget);
         // $budget_totals = new BudgetTotals($budget->budget);
-
-        Log::info('Budget totals bar: ' . $monthly_total_bar->rda['budget_totals']);
-        Log::info('Monthly totals bar: ' . $monthly_total_bar->rda['monthly_total']);
+        Log::info('Budget totals bar: ');
+        Log::info($monthly_total_bar->rda['budget_totals']);
+        Log::info('Monthly totals bar: ');
+        Log::info($monthly_total_bar->rda['monthly_total']);
         Log::info($new_transaction);
 
         return response()->json([

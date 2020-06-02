@@ -46,7 +46,8 @@ class DashboardController extends Controller
 
         // Fetch labels for New Transaction Form.
         $category_form_labels = get_labels($budget->budget);
-        Log::info('Category labels: ' . $category_form_labels);
+        Log::info('Category labels: ');
+        Log::info($category_form_labels);
         if (empty($category_form_labels))
         {
             $json = file_get_contents(database_path('budget.json'));
