@@ -46,8 +46,7 @@ class DashboardController extends Controller
 
         // Fetch labels for New Transaction Form.
         $category_form_labels = get_labels($budget->budget);
-        Log::info('Category labels: ');
-        Log::info($category_form_labels);
+        
         if (empty($category_form_labels))
         {
             $json = file_get_contents(database_path('budget.json'));
@@ -81,10 +80,12 @@ class DashboardController extends Controller
             $transaction->amount = number_format($transaction->amount, 2);
         }
 
+        Log::info($transactions);
+
         return view('dash.dashboard')->with([
-            'actuals' => $chart_data["actuals"],
+            'actuals' => $chart_data['actuals'],
             'budget_totals_bars' => $progress_bars->rda['budget_totals'],
-            'categories' => $chart_data["labels"],
+            'categories' => $chart_data['labels'],
             'category_form_labels' => $category_form_labels,
             'dates' => $dates,
             'monthly_total_bar' => $progress_bars->rda['monthly_total'],

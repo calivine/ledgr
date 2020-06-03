@@ -15,22 +15,22 @@
         </div>
         <div class='dashboard-row total-spending'>
             <div class='col-md-8'>
-                @include('dash.modules.progress-bar', ['data' => $monthly_total_bar])
+                @include('modules.progress-bar', ['data' => $monthly_total_bar])
             </div>
         </div>
         <div class='dashboard-row'>
             <div class='col-md-8'>
-                @include('dash.modules.budget-progress-bars', ['data' => $budget_totals_bars])
+                @include('modules.budget-progress-bars', ['data' => $budget_totals_bars])
             </div>
         </div>
         <div class='dashboard-row chart-container'>
             <div class='col-md-8 border-bottom border-secondary mb-0 pb-5'>
-                @include('dash.modules.accordion', ['category_form_labels' => $category_form_labels, 'categories' => $categories, 'actuals' => $actuals])
+                @include('modules.accordion', ['category_form_labels' => $category_form_labels, 'categories' => $categories, 'actuals' => $actuals])
             </div>
         </div>
         <div class='dashboard-row' id='trans-table'>
             <div class='col-md-8'>
-                @include('dash.modules.transactions-table', ['transactions' => $transactions, 'categories' => $category_form_labels])
+                @include('modules.transactions-table', ['transactions' => $transactions, 'categories' => $category_form_labels, 'all' => False])
             </div>
         </div>
     </main>

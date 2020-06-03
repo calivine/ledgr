@@ -5,7 +5,7 @@
 
 <main class="container">
     <section>
-        @include('dash.modules.transactions-table', ['transactions' => $transactions])
+        @include('modules.transactions-table', ['transactions' => $transactions, 'all' => True])
     </section>
 </main>
 

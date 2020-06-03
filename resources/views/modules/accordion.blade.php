@@ -12,7 +12,7 @@
             <div class="card-body">
                 <div class="row justify-content-center">
                     <div class="col-sm-3">
-                        @include('dash.modules.actuals-pie-chart', ['categories' => $categories, 'actuals' => $actuals])
+                        @include('modules.actuals-pie-chart', ['categories' => $categories, 'actuals' => $actuals])
                     </div>
                 </div>
             </div>
