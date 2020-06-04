@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('/transaction/{id}/destroy', 'ActivityController@destroyTransaction');
 
     # GET User's Transactions
-    Route::get('/transactions', 'ActivityController@getTransactions');
+    Route::get('/transactions', 'ActivityController@getTransactions')->name('transactions');
 
     # CREATE New Income
     Route::get('/income/new', 'IncomeController@newIncome');

@@ -122,7 +122,7 @@ class ActivityController extends Controller
       {
           new DestroyActivity($id);
 
-          return redirect(route('dashboard'));
+          return redirect(route('transactions'));
 
       }
 
