@@ -122,7 +122,7 @@ class ActivityController extends Controller
       {
           new DestroyActivity($id);
 
-          return redirect(route('transactions'));
+          return redirect()->route('transactions')->with(['alert' => 'Transaction Was Deleted']);
 
       }
 
