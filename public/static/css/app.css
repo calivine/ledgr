@@ -11427,6 +11427,11 @@ footer {
   padding-bottom: 0rem !important;
 }
 
+.dark-mode {
+  background-color: black !important;
+  color: white !important;
+}
+
 /**
  * Account Page
  */
@@ -11605,6 +11610,14 @@ span#title-character.fade {
 
   .icon-size {
     font-size: 2rem;
+  }
+
+  .nav-item.dropdown {
+    margin-right: 0;
+  }
+
+  .nav-link {
+    padding: 0.5rem !important;
   }
 }
 

@@ -12,7 +12,7 @@
             {{ csrf_field() }}
             <button class="btn btn-danger" type="submit">Delete</button>
         </form>
-        <a href="{{ route('dashboard') }}">Yes</a>
+        <a href="{{ route('dashboard') }}">Cancel</a>
     </section>
 </main>
 

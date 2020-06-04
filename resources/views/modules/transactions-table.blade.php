@@ -17,7 +17,7 @@
             <td class='transaction-amount'>${{ $transaction->amount }}</td>
             <td class='budget-category align-middle' id='{{ $transaction->id }}'>{{ $transaction->category }}</td>
             @if($all)
-                <td><a href={{ '/transaction/' . $transaction->id . '/delete' }}>Delete Transaction</a></td>
+                <td><a href={{ '/transaction/' . $transaction->id . '/delete' }}><i class="material-icons">delete</i></a></td>
             @endif
         </tr>
     @endforeach
