@@ -115,3 +115,9 @@ function dateTest() {
     let today = new Date();
     console.log(today.getDate());
 }
+
+$('#toggle-style-change').on('click', function () {
+    $('#dashboard-container').addClass('dark-mode');
+    $('#transaction_body').addClass('dark-mode');
+    
+})

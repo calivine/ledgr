@@ -5,7 +5,7 @@ function get_labels($budget, $chart=false)
     $categories = [];
 
     foreach($budget as $index => $category) {
-        if ($chart && $category->actual > 0)
+        if ($chart)
         {
             if ($category->actual > 0)
             {

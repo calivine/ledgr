@@ -11422,14 +11422,17 @@ footer {
   margin-bottom: 1.5rem !important;
 }
 
-.chart-container {
-  margin-bottom: 0 !important;
-  padding-bottom: 0rem !important;
-}
-
 .dark-mode {
   background-color: black !important;
   color: white !important;
+}
+
+.chart-container {
+  position: relative;
+  height: 45vh;
+  width: 45vw;
+  margin-bottom: 0 !important;
+  padding-bottom: 0rem !important;
 }
 
 /**
@@ -11618,6 +11621,11 @@ span#title-character.fade {
 
   .nav-link {
     padding: 0.5rem !important;
+  }
+
+  .chart-container {
+    height: 35vh;
+    width: 75vw;
   }
 }
 

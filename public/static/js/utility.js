@@ -116,6 +116,12 @@ function dateTest() {
     console.log(today.getDate());
 }
 
+$('#toggle-style-change').on('click', function () {
+    $('#dashboard-container').addClass('dark-mode');
+    $('#transaction_body').addClass('dark-mode');
+    
+})
+
 $('button#hide-api-token').hide();
 
 $('button#display-api-token').on('click', function (){

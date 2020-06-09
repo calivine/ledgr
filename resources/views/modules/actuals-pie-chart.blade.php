@@ -1,15 +1,21 @@
-<canvas id='myChart' width='75' height='75'></canvas>
+<div class="chart-container">
+    <canvas id='myChart'></canvas>
+</div>
+
 
 <script>
 
 
-    function toArray(str) {
+    function toArray(str, labels=true) {
         str = str.slice(1, str.length-1);
         str = str.split(",");
-        for (let i = 0; i < str.length; i++) {
-            str[i] = str[i].replace(str[i].charAt(0), '');
-            str[i] = str[i].replace(str[i].charAt(str[i].length-1), '');
+        if (labels) {
+            for (let i = 0; i < str.length; i++) {
+                str[i] = str[i].replace(str[i].charAt(0), '');
+                str[i] = str[i].replace(str[i].charAt(str[i].length-1), '');
+            }
         }
+
         return str;
     }
     /*
@@ -38,7 +44,10 @@
 
     let labels_array = toArray('{!! json_encode($categories) !!}');
 
-    let data_array = toArray('{!! json_encode($actuals) !!}');
+    let data_array = toArray('{!! json_encode($actuals) !!}', labels=false);
+
+    console.log(labels_array);
+    console.log(data_array);
 
     let ctx = document.getElementById('myChart').getContext('2d');
     Chart.plugins.register({

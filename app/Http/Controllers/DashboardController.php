@@ -40,13 +40,16 @@ class DashboardController extends Controller
         // Get data for pie chart.
         $chart_data = $budget->get_chart_data();
 
+        Log::info($chart_data['labels']);
+
         // Gets Total Monthly Spending data for progress bar.
         $progress_bars = new MonthlyTotal($budget->budget);
 
 
         // Fetch labels for New Transaction Form.
         $category_form_labels = get_labels($budget->budget);
-        
+        // $chart_data['labels'] = get_labels($budget->budget, True);
+        Log::info($chart_data['labels']);
         if (empty($category_form_labels))
         {
             $json = file_get_contents(database_path('budget.json'));

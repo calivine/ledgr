@@ -4,7 +4,8 @@
 
 @section('content')
     @include('modules.modals.new-transaction-modal', ['labels' => $category_form_labels])
-    <main class='container-fluid'>
+    <main id='dashboard-container' class='container-fluid'>
+        <button type="button" id="toggle-style-change" name="button">Dark Mode</button>
         <div class='dashboard-row'>
             <div class='col-md-8'>
                 <p class='dashboard-date'>{{ $dates['todays_date'] }}</p><p class='dashboard-remaining'>{{ $dates['days_remaining'] == 0 ? 'Last day of ' . date('F') : ($dates['days_remaining'] == 1 ? $dates['days_remaining'] . ' day left in ' . date('F') : $dates['days_remaining'] . ' days left in ' . date('F')) }}.</p>
@@ -23,9 +24,9 @@
                 @include('modules.budget-progress-bars', ['data' => $budget_totals_bars])
             </div>
         </div>
-        <div class='dashboard-row chart-container'>
+        <div class='dashboard-row'>
             <div class='col-md-8 border-bottom border-secondary mb-0 pb-5'>
-                @include('modules.accordion', ['category_form_labels' => $category_form_labels, 'categories' => $categories, 'actuals' => $actuals])
+                @include('modules.accordion', ['categories' => $categories, 'actuals' => $actuals])
             </div>
         </div>
         <div class='dashboard-row' id='trans-table'>

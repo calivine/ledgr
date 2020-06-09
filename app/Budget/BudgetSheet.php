@@ -66,7 +66,7 @@ class BudgetSheet
     {
         $data = [];
         $actuals = [];
-        $categories = get_labels($this->budget, $chart=true);
+        $categories = get_labels($this->budget, True);
         foreach($this->budget as $index => &$category) {
             if ($category->actual > 0)
             {
