@@ -27,8 +27,10 @@ $(function() {
 
     $('td.budget-icon').each(function () {
         $(this).on('click', function () {
+            let bID = $(this).parent().attr('id');
+            $('div.modal-header').attr('id', bID);
             $('div#iconModal').modal('show');
-        })
+        });
     });
 
     $('span.planned-value').each(function () {
@@ -71,8 +73,28 @@ $(function() {
 
         });
     });
+
+    $('button#icon-update-submit').bind('click', function () {
+        let new_icon = $('i#iconPreview').text();
+        let bID = $('div.modal-header').attr('id');
+        console.log(new_icon);
+        console.log(bID);
+        $.post('/budget/icon/update', {
+            id: bID,
+            icon: new_icon
+        }, function (data) {
+            $('div#iconModal').modal('hide');
+        });
+        return false;
+    });
     $('button#add-new-category').on('click', function () {
         // Display New Category Form
         $('div#categoryModalCenter').modal('show');
+    });
+
+    $('select#iconSelect').on('change', function () {
+        console.log($('div.modal-header').attr('id'));
+
+        $('i#iconPreview').text($(this).val());
     });
 });

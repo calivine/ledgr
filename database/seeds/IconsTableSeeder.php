@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class IconsTableSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class IconsTableSeeder extends Seeder
         $json_data = json_decode($json, true);
         foreach($json_data as $index => $icon) {
             DB::table('icons')->insert(
-                ['text' => $icon]
+                ['text' => $icon, 'display' => Str::studly($icon)]
             );
         }
     }

@@ -23,7 +23,7 @@
                     </thead>
                     <tbody>
                     @foreach($budget as $index => &$row)
-                        <tr class='budget-category'>
+                        <tr class='budget-category'id='{{ $row->id }}'>
                             <td class='budget-icon'><i class="material-icons">{{ $row->icon }}</i></td>
                             <td class='budget-category-name' id='{{ $row->id }}'><small>{{ $row->category }}</small></td>
                             <td class='budget-category-planned'>$<span class='planned-value' id='{{ $row->id }}'>{{ $row->planned }}</span>@include('modules.icons.edit')</td>

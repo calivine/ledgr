@@ -2,3 +2,16 @@
     width: 100% !important;
     margin-bottom: 0 !important;
 }
+
+
+
+.iconPreviewContainer {
+    // background-color: rgb(201,204,209);
+    display: block !important;
+    margin: 0 10vw;
+
+    #iconPreview {
+        margin: 0 auto;
+        font-size: 36px;
+    }
+}

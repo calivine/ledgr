@@ -14,6 +14,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 /**
  * Handles requests related to monthly budget data
@@ -32,6 +33,14 @@ class BudgetController extends Controller
     public function index()
     {
         $icons = DB::table('icons')->get();
+
+        $iconsDisplay = [];
+        foreach($icons as $icon) {
+            // $iconsDisplay[] = Str::studly($icon->text);
+            $iconsDisplay[] = $icon->text;
+        }
+        $iconsdisplay = array_map('Str::studly', $iconsDisplay);
+        Log::info($iconsdisplay);
 
         $response = new BudgetSheet(Auth::user()->id);
 

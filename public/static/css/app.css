@@ -11423,8 +11423,8 @@ footer {
 }
 
 .dark-mode {
-  background-color: black !important;
-  color: white !important;
+  background-color: #1c1f2b !important;
+  color: #bcc9da !important;
 }
 
 .chart-container {
@@ -11555,6 +11555,16 @@ span#title-character.fade {
   margin-bottom: 0 !important;
 }
 
+.iconPreviewContainer {
+  display: block !important;
+  margin: 0 10vw;
+}
+
+.iconPreviewContainer #iconPreview {
+  margin: 0 auto;
+  font-size: 36px;
+}
+
 /**
  * Navbar
  */
@@ -11624,7 +11634,7 @@ span#title-character.fade {
   }
 
   .chart-container {
-    height: 35vh;
+    height: 50vh;
     width: 75vw;
   }
 }

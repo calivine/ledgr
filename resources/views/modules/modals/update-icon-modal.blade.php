@@ -9,11 +9,12 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
+                    <span class="iconPreviewContainer"><i id="iconPreview" class="material-icons"></i></span>
                     <label class="modal-label" for="icon">Select Icon:</label>
-                    <select name='icon'>
+                    <select id="iconSelect" name='icon'>
                         <option value=''>Select</option>
                         @foreach($icons as $icon)
-                            <option value='{{ $icon->text }}'>{{ $icon->text }}</option>
+                            <option value='{{ $icon->text }}'>{{ $icon->display }}</option>
                         @endforeach
                     </select>
                 </div>
