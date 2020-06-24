@@ -8,11 +8,11 @@ use Exception;
 
 /**
 * Delivers monthly budget data for a user
-* 
+*
 * @category Action
-* 
+*
 * @author Alex Caloggero
-* 
+*
 */
 
 class GetBudget
@@ -25,16 +25,16 @@ class GetBudget
     *
     * @param User    user
     * @param integer year
-    * @param string  period (month)
+    * @param string  month
     */
-    public function __construct($user, $year = null, $period = null)
+    public function __construct($user, $year = null, $month = null)
     {
         try {
             $date = $year ?? date('Y');
-            $period = $period ?? date('F');
+            $month = $month ?? date('F');
             $budget = Budget::where([
                 ['year', '=', $date],
-                ['period', '=', $period],
+                ['month', '=', $month],
                 ['user_id', '=', $user->id]
             ])
             ->orderBy('category')
@@ -47,7 +47,7 @@ class GetBudget
 
     /**
     * Safely delivers the necessary budget data to a GetBudget request
-    * 
+    *
     * @param App\Budget budget
     */
     protected function get_safe_budget($budget)
@@ -62,7 +62,7 @@ class GetBudget
                     'planned' => $row->planned,
                     'actual' => $row->actual,
                     'year' => $row->year,
-                    'period' => $row->period
+                    'month' => $row->monthly
                 ];
                 $safe_budget[] = $new_row;
             }

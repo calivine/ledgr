@@ -40,22 +40,22 @@ class BudgetController extends Controller
             $iconsDisplay[] = $icon->text;
         }
         $iconsdisplay = array_map('Str::studly', $iconsDisplay);
-        Log::info($iconsdisplay);
+        // Log::info($iconsdisplay);
 
-        $response = new BudgetSheet(Auth::user()->id);
+        $response = new BudgetSheet(Auth::id());
 
         // If Budget sheet doesn't exist, create a new one.
         if (sizeof($response->budget) == 0)
         {
             new StoreBudget(Auth::user());
-            $response = new BudgetSheet(Auth::user()->id);
+            $response = new BudgetSheet(Auth::id());
         }
 
         $budget_period = date('F') . " " . date('Y');
 
         return view('budget.index')->with([
             'budget' => $response->budget,
-            'period' => $budget_period,
+            'month' => $budget_period,
             'icons' => $icons
         ]);
     }

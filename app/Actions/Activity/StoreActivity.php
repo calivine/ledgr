@@ -29,7 +29,7 @@ class StoreActivity
         // Get Budget Category To Associate w/ Activity
         $budget = Budget::where([
             ['year', '=', $year],
-            ['period', '=', $month],
+            ['month', '=', $month],
             ['user_id', '=', $user->id],
             ['category', '=', $category]
         ])->first();
@@ -41,7 +41,7 @@ class StoreActivity
             new StoreBudget($user, $month, $year);
             $budget = Budget::where([
                 ['year', '=', $year],
-                ['period', '=', $month],
+                ['month', '=', $month],
                 ['user_id', '=', $user->id],
                 ['category', '=', $category]
             ])

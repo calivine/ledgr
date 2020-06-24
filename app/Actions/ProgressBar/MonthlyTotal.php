@@ -98,7 +98,7 @@ class MonthlyTotal
                     'planned' => $row['planned'],
                     'actual' => $row['actual'],
                     'year' => $row['year'],
-                    'period' => $row['period']
+                    'month' => $row['month']
                 ];
                 $safe_budget[] = $new_row;
             }

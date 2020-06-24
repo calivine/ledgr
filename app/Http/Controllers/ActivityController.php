@@ -136,7 +136,7 @@ class ActivityController extends Controller
            $user_id = Auth::id();
            $transactions = User::where('id', $user_id)
                                  ->select('id')
-                                 ->with('activities.budget:id,planned,actual,category,icon,period,year,user_id')
+                                 ->with('activities.budget:id,planned,actual,category,icon,month,year,user_id')
                                  ->first();
 
            return view('activity.transactions')->with([

@@ -20,7 +20,7 @@ class BudgetTableSeeder extends Seeder
 
             $new_budget->category = $budget['category'];
             $new_budget->year = $budget['year'];
-            $new_budget->period = $budget['period'];
+            $new_budget->month = $budget['period'];
 
             $new_budget->save();
         }

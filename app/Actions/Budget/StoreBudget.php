@@ -40,7 +40,8 @@ class StoreBudget
                 $new_budget = new Budget;
                 $new_budget->category = $budget->category;
                 $new_budget->year = $year;
-                $new_budget->period = $this_month;
+                $new_budget->month = $this_month;
+                $new_budget->period = $this_month . ' ' . $year;
                 $new_budget->planned = $budget->planned;
                 $new_budget->icon = $budget->icon;
 
@@ -51,8 +52,9 @@ class StoreBudget
                     'id' => $new_budget->id,
                     'category' => $new_budget->category,
                     'planned' => $new_budget->planned,
-                    'period' => $new_budget->period,
+                    'month' => $new_budget->month,
                     'year' => $new_budget->year,
+                    'period' => $new_budget->period,
                     'actual' => 0,
                     'icon' => $new_budget->icon
                 ];
@@ -72,7 +74,8 @@ class StoreBudget
 
                 $new_budget->category = $budget['category'];
                 $new_budget->year = $year;
-                $new_budget->period = $this_month;
+                $new_budget->month = $this_month;
+                $new_budget->period = $this_month . ' ' . $year;
                 $new_budget->icon = $budget['icon'];
 
                 $new_budget->user()->associate($new_user);
@@ -82,7 +85,7 @@ class StoreBudget
                     'id' => $new_budget->id,
                     'category' => $new_budget->category,
                     'planned' => $new_budget->planned,
-                    'period' => $new_budget->period,
+                    'month' => $new_budget->month,
                     'year' => $new_budget->year,
                     'actual' => 0,
                     'icon' => $new_budget->icon

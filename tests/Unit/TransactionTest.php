@@ -56,13 +56,25 @@ class TransactionTest extends TestCase
         ]);
         $response->assertStatus(200);
 
+        $response = $this->actingAs($user)
+        //->withSession(['user' => 'acali'])
+        ->withHeaders([
+            'X-Header' => 'Value',
+        ])->json('POST', '/transaction', [
+            'description' => 'ATM Fee',
+            'amount' => '3.99',
+            'category' => 'Fees',
+            'transaction_date' => '2020-05-11'
+        ]);
+        $response->assertStatus(200);
+
 
         $response = $this->actingAs($user)
         //->withSession(['user' => 'acali'])
         ->withHeaders([
             'X-Header' => 'Value',
         ])->json('POST', '/budget/icon/update', [
-            'id' => '310',
+            'id' => '1',
             'icon' => 'plus'
         ]);
         $response->assertStatus(200);
@@ -71,9 +83,19 @@ class TransactionTest extends TestCase
         ->withHeaders([
             'X-Header' => 'Value',
         ])->json('POST', '/budget/planned/update', [
-            'id' => '264',
+            'id' => '1',
             'new_value' => '110'
         ]);
+        $response->assertStatus(200);
+
+        $response = $this->actingAs($user)
+        ->get('/budget');
+
+        $response->assertStatus(200);
+
+        $response = $this->actingAs($user)
+        ->get('/dashboard');
+
         $response->assertStatus(200);
 
 

@@ -11667,6 +11667,10 @@ span#title-character.fade {
   overflow-y: scroll;
 }
 
+#trans-table table {
+  color: inherit !important;
+}
+
 .transaction-description,
 .transaction-amount {
   vertical-align: middle !important;

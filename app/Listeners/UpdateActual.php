@@ -37,7 +37,7 @@ class UpdateActual
         // Get and update the new budget category.
         $new_transaction_category = Budget::where([
             ['category', $event->new_category],
-            ['period', $activity->budget->period],
+            ['month', $activity->budget->month],
             ['year', $activity->budget->year],
             ['user_id', $user_id]
         ])->first();

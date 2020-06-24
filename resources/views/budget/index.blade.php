@@ -5,13 +5,13 @@
     @include('modules.modals.new-category-modal')
     @include('modules.modals.update-icon-modal', ['icons' => $icons])
     <div class="container-fluid">
-        <p class='ml-4'>{{ $period }}</p>
+        <p class="ml-4">{{ $month }}</p>
         <div class="row">
             <button class='btn btn-outline-dark' id='add-new-category'><i class="material-icons md-16">add</i>Add New Category</button>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <table id='budget-table' class='table'>
+                <table id="budget-table" class="table">
                     <thead>
                         <tr>
                             <th></th>

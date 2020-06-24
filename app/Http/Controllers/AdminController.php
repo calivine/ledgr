@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Activity;
+use App\Budget;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -35,6 +36,22 @@ class AdminController extends Controller
         foreach($json_data as $transaction) {
             Log::info($transaction);
             Log::info(decrypt($transaction));
+        }
+    }
+
+    function formatPeriodColumn()
+    {
+        $budgets = Budget::all();
+        foreach($budgets as $budget) {
+
+            if ($budget->period == '')
+            {
+                Log::info($budget->period);
+                $budget->period = $budget->month . ' ' . $budget->year;
+                Log::info($budget->period);
+                $budget->save();
+            }
+
         }
     }
 

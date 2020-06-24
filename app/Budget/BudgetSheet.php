@@ -28,7 +28,7 @@ class BudgetSheet
             /*
             $budgetSheet = Budget::where([
                 ['year', '=', $year ?? date('Y')],
-                ['period', '=', $month ?? date('F')],
+                ['month', '=', $month ?? date('F')],
                 ['user_id', '=', $user_id]
             ])
             ->orderBy('category')
@@ -37,7 +37,7 @@ class BudgetSheet
             $budgetSheet = DB::table('budgets')
                                     ->where([
                                         ['year', '=', $year ?? date('Y')],
-                                        ['period', '=', $month ?? date('F')],
+                                        ['month', '=', $month ?? date('F')],
                                         ['user_id', '=', $user_id]
                                     ])
                                     ->select('id',
@@ -46,7 +46,7 @@ class BudgetSheet
                                              'planned',
                                              'actual',
                                              'year',
-                                             'period')
+                                             'month')
                                     ->orderBy('category')
                                     ->get()
                                     ->toArray();

@@ -59,6 +59,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     # GET Read Database Snapshot
     Route::get('/readSnapshot', 'AdminController@readBackupTables');
+
+    # GET Budget Column Format
+    Route::get('/formatBudget', 'AdminController@formatPeriodColumn');
 });
 
 // Authentication Routes

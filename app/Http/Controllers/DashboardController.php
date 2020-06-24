@@ -34,6 +34,27 @@ class DashboardController extends Controller
 
         Log::info(now() . ': User: ' . $id . ' entered the Dashboard');
 
+        $budgets = Budget::where([
+            ['user_id', $id],
+            ['actual', '>', 0]
+        ])->get();
+        Log::debug(gettype($budgets));
+        $grouped_budgets = $budgets->groupBy('period');
+        $grouped_budgets = collect($grouped_budgets);
+        Log::debug(gettype($grouped_budgets));
+        Log::info($budgets->sum('actual'));
+        $budget_sum = $grouped_budgets->sum('period.actual');
+        $budgets = $grouped_budgets->toArray();
+
+        Log::info($budgets);
+        Log::info($grouped_budgets);
+        Log::info($budget_sum);
+        /*
+        foreach($budgets as $budget) {
+            Log::info($budget->actual . ' of ' . $budget->planned);
+        }*/
+
+
         // Get Current Month's Budget.
         $budget = new BudgetSheet($id);
 
@@ -69,7 +90,7 @@ class DashboardController extends Controller
 
 
         // Pull Transactions For The Current Period
-        $transactions = Activity::with('budget:id,category,planned,actual,year,period,user_id,icon')
+        $transactions = Activity::with('budget:id,category,planned,actual,year,month,user_id,icon')
             ->whereBetween('date', [$dates['month_start'], $dates['month_end']])
             ->where('user_id', $id)
             ->orderBy('date', 'desc')
@@ -92,7 +113,36 @@ class DashboardController extends Controller
             'category_form_labels' => $category_form_labels,
             'dates' => $dates,
             'monthly_total_bar' => $progress_bars->rda['monthly_total'],
-            'transactions' => $transactions
+            'transactions' => $transactions,
+            'theme' => 'dark-mode'
         ]);
+    }
+
+    /**
+    * GET
+    *
+    * get user's Activity and Budget
+    * history for analysis.
+    */
+    public function getHistory()
+    {
+        // Set Timezone.
+        date_default_timezone_set('America/New_York');
+
+        // Retrieve User
+        $id = Auth::id();
+
+        Log::info(now() . ': User: ' . $id . ' is retrieving their spending history');
+
+        $budget = Budget::where('user_id', $id)->get();
+        $budget = $budget->filter(function ($value, $key) {
+                return $value > 0;
+        });
+        Log::info($budget);
+        // Get table of monthly spending totals.
+        // key = month; value = total spent.
+        // table name is the year it represents.
+
+
     }
 }

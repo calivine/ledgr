@@ -31,7 +31,7 @@ class UpdateActual
         // Update Actual Budget Value
         $budget = Budget::where([
             ['category', $new_category],
-            ['period', date('F')],
+            ['month', date('F')],
             ['year', date('Y')],
             ['user_id', $user_id]
         ])->first();
@@ -48,7 +48,7 @@ class UpdateActual
         {
             $budget = Budget::where([
                 ['category', $old_category],
-                ['period', date('F')],
+                ['month', date('F')],
                 ['year', date('Y')],
                 ['user_id', $user_id]
             ])->first();
