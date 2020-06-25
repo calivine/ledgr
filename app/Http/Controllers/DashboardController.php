@@ -33,22 +33,20 @@ class DashboardController extends Controller
         $id = Auth::id();
 
         Log::info(now() . ': User: ' . $id . ' entered the Dashboard');
+        $budget_history = [];
 
         $budgets = Budget::where([
             ['user_id', $id],
             ['actual', '>', 0]
         ])->get();
-        Log::debug(gettype($budgets));
         $grouped_budgets = $budgets->groupBy('period');
-        $grouped_budgets = collect($grouped_budgets);
-        Log::debug(gettype($grouped_budgets));
-        Log::info($budgets->sum('actual'));
-        $budget_sum = $grouped_budgets->sum('period.actual');
-        $budgets = $grouped_budgets->toArray();
 
-        Log::info($budgets);
-        Log::info($grouped_budgets);
-        Log::info($budget_sum);
+        $index = 0;
+        foreach($grouped_budgets as $budget) {
+            $budget_history[$grouped_budgets->keys()[$index]] = $budget->sum('actual');
+            $index++;
+        }
+        Log::info($budget_history);
         /*
         foreach($budgets as $budget) {
             Log::info($budget->actual . ' of ' . $budget->planned);
@@ -61,7 +59,7 @@ class DashboardController extends Controller
         // Get data for pie chart.
         $chart_data = $budget->get_chart_data();
 
-        Log::info($chart_data['labels']);
+
 
         // Gets Total Monthly Spending data for progress bar.
         $progress_bars = new MonthlyTotal($budget->budget);
@@ -70,7 +68,7 @@ class DashboardController extends Controller
         // Fetch labels for New Transaction Form.
         $category_form_labels = get_labels($budget->budget);
         // $chart_data['labels'] = get_labels($budget->budget, True);
-        Log::info($chart_data['labels']);
+
         if (empty($category_form_labels))
         {
             $json = file_get_contents(database_path('budget.json'));
@@ -104,7 +102,7 @@ class DashboardController extends Controller
             $transaction->amount = number_format($transaction->amount, 2);
         }
 
-        Log::info($transactions);
+        
 
         return view('dash.dashboard')->with([
             'actuals' => $chart_data['actuals'],
