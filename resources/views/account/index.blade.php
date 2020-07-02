@@ -39,4 +39,20 @@
             @endif
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6 offset-md-4">
+            <p>Change the site's theme:</p>
+            <form class="" action="{{ route('changeTheme') }}" method="POST">
+                @csrf
+                {{ method_field('PUT')}}
+                <input type="radio" id="light" name="theme" value="light" selected>
+                <label for="light">Light Theme</label>
+                <input type="radio" id="dark" name="theme" value="dark">
+                <label for="dark">Dark Theme</label>
+                <button class="btn btn-outline-primary btn-block" id="theme-submit" type="submit">Save</button>
+            </form>
+        </div>
+
+
+    </div>
 @endsection

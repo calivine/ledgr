@@ -27,4 +27,21 @@ class UserController extends Controller
 
 
     }
+
+
+    /*
+     * PUT
+     * /account/theme/update
+     * Update site's theme
+     */
+
+     public function updateTheme(Request $request)
+     {
+         $user = Auth::user();
+         $user->theme = $request->input('theme');
+         $user->save();
+
+         return redirect()->route('account')->with(['alert' => 'Settings Saved.']);
+
+     }
 }

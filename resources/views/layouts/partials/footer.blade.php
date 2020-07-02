@@ -5,4 +5,3 @@
         <p class="float-right mr-1"><a href="#">Back to top</a></p>
     </div>
 </footer>
-

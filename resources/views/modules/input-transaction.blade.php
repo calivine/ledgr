@@ -2,19 +2,19 @@
     <div class='form-group'>
         <div class='col-lg'>
             <label for='amount-input'>Amount $</label>
-            <input type='number' step='0.01' class='manual-input' id='amount-input' required name='amount'>
+            <input type='number' step='0.01' class='manual-input {{ $theme }}' id='amount-input' required name='amount'>
         </div>
     </div>
     <div class='form-group'>
         <div class='col-lg'>
             <label for='description-input'>Transaction Description</label>
-            <input type='text' class='manual-input' name='description' id='description-input' required>
+            <input type='text' class='manual-input {{ $theme }}' name='description' id='description-input' required>
         </div>
     </div>
     <div class='form-group'>
         <div class='col-lg'>
             <label for='manual-select-category'>Budget Category</label>
-            <select name='category' id='manual-select-category' required class='manual-input'>
+            <select name='category' id='manual-select-category' required class='manual-input {{ $theme }}'>
                 <option value=''>Select</option>
                 @foreach($labels as $category)
                     <option value='{{ $category }}'>{{ $category }}</option>
@@ -25,7 +25,7 @@
     <div class='form-group'>
         <div class='col-lg'>
             <label for='transaction-date-input'>Transaction Date</label>
-            <input type='date' class='manual-input' id='transaction-date-input' placeholder='YYYY-MM-DD' required name='transaction_date' value='{{ date('Y-m-d') }}'>
+            <input type='date' class='manual-input {{ $theme }}' id='transaction-date-input' placeholder='YYYY-MM-DD' required name='transaction_date' value='{{ date('Y-m-d') }}'>
         </div>
     </div>
     <div class='form-group'>

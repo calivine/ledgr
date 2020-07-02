@@ -5,9 +5,9 @@
 <head>
     @include('layouts.partials.head')
 </head>
-<body>
+<body class="{{ auth::check() ? auth::user()->theme : '' }}">
 @if(session('alert'))
-    <div class='alert-success'>
+    <div class="alert-success">
         {{ session('alert') }}
     </div>
 @endif

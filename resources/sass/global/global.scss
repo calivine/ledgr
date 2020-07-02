@@ -62,9 +62,23 @@ footer {
     margin-bottom: 1.5rem !important;
 }
 
-.dark-mode {
+.dark {
     background-color: rgb(28,31,43) !important;
-    color: rgb(188,201,218) !important;
+    color: rgb(188,201,218);
+}
+
+div.progress.dark {
+    background-color: rgb(188,201,218) !important;
+}
+
+div.modal-content.dark {
+    background-color: rgb(28,31,43) !important;
+    color: inherit;
+}
+
+input.manual-input.dark {
+    background-color: rgb(188,201,218) !important;
+    color: black;
 }
 
 .chart-container {

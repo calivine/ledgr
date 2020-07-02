@@ -52,7 +52,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/income', 'IncomeController@storeIncome');
 
     # GET Account Settings
-    Route::get('/account', 'UserController@displayAccount');
+    Route::get('/account', 'UserController@displayAccount')->name('account');
+
+    # UPDATE Site theme
+    Route::put('/account/theme/update', 'UserController@updateTheme')->name('changeTheme');
 
     # GET Database Snapshot
     Route::get('/snapshot', 'AdminController@backupTables');

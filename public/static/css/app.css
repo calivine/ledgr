@@ -11422,9 +11422,23 @@ footer {
   margin-bottom: 1.5rem !important;
 }
 
-.dark-mode {
+.dark {
   background-color: #1c1f2b !important;
-  color: #bcc9da !important;
+  color: #bcc9da;
+}
+
+div.progress.dark {
+  background-color: #bcc9da !important;
+}
+
+div.modal-content.dark {
+  background-color: #1c1f2b !important;
+  color: inherit;
+}
+
+input.manual-input.dark {
+  background-color: #bcc9da !important;
+  color: black;
 }
 
 .chart-container {

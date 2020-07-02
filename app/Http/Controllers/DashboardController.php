@@ -30,7 +30,10 @@ class DashboardController extends Controller
         date_default_timezone_set('America/New_York');
 
         // Retrieve User
-        $id = Auth::id();
+        $user = Auth::user();
+        $id = $user->id;
+        $theme = $user->theme;
+        Log::debug($theme);
 
         Log::info(now() . ': User: ' . $id . ' entered the Dashboard');
         $budget_history = [];
@@ -102,6 +105,10 @@ class DashboardController extends Controller
             $transaction->amount = number_format($transaction->amount, 2);
         }
 
+        if ($theme != 'dark')
+        {
+            $theme = '';
+        }
         
 
         return view('dash.dashboard')->with([
@@ -112,7 +119,7 @@ class DashboardController extends Controller
             'dates' => $dates,
             'monthly_total_bar' => $progress_bars->rda['monthly_total'],
             'transactions' => $transactions,
-            'theme' => 'dark-mode'
+            'theme' => $theme
         ]);
     }
 
