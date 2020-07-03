@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <p class="ml-4">{{ $month }}</p>
         <div class="row">
-            <button class='btn btn-outline-dark' id='add-new-category'><i class="material-icons md-16">add</i>Add New Category</button>
+            <button class='btn btn-dark' id='add-new-category'><i class="material-icons md-16">add</i>Add New Category</button>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-8">

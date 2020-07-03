@@ -45,9 +45,9 @@
             <form class="" action="{{ route('changeTheme') }}" method="POST">
                 @csrf
                 {{ method_field('PUT')}}
-                <input type="radio" id="light" name="theme" value="light" selected>
+                <input type="radio" id="light" name="theme" value="light" {{ auth::user()->theme == 'light' ? 'checked' : '' }}>
                 <label for="light">Light Theme</label>
-                <input type="radio" id="dark" name="theme" value="dark">
+                <input type="radio" id="dark" name="theme" value="dark" {{ auth::user()->theme == 'dark' ? 'checked' : '' }}>
                 <label for="dark">Dark Theme</label>
                 <button class="btn btn-outline-primary btn-block" id="theme-submit" type="submit">Save</button>
             </form>

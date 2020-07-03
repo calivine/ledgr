@@ -11691,6 +11691,7 @@ span#title-character.fade {
 }
 
 table#budget-table {
+  color: inherit;
   margin: 0 auto;
 }
 
