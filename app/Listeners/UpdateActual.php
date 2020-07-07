@@ -32,11 +32,15 @@ class UpdateActual
         Log::info('Updating: ');
         Log::info($activity);
         $activity->category = $event->new_category;
-        Log::info($activity->budget->actual);
-        Log::info($activity->amount);
-        $activity->budget->actual -= $activity->amount;
-        Log::info($activity->budget->actual);
+        Log::debug($activity->budget->actual);
+        Log::debug($activity->amount);
+        if ($activity->budget->actual >= $activity->amount) {
+            $activity->budget->actual -= $activity->amount;
+        }
+        
+        Log::debug($activity->budget->actual);
         $activity->budget->save();
+        Log::debug($event->new_category);
         // Get and update the new budget category.
         $new_transaction_category = Budget::where([
             ['category', $event->new_category],
@@ -44,6 +48,7 @@ class UpdateActual
             ['year', $activity->budget->year],
             ['user_id', $user_id]
         ])->first();
+        Log::debug($new_transaction_category);
         $new_transaction_category->actual += $activity->amount;
         $new_transaction_category->save();
         $activity->budget()->dissociate();

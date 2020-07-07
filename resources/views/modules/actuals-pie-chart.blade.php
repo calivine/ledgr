@@ -41,7 +41,7 @@
         'rgba(0, 191, 255, 1)',
         'rgba(255, 34, 172, 1)',
     ];
-
+    let category_labels_array = toArray('{!! json_encode($category_form_labels) !!}');
     let labels_array = toArray('{!! json_encode($categories) !!}');
 
     let data_array = toArray('{!! json_encode($actuals) !!}', labels=false);

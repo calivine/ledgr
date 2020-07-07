@@ -70,6 +70,7 @@ class DashboardController extends Controller
 
         // Fetch labels for New Transaction Form.
         $category_form_labels = get_labels($budget->budget);
+        Log::debug($category_form_labels);
         // $chart_data['labels'] = get_labels($budget->budget, True);
 
         if (empty($category_form_labels))
@@ -109,7 +110,7 @@ class DashboardController extends Controller
         {
             $theme = '';
         }
-        
+
 
         return view('dash.dashboard')->with([
             'actuals' => $chart_data['actuals'],
