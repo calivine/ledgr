@@ -11676,13 +11676,13 @@ span#title-character.fade {
   margin-right: auto !important;
 }
 
+table {
+  color: inherit !important;
+}
+
 #trans-table {
   max-height: 350px;
   overflow-y: scroll;
-}
-
-#trans-table table {
-  color: inherit !important;
 }
 
 .transaction-description,

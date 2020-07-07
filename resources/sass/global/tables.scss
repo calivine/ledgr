@@ -20,13 +20,13 @@
   }
 }
 
+table {
+    color: inherit !important;
+}
+
 #trans-table {
     max-height: 350px;
     overflow-y: scroll;
-
-    table {
-        color: inherit !important;
-    }
 }
 
 .transaction-description, .transaction-amount {
