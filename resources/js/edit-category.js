@@ -16,6 +16,8 @@ $(function () {
                 $(this).parent().hide();
             });
             $('button.category-edit-submit').bind('click', function () {
+                console.log($(this).prev());
+                
                 $.post('/transaction/category/update', {
                     update_name: $(this).prev().val(),
                     id: $(this).prev().attr('id')

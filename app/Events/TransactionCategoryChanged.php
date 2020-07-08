@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Support\Facades\Log;
 
 class TransactionCategoryChanged
 {
@@ -38,5 +39,6 @@ class TransactionCategoryChanged
         $this->id = $id;
         $this->new_category = $new_category;
         $this->user = $user;
+        Log::info($new_category);
     }
 }

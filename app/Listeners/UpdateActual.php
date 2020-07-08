@@ -31,13 +31,15 @@ class UpdateActual
         $activity = Activity::where('id', $event->id)->with('budget')->first();
         Log::info('Updating: ');
         Log::info($activity);
+        Log::debug($event->new_category);
+        Log::debug($activity->category);
         $activity->category = $event->new_category;
         Log::debug($activity->budget->actual);
         Log::debug($activity->amount);
         if ($activity->budget->actual >= $activity->amount) {
             $activity->budget->actual -= $activity->amount;
         }
-        
+
         Log::debug($activity->budget->actual);
         $activity->budget->save();
         Log::debug($event->new_category);
