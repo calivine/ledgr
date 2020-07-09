@@ -49,7 +49,7 @@ class DashboardController extends Controller
             $budget_history[$grouped_budgets->keys()[$index]] = $budget->sum('actual');
             $index++;
         }
-        Log::info($budget_history);
+        Log::info(implode("\n", $budget_history));
         /*
         foreach($budgets as $budget) {
             Log::info($budget->actual . ' of ' . $budget->planned);
@@ -70,7 +70,9 @@ class DashboardController extends Controller
 
         // Fetch labels for New Transaction Form.
         $category_form_labels = get_labels($budget->budget);
-        Log::debug($category_form_labels);
+
+        Log::info(implode("\n", $category_form_labels));
+
         // $chart_data['labels'] = get_labels($budget->budget, True);
 
         if (empty($category_form_labels))
@@ -106,12 +108,6 @@ class DashboardController extends Controller
             $transaction->amount = number_format($transaction->amount, 2);
         }
 
-        if ($theme != 'dark')
-        {
-            $theme = '';
-        }
-
-
         return view('dash.dashboard')->with([
             'actuals' => $chart_data['actuals'],
             'budget_totals_bars' => $progress_bars->rda['budget_totals'],
@@ -120,7 +116,7 @@ class DashboardController extends Controller
             'dates' => $dates,
             'monthly_total_bar' => $progress_bars->rda['monthly_total'],
             'transactions' => $transactions,
-            'theme' => $theme
+            'theme' => $theme != 'dark' ? '' : 'dark'
         ]);
     }
 

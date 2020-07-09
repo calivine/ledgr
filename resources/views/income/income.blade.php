@@ -2,7 +2,7 @@
 
 
 @section('content');
-    <div class="container-fluid bg-light shadow">
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <form method="POST" action="{{ '/income' }}">
                 {{ csrf_field() }}
