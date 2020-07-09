@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Budget\DestroyBudget;
 use App\Actions\Budget\StoreBudget;
 use App\Actions\Budget\StoreCategory;
 use App\Actions\Budget\UpdatePlanned;
@@ -161,5 +162,33 @@ class BudgetController extends Controller
         return redirect(route('dashboard'));
 
     }
+
+
+    /**
+     * GET
+     * /budget/{id}/delete
+     * Display confirm budget delete page.
+     */
+     public function deleteBudget($id)
+     {
+          return view('budget.delete')->with([
+              'id' => $id
+          ]);
+     }
+
+
+     /**
+      * POST
+      * /transaction/{id}/destroy
+      * Delete transaction.
+      */
+      public function destroyBudget($id)
+      {
+          new DestroyBudget($id);
+
+          return redirect()->route('budget')->with(['alert' => 'Budget Category Was Deleted']);
+
+      }
+
 
 }

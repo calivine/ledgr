@@ -21,6 +21,7 @@ class StoreCategory
         $category->planned = $new_planned_budget;
         $category->year = date('Y');
         $category->month = date('F');
+        $category->period = date('F') . ' ' . date('Y');
         $category->user()->associate($user);
 
         $category->save();

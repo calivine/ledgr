@@ -37,6 +37,10 @@ Route::group(['middleware' => 'auth'], function() {
     # UPDATE Budget Icon
     Route::post('/budget/icon/update', 'BudgetController@updateIcon');
 
+    # DELETE Budget Category
+    Route::get('/budget/{id}/delete', 'BudgetController@deleteBudget');
+    Route::delete('/budget/{id}/destroy', 'BudgetController@destroyBudget');
+
     # UPDATE Transaction Category
     Route::post('/transaction/category/update', 'ActivityController@updateCategory');
 
