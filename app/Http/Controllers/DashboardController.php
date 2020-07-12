@@ -7,6 +7,7 @@ use App\Budget;
 use App\Actions\Budget\GetActuals;
 use App\Actions\ProgressBar\MonthlyTotal;
 use App\Budget\BudgetSheet;
+use App\Charts\Chart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -33,7 +34,6 @@ class DashboardController extends Controller
         $user = Auth::user();
         $id = $user->id;
         $theme = $user->theme;
-        Log::debug($theme);
 
         Log::info(now() . ': User: ' . $id . ' entered the Dashboard');
         $budget_history = [];
@@ -42,27 +42,19 @@ class DashboardController extends Controller
             ['user_id', $id],
             ['actual', '>', 0]
         ])->get();
-        $grouped_budgets = $budgets->groupBy('period');
 
-        $index = 0;
-        foreach($grouped_budgets as $budget) {
-            $budget_history[$grouped_budgets->keys()[$index]] = $budget->sum('actual');
-            $index++;
-        }
-        Log::info(implode("\n", $budget_history));
-        /*
-        foreach($budgets as $budget) {
-            Log::info($budget->actual . ' of ' . $budget->planned);
-        }*/
+        $line_chart = new Chart('line', $budgets);
+        
 
 
         // Get Current Month's Budget.
         $budget = new BudgetSheet($id);
 
         // Get data for pie chart.
-        $chart_data = $budget->get_chart_data();
+        // $chart_data = $budget->get_chart_data();
 
-
+        $test = new Chart("pie", $budget->budget);
+        $chart_data = $test->chart;
 
         // Gets Total Monthly Spending data for progress bar.
         $progress_bars = new MonthlyTotal($budget->budget);
