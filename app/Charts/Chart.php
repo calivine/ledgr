@@ -76,17 +76,33 @@ class Chart
 
     protected function line()
     {
+
         $budget_history = [];
-        $grouped_budgets = $this->data->groupBy('period');
+        $grouped_budgets = $this->data->groupBy('month');
         $index = 0;
-        
+
+        $grouped_budgets_array = $grouped_budgets->toArray();
+
         foreach($grouped_budgets as $budget) {
-            $budget_history[$grouped_budgets->keys()[$index]] = $budget->sum('actual');
+            $budget_history[array_keys($grouped_budgets_array)[$index]] = $budget->sum('actual');
             $index++;
+
+        }
+        $budget_history_int = [];
+        foreach($budget_history as $key => $budget) {
+
+            $budget_history_int[date_parse($key)['month']] = $budget;
+        }
+
+        ksort($budget_history_int);
+
+        $sorted_budget = [];
+        foreach($budget_history_int as $key => $budget) {
+            $sorted_budget[date('F', mktime(0,0,0, $key))] = $budget;
         }
         $data = [];
-        $data['labels'] = array_keys($budget_history);
-        $data['actuals'] = array_values($budget_history);
+        $data['labels'] = array_keys($sorted_budget);
+        $data['actuals'] = array_values($sorted_budget);
         return $data;
     }
 

@@ -36,13 +36,19 @@ class DashboardController extends Controller
         $theme = $user->theme;
 
         Log::info(now() . ': User: ' . $id . ' entered the Dashboard');
-        $budget_history = [];
 
         $budgets = Budget::where([
             ['user_id', $id],
-            ['actual', '>', 0]
+            ['actual', '>', 0],
+            ['year', '=', date('Y')]
         ])->get();
 
+
+        foreach($budgets as $budget) {
+
+            $month_int = date_parse($budget['month'])['month'];
+            $month_name = date('F', mktime(0,0,0, $month_int));
+        }
         $line_chart = new Chart('line', $budgets);
         
 
@@ -108,7 +114,9 @@ class DashboardController extends Controller
             'dates' => $dates,
             'monthly_total_bar' => $progress_bars->rda['monthly_total'],
             'transactions' => $transactions,
-            'theme' => $theme != 'dark' ? '' : 'dark'
+            'theme' => $theme != 'dark' ? '' : 'dark',
+            'line_chart_labels' => $line_chart->chart['labels'],
+            'line_chart_data' => $line_chart->chart['actuals']
         ]);
     }
 
