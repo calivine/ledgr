@@ -16,6 +16,7 @@
         return str;
     }
     let label_array = toArray('{!! json_encode($line_chart_labels) !!}');
+
     let line_data_array = toArray('{!! json_encode($line_chart_data) !!}', labels=false);
 
     let ltx = document.getElementById('lineChart').getContext('2d');
@@ -25,8 +26,15 @@
         data: {
             labels: label_array,
             datasets: [{
+                backgroundColor: '#25f5a6',
+                borderColor: '#25f5a6',
                 data: line_data_array
             }]
+        },
+        options: {
+            legend: {
+                display: false
+            }
         }
     });
 
