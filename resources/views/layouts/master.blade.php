@@ -8,7 +8,7 @@
 <body class="{{ auth::check() ? auth::user()->theme : '' }}">
 @if(session('alert'))
     <div class="alert-success">
-        {{ session('alert') }}
+        <span class="alert-text">{{ session('alert') }}</span>
     </div>
 @endif
 <!-- Navbar -->

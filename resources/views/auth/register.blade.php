@@ -17,7 +17,7 @@
                             <label for="name" class="text-md-right">{{ __('Name') }}</label>
 
 
-                            <input id="name" type="text" class="form-control w-50 @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label for="email" class="text-md-right">{{ __('E-Mail Address') }}</label>
 
-                            <input id="email" type="email" class="form-control w-50 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -48,7 +48,7 @@
                                 </ul>
                             </div>
 
-                            <input id="password" type="password" class="form-control w-50 @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -60,11 +60,11 @@
                             <label for="password-confirm" class="text-md-right">{{ __('Confirm Password') }}</label>
 
 
-                            <input id="password-confirm" type="password" class="form-control w-50" name="password_confirmation" required autocomplete="new-password">
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary btn-block">
                                     {{ __('Register') }}
                                 </button>

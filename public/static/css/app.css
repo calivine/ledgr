@@ -11467,6 +11467,15 @@ input.manual-input.dark {
   margin-right: inherit;
 }
 
+.alert-success {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.alert-success .alert-text {
+  margin: 0 auto;
+}
+
 /**
  * Forms
  */
