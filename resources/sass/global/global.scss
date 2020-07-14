@@ -14,6 +14,14 @@ footer {
   line-height: 20px; /* Vertically center the text there */
 }
 
+.page-container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .md-20 {
     font-size: 20px;
 }
@@ -38,29 +46,7 @@ footer {
     font-size: 0.5rem;
 }
 
-.dashboard-row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-    justify-content: center !important;
-}
 
-.dashboard-date {
-    text-align: left !important;
-    width: 50% !important;
-    display: inline-block !important;
-}
-
-.dashboard-remaining {
-    float: right !important;
-    display: inline-block !important;
-}
-
-.total-spending {
-    margin-top: 1.5rem !important;
-    margin-bottom: 1.5rem !important;
-}
 
 .dark {
     background-color: rgb(28,31,43) !important;
@@ -79,12 +65,4 @@ div.modal-content.dark {
 input.manual-input.dark {
     background-color: rgb(188,201,218) !important;
     color: black;
-}
-
-.chart-container {
-    position: relative;
-    height: 45vh;
-    width: 45vw;
-    margin-bottom: 0 !important;
-    padding-bottom: 0rem !important;
 }

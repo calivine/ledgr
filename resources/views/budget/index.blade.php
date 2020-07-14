@@ -4,7 +4,7 @@
     @include('modules.modals.update-planned-modal')
     @include('modules.modals.new-category-modal')
     @include('modules.modals.update-icon-modal', ['icons' => $icons])
-    <div class="container-fluid">
+    <div class="page-container">
         <p class="ml-4">{{ $month }}</p>
         <div class="row">
             <button class="btn btn-dark" id="add-new-category"><i class="material-icons md-16">add</i>Add New Category</button>
