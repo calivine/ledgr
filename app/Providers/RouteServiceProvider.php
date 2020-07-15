@@ -39,6 +39,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapBudgetRoutes();
+
         //
     }
 
@@ -70,4 +72,16 @@ class RouteServiceProvider extends ServiceProvider
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
     }
+
+    /**
+     * Budget routes for the application
+     * Receives same middleware, session state, CSRF protection as Web routes.
+     */
+     protected function mapBudgetRoutes()
+     {
+         Route::middleware('web')
+              ->namespace($this->namespace)
+              ->group(base_path('routes/budget.php'));
+
+     }
 }

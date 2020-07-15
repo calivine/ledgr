@@ -39,8 +39,16 @@ class ActivityController extends Controller
             'transaction_date' => 'required|date|regex:/[0-9]{4}-[0-9]{2}-[0-9]{2}/'
         ]);
 
+        // Get input values from form
+        $description = $request->input('description');
+        $amount = $request->input('amount');
+        $category = $request->input('category');
+        $date = $request->input('transaction_date');
+
+        $user = $request->user();
+
         // Save New Transaction
-        $activity = new StoreActivity($request);
+        $activity = new StoreActivity($date, $amount, $description, $category, $user);
 
         $new_transaction = [
             'date' => date_to_string($activity->rda['date']),
@@ -143,4 +151,28 @@ class ActivityController extends Controller
                'transactions' => $transactions->activities
            ]);
        }
+
+
+       /**
+        * POST
+        * /transaction/save/all
+        * Mass save group of transactions
+        */
+        public function storeTransactions(Request $request)
+        {
+            $user = $request->user();
+            $transaction = $request->all();
+
+            $row = 0;
+            $row_count = ((count($transaction)-2)/4);
+
+            while($row < $row_count) {
+                $amount = $transaction['amount' . $row];
+                $description = $transaction['description' . $row];
+                $category = $transaction['category' . $row];
+                new StoreActivity($transaction['date' . $row], $amount, $description, $category, $user);
+                $row++;
+            }
+            return redirect()->route('dashboard')->with(['alert' => 'Transactions Saved']);
+        }
 }

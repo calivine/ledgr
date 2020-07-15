@@ -8,24 +8,17 @@ use App\Actions\Budget\StoreBudget;
 use App\Budget;
 use App\Events\TransactionWasCreated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 
 
 class StoreActivity
 {
-    public function __construct(Request $request)
+    public function __construct($date, $amount, $description, $category, $user)
     {
-        // Get input values from form
-        $description = $request->input('description');
-        $amount = $request->input('amount');
-        $category = $request->input('category');
-        $date = $request->input('transaction_date');
-
         $year = date('Y', strtotime($date));
         $month = date('F', strtotime($date));
-
-        // Get User Object
-        $user = $request->user();
-
+        Log::info($year . $month . $user->id . $category);
         // Get Budget Category To Associate w/ Activity
         $budget = Budget::where([
             ['year', '=', $year],
@@ -44,9 +37,9 @@ class StoreActivity
                 ['month', '=', $month],
                 ['user_id', '=', $user->id],
                 ['category', '=', $category]
-            ])
-            ->first();
+            ])->first();
         }
+        Log::info($budget);
 
 
         // Save Transaction To Activities Table

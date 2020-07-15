@@ -3,8 +3,10 @@
 @section('title', 'Dashboard | Ledgr')
 
 @section('content')
+    @include('modules.modals.layout-modal')
     @include('modules.modals.new-transaction-modal', ['labels' => $category_form_labels])
     <main id="dashboard-container" class="container-fluid {{ $theme }}">
+        <button type="button" name="button" data-toggle="modal" data-target="#modalLayout">Layout modal</button>
         <div class="dashboard-row">
             <div class="col-md-8">
                 <p class="dashboard-date">{{ $dates['todays_date'] }}</p><p class="dashboard-remaining">{{ $dates['days_remaining'] == 0 ? 'Last day of ' . date('F') : ($dates['days_remaining'] == 1 ? $dates['days_remaining'] . ' day left in ' . date('F') : $dates['days_remaining'] . ' days left in ' . date('F')) }}.</p>

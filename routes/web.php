@@ -21,25 +21,8 @@ Route::group(['middleware' => 'auth'], function() {
     # CREATE New Transaction
     Route::post('/transaction', 'ActivityController@storeTransaction');
 
-    # DISPLAY Budget Table
-    Route::get('/budget', 'BudgetController@index')->name('budget');
-
-    # DISPLAY New User Budget Table
-    Route::get('/budget/setup', 'BudgetController@newBudgetSetup');
-    Route::post('/budget/setup/new', 'BudgetController@budgetSetup')->name('setup');
-
-    # UPDATE Planned Budget Value
-    Route::post('/budget/planned/update', 'BudgetController@updatePlanned');
-
-    # CREATE New Budget Category
-    Route::post('/budget/category/new', 'BudgetController@createCategory')->name('category');
-
-    # UPDATE Budget Icon
-    Route::post('/budget/icon/update', 'BudgetController@updateIcon');
-
-    # DELETE Budget Category
-    Route::get('/budget/{id}/delete', 'BudgetController@deleteBudget');
-    Route::delete('/budget/{id}/destroy', 'BudgetController@destroyBudget');
+    # CREATE Mass Transactions
+    Route::post('/transaction/save/all', 'ActivityController@storeTransactions')->name('saveAllTransactions');
 
     # UPDATE Transaction Category
     Route::post('/transaction/category/update', 'ActivityController@updateCategory');
@@ -69,6 +52,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     # GET Budget Column Format
     Route::get('/formatBudget', 'AdminController@formatPeriodColumn');
+
+    # POST Upload CSV File
+    Route::post('/upload/csv', 'FileController@uploadCSV')->name('uploadCSV');
 });
 
 // Authentication Routes
