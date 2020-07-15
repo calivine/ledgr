@@ -1,3 +1,4 @@
+<button type="button" class="btn btn-link" id="toggle-csv-upload" data-toggle="modal" data-target="#modalLayout">Mass upload via csv</button>
 <fieldset class="shadow" id="manual-input-form">
     <div class="form-group">
         <div class="col-lg">

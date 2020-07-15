@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Returns array of only budget category names.
+ * If $chart is true, returns only category names of
+ * budget items with an actual value greater than zero.
+ */
 function get_labels($budget, $chart=false)
 {
     $categories = [];

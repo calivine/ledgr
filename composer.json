@@ -41,7 +41,8 @@
         },
         "files": [
             "app/Helpers/labels.php",
-            "app/Helpers/dates.php"
+            "app/Helpers/dates.php",
+            "app/Helpers/utilities.php"
         ],
         "classmap": [
             "database/seeds",

@@ -124,7 +124,11 @@ $('#toggle-style-change').on('click', function () {
     $('#collapseOne').addClass('dark-mode');
     $('body').addClass('dark-mode');
     $('.modal-content').addClass('dark-mode');
-})
+});
+
+$('#toggle-csv-upload').on('click', function() {
+    $('#modalCenter').modal('hide');
+});
 
 $('button#hide-api-token').hide();
 
