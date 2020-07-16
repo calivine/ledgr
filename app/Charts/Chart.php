@@ -84,7 +84,7 @@ class Chart
         $grouped_budgets_array = $grouped_budgets->toArray();
 
         foreach($grouped_budgets as $budget) {
-            $budget_history[array_keys($grouped_budgets_array)[$index]] = $budget->sum('actual');
+            $budget_history[array_keys($grouped_budgets_array)[$index]] = round($budget->sum('actual'),2);
             $index++;
 
         }
