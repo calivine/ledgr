@@ -5,6 +5,7 @@ namespace App\Actions\Activity;
 
 use App\Activity;
 use App\Actions\Budget\StoreBudget;
+use App\Actions\Budget\StoreCategory;
 use App\Budget;
 use App\Events\TransactionWasCreated;
 use Illuminate\Http\Request;
@@ -30,8 +31,11 @@ class StoreActivity
         // If Budget Sheet Doesn't Exist,
         if ($budget == null)
         {
-            // Create a new budget sheet for the transaction's date
-            new StoreBudget($user, $month, $year);
+            // Create a new budget category
+
+            new StoreCategory($category, 0, $user);
+
+            // new StoreBudget($user, $month, $year);
             $budget = Budget::where([
                 ['year', '=', $year],
                 ['month', '=', $month],

@@ -10,11 +10,8 @@ use Illuminate\Support\Facades\Log;
 
 class StoreCategory
 {
-    public function __construct(Request $request)
+    public function __construct($new_category, $new_planned_budget, $user)
     {
-        $user = $request->user();
-        $new_category = $request->input('category');
-        $new_planned_budget = $request->input('planned');
 
         $category = new Budget;
         $category->category = $new_category;

@@ -114,13 +114,19 @@ class BudgetController extends Controller
      */
     public function createCategory(Request $request)
     {
+
         Log::info("Attempting to add new category.");
         $request->validate([
             'category' => 'required|string',
             'planned' => 'required|numeric'
         ]);
 
-        $action = new StoreCategory($request);
+        $user = $request->user();
+
+        $new_category = $request->input('category');
+        $new_planned_budget = $request->input('planned');
+
+        $action = new StoreCategory($new_category, $new_planned_budget, $user);
 
         return redirect(route('budget'));
     }
