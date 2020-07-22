@@ -19,6 +19,13 @@ class Activity extends Model
         # Defines An Inverse One-To-Many Relationship
         return $this->belongsTo('App\Budget');
     }
+
+    public function bill()
+    {
+        # Activity Belongs To Bill
+        # Defines An Inverse One-To-Many Relationship
+        return $this->belongsTo('App\Bill');
+    }
     /*
     public function getAmountAttribute($value)
     {
