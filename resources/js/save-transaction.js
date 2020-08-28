@@ -36,7 +36,7 @@ $(function () {
 
             // Update Budget Category Total Progress Bars
             let i = 0;
-            $('div.progress-bars.my-3').each(function() {
+            $('div.progress-bars').each(function() {
                 let returnData = data['budget_totals'][i];
                 if (returnData['planned'] > 0) {
                     // Get element for progress bar label

@@ -26,6 +26,15 @@ class MonthlyTotal
 
     public function __construct($budget)
     {
+        /** Progress Bar
+         * Represents attributes of Progress Bars
+         * on the Dashboard.
+         *
+         * Parameters:
+         * --------------
+         * budget:Budget,
+         * List of Budget data
+         */
         $this->year = date('Y');
         $this->month = date('F');
         if (Auth::check())
