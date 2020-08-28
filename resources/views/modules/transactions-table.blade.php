@@ -3,9 +3,12 @@
     <tr>
         <th></th>
         <th scope="col" class="transaction-date" data-sort="date"></th>
-        <th scope="col" class="transaction-amount" data-sort="amount"></th>
         <th scope="col" data-sort="name"></th>
+        <th scope="col" data-sort="amount"></th>
         <th scope="col" data-sort="name"></th>
+        @if($all)
+            <th></th>
+        @endif
     </tr>
     </thead>
     <tbody id="transaction_body">
