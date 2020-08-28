@@ -1,5 +1,5 @@
 @foreach($data as $index => &$row)
-    @if($row['planned'] > 0 && $row['actual'] > 0)
+    @if($row['planned'] > 0)
         <div class="progress-bars">
             <p class="progress-bar-label">{{ $row['category'] }}:</p><p class="progress-bar-label float-right">${{ $row['actual'] }} of ${{ $row['planned'] }}</p>
             <div class="progress {{ $theme }}" style="height: 20px;">
