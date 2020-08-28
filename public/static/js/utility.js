@@ -1,5 +1,5 @@
-function changeCategoryForm(id) {
 
+function changeCategoryForm(id) {
     let labelsLength = category_labels_array.length;
     let $categoryEdit = $('<td class="category-edit"></td>');
     let $label = $('<label id="category-edit-label">Change Category</label>');
@@ -17,15 +17,6 @@ function changeCategoryForm(id) {
     return $categoryEdit;
 }
 
-function createTransactionRow(data) {
-    let $newRow = $('<tr><td><i class="material-icons">' + data['new_transaction']['icon'] + '</i></td></tr>');
-    let $dateCell = $('<td class="transaction_date"><small>' + data['new_transaction']['date'] + '</small></td>');
-    let $descriptionCell = $('<td class="transaction-description">' + data['new_transaction']['description'] + '</td>');
-    let $amountCell = $('<td class="transaction-amount">$' + data['new_transaction']['amount'] + '</td>');
-    let $categoryCell = $('<td class="budget-category align-middle" id=' + data['new_transaction']['id'] + '>' + data['new_transaction']['category'] + '</td>');
-    return $newRow.append($dateCell).append($descriptionCell).append($amountCell).append($categoryCell);
-}
-
 function reject() {
     $('li#length-requirement').css('color', 'red');
     $('li#length-requirement').css('text-decoration', 'none');
@@ -40,20 +31,6 @@ function minLength(s) {
 function pass() {
     $('li#length-requirement').css('color', 'green');
     $('li#length-requirement').css('text-decoration', 'line-through');
-}
-
-function resetSaveTransaction() {
-    const now = new Date();
-    const year = now.getFullYear();
-    let month = String(now.getMonth()+1);
-    month = month.length === 1 ? "0"+month : month;
-    let day = String(now.getDate()).length === 1 ? "0"+String(now.getDate()) : String(now.getDate());
-
-    const date = String(year) + "-" + month + "-" + day;
-    $('input#description-input').val("");
-    $('input#amount-input').val("");
-    $('input#transaction-date-input').val(date);
-    $('select#manual-select-category').val("");
 }
 
 function generateAlert(type = 'success', data='') {
@@ -88,19 +65,6 @@ function generateAlert(type = 'success', data='') {
             .append($errorMessages);
     }
     return $alert.prepend($closeButton);
-}
-
-function refreshProgressBar($element, data) {
-    // Set Bar Background Color
-    $bgColor = 'bg-' + data['color'];
-    $element.removeClass().addClass('progress-bar ' + $bgColor);
-    $element.attr('aria-valuenow', data['actual']);
-    $element.attr('aria-valuemax', data['planned']);
-    $element.text(data['percent'] + '%');
-
-    $element.css({
-        'width': data['percent'] + '%'
-    });
 }
 
 function getPlannedTotal() {
@@ -342,21 +306,29 @@ $(function () {
             $totalBarLabel.text('$' + Math.round(data['monthly_total']['actual']) + ' of $' + data['monthly_total']['planned']);
 
             // Update Budget Category Total Progress Bars
-            let i = 0;
             $('div.progress-bars').each(function() {
-                let returnData = data['budget_totals'][i];
-                if (returnData['planned'] > 0) {
-                    // Get element for progress bar label
-                    let barRightLabel = $(this).children().eq(1);
-                    // Get element for progress bar
-                    let $progressBar = $(this).children().eq(2).children().eq(0);
+                let bar = $(this);
+                let label = $(this).children().eq(0)[0].innerHTML
+                label = label.replace(':', '');
+                data.budget_totals.forEach(function(d) {
+                    console.log(d);
+                    console.log(bar);
+                    if (d.category == label) {
+                        console.log('Updating progress bar...');
+                        let returnData = d;
 
-                    refreshProgressBar($progressBar, returnData);
+                        // Get element for progress bar label
+                        let barRightLabel = bar.children().eq(1);
 
-                    // Update value for progress bar label
-                    barRightLabel.text('$' + data['budget_totals'][i]['actual'] + ' of $' + data['budget_totals'][i]['planned']);
-                }
-                i++;
+                        // Get element for progress bar
+                        let $progressBar = bar.children().eq(2).children().eq(0);
+
+                        refreshProgressBar($progressBar, returnData);
+
+                        // Update value for progress bar label
+                        barRightLabel.text('$' + d['actual'] + ' of $' + d['planned']);
+                    }
+                });
             });
         }).fail( function (data) {
             console.log(data.responseJSON.errors);
@@ -387,6 +359,42 @@ $(function () {
         return false;
     });
 });
+
+function refreshProgressBar($element, data) {
+    // Set Bar Background Color
+    $bgColor = 'bg-' + data['color'];
+    $element.removeClass().addClass('progress-bar ' + $bgColor);
+    $element.attr('aria-valuenow', data['actual']);
+    $element.attr('aria-valuemax', data['planned']);
+    $element.text(data['percent'] + '%');
+
+    $element.css({
+        'width': data['percent'] + '%'
+    });
+}
+
+function resetSaveTransaction() {
+    const now = new Date();
+    const year = now.getFullYear();
+    let month = String(now.getMonth()+1);
+    month = month.length === 1 ? "0"+month : month;
+    let day = String(now.getDate()).length === 1 ? "0"+String(now.getDate()) : String(now.getDate());
+
+    const date = String(year) + "-" + month + "-" + day;
+    $('input#description-input').val("");
+    $('input#amount-input').val("");
+    $('input#transaction-date-input').val(date);
+    $('select#manual-select-category').val("");
+}
+
+function createTransactionRow(data) {
+    let $newRow = $('<tr><td><i class="material-icons">' + data['new_transaction']['icon'] + '</i></td></tr>');
+    let $dateCell = $('<td class="transaction_date"><small>' + data['new_transaction']['date'] + '</small></td>');
+    let $descriptionCell = $('<td class="transaction-description">' + data['new_transaction']['description'] + '</td>');
+    let $amountCell = $('<td class="transaction-amount">$' + data['new_transaction']['amount'] + '</td>');
+    let $categoryCell = $('<td class="budget-category align-middle" id=' + data['new_transaction']['id'] + '>' + data['new_transaction']['category'] + '</td>');
+    return $newRow.append($dateCell).append($descriptionCell).append($amountCell).append($categoryCell);
+}
 
 $(function () {
     var compare = {
