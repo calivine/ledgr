@@ -124,3 +124,42 @@ function createTransactionRow(data) {
     let $categoryCell = $('<td class="budget-category align-middle" id=' + data['new_transaction']['id'] + '>' + data['new_transaction']['category'] + '</td>');
     return $newRow.append($dateCell).append($descriptionCell).append($amountCell).append($categoryCell);
 }
+
+function generateAlert(type = 'success', data='') {
+    let $alert = $('<div id="alert-message-container"></div>');
+
+    let $closeButton = $('<button></button>');
+    let $x = $('<span>&times;</span>');
+    $x.attr('aria-hidden', 'true');
+    $closeButton
+        .attr('type', 'button')
+        .attr('aria-label', 'Close')
+        .attr('data-dismiss', 'alert')
+        .addClass('close')
+        .prepend($x);
+    if (type === 'success') {
+        $alert
+            .addClass('alert alert-primary')
+            .attr('role', 'alert')
+            .text('Saved New Transaction');
+    }
+    else if (type === 'fail') {
+        let $errorMessages = $('<ul></ul>');
+        data["errors"].forEach(function(error) {
+            let $item = $('<li></li>');
+            $item.append(error);
+            $errorMessages.append($item);
+        });
+        $alert
+            .addClass('alert alert-danger')
+            .attr('role', 'alert')
+            .text(data["message"])
+            .append($errorMessages);
+    }
+    return $alert.prepend($closeButton);
+}
+
+// Close transaction modal after opening csv upload.
+$('#toggle-csv-upload').on('click', function() {
+    $('#modalCenter').modal('hide');
+});

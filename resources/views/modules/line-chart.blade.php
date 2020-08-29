@@ -26,8 +26,8 @@
         data: {
             labels: label_array,
             datasets: [{
-                backgroundColor: '#25f5a6',
-                borderColor: '#25f5a6',
+                backgroundColor: '#38c172',
+                borderColor: '#38c172',
                 data: line_data_array
             }]
         },
