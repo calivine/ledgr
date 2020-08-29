@@ -11386,6 +11386,56 @@ a.text-dark:focus {
   }
 }
 
+.dashboard-row {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  -webkit-box-pack: center !important;
+          justify-content: center !important;
+}
+
+.dashboard-date {
+  text-align: left !important;
+  width: 50% !important;
+  display: inline-block !important;
+}
+
+.dashboard-remaining {
+  float: right !important;
+  display: inline-block !important;
+}
+
+.total-spending {
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.chart-container {
+  position: relative;
+  height: 45vh;
+  width: 45vw;
+  margin-bottom: 0 !important;
+  padding-bottom: 0rem !important;
+}
+
+/**
+ * Progress Bars
+ */
+
+.progress-bar-label {
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.progress-bars {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+}
+
 body {
   height: 100vh;
 }
@@ -11650,7 +11700,7 @@ span#title-character.fade {
 
   .chart-container {
     height: 50vh;
-    width: 75vw;
+    width: 90vw;
   }
 }
 
@@ -11707,55 +11757,5 @@ table#budget-table td.budget-category-planned span {
 
 table#budget-table td.budget-category-name {
   white-space: normal !important;
-}
-
-.dashboard-row {
-  display: -webkit-box;
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-  -webkit-box-pack: center !important;
-          justify-content: center !important;
-}
-
-.dashboard-date {
-  text-align: left !important;
-  width: 50% !important;
-  display: inline-block !important;
-}
-
-.dashboard-remaining {
-  float: right !important;
-  display: inline-block !important;
-}
-
-.total-spending {
-  margin-top: 1.5rem !important;
-  margin-bottom: 1.5rem !important;
-}
-
-.chart-container {
-  position: relative;
-  height: 45vh;
-  width: 45vw;
-  margin-bottom: 0 !important;
-  padding-bottom: 0rem !important;
-}
-
-/**
- * Progress Bars
- */
-
-.progress-bar-label {
-  display: inline-block;
-  font-weight: bold;
-  margin-bottom: 0;
-  text-align: left;
-}
-
-.progress-bars {
-  margin-top: 2rem !important;
-  margin-bottom: 2rem !important;
 }
 
