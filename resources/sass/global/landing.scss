@@ -1,8 +1,6 @@
 /**
  * Landing Page
  */
-
-
 #landing-title {
   font-family: sans-serif;
   text-align: center;
@@ -11,12 +9,12 @@
 }
 
 #landing-title-bg {
-    height: 80vh !important;
+  height: 80vh !important;
 }
 
 #landing-title-bg.landing-bg {
-    background-color: #98FB98;
-    transition: all 1s ease;
+  background-color: $green;
+  transition: all 1s ease;
 }
 
 span#title-character {
@@ -33,7 +31,7 @@ span#title-character.fade {
 
 
 .bg-mint {
-    background-color: #98FB98 !important;
-    transition: all 1s ease;
-    color: black;
+  background-color: $green !important;
+  transition: all 1s ease;
+  color: black;
 }

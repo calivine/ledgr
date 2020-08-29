@@ -1,4 +1,3 @@
-
 function changeCategoryForm(id) {
     let labelsLength = category_labels_array.length;
     let $categoryEdit = $('<td class="category-edit"></td>');
@@ -17,57 +16,10 @@ function changeCategoryForm(id) {
     return $categoryEdit;
 }
 
-function generateAlert(type = 'success', data='') {
-    let $alert = $('<div id="alert-message-container"></div>');
-
-    let $closeButton = $('<button></button>');
-    let $x = $('<span>&times;</span>');
-    $x.attr('aria-hidden', 'true');
-    $closeButton
-        .attr('type', 'button')
-        .attr('aria-label', 'Close')
-        .attr('data-dismiss', 'alert')
-        .addClass('close')
-        .prepend($x);
-    if (type === 'success') {
-        $alert
-            .addClass('alert alert-primary')
-            .attr('role', 'alert')
-            .text('Saved New Transaction');
-    }
-    else if (type === 'fail') {
-        let $errorMessages = $('<ul></ul>');
-        data["errors"].forEach(function(error) {
-            let $item = $('<li></li>');
-            $item.append(error);
-            $errorMessages.append($item);
-        });
-        $alert
-            .addClass('alert alert-danger')
-            .attr('role', 'alert')
-            .text(data["message"])
-            .append($errorMessages);
-    }
-    return $alert.prepend($closeButton);
-}
-
 function dateTest() {
     let today = new Date();
     console.log(today.getDate());
 }
-
-$('#toggle-style-change').on('click', function () {
-    $('#dashboard-container').addClass('dark-mode');
-    $('#transaction-body').addClass('dark-mode');
-    $('footer').addClass('dark-mode');
-    $('#collapseOne').addClass('dark-mode');
-    $('body').addClass('dark-mode');
-    $('.modal-content').addClass('dark-mode');
-});
-
-$('#toggle-csv-upload').on('click', function() {
-    $('#modalCenter').modal('hide');
-});
 
 $('button#hide-api-token').hide();
 
@@ -379,6 +331,45 @@ function createTransactionRow(data) {
     return $newRow.append($dateCell).append($descriptionCell).append($amountCell).append($categoryCell);
 }
 
+function generateAlert(type = 'success', data='') {
+    let $alert = $('<div id="alert-message-container"></div>');
+
+    let $closeButton = $('<button></button>');
+    let $x = $('<span>&times;</span>');
+    $x.attr('aria-hidden', 'true');
+    $closeButton
+        .attr('type', 'button')
+        .attr('aria-label', 'Close')
+        .attr('data-dismiss', 'alert')
+        .addClass('close')
+        .prepend($x);
+    if (type === 'success') {
+        $alert
+            .addClass('alert alert-primary')
+            .attr('role', 'alert')
+            .text('Saved New Transaction');
+    }
+    else if (type === 'fail') {
+        let $errorMessages = $('<ul></ul>');
+        data["errors"].forEach(function(error) {
+            let $item = $('<li></li>');
+            $item.append(error);
+            $errorMessages.append($item);
+        });
+        $alert
+            .addClass('alert alert-danger')
+            .attr('role', 'alert')
+            .text(data["message"])
+            .append($errorMessages);
+    }
+    return $alert.prepend($closeButton);
+}
+
+// Close transaction modal after opening csv upload.
+$('#toggle-csv-upload').on('click', function() {
+    $('#modalCenter').modal('hide');
+});
+
 $(function () {
     var compare = {
         name: function(a, b) {
@@ -409,11 +400,11 @@ $(function () {
         var rows = $tbody.find('tr').toArray(); // Store array  containing rows
 
         $controls.on('click', function () {
-            $('th').css('background-color', '#e6e6e6');
+            $('th').css('background-color', '#1C1F2B');
             var $header = $(this);
             var order = $header.data('sort');
             var column;
-            $header.css('background-color', '#83EDEC');
+            $header.css('background-color', '#38c172');
 
             if ($header.is('.ascending') || $header.is('.descending')) {
                 $header.toggleClass('ascending descending');
@@ -436,6 +427,7 @@ $(function () {
         });
     });
 });
+
 $('td.transaction-delete').each(function () {
     $(this).on('click', function () {
         let id = $(this).prev().attr('id');

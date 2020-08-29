@@ -11436,6 +11436,28 @@ a.text-dark:focus {
   margin-bottom: 2rem !important;
 }
 
+/**
+  Budget table stylings
+**/
+
+table#budget-table {
+  color: inherit;
+  margin: 0 auto;
+}
+
+table#budget-table td.budget-category-planned {
+  text-align: center !important;
+}
+
+table#budget-table td.budget-category-planned span {
+  cursor: pointer;
+  padding-right: 8px;
+}
+
+table#budget-table td.budget-category-name {
+  white-space: normal !important;
+}
+
 body {
   height: 100vh;
 }
@@ -11582,7 +11604,7 @@ input.manual-input.dark {
 }
 
 #landing-title-bg.landing-bg {
-  background-color: #98FB98;
+  background-color: #38c172;
   -webkit-transition: all 1s ease;
   transition: all 1s ease;
 }
@@ -11603,7 +11625,7 @@ span#title-character.fade {
 }
 
 .bg-mint {
-  background-color: #98FB98 !important;
+  background-color: #38c172 !important;
   -webkit-transition: all 1s ease;
   transition: all 1s ease;
   color: black;
@@ -11739,23 +11761,5 @@ table {
 .transaction-description,
 .transaction-amount {
   vertical-align: middle !important;
-}
-
-table#budget-table {
-  color: inherit;
-  margin: 0 auto;
-}
-
-table#budget-table td.budget-category-planned {
-  text-align: center !important;
-}
-
-table#budget-table td.budget-category-planned span {
-  cursor: pointer;
-  padding-right: 8px;
-}
-
-table#budget-table td.budget-category-name {
-  white-space: normal !important;
 }
 
