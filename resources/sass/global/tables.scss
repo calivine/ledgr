@@ -1,6 +1,13 @@
 /**
  * Tables
  */
+table {
+  color: inherit !important;
+  th {
+    background-color: inherit;
+  }
+}
+
 .category-edit {
   font-size: 12px;
   max-width: 190px;
@@ -18,10 +25,6 @@
   }
 }
 
-table {
-  color: inherit !important;
-}
-
 #trans-table {
   max-height: 350px;
   overflow-y: scroll;
@@ -29,4 +32,8 @@ table {
 
 .transaction-description, .transaction-amount {
   vertical-align: middle !important;
+}
+
+.selected {
+  background-color: $green;
 }

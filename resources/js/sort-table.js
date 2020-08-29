@@ -28,11 +28,13 @@ $(function () {
         var rows = $tbody.find('tr').toArray(); // Store array  containing rows
 
         $controls.on('click', function () {
-            $('th').css('background-color', '#1C1F2B');
+            $('th').removeClass('selected');
+            // $('th').css('background-color', '#1C1F2B');
             var $header = $(this);
             var order = $header.data('sort');
             var column;
-            $header.css('background-color', '#38c172');
+            // $header.css('background-color', '#38c172');
+            $header.addClass('selected');
 
             if ($header.is('.ascending') || $header.is('.descending')) {
                 $header.toggleClass('ascending descending');

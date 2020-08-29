@@ -11730,6 +11730,14 @@ span#title-character.fade {
  * Tables
  */
 
+table {
+  color: inherit !important;
+}
+
+table th {
+  background-color: inherit;
+}
+
 .category-edit {
   font-size: 12px;
   max-width: 190px;
@@ -11749,10 +11757,6 @@ span#title-character.fade {
   margin-right: auto !important;
 }
 
-table {
-  color: inherit !important;
-}
-
 #trans-table {
   max-height: 350px;
   overflow-y: scroll;
@@ -11761,5 +11765,9 @@ table {
 .transaction-description,
 .transaction-amount {
   vertical-align: middle !important;
+}
+
+.selected {
+  background-color: #38c172;
 }
 
