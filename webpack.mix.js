@@ -21,5 +21,6 @@ mix.scripts([
     'resources/js/edit-category.js',
     'resources/js/save-transaction.js',
     'resources/js/sort-table.js',
+    'resources/js/transactions.js',
     'resources/js/validator.js'
 ], 'public/static/js/utility.js');

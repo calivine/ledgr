@@ -1,3 +1,4 @@
+@include('modules.modals.confirm-delete-modal')
 <table class="mx-auto sortable table">
     <thead>
     <tr>
@@ -20,7 +21,7 @@
             <td class="transaction-amount">${{ $transaction->amount }}</td>
             <td class="budget-category align-middle" id="{{ $transaction->id }}">{{ $transaction->category }}</td>
             @if($all)
-                <td><a href="{{ '/transaction/' . $transaction->id . '/delete' }}"><i class="material-icons">delete</i></a></td>
+                <td class="transaction-delete"><i class="material-icons">delete</i></td>
             @endif
         </tr>
     @endforeach

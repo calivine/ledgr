@@ -17,22 +17,6 @@ function changeCategoryForm(id) {
     return $categoryEdit;
 }
 
-function reject() {
-    $('li#length-requirement').css('color', 'red');
-    $('li#length-requirement').css('text-decoration', 'none');
-
-}
-
-function minLength(s) {
-    let str = s;
-    return (str.length + 1) >= 8;
-}
-
-function pass() {
-    $('li#length-requirement').css('color', 'green');
-    $('li#length-requirement').css('text-decoration', 'line-through');
-}
-
 function generateAlert(type = 'success', data='') {
     let $alert = $('<div id="alert-message-container"></div>');
 
@@ -66,15 +50,6 @@ function generateAlert(type = 'success', data='') {
     }
     return $alert.prepend($closeButton);
 }
-
-function getPlannedTotal() {
-    let total = 0;
-    $('span.planned-value').each(function () {
-        total += Number($(this).text());
-    });
-    $('td#planned-total').text(total);
-};
-
 
 function dateTest() {
     let today = new Date();
@@ -209,6 +184,14 @@ $(function() {
         $('i#iconPreview').text($(this).val());
     });
 });
+
+function getPlannedTotal() {
+    let total = 0;
+    $('span.planned-value').each(function () {
+        total += Number($(this).text());
+    });
+    $('td#planned-total').text(total);
+};
 
 
 // $(function () {
@@ -453,6 +436,14 @@ $(function () {
         });
     });
 });
+$('td.transaction-delete').each(function () {
+    $(this).on('click', function () {
+        let id = $(this).prev().attr('id');
+        $('form#modal-delete-form').attr('action', '/transaction/' + id + '/destroy');
+        $('div#deleteModalCenter').modal('show');
+    });
+});
+
 $(function () {
     $('input#password.form-control.w-50').on('change', function () {
         console.log($(this).val());
@@ -468,3 +459,19 @@ $(function () {
         minLength(inputText) ? pass() : reject();
     });
 });
+
+function reject() {
+    $('li#length-requirement').css('color', 'red');
+    $('li#length-requirement').css('text-decoration', 'none');
+
+}
+
+function minLength(s) {
+    let str = s;
+    return (str.length + 1) >= 8;
+}
+
+function pass() {
+    $('li#length-requirement').css('color', 'green');
+    $('li#length-requirement').css('text-decoration', 'line-through');
+}
