@@ -28,11 +28,11 @@ $(function () {
         var rows = $tbody.find('tr').toArray(); // Store array  containing rows
 
         $controls.on('click', function () {
-            $('th').css('background-color', '#e6e6e6');
+            $('th').css('background-color', '#1C1F2B');
             var $header = $(this);
             var order = $header.data('sort');
             var column;
-            $header.css('background-color', '#83EDEC');
+            $header.css('background-color', '#38c172');
 
             if ($header.is('.ascending') || $header.is('.descending')) {
                 $header.toggleClass('ascending descending');
