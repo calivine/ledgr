@@ -58,7 +58,7 @@ function dateTest() {
 
 $('#toggle-style-change').on('click', function () {
     $('#dashboard-container').addClass('dark-mode');
-    $('#transaction_body').addClass('dark-mode');
+    $('#transaction-body').addClass('dark-mode');
     $('footer').addClass('dark-mode');
     $('#collapseOne').addClass('dark-mode');
     $('body').addClass('dark-mode');

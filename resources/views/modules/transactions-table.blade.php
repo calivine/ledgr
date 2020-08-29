@@ -1,5 +1,5 @@
 @include('modules.modals.confirm-delete-modal')
-<table class="mx-auto sortable table">
+<table id="transaction-table" class="mx-auto sortable table">
     <thead>
     <tr>
         <th></th>
@@ -12,7 +12,7 @@
         @endif
     </tr>
     </thead>
-    <tbody id="transaction_body">
+    <tbody id="transaction-body">
     @foreach($transactions as $transaction)
         <tr>
             <td><i class="material-icons">{{ $transaction->budget->icon }}</i></td>

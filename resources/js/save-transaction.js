@@ -18,7 +18,7 @@ $(function () {
             $('div#modalCenter').modal('hide');
 
 
-            let $tbody = $('tbody#transaction_body');
+            let $tbody = $('tbody#transaction-body');
             let $ch = changeCategoryForm(data['new_transaction']['id']);
 
 

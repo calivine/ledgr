@@ -11618,7 +11618,11 @@ span#title-character.fade {
 
 */
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
+  table {
+    width: 100vw;
+  }
+
   #manual-input-form input,
   #manual-input-form select {
     width: 100%;

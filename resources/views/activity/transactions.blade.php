@@ -3,9 +3,13 @@
 
 @section('content')
 
-<main class="container">
+<main class="container-fluid">
     <section>
-        @include('modules.transactions-table', ['transactions' => $transactions, 'all' => True])
+        <div>
+            <div class="col-lg-12">
+                @include('modules.transactions-table', ['transactions' => $transactions, 'all' => True])
+            </div>
+        </div>
     </section>
 </main>
 
