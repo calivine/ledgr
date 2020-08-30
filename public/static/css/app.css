@@ -11386,6 +11386,10 @@ a.text-dark:focus {
   }
 }
 
+#dashboard-container {
+  background-color: #f8f9fa;
+}
+
 .dashboard-row {
   display: -webkit-box;
   display: flex;
@@ -11460,6 +11464,7 @@ table#budget-table td.budget-category-name {
 
 body {
   height: 100vh;
+  background-color: #38c172;
 }
 
 footer {
@@ -11684,48 +11689,6 @@ span#title-character.fade {
   margin-right: 1rem;
 }
 
-/*
-
-  MEDIA QUERIES
-
-*/
-
-@media (max-width: 640px) {
-  table {
-    width: 100vw;
-  }
-
-  #manual-input-form input,
-  #manual-input-form select {
-    width: 100%;
-  }
-
-  #login-dropdown {
-    min-width: 20rem;
-  }
-
-  .navLinkExpand {
-    display: none;
-  }
-
-  .icon-size {
-    font-size: 2rem;
-  }
-
-  .nav-item.dropdown {
-    margin-right: 0;
-  }
-
-  .nav-link {
-    padding: 0.5rem !important;
-  }
-
-  .chart-container {
-    height: 50vh;
-    width: 90vw;
-  }
-}
-
 /**
  * Tables
  */
@@ -11769,5 +11732,43 @@ table th {
 
 .selected {
   background-color: #38c172;
+}
+
+/*
+
+  MEDIA QUERIES
+
+*/
+
+@media (max-width: 640px) {
+  #manual-input-form input,
+  #manual-input-form select {
+    width: 100%;
+  }
+
+  #login-dropdown {
+    min-width: 20rem;
+  }
+
+  .navLinkExpand {
+    display: none;
+  }
+
+  .icon-size {
+    font-size: 2rem;
+  }
+
+  .nav-item.dropdown {
+    margin-right: 0;
+  }
+
+  .nav-link {
+    padding: 0.5rem !important;
+  }
+
+  .chart-container {
+    height: 50vh;
+    width: 90vw;
+  }
 }
 

@@ -1,5 +1,6 @@
 body {
   height: 100vh;
+  background-color: $green;
 }
 
 footer {
@@ -15,54 +16,52 @@ footer {
 }
 
 .page-container {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .md-20 {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .md-18 {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .md-16 {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .md-14 {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .md-12 {
-    font-size: 0.75rem;
+  font-size: 0.75rem;
 }
 
 .md-08 {
-    font-size: 0.5rem;
+  font-size: 0.5rem;
 }
 
-
-
 .dark {
-    background-color: rgb(28,31,43) !important;
-    color: rgb(188,201,218);
+  background-color: rgb(28,31,43) !important;
+  color: rgb(188,201,218);
 }
 
 div.progress.dark {
-    background-color: rgb(188,201,218) !important;
+  background-color: rgb(188,201,218) !important;
 }
 
 div.modal-content.dark {
-    background-color: rgb(28,31,43) !important;
-    color: inherit;
+  background-color: rgb(28,31,43) !important;
+  color: inherit;
 }
 
 input.manual-input.dark {
-    background-color: rgb(188,201,218) !important;
-    color: black;
+  background-color: rgb(188,201,218) !important;
+  color: black;
 }

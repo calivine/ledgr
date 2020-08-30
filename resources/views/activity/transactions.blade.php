@@ -3,13 +3,9 @@
 
 @section('content')
 
-<main class="container-fluid">
+<main id="dashboard-container" class="container-fluid">
     <section>
-        <div>
-            <div class="col-lg-12">
-                @include('modules.transactions-table', ['transactions' => $transactions, 'all' => True])
-            </div>
-        </div>
+        @include('modules.transactions-table', ['transactions' => $transactions, 'all' => True])
     </section>
 </main>
 
