@@ -46,9 +46,6 @@
 
     let data_array = toArray('{!! json_encode($actuals) !!}', labels=false);
 
-    console.log(labels_array);
-    console.log(data_array);
-
     let ctx = document.getElementById('myChart').getContext('2d');
     Chart.plugins.register({
         ChartDataLabels
@@ -75,7 +72,9 @@
             plugins: {
                 datalabels: {
                     color: '#FFFFFF',
-                    formatter: function(value) {
+                    formatter: function(value, context) {
+                        console.log(value);
+                        console.log(context);
                         return '$'+value;
                     }
                 }
