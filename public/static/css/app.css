@@ -11464,6 +11464,7 @@ table#budget-table td.budget-category-name {
 
 body {
   height: 100vh;
+  width: 100vw;
   background-color: #38c172;
 }
 
@@ -11741,6 +11742,14 @@ table th {
 */
 
 @media (max-width: 640px) {
+  .table {
+    font-size: 0.6rem;
+  }
+
+  .table td {
+    padding: 0;
+  }
+
   #manual-input-form input,
   #manual-input-form select {
     width: 100%;

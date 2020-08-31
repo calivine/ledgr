@@ -4,7 +4,12 @@
 
 */
 @media (max-width: $width-mobile-wide) {
-
+  .table {
+      font-size: .6rem;
+      td {
+          padding: 0;
+      }
+  }
   #manual-input-form {
     input, select {
       width: 100%;
