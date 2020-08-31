@@ -116,7 +116,7 @@ class ActivityController extends Controller
      */
      public function deleteTransaction($id)
      {
-          return view('activity.delete')->with([
+          return view('content.activity.delete')->with([
               'id' => $id
           ]);
      }
@@ -147,7 +147,7 @@ class ActivityController extends Controller
                                  ->with('activities.budget:id,planned,actual,category,icon,month,year,user_id')
                                  ->first();
 
-           return view('activity.transactions')->with([
+           return view('content.activity.transactions')->with([
                'transactions' => $transactions->activities
            ]);
        }

@@ -17,17 +17,12 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        return view('account.index')->with([
+        return view('content.account.index')->with([
             'api_token' => $user->api_token,
             'email' => $user->email,
             'name' => $user->name
-
         ]);
-
-
-
     }
-
 
     /*
      * PUT

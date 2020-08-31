@@ -50,7 +50,7 @@ class DashboardController extends Controller
             $month_name = date('F', mktime(0,0,0, $month_int));
         }
         $line_chart = new Chart('line', $budgets);
-        
+
 
 
         // Get Current Month's Budget.
@@ -106,7 +106,7 @@ class DashboardController extends Controller
             $transaction->amount = number_format($transaction->amount, 2);
         }
 
-        return view('dash.dashboard')->with([
+        return view('content.dash.index')->with([
             'actuals' => $chart_data['actuals'],
             'budget_totals_bars' => $progress_bars->rda['budget_totals'],
             'categories' => $chart_data['labels'],

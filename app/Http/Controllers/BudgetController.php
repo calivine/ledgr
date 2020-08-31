@@ -26,6 +26,7 @@ use Illuminate\Support\Str;
  */
 class BudgetController extends Controller
 {
+    
     /*
      * GET
      * /budget
@@ -54,7 +55,7 @@ class BudgetController extends Controller
 
         $budget_period = date('F') . " " . date('Y');
 
-        return view('budget.index')->with([
+        return view('content.budget.index')->with([
             'budget' => $response->budget,
             'month' => $budget_period,
             'icons' => $icons
@@ -105,8 +106,6 @@ class BudgetController extends Controller
 
     }
 
-
-
     /*
      * POST
      * /budget/category/new
@@ -131,7 +130,6 @@ class BudgetController extends Controller
         return redirect(route('budget'));
     }
 
-
     /*
      * GET
      * /budget/setup
@@ -140,7 +138,7 @@ class BudgetController extends Controller
     public function newBudgetSetup(Request $request)
     {
         $response = new BudgetSheet(Auth::user()->id);
-        return view('budget.setup')->with([
+        return view('content.budget.setup')->with([
             'budget' => $response->budget
         ]);
 
@@ -169,7 +167,6 @@ class BudgetController extends Controller
 
     }
 
-
     /**
      * GET
      * /budget/{id}/delete
@@ -177,11 +174,10 @@ class BudgetController extends Controller
      */
      public function deleteBudget($id)
      {
-          return view('budget.delete')->with([
+          return view('content.budget.delete')->with([
               'id' => $id
           ]);
      }
-
 
      /**
       * POST

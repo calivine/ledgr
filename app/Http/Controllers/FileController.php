@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 
 class FileController extends Controller
 {
+
     /**
      * POST
      * /upload/csv
@@ -23,16 +24,9 @@ class FileController extends Controller
             foreach($file_contents as $row) {
                 $uploaded_file[] = explode(',' ,$row);
             }
-
-
-
-
-
-            return view('activity.upload')->with([
+            return view('content.activity.upload')->with([
                     'transactions' => $uploaded_file
             ]);
-
         }
-
     }
 }

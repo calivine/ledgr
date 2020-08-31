@@ -15,7 +15,7 @@ class IncomeController extends Controller
      */
     public function newIncome()
     {
-        return view('income.income');
+        return view('content.income.index');
     }
 
     /*
