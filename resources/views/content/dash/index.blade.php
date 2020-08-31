@@ -5,7 +5,7 @@
 @section('content')
     @include('modules.modals.upload-csv')
     @include('modules.modals.new-transaction-modal', ['labels' => $category_form_labels])
-    <main id="dashboard-container" class="container-fluid {{ $theme }}">
+    <main id="content-container" class="container-fluid {{ $theme }}">
 
         <div class="dashboard-row">
             <div class="col-md-8">

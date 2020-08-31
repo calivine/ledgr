@@ -3,7 +3,7 @@
 
 @section('content')
 
-<main id="dashboard-container">
+<main id="content-container">
     <section>
         @include('modules.transactions-table', ['transactions' => $transactions, 'all' => True])
     </section>
