@@ -37,3 +37,14 @@ table {
 .selected {
   background-color: $green;
 }
+
+@media (max-width: $width-mobile-wide) {
+    section.all-transactions {
+      .table {
+        font-size: .6rem;
+        td {
+          padding: 0;
+        }
+      }
+    }    
+}

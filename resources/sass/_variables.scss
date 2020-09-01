@@ -4,13 +4,16 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Quattrocento&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800&family=Work+Sans:ital,wght@0,100;0,200;0,300;1,100&family=Yantramanav:wght@100;300;400&display=swap');
+
 // Body
 $body-bg: rgb(255,255,255);
 
 // Typography
-$font-family-sans-serif: 'Open Sans', sans-serif;
-$font-size-base: 1rem;
-$line-height-base: 1.6;
+$font-family-sans-serif: 'Heebo', sans-serif;
+$font-weight-base: 300;
+$font-size-base: .9375rem;
+$line-height-base: 1.5;
 
 // Colors
 $blue: #3490dc;

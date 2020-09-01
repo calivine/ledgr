@@ -4,7 +4,7 @@
 @section('content')
 
 <main id="content-container">
-    <section>
+    <section class="all-transactions">
         @include('modules.transactions-table', ['transactions' => $transactions, 'all' => True])
     </section>
 </main>
