@@ -26,7 +26,7 @@ use Illuminate\Support\Str;
  */
 class BudgetController extends Controller
 {
-    
+
     /*
      * GET
      * /budget
@@ -34,6 +34,11 @@ class BudgetController extends Controller
      */
     public function index()
     {
+        // Retrieve User
+        $user = Auth::user();
+        $id = $user->id;
+        $theme = $user->theme;
+
         $icons = DB::table('icons')->get();
 
         $iconsDisplay = [];
@@ -44,13 +49,13 @@ class BudgetController extends Controller
         $iconsdisplay = array_map('Str::studly', $iconsDisplay);
         // Log::info($iconsdisplay);
 
-        $response = new BudgetSheet(Auth::id());
+        $response = new BudgetSheet($id);
 
         // If Budget sheet doesn't exist, create a new one.
         if (sizeof($response->budget) == 0)
         {
-            new StoreBudget(Auth::user());
-            $response = new BudgetSheet(Auth::id());
+            new StoreBudget($user);
+            $response = new BudgetSheet($id);
         }
 
         $budget_period = date('F') . " " . date('Y');
@@ -58,7 +63,8 @@ class BudgetController extends Controller
         return view('content.budget.index')->with([
             'budget' => $response->budget,
             'month' => $budget_period,
-            'icons' => $icons
+            'icons' => $icons,
+            'theme' => $theme
         ]);
     }
 

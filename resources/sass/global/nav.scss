@@ -15,3 +15,21 @@
 .nav-item.dropdown {
   margin-right: 1rem;
 }
+
+
+/**
+    Media Query
+*/
+@media (max-width: $width-mobile-wide) {
+    .nav-item.dropdown {
+        margin-right: 0;
+    }
+
+    .nav-link {
+        padding: 0.5rem !important;
+    }
+
+    .navLinkExpand {
+        display: none;
+    }
+}

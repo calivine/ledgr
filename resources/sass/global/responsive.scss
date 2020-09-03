@@ -6,29 +6,9 @@
 @media (max-width: $width-mobile-wide) {
 
 
-  #manual-input-form {
-    input, select {
-      width: 100%;
-    }
-  }
-
-  #login-dropdown {
-    min-width: 20rem;
-  }
-
-  .navLinkExpand {
-      display: none;
-  }
-
   .icon-size {
       font-size: 2rem;
   }
 
-  .nav-item.dropdown {
-      margin-right: 0;
-  }
 
-  .nav-link {
-      padding: 0.5rem !important;
-  }
 }

@@ -29,6 +29,18 @@ footer {
   margin-left: auto;
 }
 
+.content-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  justify-content: center !important;
+}
+
+#content-container {
+  background-color: $light;
+}
+
 .md-20 {
   font-size: 20px;
 }

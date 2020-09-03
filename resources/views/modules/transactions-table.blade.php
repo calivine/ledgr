@@ -1,16 +1,16 @@
 @include('modules.modals.confirm-delete-modal')
 <table id="transaction-table" class="mx-auto sortable table">
     <thead>
-    <tr>
-        <th></th>
-        <th scope="col" class="transaction-date" data-sort="date"></th>
-        <th scope="col" data-sort="name"></th>
-        <th scope="col" data-sort="amount"></th>
-        <th scope="col" data-sort="name"></th>
-        @if($all)
+        <tr>
             <th></th>
-        @endif
-    </tr>
+            <th scope="col" class="transaction-date" data-sort="date"></th>
+            <th scope="col" data-sort="name"></th>
+            <th scope="col" data-sort="amount"></th>
+            <th scope="col" data-sort="name"></th>
+            @if($all)
+                <th></th>
+            @endif
+        </tr>
     </thead>
     <tbody id="transaction-body">
     @foreach($transactions as $transaction)

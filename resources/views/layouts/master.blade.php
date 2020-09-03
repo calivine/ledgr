@@ -6,6 +6,7 @@
     @include('layouts.partials.head')
 </head>
 <body class="{{ auth::check() ? auth::user()->theme : '' }}">
+<!-- Alerts -->
 @if(session('alert'))
     <div class="alert-success">
         <span class="alert-text">{{ session('alert') }}</span>

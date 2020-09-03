@@ -18,3 +18,15 @@
         width: 100%;
     }
  }
+
+ @media (max-width: $width-mobile-wide) {
+
+
+   #manual-input-form {
+     input, select {
+       width: 100%;
+     }
+   }
+
+
+ }

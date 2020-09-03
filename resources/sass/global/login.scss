@@ -15,3 +15,10 @@
  #login-submit {
    width: 135px;
  }
+
+
+ @media (max-width: $width-mobile-wide) {
+   #login-dropdown {
+     min-width: 20rem;
+   }
+ }
