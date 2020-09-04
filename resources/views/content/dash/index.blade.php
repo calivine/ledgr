@@ -27,12 +27,7 @@
         </div>
         <div class="content-row">
             <div class="col-md-8">
-                @include('modules.line-chart')
-            </div>
-        </div>
-        <div class="content-row">
-            <div class="col-md-8 border-bottom border-secondary mb-0 pb-5">
-                @include('modules.accordion', ['categories' => $categories, 'actuals' => $actuals])
+                @include('modules.charts')
             </div>
         </div>
         <div class="content-row" id="trans-table">

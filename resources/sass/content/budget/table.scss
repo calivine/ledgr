@@ -17,3 +17,15 @@ table#budget-table {
     white-space: normal !important;
   }
 }
+
+@media (max-width: $width-mobile-wide) {
+  .table {
+     tbody {
+       td, td.text-right {
+         width: 75px;
+         padding: .25rem;
+       }
+
+     }
+   }
+}
