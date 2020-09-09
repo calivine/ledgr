@@ -3,7 +3,7 @@
 @section('title', 'Account Details | Ledgr')
 
 @section('content')
-    <main class="page-container">
+    <main class="page-container {{ auth::user()->theme }}">
         <div class="content-row">
             <div class="col-md-8">
                 <h2>Account Settings</h2>
@@ -12,20 +12,16 @@
         </div>
         <div class="content-row">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header"><h4>API Token</h4></div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <button type="button" class="btn btn-info" id="display-api-token">Show</button>
-                                <button type="button" class="btn btn-warning" id="hide-api-token">Hide</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 offset-md-1">
-                                <p id="api-token">{{ $api_token }}</p>
-                            </div>
-                        </div>
+                <h4>API Token</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-info" id="display-api-token">Show</button>
+                        <button type="button" class="btn btn-warning" id="hide-api-token">Hide</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 offset-md-1">
+                        <p id="api-token">{{ $api_token }}</p>
                     </div>
                 </div>
             </div>
@@ -49,7 +45,7 @@
                     <label for="light">Light Theme</label>
                     <input type="radio" id="dark" name="theme" value="dark" {{ auth::user()->theme == 'dark' ? 'checked' : '' }}>
                     <label for="dark">Dark Theme</label>
-                    <button class="btn btn-outline-primary btn-block" id="theme-submit" type="submit">Save</button>
+                    <button class="btn btn-outline-primary btn-block" id="theme-submit" type="submit"><i class="material-icons icon md-18">save</i>Save</button>
                 </form>
             </div>
         </div>

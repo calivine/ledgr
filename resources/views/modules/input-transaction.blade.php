@@ -31,7 +31,7 @@
     </div>
     <div class="form-group">
         <div class="col-lg">
-            <button class="manual-input btn btn-outline-success btn-block" id="manual-input-button" type="submit">Save</button>
+            <button class="manual-input btn btn-outline-success btn-block" id="manual-input-button" type="submit"><i class="material-icons icon md-18">save</i>Save</button>
         </div>
     </div>
 </fieldset>

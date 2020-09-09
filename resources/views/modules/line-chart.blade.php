@@ -1,4 +1,4 @@
-<div class="chart-container">
+<div class="chart-container {{ $theme }}">
     <canvas id="lineChart"></canvas>
 </div>
 

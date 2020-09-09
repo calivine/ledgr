@@ -67,3 +67,23 @@ input.manual-input.dark {
   background-color: rgb(188,201,218) !important;
   color: black;
 }
+
+.nav.nav-tabs.dark {
+  .nav-link.active {
+    background-color: rgb(188,201,218) !important;
+  }
+}
+
+.chart-container.dark {
+  background-color: rgb(188,201,218) !important;
+}
+
+.page-container.light {
+    background-color: white;
+    color: black;
+}
+
+.page-container.dark {
+    background-color: rgb(188,201,218) !important;
+    color: black;
+}

@@ -11516,6 +11516,24 @@ input.manual-input.dark {
   color: black;
 }
 
+.nav.nav-tabs.dark .nav-link.active {
+  background-color: #bcc9da !important;
+}
+
+.chart-container.dark {
+  background-color: #bcc9da !important;
+}
+
+.page-container.light {
+  background-color: white;
+  color: black;
+}
+
+.page-container.dark {
+  background-color: #bcc9da !important;
+  color: black;
+}
+
 .alert-success {
   font-weight: bold;
   font-size: 1.25rem;
@@ -11821,10 +11839,18 @@ table#budget-table td.budget-category-name {
 
 .chart-container {
   position: relative;
-  height: 45vh;
+  height: 50vh;
   width: 45vw;
   margin-bottom: 0 !important;
-  padding-bottom: 0rem !important;
+  padding: 1rem;
+}
+
+#charts-container {
+  margin: 1rem 0;
+}
+
+.tab-content {
+  margin: 1rem 0;
 }
 
 @media (max-width: 640px) {

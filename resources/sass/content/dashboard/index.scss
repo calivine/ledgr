@@ -16,10 +16,18 @@
 
 .chart-container {
   position: relative;
-  height: 45vh;
+  height: 50vh;
   width: 45vw;
   margin-bottom: 0 !important;
-  padding-bottom: 0rem !important;
+  padding: 1rem;
+}
+
+#charts-container {
+  margin: 1rem 0;
+}
+
+.tab-content {
+    margin: 1rem 0;
 }
 
 @media (max-width: $width-mobile-wide) {

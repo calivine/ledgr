@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="content-row">
-            <div class="col-md-8">
+            <div class="col-md-8" id="charts-container">
                 @include('modules.charts')
             </div>
         </div>
