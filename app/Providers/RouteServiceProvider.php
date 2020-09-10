@@ -41,6 +41,10 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapBudgetRoutes();
 
+        $this->mapBillRoutes();
+
+        $this->mapAdminRoutes();
+
         //
     }
 
@@ -84,4 +88,26 @@ class RouteServiceProvider extends ServiceProvider
               ->group(base_path('routes/budget.php'));
 
      }
+
+     /**
+      * Bill routes for the application
+      * Receives same middleware, session state, CSRF protection as Web routes.
+      */
+      protected function mapBillRoutes()
+      {
+          Route::middleware('web')
+               ->namespace($this->namespace)
+               ->group(base_path('routes/bill.php'));
+      }
+
+      /**
+       * Admin routes for the application
+       * Receives same middleware, session state, CSRF protection as Web routes.
+       */
+       protected function mapAdminRoutes()
+       {
+           Route::middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/admin.php'));
+       }
 }

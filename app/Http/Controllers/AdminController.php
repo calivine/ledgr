@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Activity;
 use App\Budget;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -11,32 +12,30 @@ use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
+    /**
+     * GET
+     * /admin/archive
+     * Archive encrypted tables
+     */
     function backupTables()
     {
-        $encrypted_table = [];
-        $activities = Activity::all();
-        foreach($activities as $activity) {
-            // Log::info($activity);
-            $encrypted = encrypt($activity);
-            // Log::info($encrypted);
-            // Log::info(decrypt($encrypted));
-            $encrypted_table[] = $encrypted;
-        }
+        $this->archive(Budget::all(), 'backup_b.json');
 
-        $fp = fopen(database_path('backup.json'), 'w') or die('Failure!');
-        fwrite($fp, json_encode($encrypted_table));
-        fclose($fp);
+        $this->archive(Activity::all(), 'backup.json');
 
+        $this->archive(User::all(), 'backup_u.json');
     }
 
+    /**
+     * GET
+     * /admin/readArchive
+     * Read archived tables
+     */
     function readBackupTables()
     {
-        $json = file_get_contents(database_path('backup.json'));
-        $json_data = json_decode($json, true);
-        foreach($json_data as $transaction) {
-            Log::info($transaction);
-            Log::info(decrypt($transaction));
-        }
+        $this->retrieve('backup.json');
+
+        $this->retrieve('backup_u.json');
     }
 
     function formatPeriodColumn()
@@ -53,6 +52,30 @@ class AdminController extends Controller
             }
 
         }
+    }
+
+    protected function archive($table, $file)
+    {
+        foreach($table as $row) {
+            $encrypted = encrypt($row);
+
+            $encrypted_table[] = $encrypted;
+        }
+
+        $fp = fopen(database_path($file), 'w') or die('Failure!');
+        fwrite($fp, json_encode($encrypted_table));
+        fclose($fp);
+    }
+
+    protected function retrieve($file)
+    {
+        $json = file_get_contents(database_path($file));
+        $json_data = json_decode($json, true);
+        foreach($json_data as $row) {
+            Log::info($row);
+            Log::info(decrypt($row));
+        }
+
     }
 
 

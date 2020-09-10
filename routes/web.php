@@ -44,15 +44,6 @@ Route::group(['middleware' => 'auth'], function() {
     # UPDATE Site theme
     Route::put('/account/theme/update', 'UserController@updateTheme')->name('changeTheme');
 
-    # GET Database Snapshot
-    Route::get('/snapshot', 'AdminController@backupTables');
-
-    # GET Read Database Snapshot
-    Route::get('/readSnapshot', 'AdminController@readBackupTables');
-
-    # GET Budget Column Format
-    Route::get('/formatBudget', 'AdminController@formatPeriodColumn');
-
     # POST Upload CSV File
     Route::post('/upload/csv', 'FileController@uploadCSV')->name('uploadCSV');
 });

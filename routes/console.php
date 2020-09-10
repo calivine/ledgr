@@ -16,3 +16,7 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('rando', function () {
+    $this->comment(random_int(1,640000000));
+})->describe('Display a random integer between 1 and 640000000');
