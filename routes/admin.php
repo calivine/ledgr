@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => ['auth', 'admin']], function() {
 
     Route::prefix('admin')->group(function () {
         # GET Database Snapshot

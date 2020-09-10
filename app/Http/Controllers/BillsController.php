@@ -34,7 +34,14 @@ class BillsController extends Controller
 
         $bill = new Bill();
 
-        $bill->id = random_int(1,640000000);
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $alphID = '';
+        for ($i = 1; $i <= 64; $i++) {
+
+            $alphID .= $characters[rand(0, strlen($characters)-1)];
+        }
+
+        $bill->id = $alphID;
         $bill->description = $description;
         $bill->amount = $amount;
         $bill->frequency = $freq;
