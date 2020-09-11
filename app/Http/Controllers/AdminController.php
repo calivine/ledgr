@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
+
+    /**
+     * GET
+     * /admin
+     * Admin panel
+     */
+    function index()
+    {
+        return view('content.admin.index');
+    }
+
     /**
      * GET
      * /admin/archive
@@ -24,6 +35,8 @@ class AdminController extends Controller
         $this->archive(Activity::all(), 'backup.json');
 
         $this->archive(User::all(), 'backup_u.json');
+
+        return redirect()->route('panel')->with(['alert' => 'New Archive Created']);
     }
 
     /**
