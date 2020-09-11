@@ -58,18 +58,18 @@ class AdminController extends Controller
     {
         foreach($table as $row) {
             $encrypted = encrypt($row);
-
+            Log::info($encrypted);
             $encrypted_table[] = $encrypted;
         }
 
-        $fp = fopen(database_path($file), 'w') or die('Failure!');
+        $fp = fopen(storage_path('app/' . $file), 'w') or die('Failure!');
         fwrite($fp, json_encode($encrypted_table));
         fclose($fp);
     }
 
     protected function retrieve($file)
     {
-        $json = file_get_contents(database_path($file));
+        $json = file_get_contents(storage_path('app/' . $file));
         $json_data = json_decode($json, true);
         foreach($json_data as $row) {
             Log::info($row);
