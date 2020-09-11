@@ -14,11 +14,12 @@ class CreateBillsTable extends Migration
     public function up()
     {
         Schema::create('bills', function (Blueprint $table) {
-            $table->increments('id');
+            $table->char('id', 64)->primary();
             $table->timestamps();
             $table->string('description');
             $table->float('amount', 11, 2);
-            $table->integer('due_by');
+            $table->enum('frequency', ['weekly', 'monthly', 'annually']);
+            $table->integer('due');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
 

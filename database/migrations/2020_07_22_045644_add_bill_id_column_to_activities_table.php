@@ -14,8 +14,8 @@ class AddBillIdColumnToActivitiesTable extends Migration
     public function up()
     {
         Schema::table('activities', function (Blueprint $table) {
-            $table->integer('bill_id')->unsigned()->nullable();
-            $table->foreign('bill_id')->references('id')->on('users');
+            $table->char('bill_id', 64)->nullable();
+            $table->foreign('bill_id')->references('id')->on('bills');
         });
     }
 
