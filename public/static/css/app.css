@@ -11389,6 +11389,8 @@ a.text-dark:focus {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  padding-top: 25px;
+  padding-bottom: 12.5px;
 }
 
 /* Rows */

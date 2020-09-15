@@ -1,10 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container-fluid">
+    <div class="page-container  {{ auth::user()->theme }}">
         <div class="row justify-content-center">
-            <p>Get started by setting up your first budget!</p>
-            <p>Fill in the planned budget values.</p>
+            <p>Get started by setting up your first budget! Fill in the planned budget values.</p>
             <div class="col-md-8">
                 <table id="budget-table" class="mx-auto table">
                     <thead>
@@ -31,7 +30,7 @@
                                 </td>
                             </tr>
                             @endforeach
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary btn-block">Save</button>
                         </form>
                         <tr class="border-top border-dark" id="budget-totals">
                             <td id="planned-total-label">Total:</td>
