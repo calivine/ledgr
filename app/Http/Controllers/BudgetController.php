@@ -39,14 +39,16 @@ class BudgetController extends Controller
         $id = $user->id;
         $theme = $user->theme;
 
-        $icons = DB::table('icons')->get();
+        $icons = DB::table('icons')->orderBy('text', 'asc')->get();
 
         $iconsDisplay = [];
+
         foreach($icons as $icon) {
-            // $iconsDisplay[] = Str::studly($icon->text);
-            $iconsDisplay[] = $icon->text;
+            $studly_icon = Str::studly($icon->text);
+            $icon->display = preg_replace('/(?<=[a-z])(?=\p{Lu})/u', ' ', $studly_icon);
+
         }
-        $iconsdisplay = array_map('Str::studly', $iconsDisplay);
+        // $iconsdisplay = array_map('Str::studly', $iconsDisplay);
         // Log::info($iconsdisplay);
 
         $response = new BudgetSheet($id);

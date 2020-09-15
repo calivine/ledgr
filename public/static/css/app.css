@@ -11845,7 +11845,7 @@ table#budget-table td.budget-category-name {
 
 .chart-container {
   position: relative;
-  height: 50vh;
+  height: 30vh;
   width: 45vw;
   margin-bottom: 0 !important;
   padding: 1rem;
@@ -11861,7 +11861,7 @@ table#budget-table td.budget-category-name {
 
 @media (max-width: 640px) {
   .chart-container {
-    height: 50vh;
+    height: 30vh;
     width: 90vw;
   }
 }
