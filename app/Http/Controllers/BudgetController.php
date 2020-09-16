@@ -10,7 +10,7 @@ use App\Budget;
 use App\Budget\BudgetSheet;
 use App\Events\IconWasChanged;
 use App\Events\PlannedBudgetChanged;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -32,13 +32,12 @@ class BudgetController extends Controller
      * /budget
      * Returns Monthly Budget Sheet
      */
-    public function index()
+    public function index(Request $request)
     {
         // Retrieve User
         $user = Auth::user();
         $id = $user->id;
         $theme = $user->theme;
-
         $today = date('g:i a');
         Log::info($today);
 

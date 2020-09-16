@@ -10,6 +10,7 @@ use App\Budget\BudgetSheet;
 use App\Charts\Chart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Request;
 
 /**
  * Builds and displays the main dashboard.
@@ -28,14 +29,18 @@ class DashboardController extends Controller
     public function index()
     {
         // Set Timezone.
-        date_default_timezone_set('America/New_York');
+
 
         // Retrieve User
         $user = Auth::user();
         $id = $user->id;
         $theme = $user->theme;
+        Log::info(Request::user());
+        Log::info(Auth::user());
 
-        Log::info(now() . ': User: ' . $id . ' entered the Dashboard');
+
+
+        Log::info(log_client());
 
         $budgets = Budget::where([
             ['user_id', $id],

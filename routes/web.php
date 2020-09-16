@@ -1,6 +1,5 @@
 <?php
-
-use App\User;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,6 +50,13 @@ Route::group(['middleware' => 'auth'], function() {
 
 // Authentication Routes
 Auth::routes();
+
+Route::post('/get_user_tz', function(Request $request) {
+    $tz = $request->input('timezone');
+    $tz_name = timezone_name_from_abbr("", $tz*60, false);
+    date_default_timezone_set($tz_name);
+    Illuminate\Support\Facades\Log::info($tz_name);
+});
 
 // Landing Page
 Route::view('/', 'landing')->name('landing');

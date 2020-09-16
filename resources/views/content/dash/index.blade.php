@@ -6,7 +6,6 @@
     @include('modules.modals.upload-csv')
     @include('modules.modals.new-transaction-modal', ['labels' => $category_form_labels])
     <main id="content-container" class="container-fluid {{ $theme }}">
-
         <div class="content-row">
             <div class="col-md-8">
                 <p class="dashboard-date">{{ $dates['todays_date'] }}</p><p class="dashboard-remaining">{{ $dates['days_remaining'] == 0 ? 'Last day of ' . date('F') : ($dates['days_remaining'] == 1 ? $dates['days_remaining'] . ' day left in ' . date('F') : $dates['days_remaining'] . ' days left in ' . date('F')) }}.</p>
