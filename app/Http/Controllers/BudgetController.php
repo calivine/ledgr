@@ -39,9 +39,10 @@ class BudgetController extends Controller
         $id = $user->id;
         $theme = $user->theme;
 
-        $icons = DB::table('icons')->orderBy('text', 'asc')->get();
+        $today = date('g:i a');
+        Log::info($today);
 
-        $iconsDisplay = [];
+        $icons = DB::table('icons')->orderBy('text', 'asc')->get();
 
         foreach($icons as $icon) {
             $studly_icon = Str::studly($icon->text);

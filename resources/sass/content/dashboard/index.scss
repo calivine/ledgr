@@ -16,7 +16,7 @@
 
 .chart-container {
   position: relative;
-  height: 30vh;
+  height: 50vh;
   width: 45vw;
   margin-bottom: 0 !important;
   padding: 1rem;
@@ -26,13 +26,18 @@
   margin: 1rem 0;
 }
 
+#transaction-table-container {
+  max-height: 350px;
+  overflow-y: scroll;
+}
+
 .tab-content {
     margin: 1rem 0;
 }
 
 @media (max-width: $width-mobile-wide) {
     .chart-container {
-        height: 30vh;
+        height: 40vh;
         width: 90vw;
     }
 }

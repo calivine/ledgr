@@ -9,9 +9,14 @@
                 <h2>Admin Panel</h2>
             </div>
         </div>
-        <div class="content-row">
+        <div class="content-row my-2">
             <div class="col-md-8">
-                <button class="btn btn-outline-success btn-block"><a href="{{ route('archive') }}">Archive Tables</a></button>
+                <button class="btn btn-success btn-block"><a href="{{ route('archive') }}">Archive Tables</a></button>
+            </div>
+        </div>
+        <div class="content-row my-2">
+            <div class="col-md-8">
+                <button class="btn btn-success btn-block"><a href="{{ route('readArchive') }}">Decrypt Archives</a></button>
             </div>
         </div>
     </main>

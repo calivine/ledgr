@@ -25,11 +25,6 @@ table {
   }
 }
 
-#trans-table {
-  max-height: 350px;
-  overflow-y: scroll;
-}
-
 .transaction-description, .transaction-amount {
   vertical-align: middle !important;
 }
@@ -39,12 +34,12 @@ table {
 }
 
 @media (max-width: $width-mobile-wide) {
-    section.all-transactions {
+    #all-transactions {
       .table {
         font-size: .6rem;
         td {
           padding: 0;
         }
       }
-    }    
+    }
 }

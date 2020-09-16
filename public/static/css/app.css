@@ -11635,6 +11635,10 @@ span#title-character.fade {
   line-height: 75vh;
 }
 
+#enter-button-container {
+  margin: auto;
+}
+
 /**
  * Logins
  */
@@ -11743,11 +11747,6 @@ table th {
   margin-right: auto !important;
 }
 
-#trans-table {
-  max-height: 350px;
-  overflow-y: scroll;
-}
-
 .transaction-description,
 .transaction-amount {
   vertical-align: middle !important;
@@ -11758,11 +11757,11 @@ table th {
 }
 
 @media (max-width: 640px) {
-  section.all-transactions .table {
+  #all-transactions .table {
     font-size: 0.6rem;
   }
 
-  section.all-transactions .table td {
+  #all-transactions .table td {
     padding: 0;
   }
 }
@@ -11845,7 +11844,7 @@ table#budget-table td.budget-category-name {
 
 .chart-container {
   position: relative;
-  height: 30vh;
+  height: 50vh;
   width: 45vw;
   margin-bottom: 0 !important;
   padding: 1rem;
@@ -11855,13 +11854,18 @@ table#budget-table td.budget-category-name {
   margin: 1rem 0;
 }
 
+#transaction-table-container {
+  max-height: 350px;
+  overflow-y: scroll;
+}
+
 .tab-content {
   margin: 1rem 0;
 }
 
 @media (max-width: 640px) {
   .chart-container {
-    height: 30vh;
+    height: 40vh;
     width: 90vw;
   }
 }

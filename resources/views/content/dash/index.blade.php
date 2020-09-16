@@ -30,7 +30,7 @@
                 @include('modules.charts')
             </div>
         </div>
-        <div class="content-row" id="trans-table">
+        <div class="content-row" id="transaction-table-container">
             <div class="col-md-8">
                 @include('modules.transactions-table', ['transactions' => $transactions, 'categories' => $category_form_labels, 'all' => False])
             </div>

@@ -7,7 +7,7 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::get('/archive', 'AdminController@backupTables')->name('archive');
 
         # GET Read Database Snapshot
-        Route::get('/readArchive', 'AdminController@readBackupTables');
+        Route::get('/readArchive', 'AdminController@readBackupTables')->name('readArchive');
 
         # GET Budget Column Format
         Route::get('/formatBudget', 'AdminController@formatPeriodColumn');
