@@ -11873,7 +11873,7 @@ table#budget-table td.budget-category-name {
 @media (max-width: 776px) {
   .chart-container {
     height: 30vh;
-    width: 90vw;
+    width: 80vw;
   }
 }
 
