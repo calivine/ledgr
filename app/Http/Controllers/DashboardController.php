@@ -29,13 +29,13 @@ class DashboardController extends Controller
     public function index()
     {
         // Set Timezone.
-
+        date_default_timezone_set('America/New_York');
 
         // Retrieve User
         $user = Auth::user();
         $id = $user->id;
         $theme = $user->theme;
-        
+
         Log::info(log_client());
 
         $budgets = Budget::where([
@@ -44,15 +44,12 @@ class DashboardController extends Controller
             ['year', '=', date('Y')]
         ])->get();
 
-
         foreach($budgets as $budget) {
 
             $month_int = date_parse($budget['month'])['month'];
             $month_name = date('F', mktime(0,0,0, $month_int));
         }
         $line_chart = new Chart('line', $budgets);
-
-
 
         // Get Current Month's Budget.
         $budget = new BudgetSheet($id);
@@ -66,11 +63,10 @@ class DashboardController extends Controller
         // Gets Total Monthly Spending data for progress bar.
         $progress_bars = new MonthlyTotal($budget->budget);
 
-
         // Fetch labels for New Transaction Form.
         $category_form_labels = get_labels($budget->budget);
 
-        Log::info(implode("\n", $category_form_labels));
+        // Log::info(implode("\n", $category_form_labels));
 
         // $chart_data['labels'] = get_labels($budget->budget, True);
 
@@ -91,7 +87,6 @@ class DashboardController extends Controller
             'days_remaining' => days_remaining()
         ];
 
-
         // Pull Transactions For The Current Period
         $transactions = Activity::with('budget:id,category,planned,actual,year,month,user_id,icon')
             ->whereBetween('date', [$dates['month_start'], $dates['month_end']])
@@ -99,7 +94,6 @@ class DashboardController extends Controller
             ->orderBy('date', 'desc')
             ->select('id', 'amount', 'description', 'category', 'date', 'budget_id')
             ->get();
-
 
         // Format Date and Amount For Display On Dashboard
         foreach($transactions as $transaction) {

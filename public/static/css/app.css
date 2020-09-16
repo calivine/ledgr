@@ -11863,6 +11863,13 @@ table#budget-table td.budget-category-name {
   margin: 1rem 0;
 }
 
+@media (max-width: 768px) {
+  .chart-container {
+    height: 55vh;
+    width: 70vw;
+  }
+}
+
 @media (max-width: 645px) {
   .chart-container {
     height: 40vh;
@@ -11870,9 +11877,9 @@ table#budget-table td.budget-category-name {
   }
 }
 
-@media (max-width: 776px) {
+@media (max-width: 415px) {
   .chart-container {
-    height: 45vh;
+    height: 28vh;
     width: 90vw;
   }
 }

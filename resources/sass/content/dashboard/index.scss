@@ -35,6 +35,14 @@
     margin: 1rem 0;
 }
 
+
+@media (max-width: $width-tablet) {
+    .chart-container {
+        height: 55vh;
+        width: 70vw;
+    }
+}
+
 @media (max-width: $width-mobile-wide) {
     .chart-container {
         height: 40vh;
@@ -42,9 +50,9 @@
     }
 }
 
-@media (max-width: $width-tablet) {
+@media (max-width: $width-mobile-hi-res) {
     .chart-container {
-        height: 45vh;
+        height: 28vh;
         width: 90vw;
     }
 }
