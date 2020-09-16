@@ -37,7 +37,14 @@
 
 @media (max-width: $width-mobile-wide) {
     .chart-container {
-        height: 30vh;
+        height: 35vh;
+        width: 90vw;
+    }
+}
+
+@media (max-width: $width-tablet) {
+    .chart-container {
+        height: 40vh;
         width: 90vw;
     }
 }

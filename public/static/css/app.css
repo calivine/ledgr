@@ -11566,7 +11566,7 @@ input.manual-input.dark {
   width: 100%;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 645px) {
   #manual-input-form input,
   #manual-input-form select {
     width: 100%;
@@ -11657,7 +11657,7 @@ span#title-character.fade {
   width: 135px;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 645px) {
   #login-dropdown {
     min-width: 20rem;
   }
@@ -11702,7 +11702,7 @@ span#title-character.fade {
     Media Query
 */
 
-@media (max-width: 640px) {
+@media (max-width: 645px) {
   .nav-item.dropdown {
     margin-right: 0;
   }
@@ -11756,7 +11756,7 @@ table th {
   background-color: #38c172;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 645px) {
   #all-transactions .table {
     font-size: 0.6rem;
   }
@@ -11772,7 +11772,7 @@ table th {
 
 */
 
-@media (max-width: 640px) {
+@media (max-width: 645px) {
   .icon-size {
     font-size: 2rem;
   }
@@ -11818,7 +11818,7 @@ table#budget-table td.budget-category-name {
   white-space: normal !important;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 645px) {
   .table tbody td,
   .table tbody td.text-right {
     width: 75px;
@@ -11863,7 +11863,14 @@ table#budget-table td.budget-category-name {
   margin: 1rem 0;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 645px) {
+  .chart-container {
+    height: 35vh;
+    width: 90vw;
+  }
+}
+
+@media (max-width: 728px) {
   .chart-container {
     height: 40vh;
     width: 90vw;
