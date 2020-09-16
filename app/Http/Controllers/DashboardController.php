@@ -35,11 +35,7 @@ class DashboardController extends Controller
         $user = Auth::user();
         $id = $user->id;
         $theme = $user->theme;
-        Log::info(Request::user());
-        Log::info(Auth::user());
-
-
-
+        
         Log::info(log_client());
 
         $budgets = Budget::where([
