@@ -9,10 +9,10 @@
     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
     @enderror
 
-    <label class="mb-0" for="password">{{ __('Password:') }}</label>
+    <label class="mb-0" for="password__modal">{{ __('Password:') }}</label>
 
 
-    <input id="password" type="password"
+    <input id="password__modal" type="password"
            class="form-control @error('password') is-invalid @enderror" name="password"
            required autocomplete="current-password">
 

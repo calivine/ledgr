@@ -43,12 +43,14 @@
                             <label for="password" class="text-md-right">{{ __('Password') }}</label>
 
                             <div class="password-requirements md-14">
-                                <ul>
-                                    <li id="length-requirement">At least 8 characters</li>
+                                <ul id="requirement-list">
+                                    <li class="req-list" id="length-requirement">At least 8 characters</li>
+                                    <li class="req-list" id="number-requirement">At least 1 number</li>
+                                    <li class="req-list" id="pwc-requirement">Confirm password</li>
                                 </ul>
                             </div>
 
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -57,10 +59,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="confirm" class="text-md-right">{{ __('Confirm Password') }}</label>
 
 
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <input id="confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
 
                         <div class="form-group row mb-0">

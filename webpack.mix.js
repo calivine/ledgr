@@ -16,6 +16,7 @@ mix.js('resources/js/app.js', 'public/static/js')
 
 mix.scripts([
     'resources/js/util.js',
+    'resources/js/validate.js',
     'resources/js/api-token.js',
     'resources/js/budget.js',
     'resources/js/edit-category.js',

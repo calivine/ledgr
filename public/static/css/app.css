@@ -11500,8 +11500,8 @@ footer p {
 }
 
 .dark {
-  background-color: #1c1f2b !important;
-  color: #bcc9da;
+  background-color: #383c42 !important;
+  color: #b5b9c1;
 }
 
 div.progress.dark {
@@ -11534,6 +11534,22 @@ input.manual-input.dark {
 .page-container.dark {
   background-color: #bcc9da !important;
   color: black;
+}
+
+.req-list {
+  list-style-type: circle;
+}
+
+.req-list.rejected {
+  color: red;
+  list-style-type: "x";
+  text-decoration: none;
+}
+
+.req-list.accepted {
+  color: green;
+  list-style-type: "\2713";
+  text-decoration: line-through;
 }
 
 .alert-success {

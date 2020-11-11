@@ -21,6 +21,36 @@ function dateTest() {
     console.log(today.getDate());
 }
 
+class Form {
+    constructor (input) {
+        this.input = input;
+    }
+
+    /**
+    Takes a string in the form: "rule1|rule2|rule3|etc..."
+    **/
+    validate (rules) {
+        this.rules = rules.split("|");
+        console.log(this.rules);
+        let m = this.rules[0];
+        if (this[m]()) {
+            console.log('Passed validation');
+        }
+        else {
+            console.log('Failed validation');
+        }
+    }
+
+    min () {
+        console.log('Calling min.');
+        let str = this.input.val();
+        console.log(str);
+        return (str.length + 1) >= 8;
+    }
+
+
+}
+
 $('button#hide-api-token').hide();
 
 $('button#display-api-token').on('click', function (){
@@ -439,24 +469,34 @@ $('td.transaction-delete').each(function () {
 });
 
 $(function () {
-    $('input#password.form-control').on('change', function () {
-        console.log($(this).val());
-        let inputText = $(this).val();
-        minLength(inputText) ? pass() : reject();
+    let confirmInput = $('input#confirm.form-control');
+    let passwordInput = $('input#password.form-control');
+    let length = 'li#length-requirement';
+    let number = 'li#number-requirement';
+    let confirm = 'li#pwc-requirement';
+
+    $(passwordInput).keyup(event, function (event) {
+        let passwordText = $(this).val();
+
+        minLength(passwordText) ? pass(length) : reject(length);
+        numberCheck(passwordText) ? pass('li#number-requirement') : reject('li#number-requirement');
+        //password_cofirmed(inputText, passConfirmText) ? pass('li#pwc-requirement') : reject('li#pwc-requirement');
     });
 
-    $('input#password.form-control').on('keypress', function () {
+    $(confirmInput).keyup(event, function (event) {
 
-        console.log($(this).val());
-        let inputText = $(this).val();
-        console.log(inputText.length);
-        minLength(inputText) ? pass() : reject();
+        let passwordText = passwordInput.val();
+        let confirmText = $(this).val();
+        // Password confirm input text
+        password_confirmed(passwordText, confirmText) ? pass('li#pwc-requirement') : reject('li#pwc-requirement');
+
     });
+
 });
 
-function reject() {
-    $('li#length-requirement').css('color', 'red');
-    $('li#length-requirement').css('text-decoration', 'none');
+function reject(listItem) {
+    $(listItem).addClass('rejected');
+    $(listItem).removeClass('accepted');
 
 }
 
@@ -465,7 +505,20 @@ function minLength(s) {
     return (str.length + 1) >= 8;
 }
 
-function pass() {
-    $('li#length-requirement').css('color', 'green');
-    $('li#length-requirement').css('text-decoration', 'line-through');
+function numberCheck(s) {
+    let str = s;
+    let re = /[0-9]/;
+    return str.match(re);
+}
+
+function pass(listItem) {
+    $(listItem).removeClass('rejected');
+    $(listItem).addClass('accepted');
+
+}
+
+function password_confirmed(pw, pwc) {
+    console.log(pw, pwc);
+    if (pwc === '') return false;
+    return pw === pwc;
 }

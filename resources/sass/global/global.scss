@@ -50,8 +50,8 @@ footer {
 }
 
 .dark {
-  background-color: rgb(28,31,43) !important;
-  color: rgb(188,201,218);
+  background-color: $darkgrayrgb !important;
+  color: $silverrgb;
 }
 
 div.progress.dark {
@@ -86,4 +86,20 @@ input.manual-input.dark {
 .page-container.dark {
     background-color: rgb(188,201,218) !important;
     color: black;
+}
+
+.req-list {
+    list-style-type: circle;
+}
+
+.req-list.rejected {
+    color: red;
+    list-style-type: '\0078';
+    text-decoration: none;
+}
+
+.req-list.accepted {
+    color: green;
+    list-style-type: '\2713';
+    text-decoration: line-through;
 }
