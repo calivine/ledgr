@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Ledgr Is A Simple, Secure, Personal Budgeting Platform">
 <meta name="author" content="">
-<meta name="theme-color" content="{{ auth::check() ? auth::user()->theme == 'dark' ? '#1c1f2b' : '#98FB98' : '#98FB98' }}"/>
+<meta name="theme-color" content="{{ auth::check() ? auth::user()->theme == 'dark' ? '#1c1f2b' : '#38c172' : '#38c172' }}"/>
 
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
