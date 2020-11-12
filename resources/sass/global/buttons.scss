@@ -39,3 +39,9 @@
   color: #6c757d;
   pointer-events: none;
 }
+
+#new-transaction__button::before,
+#add-new-category::before {
+    content: "\002B";
+    margin: 5px;
+}

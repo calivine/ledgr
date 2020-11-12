@@ -11447,6 +11447,12 @@ a.text-dark:focus {
   pointer-events: none;
 }
 
+#new-transaction__button::before,
+#add-new-category::before {
+  content: "+";
+  margin: 5px;
+}
+
 body {
   height: 100vh;
   width: 100vw;
@@ -11832,6 +11838,11 @@ table#budget-table td.budget-category-planned span {
 
 table#budget-table td.budget-category-name {
   white-space: normal !important;
+}
+
+table#budget-table td#planned-total::before,
+table#budget-table span.planned-value::before {
+  content: "$";
 }
 
 @media (max-width: 645px) {

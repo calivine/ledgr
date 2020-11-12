@@ -53,7 +53,7 @@ class BudgetController extends Controller
         // Log::info($iconsdisplay);
 
         $response = new BudgetSheet($id);
-
+        
         // If Budget sheet doesn't exist, create a new one.
         if (sizeof($response->budget) == 0)
         {

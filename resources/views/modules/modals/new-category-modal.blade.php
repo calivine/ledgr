@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group">
                         <label class="mb-0 w-100" for="new-planned-input">Planned Budget</label>
-                        <input id="new-planned-input" class="new-category-form-input" name="planned" type="text" placeholder="$"  autofocus>
+                        <input id="new-planned-input" class="new-category-form-input" name="planned" type="number" placeholder="$"  autofocus>
                     </div>
                     <button class="btn btn-outline-primary btn-block" id="category-submit" type="submit"><i class="material-icons icon md-18">save</i>Save</button>
                 </form>

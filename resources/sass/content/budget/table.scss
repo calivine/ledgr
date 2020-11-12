@@ -16,6 +16,10 @@ table#budget-table {
   td.budget-category-name {
     white-space: normal !important;
   }
+  td#planned-total::before,
+  span.planned-value::before {
+      content: "\0024";
+  }
 }
 
 @media (max-width: $width-mobile-wide) {

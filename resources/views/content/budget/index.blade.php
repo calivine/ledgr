@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="content-row">
-            <button class="btn btn-outline-success btn-block" id="add-new-category"><i class="material-icons md-16">add</i>Add New Category</button>
+            <button class="btn btn-outline-success btn-block" id="add-new-category">Add New Category</button>
         </div>
         <div class="content-row">
             <div class="col-md-8">
@@ -30,7 +30,7 @@
                         <tr class="budget-category" id="{{ $row->id }}">
                             <td class="budget-icon"><i class="material-icons">{{ $row->icon }}</i></td>
                             <td class="budget-category-name" id="{{ $row->id }}"><small>{{ $row->category }}</small></td>
-                            <td class='budget-category-planned'>$<span class="planned-value" id="{{ $row->id }}">{{ $row->planned }}</span>@include('modules.icons.edit')</td>
+                            <td class='budget-category-planned'><span class="planned-value" id="{{ $row->id }}">{{ $row->planned }}</span>@include('modules.icons.edit')</td>
                             <td class="text-center">${{ $row->actual }}</td>
                             <td class="text-right">${{ $row->planned - $row->actual }}</td>
                             @if($row->actual == 0)
@@ -39,7 +39,7 @@
                         </tr>
                     @endforeach
                         <tr class="border-top border-dark" id="budget-totals">
-                            <td id="planned-total-label">Total: $</td>
+                            <td id="planned-total-label">Total:</td>
                             <td class="text-center" id="planned-total"></td>
                         </tr>
                     </tbody>

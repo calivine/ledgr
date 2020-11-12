@@ -479,7 +479,7 @@ $(function () {
         let passwordText = $(this).val();
 
         minLength(passwordText) ? pass(length) : reject(length);
-        numberCheck(passwordText) ? pass('li#number-requirement') : reject('li#number-requirement');
+        numberCheck(passwordText) ? pass(number) : reject(number);
         //password_cofirmed(inputText, passConfirmText) ? pass('li#pwc-requirement') : reject('li#pwc-requirement');
     });
 

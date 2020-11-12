@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="content-row" id="toggle-modal-row">
-            <button type="button" class="btn btn-outline-success btn-block" data-toggle="modal" data-target="#modalCenter">Add Transaction</button>
+            <button id="new-transaction__button" type="button" class="btn btn-outline-success btn-block" data-toggle="modal" data-target="#modalCenter">Add Transaction</button>
         </div>
         <div class="content-row total-spending">
             <div class="col-md-8">
