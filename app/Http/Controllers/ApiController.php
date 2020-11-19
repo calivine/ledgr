@@ -28,8 +28,8 @@ class ApiController extends Controller
         // Get to and from dates from URL.
         preg_match_all('/[\d]{4}-[\d]{1,2}-[\d]{1,2}/', $url, $dates);
 
-        $from = dates[0][0];
-        $to = dates[0][1];
+        $from = $dates[0][0];
+        $to = $dates[0][1];
 
         $transactions = Activities::getActivitiesByDate($from, $to, $user);
 
