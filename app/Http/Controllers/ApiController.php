@@ -11,6 +11,7 @@ class ApiController extends Controller
 {
     public function store(Request $request)
     {
+        Log::info('Storing activity');
         $activity = Activities::storeTransaction($request);
 
         return response()->json([
