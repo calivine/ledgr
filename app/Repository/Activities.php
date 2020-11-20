@@ -40,7 +40,7 @@ class Activities
         $description = $request->input('description');
         $category = $request->input('category');
 
-        $user = $request->user()->id;
+        $user = $request->user();
 
         $activity = new StoreActivity($date, $amount, $description, $category, $user);
 
