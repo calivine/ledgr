@@ -39,7 +39,7 @@ class Activities
         $amount = $request->input('amount');
         $description = $request->input('description');
         $category = $request->input('category');
-
+        Log::info($date . ' ' . $amount . ' ' . $description . ' ' . $category);
         $user = $request->user();
 
         $activity = new StoreActivity($date, $amount, $description, $category, $user);
