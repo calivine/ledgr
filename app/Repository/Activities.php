@@ -4,7 +4,8 @@
 namespace App\Repository;
 
 use App\Activity;
-
+use App\Budget;
+use App\Actions\Activity\StoreActivity;
 use DB;
 use Log;
 use Request;
@@ -30,5 +31,20 @@ class Activities
             ->where('user_id', '=', $user)
             ->whereBetween('date', [$from, $to])
             ->get();
+    }
+
+    public function storeTransaction(Request $request)
+    {
+        $date = $request->input('date');
+        $amount = $request->input('amount');
+        $amount = $request->input('description');
+        $amount = $request->input('category');
+
+        $user = $request->user()->id;
+
+        $activity = new StoreActivity($date, $amount, $description, $category, $user);
+
+        return $activity;
+
     }
 }

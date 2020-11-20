@@ -11,22 +11,20 @@ class ApiController extends Controller
 {
     public function store(Request $request)
     {
-        //
-    }
+        $activity = Activities::storeTransaction($request);
 
-    public function get(Request $request)
-    {
-        $user = $request->user()->id;
-        return $user;
+        return response()->json([
+            "result" => $activity
+        ], 200);
+
     }
 
     public function getTransactionsByDate(Request $request)
     {
         $user = $request->user()->id;
 
-        $url = $request->url();
         // Get to and from dates from URL.
-        preg_match_all('/[\d]{4}-[\d]{1,2}-[\d]{1,2}/', $url, $dates);
+        preg_match_all('/[\d]{4}-[\d]{1,2}-[\d]{1,2}/', $request->url(), $dates);
 
         $from = $dates[0][0];
         $to = $dates[0][1];

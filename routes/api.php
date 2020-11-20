@@ -35,6 +35,4 @@ Route::middleware('auth:api')->get('/activity/transactions/{start}/{stop}/', fun
 */
 Route::middleware('auth:api')->get('/activity/transactions/{start}/{stop}/', 'ApiController@getTransactionsByDate');
 
-Route::post('/transaction/store', 'ApiController@store');
-
-Route::middleware('auth:api')->get('/user/test/get', 'ApiController@get');
+Route::middleware('auth:api')->post('/activity/transaction/create', 'ApiController@store');
