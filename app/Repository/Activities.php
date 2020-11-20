@@ -33,12 +33,12 @@ class Activities
             ->get();
     }
 
-    public function storeTransaction(Request $request)
+    public function storeTransaction($request)
     {
         $date = $request->input('date');
         $amount = $request->input('amount');
-        $amount = $request->input('description');
-        $amount = $request->input('category');
+        $description = $request->input('description');
+        $category = $request->input('category');
 
         $user = $request->user()->id;
 
