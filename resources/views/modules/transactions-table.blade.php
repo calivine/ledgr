@@ -15,7 +15,7 @@
     <tbody id="transaction-body">
     @foreach($transactions as $transaction)
         <tr>
-            <td><i class="material-icons">{{ $transaction->budget->icon }}</i></td>
+            <td><i class="material-icons">{{ $transaction->icon }}</i></td>
             <td class="transaction-date"><small>{{ $transaction->date }}</small></td>
             <td class="transaction-description">{{ $transaction->description }}</td>
             <td class="transaction-amount">${{ $transaction->amount }}</td>

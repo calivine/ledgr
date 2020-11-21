@@ -14,6 +14,7 @@ use App\Budget\BudgetSheet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Facades\App\Repository\Activities;
 
 /**
  * Handles requests that process Activity (transactions) data.
@@ -142,13 +143,11 @@ class ActivityController extends Controller
        public function getTransactions()
        {
            $user_id = Auth::id();
-           $transactions = User::where('id', $user_id)
-                                 ->select('id')
-                                 ->with('activities.budget:id,planned,actual,category,icon,month,year,user_id')
-                                 ->first();
+           $transactions = Activities::all($user_id);
+
 
            return view('content.activity.transactions')->with([
-               'transactions' => $transactions->activities
+               'transactions' => $transactions
            ]);
        }
 

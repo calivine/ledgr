@@ -15,6 +15,16 @@ class Activities
 {
     CONST CACHE_KEY = 'ACTIVITIES';
 
+    public function all($user)
+    {
+        return DB::table('activities')
+            ->leftJoin('budgets', 'activities.budget_id', '=', 'budgets.id')
+            ->where('activities.user_id', '=', $user)
+            ->orderBy('activities.date', 'desc')
+            ->get();
+
+    }
+
     public function getActivitiesByDate($from, $to, $user)
     {
 
@@ -27,9 +37,10 @@ class Activities
         {
             Log::info('Okay');
         }
-        return DB::table('activities')
-            ->where('user_id', '=', $user)
-            ->whereBetween('date', [$from, $to])
+        return DB::table('budgets')
+            ->join('activities', 'budgets.id', '=', 'activities.budget_id')
+            ->where('activities.user_id', '=', $user)
+            ->whereBetween('activities.date', [$from, $to])
             ->get();
     }
 
