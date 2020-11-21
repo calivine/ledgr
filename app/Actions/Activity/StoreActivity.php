@@ -33,7 +33,8 @@ class StoreActivity
         {
             // Create a new budget category
 
-            new StoreCategory($category, 0, $user);
+            $new_budget = new StoreCategory($category, 0, $user);
+            Log::info($year . ' ' . $month . ' ' . $user->id . ' ' . $category);
 
             // new StoreBudget($user, $month, $year);
             $budget = Budget::where([

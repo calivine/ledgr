@@ -17,8 +17,8 @@ class Activities
 
     public function all($user)
     {
-        return DB::table('activities')
-            ->leftJoin('budgets', 'activities.budget_id', '=', 'budgets.id')
+        return DB::table('budgets')
+            ->join('activities', 'budgets.id', '=', 'activities.budget_id')
             ->where('activities.user_id', '=', $user)
             ->orderBy('activities.date', 'desc')
             ->get();

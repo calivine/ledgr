@@ -10,6 +10,10 @@ class DestroyActivity
 	{
 			$activity = Activity::find($id);
 
+			if($activity == null) {
+				return;
+			} 
+
 			$budget = $activity->budget;
 
 			$budget->actual -= $activity->amount;

@@ -23,11 +23,12 @@ class StoreCategory
 
         $category->save();
 
-        Log::info('Saved new category ' . $new_category);
+        Log::info('Saved new category ' . $new_category . ' ' . $category->id);
 
         $this->rda = [
             'category' => $new_category,
-            'planned' => $new_planned_budget
+            'planned' => $new_planned_budget,
+            'id' => $category->id
         ];
     }
 
