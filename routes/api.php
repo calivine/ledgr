@@ -26,7 +26,9 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::post('/activity/transaction/create', 'ApiController@store');
 
+    Route::get('/budget/categories/', 'ApiController@getBudgetCategories');
 
+    
 });
 
 /**

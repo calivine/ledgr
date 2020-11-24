@@ -4,11 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\ActivityCollection;
+use App\Http\Resources\BudgetCollection;
 use Facades\App\Repository\Activities;
+use Facades\App\Repository\Budgets;
+use App\Budget\BudgetSheet;
 use Log;
 
 class ApiController extends Controller
 {
+    public function getBudgetCategories(Request $request)
+    {
+        $user = $request->user()->id;
+
+        $response = Budgets::categories($user);
+
+        return new BudgetCollection($response);
+    }
 
     public function getTransactionsByDate(Request $request)
     {
