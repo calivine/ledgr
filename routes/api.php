@@ -20,15 +20,21 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     Route::get('/user', 'ApiController@user');
 
-    Route::get('/activity/transactions/{start}/{stop}/', 'ApiController@getTransactionsByDate');
+    Route::get('/activity/transactions/{start}/{stop}', 'ApiController@getTransactionsByDate');
 
-    Route::get('/activity/transactions/{start}/{stop}/total/', 'ApiController@total');
+    Route::get('/activity/transactions/{start}/{stop}/total', 'ApiController@total');
 
-    Route::post('/activity/transaction/create', 'ApiController@store');
+    Route::post('/activity/transaction', 'ApiController@store');
 
-    Route::get('/budget/categories/', 'ApiController@getBudgetCategories');
+    Route::get('/budget/categories/{filter?}', 'ApiController@getBudgetCategories');
+    /*
+    Route::get('/budget/category/{name}');
 
-    
+    Route::get('/budget/category/{name}/planned')
+
+    Route::get('/budget/category/{name}/actual')
+    */
+
 });
 
 /**

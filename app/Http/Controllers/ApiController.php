@@ -16,9 +16,22 @@ class ApiController extends Controller
     {
         $user = $request->user()->id;
 
-        $response = Budgets::categories($user);
+        if (preg_match('/planned/', $request->url())) {
+            $response = Budgets::category($user, 'planned');
+        }
+        else if (preg_match('/actual/', $request->url())) {
+            $response = Budgets::category($user, 'actual');
+        }
+        else {
+            $response = Budgets::categories($user);
+        }
 
         return new BudgetCollection($response);
+    }
+
+    public function getBudgetCategory(Request $request)
+    {
+        // Return budget category
     }
 
     public function getTransactionsByDate(Request $request)
