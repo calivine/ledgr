@@ -6,6 +6,7 @@ namespace App\Repository;
 use App\Activity;
 use App\Budget;
 use App\Actions\Activity\StoreActivity;
+use Carbon\Carbon;
 use DB;
 use Log;
 use Illuminate\Http\Request;
@@ -27,6 +28,8 @@ class Activities
 
     public function getActivitiesByDate($from, $to, $user)
     {
+        $key = "{$user}.{$from}.{$to}";
+        $cacheKey = $this->getCacheKey($key);
 
         if (!preg_match('/^[\d]{4}-[\d]{1,2}-[\d]{1,2}$/', $from))
         {
@@ -37,11 +40,13 @@ class Activities
         {
             Log::info('Okay');
         }
-        return DB::table('budgets')
-            ->join('activities', 'budgets.id', '=', 'activities.budget_id')
-            ->where('activities.user_id', '=', $user)
-            ->whereBetween('activities.date', [$from, $to])
-            ->get();
+        return cache()->remember($cacheKey, Carbon::now()->addMinutes(2), function () use ($user, $to, $from) {
+            return DB::table('budgets')
+                ->join('activities', 'budgets.id', '=', 'activities.budget_id')
+                ->where('activities.user_id', '=', $user)
+                ->whereBetween('activities.date', [$from, $to])
+                ->get();
+        }
     }
 
     public function storeTransaction($request)

@@ -7,6 +7,7 @@ use App\Http\Resources\ActivityCollection;
 use App\Http\Resources\BudgetCollection;
 use Facades\App\Repository\Activities;
 use Facades\App\Repository\Budgets;
+use Facades\App\Repository\Budget;
 use App\Budget\BudgetSheet;
 use Log;
 
@@ -17,10 +18,10 @@ class ApiController extends Controller
         $user = $request->user()->id;
 
         if (preg_match('/planned/', $request->url())) {
-            $response = Budgets::category($user, 'planned');
+            $response = Budgets::categories($user, 'planned');
         }
         else if (preg_match('/actual/', $request->url())) {
-            $response = Budgets::category($user, 'actual');
+            $response = Budgets::categories($user, 'actual');
         }
         else {
             $response = Budgets::categories($user);
@@ -31,7 +32,24 @@ class ApiController extends Controller
 
     public function getBudgetCategory(Request $request)
     {
-        // Return budget category
+        $user = $request->user()->id;
+
+        preg_match('/category\/([A-Za-z]+)/', $request->url(), $match);
+
+        if (preg_match('/planned/', $request->url()))
+        {
+            $response = Budget::category($user, $match[1], 'planned');
+        }
+        else if (preg_match('/actual/', $request->url()))
+        {
+            $response = Budget::category($user, $match[1], 'actual');
+        }
+        else
+        {
+            $response = Budget::category($user, $match[1]);
+        }
+
+        return new BudgetCollection($response);
     }
 
     public function getTransactionsByDate(Request $request)
