@@ -74,7 +74,7 @@ class Budgets
                              'actual')
                     ->orderBy('category')
                     ->get();
-            }
+            });
         }
         else {
             $key = "categories.{$user}.{$filter}"
@@ -90,7 +90,7 @@ class Budgets
                              $filter)
                     ->orderBy('category')
                     ->get();
-            }
+            });
         }
     }
 

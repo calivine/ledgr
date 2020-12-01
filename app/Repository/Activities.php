@@ -46,7 +46,7 @@ class Activities
                 ->where('activities.user_id', '=', $user)
                 ->whereBetween('activities.date', [$from, $to])
                 ->get();
-        }
+        });
     }
 
     public function storeTransaction($request)
