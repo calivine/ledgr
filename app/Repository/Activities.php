@@ -63,4 +63,11 @@ class Activities
         return $activity;
 
     }
+
+    public function getCacheKey($key)
+    {
+        $key = strtoupper($key);
+
+        return self::CACHE_KEY . ".$key";
+    }
 }
