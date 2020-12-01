@@ -77,7 +77,7 @@ class Budgets
             });
         }
         else {
-            $key = "categories.{$user}.{$filter}"
+            $key = "categories.{$user}.{$filter}";
             $cacheKey = $this->getCacheKey($key);
             return cache()->remember($cacheKey, Carbon::now()->addMinutes(2), function () use ($user, $filter) {
                 return DB::table('budgets')
