@@ -100,4 +100,6 @@ return [
         ],
     ],
 
+    'admin' => env('ADMIN'),
+
 ];

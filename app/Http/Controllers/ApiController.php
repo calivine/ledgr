@@ -33,14 +33,15 @@ class ApiController extends Controller
     public function getBudgetCategory(Request $request)
     {
         $user = $request->user()->id;
+        $request_url = $request->url();
 
-        preg_match('/category\/([A-Za-z]+)/', $request->url(), $match);
+        preg_match('/category\/([A-Za-z]+)/', $request_url, $match);
 
-        if (preg_match('/planned/', $request->url()))
+        if (preg_match('/planned/', $request_url))
         {
             $response = Budget::category($user, $match[1], 'planned');
         }
-        else if (preg_match('/actual/', $request->url()))
+        else if (preg_match('/actual/', $request_url))
         {
             $response = Budget::category($user, $match[1], 'actual');
         }
@@ -55,9 +56,10 @@ class ApiController extends Controller
     public function getTransactionsByDate(Request $request)
     {
         $user = $request->user()->id;
+        $request_url = $request->url();
 
         // Get to and from dates from URL.
-        preg_match_all('/[\d]{4}-[\d]{1,2}-[\d]{1,2}/', $request->url(), $dates);
+        preg_match_all('/[\d]{4}-[\d]{1,2}-[\d]{1,2}/', $request_url, $dates);
 
         $from = $dates[0][0];
         $to = $dates[0][1];

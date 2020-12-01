@@ -15,7 +15,7 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->email != 'caloggero.a@gmail.com')
+        if ($request->user()->email != config('auth.admin'))
         {
             return redirect()->route('dashboard');
         }

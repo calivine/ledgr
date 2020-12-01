@@ -18,23 +18,29 @@ use App\Http\Resources\ActivityCollection;
 
 Route::group(['middleware' => 'auth:api'], function() {
 
+    # GET User.
     Route::get('/user', 'ApiController@user');
 
-    Route::get('/activity/transactions/{start}/{stop}', 'ApiController@getTransactionsByDate');
+    # Activities Route Group
+    Route::prefix('activity')->group(function () {
+        # GET All Transactions for the Period.
+        Route::get('transactions/{start}/{stop}', 'ApiController@getTransactionsByDate');
 
-    Route::get('/activity/transactions/{start}/{stop}/total', 'ApiController@total');
+        # GET Get Total Spent for Period.
+        Route::get('transactions/{start}/{stop}/total', 'ApiController@total');
 
-    Route::post('/activity/transaction', 'ApiController@store');
+        # POST Save new transaction item.
+        Route::post('transaction', 'ApiController@store');
+    });
 
-    Route::get('/budget/categories/{filter?}', 'ApiController@getBudgetCategories');
-    /*
-    Route::get('/budget/category/{name}');
+    # Budget Route Group
+    Route::prefix('budget')->group(function () {
+        # GET All Category budget items.
+        Route::get('categories/{filter?}', 'ApiController@getBudgetCategories');
 
-    Route::get('/budget/category/{name}/planned')
-
-    Route::get('/budget/category/{name}/actual')
-    */
-
+        # GET Category budget item.
+        Route::get('category/{name}/{filter?}', 'ApiController@getBudgetCategory');
+    });
 });
 
 /**

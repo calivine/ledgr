@@ -31,15 +31,6 @@ class Activities
         $key = "{$user}.{$from}.{$to}";
         $cacheKey = $this->getCacheKey($key);
 
-        if (!preg_match('/^[\d]{4}-[\d]{1,2}-[\d]{1,2}$/', $from))
-        {
-            Log::info('Error');
-            //return json('status' => 500);
-        }
-        else
-        {
-            Log::info('Okay');
-        }
         return cache()->remember($cacheKey, Carbon::now()->addMinutes(2), function () use ($user, $to, $from) {
             return DB::table('budgets')
                 ->join('activities', 'budgets.id', '=', 'activities.budget_id')

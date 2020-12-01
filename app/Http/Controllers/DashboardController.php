@@ -29,7 +29,7 @@ class DashboardController extends Controller
     public function index()
     {
         // Set Timezone.
-        date_default_timezone_set('America/New_York');
+        // date_default_timezone_set('America/New_York');
 
         // Retrieve User
         $user = Auth::user();

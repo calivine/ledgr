@@ -19,7 +19,7 @@ class StoreActivity
     {
         $year = date('Y', strtotime($date));
         $month = date('F', strtotime($date));
-        Log::info($year . $month . $user->id . $category);
+
         // Get Budget Category To Associate w/ Activity
         $budget = Budget::where([
             ['year', '=', $year],
@@ -32,20 +32,11 @@ class StoreActivity
         if ($budget == null)
         {
             // Create a new budget category
+            $budget = new StoreCategory($category, 0, $user);
+            Log::info($year . " " . $month . " " . $user->id . " " . $category);
 
-            $new_budget = new StoreCategory($category, 0, $user);
-            Log::info($year . ' ' . $month . ' ' . $user->id . ' ' . $category);
-
-            // new StoreBudget($user, $month, $year);
-            $budget = Budget::where([
-                ['year', '=', $year],
-                ['month', '=', $month],
-                ['user_id', '=', $user->id],
-                ['category', '=', $category]
-            ])->first();
         }
         Log::info($budget);
-
 
         // Save Transaction To Activities Table
         $activity = new Activity();
@@ -54,17 +45,19 @@ class StoreActivity
         $activity->amount = $amount;
         $activity->category = $category;
         $activity->date = $date;
-        // Create function that generates random 36 character alpha-num string
-        // $activity->transaction_id = "TestTransaction";
         // Link To User Signed-In
         $activity->user()->associate($user);
         // Link To Budget Category
         $activity->budget()->associate($budget);
         $activity->save();
 
+        Log::info('Updating budget: ' . $activity->budget_id . ' by ' . $activity->amount);
+        $budget->actual += $activity->amount;
+        $budget->save();
+
         $this->rda = $activity;
 
-        event(new TransactionWasCreated($activity));
+        // event(new TransactionWasCreated($activity));
     }
 
 }
