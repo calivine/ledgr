@@ -70,7 +70,7 @@ class Budgets
                 ])
                 ->select('category')
                 ->orderBy('category')
-                ->all();
+                ->get();
         });
 
     }

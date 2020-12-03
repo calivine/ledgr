@@ -27,10 +27,14 @@ class ApiController extends Controller
         }
         else if (preg_match('/labels/', $request->url()))
         {
+            $labels = [];
             $response = Budgets::labels($user);
-            $response->dd();
-            die();
-
+            foreach($response as $item) {
+                $labels[] = $item->category;
+            }
+            return response()->json([
+                "data" => $labels
+            ], 200);
         }
         else
         {
