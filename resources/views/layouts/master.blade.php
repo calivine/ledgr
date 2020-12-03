@@ -6,14 +6,10 @@
     @include('layouts.partials.head')
 </head>
 <body class="{{ auth::check() ? auth::user()->theme : '' }}">
-<!-- Alerts -->
-@if(session('alert'))
-    <div class="alert-success">
-        <span class="alert-text">{{ session('alert') }}</span>
-    </div>
-@endif
 <!-- Navbar -->
 @include('nav.navbar')
+<!-- Alerts -->
+@include('alerts.success')
 <!-- Page Content -->
 @yield('content')
 <!-- Footer -->

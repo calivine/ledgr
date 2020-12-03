@@ -25,7 +25,7 @@ class Budgets
         if (is_null($filter)) {
             $key = "categories.{$user}";
             $cacheKey = $this->getCacheKey($key);
-            return cache()->remember($cacheKey, Carbon::now()->addMinutes(2), function () use ($user) {
+            return cache()->remember($cacheKey, Carbon::now()->addSeconds(30), function () use ($user) {
                 return DB::table('budgets')
                     ->where([
                         ['year', '=', $year ?? date('Y')],
@@ -42,7 +42,7 @@ class Budgets
         else {
             $key = "categories.{$user}.{$filter}";
             $cacheKey = $this->getCacheKey($key);
-            return cache()->remember($cacheKey, Carbon::now()->addMinutes(2), function () use ($user, $filter) {
+            return cache()->remember($cacheKey, Carbon::now()->addSeconds(30), function () use ($user, $filter) {
                 return DB::table('budgets')
                     ->where([
                         ['year', '=', $year ?? date('Y')],
@@ -61,7 +61,7 @@ class Budgets
     {
         $key = "categories.{$user}.labels";
         $cacheKey = $this->getCacheKey($key);
-        return cache()->remember($cacheKey, Carbon::now()->addMinutes(2), function () use ($user) {
+        return cache()->remember($cacheKey, Carbon::now()->addSeconds(30), function () use ($user) {
             return DB::table('budgets')
                 ->where([
                     ['year', '=', $year ?? date('Y')],

@@ -31,7 +31,7 @@ class Activities
         $key = "{$user}.{$from}.{$to}";
         $cacheKey = $this->getCacheKey($key);
 
-        return cache()->remember($cacheKey, Carbon::now()->addMinutes(2), function () use ($user, $to, $from) {
+        return cache()->remember($cacheKey, Carbon::now()->addSeconds(30), function () use ($user, $to, $from) {
             return DB::table('budgets')
                 ->join('activities', 'budgets.id', '=', 'activities.budget_id')
                 ->where('activities.user_id', '=', $user)
