@@ -17,13 +17,23 @@ class ApiController extends Controller
     {
         $user = $request->user()->id;
 
-        if (preg_match('/planned/', $request->url())) {
+        if (preg_match('/planned/', $request->url()))
+        {
             $response = Budgets::categories($user, 'planned');
         }
-        else if (preg_match('/actual/', $request->url())) {
+        else if (preg_match('/actual/', $request->url()))
+        {
             $response = Budgets::categories($user, 'actual');
         }
-        else {
+        else if (preg_match('/labels/', $request->url()))
+        {
+            $response = Budgets::labels($user);
+            $response->dd();
+            die();
+
+        }
+        else
+        {
             $response = Budgets::categories($user);
         }
 

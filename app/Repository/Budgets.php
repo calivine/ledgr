@@ -57,6 +57,24 @@ class Budgets
         }
     }
 
+    public function labels($user)
+    {
+        $key = "categories.{$user}.labels";
+        $cacheKey = $this->getCacheKey($key);
+        return cache()->remember($cacheKey, Carbon::now()->addMinutes(2), function () use ($user) {
+            return DB::table('budgets')
+                ->where([
+                    ['year', '=', $year ?? date('Y')],
+                    ['month', '=', $month ?? date('F')],
+                    ['user_id', '=', $user]
+                ])
+                ->select('category')
+                ->orderBy('category')
+                ->all();
+        });
+
+    }
+
 
     public function getCacheKey($key)
     {
