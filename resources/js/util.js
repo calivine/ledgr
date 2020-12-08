@@ -16,6 +16,7 @@ function changeCategoryForm(id) {
     return $categoryEdit;
 }
 
+
 function dateTest() {
     let today = new Date();
     console.log(today.getDate());

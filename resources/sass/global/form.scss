@@ -19,6 +19,55 @@
     }
  }
 
+
+ /* Ruler slider input */
+ .pointer {
+     width: 1px;
+     height: 10vw;
+     background-color: #D50000;
+     position: absolute;
+     left: 50vw;
+     z-index: 10;
+ }
+
+ .ruler-container {
+     width: 100vw;
+     height: 10vw;
+     overflow: hidden;
+ }
+
+ .ruler {
+     display: inline-block;
+     list-style: none;
+     margin: 0;
+     padding: 0;
+     height: 10vw;
+     font-size: 0;
+ }
+
+ .mark {
+     display: inline-block;
+     width: 10vw;
+     height: 10vw;
+     background-color: #EEEEEE;
+ }
+
+ .line {
+     height: 2vw;
+     border-left: 1px solid #212121;
+     float: left;
+ }
+
+ .measure {
+     font-size: 1 rem;
+     float: left;
+     padding-left: 2px;
+     font-family: 'Roboto mono', sans-serif;
+     user-select: none;
+     -webkit-user-select: none;
+     color: #212121;
+ }
+
  @media (max-width: $width-mobile-wide) {
 
 

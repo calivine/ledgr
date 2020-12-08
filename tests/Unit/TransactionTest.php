@@ -28,7 +28,7 @@ class TransactionTest extends TestCase
             'description' => 'ATM',
             'amount' => '10.00',
             'category' => 'Cash',
-            'transaction_date' => '2020-02-01'
+            'transaction_date' => '2020-11-01'
         ]);
         $response->assertStatus(200);
 
@@ -40,7 +40,7 @@ class TransactionTest extends TestCase
             'description' => 'Car Payment',
             'amount' => '15.33',
             'category' => 'Debt',
-            'transaction_date' => '2020-03-16'
+            'transaction_date' => '2020-11-16'
         ]);
         $response->assertStatus(200);
 
@@ -52,7 +52,7 @@ class TransactionTest extends TestCase
             'description' => '7-11',
             'amount' => '14.88',
             'category' => 'Food',
-            'transaction_date' => '2020-05-10'
+            'transaction_date' => '2020-11-10'
         ]);
         $response->assertStatus(200);
 
@@ -64,7 +64,7 @@ class TransactionTest extends TestCase
             'description' => 'ATM Fee',
             'amount' => '3.99',
             'category' => 'Fees',
-            'transaction_date' => '2020-05-11'
+            'transaction_date' => '2020-11-11'
         ]);
         $response->assertStatus(200);
 
@@ -97,6 +97,11 @@ class TransactionTest extends TestCase
         ->get('/dashboard');
 
         $response->assertStatus(200);
+
+        $response = $this->actingAs($user)
+        ->deleteJson('/transaction/2/destroy');
+
+        $response->assertStatus(302);
 
 
     }

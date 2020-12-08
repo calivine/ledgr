@@ -15,10 +15,11 @@
                         <label class="mb-0 w-100" for="new-category-input">Category</label>
                         <input id="new-category-input" class="new-category-form-input w-50" name="category" type="text" placeholder="Category name" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="newCategoryAnchor">
                         <label class="mb-0 w-100" for="new-planned-input">Planned Budget</label>
                         <input id="new-planned-input" class="new-category-form-input" name="planned" type="number" placeholder="$"  autofocus>
                     </div>
+                    <p class="mt-4 text-center" id="add-category">Add Another Category</p>
                     <button class="btn btn-outline-primary btn-block" id="category-submit" type="submit"><i class="material-icons icon md-18">save</i>Save</button>
                 </form>
             </div>

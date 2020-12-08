@@ -53,7 +53,7 @@ class BudgetController extends Controller
         // Log::info($iconsdisplay);
 
         $response = new BudgetSheet($id);
-        
+
         // If Budget sheet doesn't exist, create a new one.
         if (sizeof($response->budget) == 0)
         {
@@ -122,21 +122,41 @@ class BudgetController extends Controller
      */
     public function createCategory(Request $request)
     {
+        if (count($request->all()) > 3)
+        {
+            $user = $request->user();
+            $inputCount = count($request->all())-2;
+            $inputs = $request->all();
+            $line = 1;
+            $category = $inputs['category'];
+            $planned = $inputs['planned'];
+            new StoreCategory($category, $planned, $user);
+            while($line <= $inputCount/2) {
+                $category = $inputs['category' . $line];
+                $planned = $inputs['planned' . $line];
+                new StoreCategory($category, $planned, $user);
+                $line++;
+            }
+            return redirect(route('budget'));
+        }
+        else
+        {
+            Log::info("Attempting to add new category.");
+            $request->validate([
+                'category' => 'required|string',
+                'planned' => 'required|numeric'
+            ]);
 
-        Log::info("Attempting to add new category.");
-        $request->validate([
-            'category' => 'required|string',
-            'planned' => 'required|numeric'
-        ]);
+            $user = $request->user();
 
-        $user = $request->user();
+            $new_category = $request->input('category');
+            $new_planned_budget = $request->input('planned');
 
-        $new_category = $request->input('category');
-        $new_planned_budget = $request->input('planned');
+            $action = new StoreCategory($new_category, $new_planned_budget, $user);
 
-        $action = new StoreCategory($new_category, $new_planned_budget, $user);
+            return redirect(route('budget'));
 
-        return redirect(route('budget'));
+        }
     }
 
     /*

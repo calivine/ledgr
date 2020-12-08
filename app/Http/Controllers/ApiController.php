@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Actions\Budget\StoreCategory;
 use App\Http\Resources\ActivityCollection;
 use App\Http\Resources\BudgetCollection;
 use Facades\App\Repository\Activities;
@@ -91,6 +92,18 @@ class ApiController extends Controller
 
         return response()->json([
             "result" => $activity
+        ], 200);
+
+    }
+
+    public function storeCategory(Request $request)
+    {
+        $user = $request->user()->id;
+
+        Log::info('Storing category');
+        $budget = new StoreCategory($request->input('category'), $request->input('planned'), $user);
+        return response()->json([
+            "result" => $budget
         ], 200);
 
     }

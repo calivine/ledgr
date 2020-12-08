@@ -40,6 +40,9 @@ Route::group(['middleware' => 'auth:api'], function() {
 
         # GET Category budget item.
         Route::get('category/{name}/{filter?}', 'ApiController@getBudgetCategory');
+
+        # POST Create New Category
+        Route::post('category', 'ApiController@storeCategory');
     });
 });
 
