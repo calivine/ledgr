@@ -91,7 +91,7 @@ class ApiController extends Controller
         $activity = Activities::storeTransaction($request);
 
         return response()->json([
-            "result" => $activity
+            "data" => $activity
         ], 200);
 
     }
@@ -103,7 +103,7 @@ class ApiController extends Controller
         Log::info('Storing category');
         $budget = new StoreCategory($request->input('category'), $request->input('planned'), $user);
         return response()->json([
-            "result" => $budget
+            "data" => $budget
         ], 200);
 
     }
@@ -119,7 +119,9 @@ class ApiController extends Controller
 
         $transactions = Activities::getActivitiesByDate($from, $to, $user);
 
-        return $transactions->sum('amount');
+        return response()->json([
+            "data" => $transactions->sum('amount')
+        ], 200);
     }
 
     public function user(Request $request)
