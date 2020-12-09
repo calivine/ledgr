@@ -27,5 +27,10 @@ class ApiAuthController extends Controller
                 'user' => Auth::user()
             ], 200);
         }
+        else {
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 401);
+        }
     }
 }
