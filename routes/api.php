@@ -16,6 +16,8 @@ use App\Http\Resources\ActivityCollection;
 |
 */
 
+Route::post('/authenticate', 'ApiAuthController@authenticate');
+
 Route::group(['middleware' => 'auth:api'], function() {
 
     # GET User.
