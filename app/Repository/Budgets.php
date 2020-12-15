@@ -19,10 +19,10 @@ class Budgets
     * Returns the current period's budget
     *
     */
-    public function categories($user, $filter = null)
+    public function categories($user, $filter)
     {
 
-        if (is_null($filter)) {
+        if ($filter == 'all') {
             $key = "categories.{$user}";
             $cacheKey = $this->getCacheKey($key);
             return cache()->remember($cacheKey, Carbon::now()->addSeconds(30), function () use ($user) {
@@ -54,6 +54,40 @@ class Budgets
                     ->orderBy('category')
                     ->get();
             });
+        }
+    }
+
+
+    public function category($user, $category, $filter)
+    {
+        if ($filter == 'all')
+        {
+            return DB::table('budgets')
+                ->where([
+                    ['year', '=', $year ?? date('Y')],
+                    ['month', '=', $month ?? date('F')],
+                    ['user_id', '=', $user],
+                    ['category', '=', $category]
+                ])
+                ->select('category',
+                         'planned',
+                         'actual')
+                ->orderBy('category')
+                ->get();
+        }
+        else
+        {
+            return DB::table('budgets')
+                ->where([
+                    ['year', '=', $year ?? date('Y')],
+                    ['month', '=', $month ?? date('F')],
+                    ['user_id', '=', $user],
+                    ['category', '=', $category]
+                ])
+                ->select('category',
+                         $filter)
+                ->orderBy('category')
+                ->get();
         }
     }
 

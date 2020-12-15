@@ -17,15 +17,15 @@ class ApiController extends Controller
     public function getBudgetCategories(Request $request)
     {
         $user = $request->user()->id;
+        $filter = $request->query('filter', 'all');
+        if (preg_match('/categories\/([A-Za-z_]+)/', $request->url(), $category_match))
+        {
+            // URL included category name to filter by.
+            $category_match[1] = preg_replace('/_/', ' ', $category_match[1]);
 
-        if (preg_match('/planned/', $request->url()))
-        {
-            $response = Budgets::categories($user, 'planned');
+            $response = Budgets::category($user, $category_match[1], $filter);
         }
-        else if (preg_match('/actual/', $request->url()))
-        {
-            $response = Budgets::categories($user, 'actual');
-        }
+        /* Depreciated
         else if (preg_match('/labels/', $request->url()))
         {
             $labels = [];
@@ -37,14 +37,15 @@ class ApiController extends Controller
                 'data' => $labels
             ], 200);
         }
+        */
         else
         {
-            $response = Budgets::categories($user);
+            $response = Budgets::categories($user, $filter);
         }
 
         return new BudgetCollection($response);
     }
-
+    /*
     public function getBudgetCategory(Request $request)
     {
         $user = $request->user()->id;
@@ -67,6 +68,7 @@ class ApiController extends Controller
 
         return new BudgetCollection($response);
     }
+    */
 
     public function getTransactionsByDate(Request $request)
     {
@@ -127,5 +129,11 @@ class ApiController extends Controller
     public function user(Request $request)
     {
         return $request->user();
+    }
+
+    public function getBudgetCategoryTest(Request $request)
+    {
+        Log::info("Budget category test.");
+        return $request->url();
     }
 }

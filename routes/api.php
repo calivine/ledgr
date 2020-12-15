@@ -16,6 +16,7 @@ use App\Http\Resources\ActivityCollection;
 |
 */
 
+# POST Authenticate a user
 Route::post('/authenticate', 'ApiAuthController@authenticate');
 
 Route::group(['middleware' => 'auth:api'], function() {
@@ -32,19 +33,17 @@ Route::group(['middleware' => 'auth:api'], function() {
         Route::get('transactions/{start}/{stop}/total', 'ApiController@total');
 
         # POST Save new transaction item.
-        Route::post('transaction', 'ApiController@store');
+        Route::post('transactions', 'ApiController@store');
     });
 
     # Budget Route Group
     Route::prefix('budget')->group(function () {
-        # GET All Category budget items.
-        Route::get('categories/{filter?}', 'ApiController@getBudgetCategories');
-
-        # GET Category budget item.
-        Route::get('category/{name}/{filter?}', 'ApiController@getBudgetCategory');
+        # GET Category budget items.
+        Route::get('categories/{name?}', 'ApiController@getBudgetCategories');
 
         # POST Create New Category
-        Route::post('category', 'ApiController@storeCategory');
+        Route::post('categories', 'ApiController@storeCategory');
+
     });
 });
 
