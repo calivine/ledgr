@@ -120,7 +120,7 @@ class ApiController extends Controller
         $transactions = Activities::getActivitiesByDate($from, $to, $user);
 
         return response()->json([
-            'data' => $transactions->sum('amount')
+            'data' => round($transactions->sum('amount'),2)
         ], 200);
     }
 
