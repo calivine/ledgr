@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Actions\Activity\DestroyActivity;
 use App\Actions\Budget\StoreCategory;
 use App\Http\Resources\ActivityCollection;
 use App\Http\Resources\BudgetCollection;
@@ -70,6 +71,13 @@ class ApiController extends Controller
     }
     */
 
+    public function getAllTransactions(Request $request)
+    {
+        $user = $request->user()->id;
+        $transactions = Activities::all($user);
+        return new ActivityCollection($transactions);
+    }
+
     public function getTransactionsByDate(Request $request)
     {
         $user = $request->user()->id;
@@ -135,5 +143,17 @@ class ApiController extends Controller
     {
         Log::info("Budget category test.");
         return $request->url();
+    }
+
+    public function destroyTransaction(Request $request)
+    {
+        $id = $request->query('id')
+
+        new DestroyActivity($id);
+
+        return response()->json([
+            'data' => 'Ok'
+        ], 200);
+
     }
 }

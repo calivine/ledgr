@@ -32,8 +32,14 @@ Route::group(['middleware' => 'auth:api'], function() {
         # GET Get Total Spent for Period.
         Route::get('transactions/{start}/{stop}/total', 'ApiController@total');
 
+        # GET
+        Route::get('transactions', 'ApiController@getAllTransactions');
+
         # POST Save new transaction item.
         Route::post('transactions', 'ApiController@store');
+
+        # DELETE Transaction
+        Route::delete('transactions', 'ApiController@destroyTransaction');
     });
 
     # Budget Route Group

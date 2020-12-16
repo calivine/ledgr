@@ -23,7 +23,6 @@ class Activities
             ->where('activities.user_id', '=', $user)
             ->orderBy('activities.date', 'desc')
             ->get();
-
     }
 
     public function getActivitiesByDate($from, $to, $user)
@@ -52,7 +51,6 @@ class Activities
         $activity = new StoreActivity($date, $amount, $description, $category, $user);
 
         return $activity;
-
     }
 
     public function getCacheKey($key)
