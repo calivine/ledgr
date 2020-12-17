@@ -147,7 +147,7 @@ class ApiController extends Controller
 
     public function destroyTransaction(Request $request)
     {
-        $id = $request->query('id')
+        $id = $request->query('id');
 
         new DestroyActivity($id);
 
