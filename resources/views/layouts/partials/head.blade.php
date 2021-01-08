@@ -27,14 +27,3 @@
 
 <!-- Styles -->
 <link href='{{ '/static/css/app.css' }}' rel='stylesheet'>
-
-<script>
-    $(function() {
-        let tz_offset = new Date().getTimezoneOffset();
-        tz_offset = tz_offset == 0 ? 0 : -tz_offset;
-        $.post('/get_user_tz', {
-            timezone: tz_offset
-        });
-        return false;
-    });
-</script>
