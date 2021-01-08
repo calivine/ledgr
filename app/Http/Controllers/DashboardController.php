@@ -129,13 +129,13 @@ class DashboardController extends Controller
         // Retrieve User
         $id = Auth::id();
 
-        Log::info(now() . ': User: ' . $id . ' is retrieving their spending history');
+        Log::debug(now() . ': User: ' . $id . ' is retrieving their spending history');
 
         $budget = Budget::where('user_id', $id)->get();
         $budget = $budget->filter(function ($value, $key) {
                 return $value > 0;
         });
-        Log::info($budget);
+        Log::debug($budget);
         // Get table of monthly spending totals.
         // key = month; value = total spent.
         // table name is the year it represents.

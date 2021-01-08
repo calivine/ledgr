@@ -40,7 +40,6 @@ class BudgetController extends Controller
         $id = $user->id;
         $theme = $user->theme;
         $today = date('g:i a');
-        Log::info($today);
 
         $icons = DB::table('icons')->orderBy('text', 'asc')->get();
 
@@ -141,7 +140,7 @@ class BudgetController extends Controller
         }
         else
         {
-            Log::info("Attempting to add new category.");
+            Log::debug("Attempting to add new category.");
             $request->validate([
                 'category' => 'required|string',
                 'planned' => 'required|numeric'

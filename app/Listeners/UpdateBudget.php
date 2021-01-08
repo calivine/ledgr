@@ -17,7 +17,7 @@ class UpdateBudget
     {
         $transaction = $event->transaction;
         // Update Actual Budget Value
-        Log::info('Updating budget: ' . $transaction->budget_id . ' by ' . $transaction->amount);
+        Log::debug('Updating budget: ' . $transaction->budget_id . ' by ' . $transaction->amount);
         $budget = Budget::where([
             ['id', $transaction->budget_id]
         ])->firstOrFail();

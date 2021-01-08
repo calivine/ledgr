@@ -32,7 +32,6 @@
     $(function() {
         let tz_offset = new Date().getTimezoneOffset();
         tz_offset = tz_offset == 0 ? 0 : -tz_offset;
-        console.log(tz_offset);
         $.post('/get_user_tz', {
             timezone: tz_offset
         });
