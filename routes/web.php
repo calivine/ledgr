@@ -58,5 +58,7 @@ Route::post('/get_user_tz', function(Request $request) {
     Illuminate\Support\Facades\Log::info($tz_name);
 });
 
+Route::permanentRedirect('/register', '/');
+
 // Landing Page
 Route::view('/', 'landing')->name('landing');
