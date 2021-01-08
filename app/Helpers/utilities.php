@@ -21,9 +21,10 @@ function ddump($mixed = null)
  function log_client()
  {
      $user_agent = Request::userAgent();
-     $id = Request::user()->id;
+     $id = Request::user()->id ?? 'Guest';
      $method = Request::method();
      $ip = Request::ip();
+     $request_uri = Request::path();
 
-     return $method . ' ' . now() . ': User: ' . $id . ' (' . $ip . ') ' . $user_agent;
+     return '/' . $request_uri . ' ' . $method . ' ' . now() . ': User: ' . $id . ' (' . $ip . ') ' . $user_agent;
  }
