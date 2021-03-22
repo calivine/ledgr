@@ -17,7 +17,7 @@ connect () {
     line
     info "connecting..."
     line
-    ssh -t $usernameServer "$docRoot/bash/deploy.sh"
+    ssh -t $usernameServer "$docRoot/bash/archive"
 }
 
 backup () {
