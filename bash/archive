@@ -1,0 +1,43 @@
+#!/bin/bash
+
+docRoot="/var/www/html/ledgr"
+usernameServer="root@159.203.190.15"
+
+line () {
+    info "--------------------------------"
+    echo ""
+}
+
+info () {
+    echo $(tput bold)$(tput setaf 3)$@ $(tput sgr 0)
+}
+
+connect () {
+    line
+    line
+    info "connecting..."
+    line
+    ssh -t $usernameServer "$docRoot/bash/deploy.sh"
+}
+
+backup () {
+    mysqldump -u acali -p 83tcp386 ledgr > /var/www/html/ledgr/storage/ledgr.sql
+    exit
+}
+
+
+# mysqldump -u acali -p 83tcp386 ledgr > /var/www/html/ledgr/storage/ledgr.sql
+
+# exit
+
+# scp -3 root@159.203.190.15:/var/www/html/ledgr/storage/ledgr.sql pi@192.168.0.166:/home/pi/Backups
+
+if [ -d "$docRoot" ]; then
+    info "Detected location: server - saving backup"
+    backup
+    pwd
+else
+    info "Detected location: local"
+    connect
+fi
+
