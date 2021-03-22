@@ -22,7 +22,7 @@ connect () {
 
 backup () {
     mysqldump -u acali -p ledgr > /var/www/html/ledgr/storage/ledgr.sql
-    exit
+    info "saved db snapshot"
 }
 
 
@@ -36,6 +36,9 @@ if [ -d "$docRoot" ]; then
     info "Detected location: server - saving backup"
     backup
     pwd
+    exit
+    pwd
+}
 else
     info "Detected location: local"
     connect
