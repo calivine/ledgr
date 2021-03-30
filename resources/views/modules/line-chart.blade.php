@@ -25,6 +25,7 @@
     Chart.plugins.register({
         ChartDataLabels
     });
+    Chart.defaults.scale.gridLines.display = false;
 
     let lineChart = new Chart(ltx, {
         type: 'line',
