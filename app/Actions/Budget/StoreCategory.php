@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\Log;
 
 class StoreCategory
 {
-    public function __construct($new_category, $new_planned_budget, $user)
+    public function __construct($new_category, $new_planned_budget, $user, $month, $year)
     {
 
         $category = new Budget;
         $category->category = $new_category;
         $category->planned = $new_planned_budget;
-        $category->year = date('Y');
-        $category->month = date('F');
-        $category->period = date('F') . ' ' . date('Y');
+        $category->year = $year; // date('Y');
+        $category->month = $month; // date('F');
+        $category->period = $month . ' ' . $year; // date('F') . ' ' . date('Y');
         $category->user()->associate($user);
 
         $category->save();
@@ -28,7 +28,8 @@ class StoreCategory
         $this->rda = [
             'category' => $new_category,
             'planned' => $new_planned_budget,
-            'id' => $category->id
+            'id' => $category->id,
+            'budget' => $category
         ];
     }
 

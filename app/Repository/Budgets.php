@@ -34,7 +34,9 @@ class Budgets
                     ])
                     ->select('category',
                              'planned',
-                             'actual')
+                             'actual',
+                             'month',
+                             'year')
                     ->orderBy('category')
                     ->get();
             });

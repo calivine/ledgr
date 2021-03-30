@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Schema\Builder;
 
@@ -27,5 +28,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Builder::defaultStringLength(191); // Update defaultStringLength
+
+        Collection::macro('formatDigits', function ($key) {
+            return $this->map(function ($value) use ($key) {
+                $value->$key = number_format($value->$key, 2);
+                return $value;
+            });
+        });
     }
 }

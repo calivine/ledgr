@@ -32,11 +32,11 @@ class StoreActivity
         if ($budget == null)
         {
             // Create a new budget category
-            $budget = new StoreCategory($category, 0, $user);
+            $budget = new StoreCategory($category, 0, $user, $month, $year);
             Log::info($year . " " . $month . " " . $user->id . " " . $category);
+            $budget = $budget->rda['budget'];
 
         }
-        Log::info($budget);
 
         // Save Transaction To Activities Table
         $activity = new Activity();

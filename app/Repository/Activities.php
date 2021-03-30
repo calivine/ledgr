@@ -25,6 +25,15 @@ class Activities
             ->get();
     }
 
+    /** Get activities for $user_id between
+     *  the dates, $from and $to.
+     *  Returns Collection of Activity objects.
+     *
+     * @param  string $from
+     * @param  string $to
+     * @param  int    $user_id
+     * @return Collection
+     */
     public function getActivitiesByDate($from, $to, $user)
     {
         $key = "{$user}.{$from}.{$to}";
@@ -51,6 +60,35 @@ class Activities
         $activity = new StoreActivity($date, $amount, $description, $category, $user);
 
         return $activity;
+    }
+
+    /** Get activities for the user dashboard.
+     *  Returns Collection of arrays representing
+     *  the activity data.
+     *
+     * @param  string $from
+     * @param  string $to
+     * @param  int    $user_id
+     * @return Illuminate\Support\Collection
+     */
+    public function getDashboardTransactions($from, $to, $user_id)
+    {
+
+        $transactions = Activity::with('budget:id,category,planned,actual,year,month,user_id,icon')
+            ->whereBetween('date', [$from, $to])
+            ->where('user_id', $user_id)
+            ->orderBy('date', 'desc')
+            ->select('id', 'amount', 'description', 'category', 'date', 'budget_id')
+            ->get();
+        /*
+        foreach($transactions as $transaction) {
+            // $transaction->date = date_to_string($transaction->date);
+            $transaction->amount = number_format($transaction->amount, 2);
+        }
+        */
+
+        return $transactions;
+
     }
 
     public function getCacheKey($key)

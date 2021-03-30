@@ -8,6 +8,8 @@ use App\Actions\Budget\GetActuals;
 use App\Actions\ProgressBar\MonthlyTotal;
 use App\Budget\BudgetSheet;
 use App\Charts\Chart;
+use Facades\App\Repository\Activities;
+use Facades\App\Repository\Budgets;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
@@ -38,6 +40,11 @@ class DashboardController extends Controller
 
         Log::info(log_client());
 
+        $budget = Budgets::categories($id, 'all');
+
+        /*
+        Depreciated
+
         $budgets = Budget::where([
             ['user_id', $id],
             ['actual', '>', 0],
@@ -48,23 +55,27 @@ class DashboardController extends Controller
 
             $month_int = date_parse($budget['month'])['month'];
             $month_name = date('F', mktime(0,0,0, $month_int));
+            Log::debug($month_name);
         }
-        $line_chart = new Chart('line', $budgets);
+        */
+
+        $line_chart = new Chart('line', $budget);
 
         // Get Current Month's Budget.
-        $budget = new BudgetSheet($id);
+        // $budget = new BudgetSheet($id);
+
 
         // Get data for pie chart.
         // $chart_data = $budget->get_chart_data();
 
-        $test = new Chart("pie", $budget->budget);
-        $chart_data = $test->chart;
+        $pie_chart = new Chart("pie", $budget);
+        // $chart_data = $test->chart;
 
         // Gets Total Monthly Spending data for progress bar.
-        $progress_bars = new MonthlyTotal($budget->budget);
+        $progress_bars = new MonthlyTotal($budget);
 
         // Fetch labels for New Transaction Form.
-        $category_form_labels = get_labels($budget->budget);
+        $category_form_labels = $budget->pluck('category'); // get_labels($budget->budget);
 
         // Log::info(implode("\n", $category_form_labels));
 
@@ -87,6 +98,10 @@ class DashboardController extends Controller
             'days_remaining' => days_remaining()
         ];
 
+        $transactions = Activities::getDashboardTransactions($dates['month_start'], $dates['month_end'], $id)->formatDigits('amount');
+
+        /*
+
         // Pull Transactions For The Current Period
         $transactions = Activity::with('budget:id,category,planned,actual,year,month,user_id,icon')
             ->whereBetween('date', [$dates['month_start'], $dates['month_end']])
@@ -100,11 +115,14 @@ class DashboardController extends Controller
             // $transaction->date = date_to_string($transaction->date);
             $transaction->amount = number_format($transaction->amount, 2);
         }
+        */
+
+
 
         return view('content.dash.index')->with([
-            'actuals' => $chart_data['actuals'],
+            'actuals' => $pie_chart->chart['actuals'],
             'budget_totals_bars' => $progress_bars->rda['budget_totals'],
-            'categories' => $chart_data['labels'],
+            'categories' => $pie_chart->chart['labels'],
             'category_form_labels' => $category_form_labels,
             'dates' => $dates,
             'monthly_total_bar' => $progress_bars->rda['monthly_total'],
