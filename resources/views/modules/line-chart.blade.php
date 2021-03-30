@@ -62,6 +62,13 @@
                         return '$'+value;
                     }
                 }
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        display: false
+                    }
+                }]
             }
         }
     });
