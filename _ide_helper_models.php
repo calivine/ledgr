@@ -17,7 +17,6 @@ namespace App{
  * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string $transaction_id
  * @property float $amount
  * @property string $description
  * @property string $category
@@ -25,24 +24,54 @@ namespace App{
  * @property int $recurring
  * @property int $user_id
  * @property int $budget_id
+ * @property int|null $bill_id
+ * @property-read \App\Bill|null $bill
  * @property-read \App\Budget $budget
  * @property-read \App\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Activity newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Activity newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Activity query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Activity whereAmount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Activity whereBudgetId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Activity whereCategory($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Activity whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Activity whereDate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Activity whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Activity whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Activity whereRecurring($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Activity whereTransactionId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Activity whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Activity whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereBillId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereBudgetId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereCategory($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereRecurring($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Activity whereUserId($value)
  */
 	class Activity extends \Eloquent {}
+}
+
+namespace App{
+/**
+ * App\Bill
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $description
+ * @property float $amount
+ * @property int $due_by
+ * @property int $user_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Activity[] $activities
+ * @property-read int|null $activities_count
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|Bill newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Bill newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Bill query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Bill whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bill whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bill whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bill whereDueBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bill whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bill whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Bill whereUserId($value)
+ */
+	class Bill extends \Eloquent {}
 }
 
 namespace App{
@@ -56,25 +85,27 @@ namespace App{
  * @property float $planned
  * @property float $actual
  * @property string $year
- * @property string $period
+ * @property string $month
  * @property int $user_id
  * @property string $icon
+ * @property string $period
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Activity[] $activities
  * @property-read int|null $activities_count
  * @property-read \App\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Budget newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Budget newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Budget query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Budget whereActual($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Budget whereCategory($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Budget whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Budget whereIcon($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Budget whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Budget wherePeriod($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Budget wherePlanned($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Budget whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Budget whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Budget whereYear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Budget newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Budget newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Budget query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Budget whereActual($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Budget whereCategory($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Budget whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Budget whereIcon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Budget whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Budget whereMonth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Budget wherePeriod($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Budget wherePlanned($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Budget whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Budget whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Budget whereYear($value)
  */
 	class Budget extends \Eloquent {}
 }
@@ -91,54 +122,17 @@ namespace App{
  * @property float $amount
  * @property int $user_id
  * @property-read \App\User $user
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Income newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Income newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Income query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Income whereAmount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Income whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Income whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Income whereFrequency($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Income whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Income whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Income whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Income newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Income newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Income query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Income whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Income whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Income whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Income whereFrequency($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Income whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Income whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Income whereUserId($value)
  */
 	class Income extends \Eloquent {}
-}
-
-namespace App{
-/**
- * App\User
- *
- * @property int $id
- * @property string $name
- * @property string $email
- * @property \Illuminate\Support\Carbon|null $email_verified_at
- * @property string $password
- * @property string|null $api_token
- * @property string|null $remember_token
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Activity[] $activities
- * @property-read int|null $activities_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Budget[] $budgets
- * @property-read int|null $budgets_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Income[] $incomes
- * @property-read int|null $incomes_count
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read int|null $notifications_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereApiToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
- */
-	class User extends \Eloquent {}
 }
 
