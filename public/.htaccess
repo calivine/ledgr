@@ -3,10 +3,6 @@
         Options -MultiViews -Indexes
     </IfModule>
 
-    <IfModule mod_headers.c>
-         Header set X-XSS-Protection "1; mode=block"
-    </IfModule>
-
     RewriteEngine On
 
     # Handle Authorization Header
