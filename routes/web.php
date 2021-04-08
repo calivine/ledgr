@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     # GET Account Settings
     Route::get('/account', 'UserController@displayAccount')->name('account');
+    Route::get('/api/refresh', 'ApiController@refresh')->name('account.refresh');
 
     # UPDATE Site theme
     Route::put('/account/theme/update', 'UserController@updateTheme')->name('changeTheme');

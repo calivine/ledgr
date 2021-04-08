@@ -12,9 +12,21 @@ use Facades\App\Repository\Budgets;
 use Facades\App\Repository\Budget;
 use App\Budget\BudgetSheet;
 use Log;
+use Str;
 
 class ApiController extends Controller
 {
+    public function refresh(Request $request)
+    {
+        $token = Str::random(60);
+
+        $request->user()->forceFill([
+            'api_token' => hash('sha256', $token)
+        ])->save();
+
+        return redirect(route('account'));
+    }
+
     public function getBudgetCategories(Request $request)
     {
         $user = $request->user()->id;

@@ -3,6 +3,7 @@
 @section('title', 'Account Details | Ledgr')
 
 @section('content')
+    @include('modules.modals.refresh-token')
     <main class="page-container {{ auth::user()->theme }}">
         <div class="content-row">
             <div class="col-md-8">
@@ -14,13 +15,16 @@
             <div class="col-md-8">
                 <h4>API Token</h4>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-1">
                         <button type="button" class="btn btn-info" id="display-api-token">Show</button>
                         <button type="button" class="btn btn-warning" id="hide-api-token">Hide</button>
                     </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#refresh-token_modal">Refresh Token</button>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 offset-md-1">
+                <div class="row pt-3">
+                    <div class="col-md-10 offset-md-1">
                         <p id="api-token">{{ $api_token }}</p>
                     </div>
                 </div>
