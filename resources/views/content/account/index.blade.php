@@ -15,13 +15,11 @@
             <div class="col-md-8">
                 <h4>API Token</h4>
                 <div class="row">
-                    <div class="col-md-1">
-                        <button type="button" class="btn btn-info" id="display-api-token">Show</button>
-                        <button type="button" class="btn btn-warning" id="hide-api-token">Hide</button>
-                    </div>
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#refresh-token_modal">Refresh Token</button>
-                    </div>
+                    <button type="button" class="btn btn-info" id="display-api-token">Show</button>
+                    <button type="button" class="btn btn-warning" id="hide-api-token">Hide</button>
+                    <button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="#refresh-token_modal">
+                        Refresh Token
+                    </button>
                 </div>
                 <div class="row pt-3">
                     <div class="col-md-10 offset-md-1">
@@ -45,11 +43,15 @@
                 <form class="" action="{{ route('changeTheme') }}" method="POST">
                     @csrf
                     {{ method_field('PUT')}}
-                    <input type="radio" id="light" name="theme" value="light" {{ auth::user()->theme == 'light' ? 'checked' : '' }}>
+                    <input type="radio" id="light" name="theme"
+                           value="light" {{ auth::user()->theme == 'light' ? 'checked' : '' }}>
                     <label for="light">Light Theme</label>
-                    <input type="radio" id="dark" name="theme" value="dark" {{ auth::user()->theme == 'dark' ? 'checked' : '' }}>
+                    <input type="radio" id="dark" name="theme"
+                           value="dark" {{ auth::user()->theme == 'dark' ? 'checked' : '' }}>
                     <label for="dark">Dark Theme</label>
-                    <button class="btn btn-outline-primary btn-block" id="theme-submit" type="submit"><i class="material-icons icon md-18">save</i>Save</button>
+                    <button class="btn btn-outline-primary btn-block" id="theme-submit" type="submit"><i
+                                class="material-icons icon md-18">save</i>Save
+                    </button>
                 </form>
             </div>
         </div>

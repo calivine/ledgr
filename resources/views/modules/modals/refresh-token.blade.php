@@ -10,8 +10,8 @@
             <div class="modal-body">
                 <p>Are you sure you want to refresh your API token?</p>
                 <div class="row">
-                    <a href="{{ route('account.refresh') }}"><button type="button" class="btn btn-success">Confirm</button></a>
-                    <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
+                    <a href="{{ route('account.refresh') }}"><button type="button" class="btn btn-success m-4">Confirm</button></a>
+                    <button type="button" class="btn btn-danger m-4" data-dismiss="modal">Cancel</button>
                 </div>
 
             </div>
