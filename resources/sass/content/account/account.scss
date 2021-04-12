@@ -4,4 +4,25 @@
 
 #api-token {
   display: none;
+  justify-content: center;
 }
+
+#refresh-api-token {
+  position: absolute;
+  float: right;
+  // left: calc(100% - 25%);
+  right: calc(100% - 95%);
+}
+
+#api-display-container {
+  background-color: #cceaf7;
+  border-radius: 5px;
+}
+
+#show-token_modal .modal-dialog.modal-dialog-centered {
+  max-width: 600px;
+}
+
+
+
+

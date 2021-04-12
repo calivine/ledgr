@@ -103,6 +103,11 @@ $('button#hide-api-token').on('click', function (){
     $('button#display-api-token').show();
 });
 
+$('button#close_show-token_modal').on('click', function () {
+    $('p#api-token').hide();
+    $('button#hide-api-token').hide();
+    $('button#display-api-token').show();
+});
 
 $(function() {
     getPlannedTotal();

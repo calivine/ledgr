@@ -3,27 +3,22 @@
 @section('title', 'Account Details | Ledgr')
 
 @section('content')
-    @include('modules.modals.refresh-token')
     <main class="page-container {{ auth::user()->theme }}">
-        <div class="content-row">
-            <div class="col-md-8">
-                <h2>Account Settings</h2>
-                <h3>{{ $name }}</h3>
-            </div>
-        </div>
+        <div class="content-row"><h2>Account Settings</h2></div>
+        <div class="content-row"><h3>{{ $name }}</h3></div>
         <div class="content-row">
             <div class="col-md-8">
                 <h4>API Token</h4>
-                <div class="row">
-                    <button type="button" class="btn btn-info" id="display-api-token">Show</button>
-                    <button type="button" class="btn btn-warning" id="hide-api-token">Hide</button>
-                    <button type="button" class="btn btn-success ml-2" data-toggle="modal" data-target="#refresh-token_modal">
+                <div class="row py-4" id="api-display-container">
+                    <button type="button" class="btn btn-info ml-4" id="show-api-token" data-toggle="modal" data-target="#show-token_modal">Show</button>
+                    <button type="button" class="btn btn-success ml-2" data-toggle="modal"
+                            data-target="#refresh-token_modal" id="refresh-api-token">
                         Refresh Token
                     </button>
                 </div>
                 <div class="row pt-3">
                     <div class="col-md-10 offset-md-1">
-                        <p id="api-token">{{ $api_token }}</p>
+
                     </div>
                 </div>
             </div>
@@ -56,4 +51,6 @@
             </div>
         </div>
     </main>
+    @include('modules.modals.refresh-token')
+    @include('modules.modals.show-token')
 @endsection
