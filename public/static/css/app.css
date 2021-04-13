@@ -11376,12 +11376,34 @@ table th {
 }
 
 #api-display-container {
-  background-color: #cceaf7;
+  background-color: #F5F8FA;
   border-radius: 5px;
+}
+
+#api-display-container button {
+  border-radius: 100px;
 }
 
 #show-token_modal .modal-dialog.modal-dialog-centered {
   max-width: 600px;
+}
+
+button#display-api-token,
+button#show-api-token,
+button#refresh-api-token {
+  color: #FFFF;
+  font-weight: 600;
+}
+
+@media (max-width: 645px) {
+  #api-display-container {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  #refresh-api-token {
+    right: calc(100% - 85%);
+  }
 }
 
 .confirm-delete {

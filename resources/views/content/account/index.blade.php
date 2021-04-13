@@ -8,9 +8,11 @@
         <div class="content-row"><h3>{{ $name }}</h3></div>
         <div class="content-row">
             <div class="col-md-8">
-                <h4>API Token</h4>
+                <h4 class="mb-4">API Token</h4>
                 <div class="row py-4" id="api-display-container">
-                    <button type="button" class="btn btn-info ml-4" id="show-api-token" data-toggle="modal" data-target="#show-token_modal">Show</button>
+                    <button type="button" class="btn btn-info ml-4" id="show-api-token" data-toggle="modal"
+                            data-target="#show-token_modal">Show
+                    </button>
                     <button type="button" class="btn btn-success ml-2" data-toggle="modal"
                             data-target="#refresh-token_modal" id="refresh-api-token">
                         Refresh Token
