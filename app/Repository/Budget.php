@@ -5,6 +5,7 @@ namespace App\Repository;
 
 use App\Activity;
 use App\Actions\Activity\StoreActivity;
+use App\Budget as BudgetModel;
 use DB;
 use Log;
 use Illuminate\Http\Request;
@@ -49,6 +50,19 @@ class Budget
                 ->get();
         }
     }
+
+    public function all($user)
+    {
+        return BudgetModel::where('user_id', $user)
+            ->get();
+        /*
+        return DB::table('budgets')
+            ->where('user_id', '=', $user)
+            ->get();
+        */
+    }
+
+
 
 
 }

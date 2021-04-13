@@ -10,7 +10,7 @@ use App\Budget;
 use App\Budget\BudgetSheet;
 use App\Events\IconWasChanged;
 use App\Events\PlannedBudgetChanged;
-
+use Facades\App\Repository\Budgets;
 use Illuminate\Http\Request;
 use Auth;
 use Arr;
@@ -36,21 +36,36 @@ class BudgetController extends Controller
     public function index(Request $request)
     {
         // Retrieve User
-        $user = Auth::user();
+        // $user = Auth::user();
+        $user = $request->user();
         $id = $user->id;
         $theme = $user->theme;
         $today = date('g:i a');
 
         $icons = DB::table('icons')->orderBy('text', 'asc')->get();
 
-        foreach($icons as $icon) {
+        $budget_period = date('F') . " " . date('Y');
+
+        $budget = Budget::where('user_id', $id)->get();
+
+        if (count($request->query()) > 0)
+        {
+            $budget_period = $request->query('month') . " " . $request->query('year');
+            $current = $budget->where('period', $budget_period);
+        }
+        else
+        {
+            $current = $budget->where('period', $budget_period);
+        }
+
+        foreach ($icons as $icon)
+        {
             $studly_icon = Str::studly($icon->text);
             $icon->display = preg_replace('/(?<=[a-z])(?=\p{Lu})/u', ' ', $studly_icon);
-
         }
         // $iconsdisplay = array_map('Str::studly', $iconsDisplay);
         // Log::info($iconsdisplay);
-
+        /*
         $response = new BudgetSheet($id);
 
         // If Budget sheet doesn't exist, create a new one.
@@ -59,14 +74,26 @@ class BudgetController extends Controller
             new StoreBudget($user);
             $response = new BudgetSheet($id);
         }
+        */
 
-        $budget_period = date('F') . " " . date('Y');
+
+
+
+        $all_budgets = $budget->unique(function ($item) {
+            return $item['month'] . $item['year'];
+        });
+
+        $months = $all_budgets->pluck('month')->unique();
+        $years = $all_budgets->pluck('year')->unique();
+
 
         return view('content.budget.index')->with([
-            'budget' => $response->budget,
+            'budget' => $current,
             'month' => $budget_period,
             'icons' => $icons,
-            'theme' => $theme
+            'theme' => $theme,
+            'months' => $months,
+            'years' => $years
         ]);
     }
 
@@ -124,21 +151,21 @@ class BudgetController extends Controller
         if (count($request->all()) > 3)
         {
             $user = $request->user();
-            $inputCount = count($request->all())-2;
+            $inputCount = count($request->all()) - 2;
             $inputs = $request->all();
             $line = 1;
             $category = $inputs['category'];
             $planned = $inputs['planned'];
             new StoreCategory($category, $planned, $user);
-            while($line <= $inputCount/2) {
+            while ($line <= $inputCount / 2)
+            {
                 $category = $inputs['category' . $line];
                 $planned = $inputs['planned' . $line];
                 new StoreCategory($category, $planned, $user);
                 $line++;
             }
             return redirect(route('budget'));
-        }
-        else
+        } else
         {
             Log::debug("Attempting to add new category.");
             $request->validate([
@@ -184,7 +211,8 @@ class BudgetController extends Controller
         // Remove token.
         Arr::pull($new_budget, '_token');
 
-        foreach($new_budget as $index => $category) {
+        foreach ($new_budget as $index => $category)
+        {
             new UpdatePlanned($index, $category);
             // $budget = Budget::find($index);
             // $budget->planned = $category;
@@ -200,25 +228,25 @@ class BudgetController extends Controller
      * /budget/{id}/delete
      * Display confirm budget delete page.
      */
-     public function deleteBudget($id)
-     {
-          return view('content.budget.delete')->with([
-              'id' => $id
-          ]);
-     }
+    public function deleteBudget($id)
+    {
+        return view('content.budget.delete')->with([
+            'id' => $id
+        ]);
+    }
 
-     /**
-      * POST
-      * /transaction/{id}/destroy
-      * Delete transaction.
-      */
-      public function destroyBudget($id)
-      {
-          new DestroyBudget($id);
+    /**
+     * POST
+     * /transaction/{id}/destroy
+     * Delete transaction.
+     */
+    public function destroyBudget($id)
+    {
+        new DestroyBudget($id);
 
-          return redirect()->route('budget')->with(['alert' => 'Budget Category Was Deleted']);
+        return redirect()->route('budget')->with(['alert' => 'Budget Category Was Deleted']);
 
-      }
+    }
 
 
 }

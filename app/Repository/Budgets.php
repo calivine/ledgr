@@ -15,6 +15,28 @@ class Budgets
 {
     CONST CACHE_KEY = 'BUDGETS';
 
+
+    public function all($user)
+    {
+        return Budget::where('user_id', $user)
+            ->get();
+        /*
+        return DB::table('budgets')
+            ->where('user_id', '=', $user)
+            ->get();
+        */
+    }
+
+    /**
+     * Get collection of budget data based on key/value
+     */
+    public function get($key, $value, $user)
+    {
+        return Budget::where([
+            ['user_id', $user],
+            [$key, $value]])->get();
+    }
+
     /**
     * Returns the current period's budget
     *

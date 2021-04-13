@@ -25,6 +25,7 @@
                         <option value="{{ $y }}">{{ $y }}</option>
                     @endforeach
                 </select>
+                <button type="submit">Update</button>
             </form>
             <div class="col-md-8">
                 <table id="budget-table" class="table">
