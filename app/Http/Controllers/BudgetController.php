@@ -40,9 +40,6 @@ class BudgetController extends Controller
         $user = $request->user();
         $id = $user->id;
         $theme = $user->theme;
-        $today = date('g:i a');
-
-        $icons = DB::table('icons')->orderBy('text', 'asc')->get();
 
         $budget_period = date('F') . " " . date('Y');
 
@@ -58,6 +55,7 @@ class BudgetController extends Controller
             $current = $budget->where('period', $budget_period);
         }
 
+        $icons = DB::table('icons')->orderBy('text', 'asc')->get();
         foreach ($icons as $icon)
         {
             $studly_icon = Str::studly($icon->text);
@@ -76,24 +74,29 @@ class BudgetController extends Controller
         }
         */
 
-
-
-
         $all_budgets = $budget->unique(function ($item) {
             return $item['month'] . $item['year'];
         });
 
-        $months = $all_budgets->pluck('month')->unique();
-        $years = $all_budgets->pluck('year')->unique();
+        $period_array = explode(" ", $budget_period);
 
+        $months = $all_budgets->pluck('month')->unique()->filter(function ($value) use ($period_array) {
+            return $value != $period_array[0];
+        });
+
+        $years = $all_budgets->pluck('year')->unique()->filter(function ($value) use ($period_array) {
+            return $value != $period_array[1];
+        });
 
         return view('content.budget.index')->with([
             'budget' => $current,
-            'month' => $budget_period,
+            'period' => $budget_period,
             'icons' => $icons,
             'theme' => $theme,
             'months' => $months,
-            'years' => $years
+            'years' => $years,
+            'period_month' => $period_array[0],
+            'period_year' => $period_array[1]
         ]);
     }
 

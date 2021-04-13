@@ -14,6 +14,9 @@
   right: calc(100% - 95%);
 }
 
+#show-api-token {
+  left: calc(100% - 95%);
+}
 
 
 #api-display-container {
@@ -39,8 +42,8 @@ button#refresh-api-token {
 
 @media (max-width: $width-mobile-wide) {
   #api-display-container {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
 
   #refresh-api-token {

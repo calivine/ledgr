@@ -1,13 +1,10 @@
 @extends('layouts.master')
 
 @section('content')
-    @include('modules.modals.update-planned-modal')
-    @include('modules.modals.new-category-modal')
-    @include('modules.modals.update-icon-modal', ['icons' => $icons])
     <main id="content-container" class="container-fluid {{ $theme }}">
         <div class="content-row">
             <div class="col-md-8">
-                <p class="ml-4">{{ $month }}</p>
+                <p class="ml-4">{{ $period }}</p>
             </div>
         </div>
         <div class="content-row">
@@ -16,11 +13,13 @@
         <div class="content-row">
             <form action="">
                 <select name="month" id="month-select">
+                    <option value="{{ $period_month }}">{{ $period_month }}</option>
                     @foreach($months as $m)
                         <option value="{{ $m }}">{{ $m }}</option>
                     @endforeach
                 </select>
                 <select name="year" id="year-select">
+                    <option value="{{ $period_year }}">{{ $period_year }}</option>
                     @foreach($years as $y)
                         <option value="{{ $y }}">{{ $y }}</option>
                     @endforeach
@@ -65,4 +64,7 @@
             </div>
         </div>
     </main>
+    @include('modules.modals.update-planned-modal')
+    @include('modules.modals.new-category-modal')
+    @include('modules.modals.update-icon-modal', ['icons' => $icons])
 @endsection

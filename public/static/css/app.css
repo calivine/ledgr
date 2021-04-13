@@ -11375,6 +11375,10 @@ table th {
   right: calc(100% - 95%);
 }
 
+#show-api-token {
+  left: calc(100% - 95%);
+}
+
 #api-display-container {
   background-color: #F5F8FA;
   border-radius: 5px;
@@ -11397,8 +11401,8 @@ button#refresh-api-token {
 
 @media (max-width: 645px) {
   #api-display-container {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
 
   #refresh-api-token {
