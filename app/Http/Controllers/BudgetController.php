@@ -65,14 +65,15 @@ class BudgetController extends Controller
         // Log::info($iconsdisplay);
         /*
         $response = new BudgetSheet($id);
-
+        */
         // If Budget sheet doesn't exist, create a new one.
-        if (sizeof($response->budget) == 0)
+        if (sizeof($current) == 0)
         {
             new StoreBudget($user);
-            $response = new BudgetSheet($id);
+            return redirect('budget');
+            // $response = new BudgetSheet($id);
         }
-        */
+
 
         $all_budgets = $budget->unique(function ($item) {
             return $item['month'] . $item['year'];

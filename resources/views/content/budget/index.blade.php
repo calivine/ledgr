@@ -12,13 +12,13 @@
         </div>
         <div class="content-row">
             <form action="">
-                <select name="month" id="month-select">
+                <select class="form-control" name="month" id="month-select">
                     <option value="{{ $period_month }}">{{ $period_month }}</option>
                     @foreach($months as $m)
                         <option value="{{ $m }}">{{ $m }}</option>
                     @endforeach
                 </select>
-                <select name="year" id="year-select">
+                <select class="form-control" name="year" id="year-select">
                     <option value="{{ $period_year }}">{{ $period_year }}</option>
                     @foreach($years as $y)
                         <option value="{{ $y }}">{{ $y }}</option>
