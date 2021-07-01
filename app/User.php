@@ -64,4 +64,11 @@ class User extends Authenticatable
         # Define a many-to-many relationship
         return $this->belongsToMany('App\Role')->withTimestamps();
     }
+
+    public function pending()
+    {
+        # User has many pending activities
+        # Define a many-to-many relationship
+        return $this->hasMany('App\Pending');
+    }
 }
