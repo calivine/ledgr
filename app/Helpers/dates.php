@@ -3,6 +3,13 @@
 
 function valid_format($date)
 {
+
+    if (preg_match('/^(\d{4})-((0?[1-9])|(1[0-2]))-((0\d)|(1\d)|(2\d)|(3[0,1]))/', $date, $matches)) {
+        return true;
+    }
+
+
+
     $date_array = explode("-", $date);
     dump($date_array);
 

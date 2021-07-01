@@ -169,6 +169,12 @@ class ActivityController extends Controller
                 $amount = $transaction['amount' . $row];
                 $description = $transaction['description' . $row];
                 $category = $transaction['category' . $row];
+                Log::debug($transaction['date' . $row]);
+                // Wants Dates in the format: YYYY-MM-DD
+                if (str_contains($transaction['date' . $row], '/')) {
+                    $transaction['date' . $row] = preg_replace('/\//', "-", $transaction['date' . $row]);
+                    Log::debug($transaction['date' . $row]);
+                }
                 new StoreActivity($transaction['date' . $row], $amount, $description, $category, $user);
                 $row++;
             }

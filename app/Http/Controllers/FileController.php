@@ -28,5 +28,7 @@ class FileController extends Controller
                     'transactions' => $uploaded_file
             ]);
         }
+        return abort(500);
+
     }
 }

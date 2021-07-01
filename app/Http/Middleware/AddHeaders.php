@@ -18,7 +18,7 @@ class AddHeaders
         $response = $next($request);
 
         // Perform action
-        $response->header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
+        $response->header('Cache-Control', 'no-cache, no-store, max-age=31536000, must-revalidate');
         $response->header('Pragma', 'no-cache');
         $response->header('Expires', '-1');
         $response->header('Strict-Transport-Security', 'max-age=0');
