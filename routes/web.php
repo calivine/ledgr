@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 |
 */
 
-
 // Requires Authentication
 Route::group(['middleware' => 'auth'], function() {
 

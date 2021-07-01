@@ -13,7 +13,7 @@ class CreatePendingTable extends Migration
      */
     public function up()
     {
-        Schema::create('pending', function (Blueprint $table) {
+        Schema::create('pendings', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string("text");
@@ -30,6 +30,6 @@ class CreatePendingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pending');
+        Schema::dropIfExists('pendings');
     }
 }
