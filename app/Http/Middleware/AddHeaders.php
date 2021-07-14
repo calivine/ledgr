@@ -25,6 +25,7 @@ class AddHeaders
         $response->header('X-Content-Type-Options', 'nosniff');
         $response->header('X-Frame-Options', 'SAMEORIGIN');
         $response->header('X-XSS-Protection', '1;mode=block');
+
         return $response;
     }
 }
