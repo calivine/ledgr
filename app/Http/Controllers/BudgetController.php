@@ -152,6 +152,8 @@ class BudgetController extends Controller
      */
     public function createCategory(Request $request)
     {
+        $month = date('F');
+        $year = date('Y');
         if (count($request->all()) > 3)
         {
             $user = $request->user();
@@ -160,12 +162,12 @@ class BudgetController extends Controller
             $line = 1;
             $category = $inputs['category'];
             $planned = $inputs['planned'];
-            new StoreCategory($category, $planned, $user);
+            new StoreCategory($category, $planned, $user, $month, $year);
             while ($line <= $inputCount / 2)
             {
                 $category = $inputs['category' . $line];
                 $planned = $inputs['planned' . $line];
-                new StoreCategory($category, $planned, $user);
+                new StoreCategory($category, $planned, $user, $month, $year);
                 $line++;
             }
             return redirect(route('budget'));
@@ -182,7 +184,7 @@ class BudgetController extends Controller
             $new_category = $request->input('category');
             $new_planned_budget = $request->input('planned');
 
-            $action = new StoreCategory($new_category, $new_planned_budget, $user);
+            $action = new StoreCategory($new_category, $new_planned_budget, $user, $month, $year);
 
             return redirect(route('budget'));
 
